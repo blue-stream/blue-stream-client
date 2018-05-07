@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    .toolbar {
+        height: 56px;
+        background-color: #fff;
+        color: #000;
+        z-index: 2;
+        box-shadow: 0px 4px 8px -3px rgba(17, 17, 17, .09);
+    }
+    .is-mobile .toolbar {
+        position: fixed;
+    }
+    h1.app-name {
+        margin-left: 8px;
+    }
+    .sidenav-container {
+        flex: 1;
+        mat-sidenav {
+            mat-icon {
+                color: rgba(0, 0, 0, 0.54);
+            }
+            background-color: #f5f5f5;
+            width: 240px;
+        }
+    }
+    .is-mobile .sidenav-container {
+        flex: 1 0 auto;
+    }
+    mat-sidenav-content {
+        padding: 20px;
+    }
+    span.spacer {
+        flex: 1;
+    }
+}

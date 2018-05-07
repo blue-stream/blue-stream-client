@@ -1,0 +1,27 @@
+.video-thumbnail {
+    cursor: pointer;
+    img {
+        width: 210px;
+        height: 118px;
+    }
+    .video-details { 
+        padding: 0 5px;
+        a {
+            text-decoration: none;
+        }
+        .title {
+            padding: 14px 0 4px 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.4rem;
+            color: black;
+        }
+
+        .uploader, .statistics {
+            font-size: 0.8rem;
+            font-weight: 400;
+            line-height: 1.2rem;
+            color: #6e6e6e;
+        }
+    }
+}
