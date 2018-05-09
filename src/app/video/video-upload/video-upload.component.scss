@@ -1,3 +1,34 @@
-.dashed-border {
-    border: 1px dashed #000;
+.container {
+    display: flex;
+    .file-upload {
+        display: none;
+    }
+    .upload-container {
+        display: inline-block;
+        text-align: center;
+        margin: auto;
+    }
+    .upload-icon-container {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        border-radius: 75px;
+        align-items: center;
+        justify-content: center;
+        background-color: #ccc;
+        margin: auto;
+        .upload-icon {
+            color: #fff;
+            width: 8rem;
+            height: 8rem;
+            font-size: 8rem;
+        }
+    }
+    .upload-title {
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+    .upload-description {
+        font-size: 0.9rem;
+    }
 }

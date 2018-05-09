@@ -6,6 +6,7 @@ import { VideoThumbnailComponent } from './video-thumbnail/video-thumbnail.compo
 import { VideosComponent } from './videos/videos.component';
 import { SharedModule } from '../shared/shared.module';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
+import { VideoService } from './video.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import { VideoUploadComponent } from './video-upload/video-upload.component';
     VideosComponent,
     VideoUploadComponent
   ],
-  providers: []
+  providers: [
+    VideoService
+  ]
 })
 export class VideoModule { }

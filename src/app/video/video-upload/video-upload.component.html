@@ -1,9 +1,23 @@
-<mat-card fxLayout="row">
-    <div fxLayout="column" fxFlex>
-        <h3>Upload videos</h3>
-        <label>Click on the button or drag & drop files</label>
-        <button mat-button>Upload video</button>
+<div class="container" *ngIf="!file; else upload">
+    <input #fileInput type="file" accept="video/*" class="file-upload" (change)="onFileOpened()" />
+    <div class="upload-container" (click)="openFileBrowser()">
+        <div class="upload-icon-container mat-elevation-z4">
+            <mat-icon class="upload-icon">file_upload </mat-icon>
+        </div>
+        <h3 class="upload-title">Select files to upload</h3>
+        <span class="upload-description">Or drag and drop video files</span>
     </div>
-    <div class="dashed-border" fxFlex>
-    </div>
-</mat-card>
+</div>
+<ng-template #upload>
+    <mat-card>
+        <div fxLayout="row">
+            <video width="280" height="160" controls>
+                <source [src]="fileUrl">
+            </video>
+            <div fxFlex fxLayout="column">
+                <mat-progress-bar mode="determinate" *ngIf="progress" [value]="progress | async"></mat-progress-bar>
+                <button mat-raised-button (click)="uploadVideo()">Upload</button>
+            </div>
+        </div>
+    </mat-card>
+</ng-template>

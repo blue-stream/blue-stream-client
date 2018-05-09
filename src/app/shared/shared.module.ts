@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatFormFieldModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatSnackBarModule,
     FlexLayoutModule,
   ],
   exports: [
@@ -38,6 +40,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatFormFieldModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatSnackBarModule,
     FlexLayoutModule,
   ],
   declarations: []

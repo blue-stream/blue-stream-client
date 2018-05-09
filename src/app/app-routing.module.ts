@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './video/video.module#VideoModule'
+  },
+  {
+    path: 'upload',
+    loadChildren: './upload/upload.module#UploadModule'
   }
 ];
 
