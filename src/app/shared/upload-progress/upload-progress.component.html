@@ -1,0 +1,10 @@
+<mat-card fxLayout="column" class="upload-progress">
+  <div class="description">
+    <mat-icon>autorenew</mat-icon>
+    <span class="file-name">{{fileName}}</span>
+    <span class="upload-percent">({{progress.percent}}%)</span>
+    <span class="spacer"></span>
+    <span>{{progress.eta}} secs left</span>
+  </div>
+  <mat-progress-bar mode="buffer" color="primary" [value]="progress.percent"></mat-progress-bar>
+</mat-card>

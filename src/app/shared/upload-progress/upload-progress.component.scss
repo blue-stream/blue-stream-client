@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+@import 'src/theme.scss';
+.upload-progress {
+    padding: 0;
+    margin: 16px 0;
+    .description {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        font-size: 0.9rem;
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            margin-right: 4px;
+            color: mat-color($app-primary);
+            animation: spin 4s infinite linear;
+        }
+        .upload-percent {
+            margin-left: 10px;
+            margin-right: 10px;
+            color: mat-color($app-primary);
+        }
+        .spacer {
+            flex: 1;
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

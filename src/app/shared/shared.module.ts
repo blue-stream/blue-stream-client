@@ -12,6 +12,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FileDropDirective } from './file-drop.directive';
+import { UploadProgressComponent } from './upload-progress/upload-progress.component';
 
 @NgModule({
   imports: [
@@ -42,7 +44,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatProgressBarModule,
     MatSnackBarModule,
     FlexLayoutModule,
+
+    FileDropDirective,
+    UploadProgressComponent
   ],
-  declarations: []
+  declarations: [
+    FileDropDirective,
+    UploadProgressComponent
+  ]
 })
 export class SharedModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { VideoService } from '../video.service';
 import { Observable } from 'rxjs';
+import { UploadProgress } from '../upload-progress';
 
 @Component({
   selector: 'bs-video-upload',
@@ -12,7 +13,7 @@ export class VideoUploadComponent implements OnInit {
 
   private file: File;
   private fileUrl: SafeUrl;
-  private progress: Observable<number>;
+  private progress: Observable<UploadProgress>;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
