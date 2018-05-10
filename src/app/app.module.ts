@@ -8,8 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { UploadModule } from './upload/upload.module';
-
 
 @NgModule({
   declarations: [
@@ -22,7 +20,6 @@ import { UploadModule } from './upload/upload.module';
     HttpClientModule,
 
     SharedModule,
-    UploadModule
   ],
   providers: [MediaMatcher],
   bootstrap: [AppComponent]
