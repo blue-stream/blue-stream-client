@@ -7,6 +7,7 @@ import { VideosComponent } from './videos/videos.component';
 import { SharedModule } from '../shared/shared.module';
 import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { VideoService } from './video.service';
+import { VideoUploadProgressComponent } from './video-upload-progress/video-upload-progress.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { VideoService } from './video.service';
   declarations: [
     VideoThumbnailComponent,
     VideosComponent,
-    VideoUploadComponent
+    VideoUploadComponent,
+    VideoUploadProgressComponent,
   ],
   providers: [
     VideoService

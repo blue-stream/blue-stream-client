@@ -1,0 +1,31 @@
+.container {
+    font-size: 0.9rem;
+    margin: 0 16px 16px 16px;
+    video {
+        border-radius: 4px;
+    }
+    mat-progress-bar {
+        margin: 4px 0;
+        border-radius: 10px;
+    }
+    .file-size {
+        margin: 0 8px;
+        display: flex;
+        align-items: center;
+    }
+    .upload-percent {
+        margin: 0 8px;
+    }
+    h3 {
+        margin: 0px;
+        text-overflow: ellipsis;
+        max-width: 500px;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+    }
+    .video-description {
+        height: 100px;
+        justify-content: space-between;
+    }
+}

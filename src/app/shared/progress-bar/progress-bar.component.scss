@@ -1,0 +1,30 @@
+@import '~@angular/material/theming';
+@import 'src/theme.scss';
+.progress-bar {
+    height: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    position: relative;
+    border-radius: 2px;
+    .progress,
+    .progress-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        span:not(:first-of-type),
+        span:not(:last-of-type) {
+            padding: 0 4px;
+        }
+    }
+    .progress-text {
+        z-index: 1;
+        line-height: 28px;
+        padding: 0 10px;
+    }
+    .progress {
+        height: 28px;
+        transition: width 250ms ease-in;
+        background: rgba(0, 0, 0, 0.1);
+    }
+}

@@ -1,0 +1,24 @@
+<div fxLayout="row" class="container" fxLayoutAlign="center start" fxLayoutGap="8px" *ngIf="progress">
+  <video width="180" height="100" autoplay muted loop>
+    <source [src]="fileUrl">
+  </video>
+  <div fxLayout="column" fxFlex class="video-description">
+    <div fxLayout="row">
+      <h3>{{videoFile.name}}</h3>
+      <span fxFlex></span>
+      <span class="file-size">{{fileSize}} MB</span>
+    </div>
+    <span [ngSwitch]="progress.status">
+      <p *ngSwitchCase="'DONE'">
+        Click "Publish" to make your video live.
+      </p>
+      <p *ngSwitchCase="'FAILED'">
+        Uploading failed.
+      </p>
+      <p *ngSwitchDefault>
+        Your video is still uploading. Please keep this page open until it's done.
+      </p>
+    </span>
+    <bs-progress-bar [progress]="progress"></bs-progress-bar>
+  </div>
+</div>

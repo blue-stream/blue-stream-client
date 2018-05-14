@@ -11,9 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FileDropDirective } from './file-drop.directive';
-import { UploadProgressComponent } from './upload-progress/upload-progress.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   imports: [
@@ -29,6 +29,7 @@ import { UploadProgressComponent } from './upload-progress/upload-progress.compo
     MatDialogModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatChipsModule,
     FlexLayoutModule,
   ],
   exports: [
@@ -43,14 +44,14 @@ import { UploadProgressComponent } from './upload-progress/upload-progress.compo
     MatDialogModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatChipsModule,
     FlexLayoutModule,
 
-    FileDropDirective,
-    UploadProgressComponent
+    ProgressBarComponent
+
   ],
   declarations: [
-    FileDropDirective,
-    UploadProgressComponent
+    ProgressBarComponent
   ]
 })
 export class SharedModule { }
