@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './video/video.module#VideoModule'
+    loadChildren: './upload/upload.module#UploadModule'
+    // loadChildren: './video/video.module#VideoModule'
   }
 ];
 
