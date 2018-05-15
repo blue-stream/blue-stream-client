@@ -1,0 +1,12 @@
+<div id="video-container">
+  <video width="854" [src]="videoURL" height="480" controls></video>
+  <h3 id="title">
+    {{video.title}}
+  </h3>
+  <div id="info">
+    <p id="views">
+      {{video.views}} views
+    </p>
+  </div>
+  <bs-comments></bs-comments>
+</div>
