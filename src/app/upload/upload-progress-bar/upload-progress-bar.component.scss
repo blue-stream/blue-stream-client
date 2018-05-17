@@ -1,0 +1,40 @@
+#upload-progress-bar {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    height: 28px;
+    position: relative;
+    .progress,
+    .progress-text {
+        bottom: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        span:not(:first-of-type),
+        span:not(:last-of-type) {
+            padding: 0 4px;
+        }
+    }
+    .progress-text {
+        line-height: 28px;
+        padding: 0 10px;
+        z-index: 1;
+    }
+    .progress {
+        background: rgba(0, 0, 0, 0.1);
+        height: 28px;
+        transition: width 250ms ease-in;
+    }
+    #cancel {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        align-self: center;
+        mat-icon {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            font-size: 18px;
+        }
+    }
+}

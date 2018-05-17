@@ -4,6 +4,9 @@ import { HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/ht
 
 export class FileUpload {
     public progress = 0;
+    public eta: number;
+    public uploadTimestamp: number;
+    public loadedBytes: number;
     public file: File;
     public status: FileUploadStatus = FileUploadStatus.Pending;
     public request: Subscription = null;

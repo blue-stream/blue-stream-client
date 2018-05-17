@@ -1,10 +1,11 @@
-import { Directive, HostListener, ElementRef, Renderer, HostBinding } from '@angular/core';
+import { Directive, HostListener, HostBinding, Output, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[bsFileDrop]'
 })
 export class FileDropDirective {
 
+  @Output() private filesSelected = new EventEmitter<FileList>();
   @HostBinding('class') elementClass = '';
 
   constructor() { }
@@ -36,7 +37,6 @@ export class FileDropDirective {
     event.stopPropagation();
 
     this.elementClass = '';
-
-    console.log(event.dataTransfer.files);
+    this.filesSelected.emit(event.dataTransfer.files);
   }
 }

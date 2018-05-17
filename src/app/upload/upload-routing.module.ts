@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { VideoUploaderComponent } from './video-uploader/video-uploader.component';
 
 const routes: Routes = [
-  { path: '', component: FileUploaderComponent }
+  { path: '', component: VideoUploaderComponent }
 ];
 
 @NgModule({
