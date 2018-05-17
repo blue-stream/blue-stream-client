@@ -1,30 +1,6 @@
 <div id="container">
   <video width="854" [src]="videoURL" height="480" controls></video>
-  <h3 id="title">
-    {{video.title}}
-  </h3>
-  <div id="info-container">
-    <p id="views">
-      {{video.views}} views
-    </p>
-    <span fxFlex></span>
-    <div id="actions-container">
-      <div id='ratings-container'>
-        <div class="rating">
-          <button mat-icon-button class="rating-button">
-            <mat-icon>thumb_up</mat-icon>
-          </button>
-          <span class="rating-amount">{{video.likes}}</span>
-        </div>
-        <div class="rating">
-          <button mat-icon-button class="rating-button">
-            <mat-icon>thumb_down</mat-icon>
-          </button>
-          <span class="rating-amount">{{video.dislikes}}</span>
-        </div>
-        <mat-progress-bar mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
-      </div>
-    </div>
-  </div>
+  <bs-video-primary-info [video]="video"></bs-video-primary-info>
+  <bs-video-secondary-info [video]="video"></bs-video-secondary-info>
   <bs-comments></bs-comments>
 </div>

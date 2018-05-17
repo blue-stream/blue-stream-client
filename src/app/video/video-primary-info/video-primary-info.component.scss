@@ -1,0 +1,45 @@
+#title {
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-top: 1.2em;
+    margin-bottom: 0px;
+    line-height: 0.6em;
+}
+#info-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: row;
+
+    #views {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 1rem; 
+        color: gray;
+    }
+
+    #actions-container {
+        display: inline-block;
+
+        #ratings-container {
+            .rating {
+                display: inline-block;
+                margin: 0 8px;
+
+                .rating-button {
+                    color: gray;
+
+                    &:hover {
+                        color: rgb(78, 78, 78);
+                    }
+                }
+                .rating-amount {
+                    font-size: 0.9rem;
+                }
+            }
+            mat-progress-bar {
+                height: 3px;
+                margin: 0 5px;
+            }
+        }
+    }
+}

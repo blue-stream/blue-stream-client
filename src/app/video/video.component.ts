@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Video } from './models/video.model';
@@ -13,7 +13,6 @@ export class VideoComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   video: Video;
-
   routeIdSubscription: any;
 
   ngOnInit() {
@@ -24,10 +23,6 @@ export class VideoComponent implements OnInit, OnDestroy {
     });
   }
 
-  getLikesToDislikesRatio(): number {
-    return (this.video.likes * 100) / (this.video.likes + this.video.dislikes);
-  }
-
   loadVideoInfo() {
     this.video = {
       id: '123456789',
@@ -35,7 +30,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       description: 'test test test test test test test test test test test',
       views: 103,
       publishDate: '12/3/14',
-      uploader: 'Almog Vagman Ciprut',
+      owner: 'Best Videos',
       likes: 123,
       dislikes: 34,
       catagory: 'Cool'

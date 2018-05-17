@@ -10,6 +10,10 @@ import { VideoService } from './video.service';
 import { VideoUploadProgressComponent } from './video-upload-progress/video-upload-progress.component';
 import { VideoComponent } from './video.component';
 import { CommentsModule } from '../comments/comments.module';
+import { VideoPrimaryInfoComponent } from './video-primary-info/video-primary-info.component';
+import { VideoSecondaryInfoComponent } from './video-secondary-info/video-secondary-info.component';
+import { VideoOwnerComponent } from './video-owner/video-owner.component';
+import { VideoDescriptionComponent } from './video-description/video-description.component';
 
 @NgModule({
   imports: [
@@ -24,6 +28,10 @@ import { CommentsModule } from '../comments/comments.module';
     VideoComponent,
     VideoUploadComponent,
     VideoUploadProgressComponent,
+    VideoPrimaryInfoComponent,
+    VideoSecondaryInfoComponent,
+    VideoOwnerComponent,
+    VideoDescriptionComponent,
   ],
   providers: [
     VideoService

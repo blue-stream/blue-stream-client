@@ -4,8 +4,8 @@ export interface Video {
     description: string;
     views: number;
     publishDate: string;
-    uploader: string;
     likes: number;
     dislikes: number;
     catagory: string;
+    owner: string;
 }

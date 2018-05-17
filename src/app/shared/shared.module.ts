@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
@@ -31,6 +32,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     MatSnackBarModule,
     MatChipsModule,
     FlexLayoutModule,
+    MatTooltipModule
   ],
   exports: [
     MatToolbarModule,
@@ -46,9 +48,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     MatSnackBarModule,
     MatChipsModule,
     FlexLayoutModule,
-
+    MatTooltipModule,
     ProgressBarComponent
-
   ],
   declarations: [
     ProgressBarComponent
