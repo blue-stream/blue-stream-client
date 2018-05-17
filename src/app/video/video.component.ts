@@ -24,6 +24,10 @@ export class VideoComponent implements OnInit, OnDestroy {
     });
   }
 
+  getLikesToDislikesRatio(): number {
+    return (this.video.likes * 100) / (this.video.likes + this.video.dislikes);
+  }
+
   loadVideoInfo() {
     this.video = {
       id: '123456789',
@@ -32,8 +36,8 @@ export class VideoComponent implements OnInit, OnDestroy {
       views: 103,
       publishDate: '12/3/14',
       uploader: 'Almog Vagman Ciprut',
-      likes: 222,
-      dislikes: 233,
+      likes: 123,
+      dislikes: 34,
       catagory: 'Cool'
     };
   }
