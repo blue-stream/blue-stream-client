@@ -1,0 +1,36 @@
+#video-tile {
+    cursor: pointer;
+    img {
+        width: 210px;
+        height: 118px;
+    }
+    #video-details {
+        max-width: 210px;
+        a {
+            text-decoration: none;
+        }
+        #video-title {
+            padding: 10px 0;
+            font-weight: 500;
+            line-height: 1.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: black;
+        }
+        #owner,
+        #statistics {
+            font-size: 0.8rem;
+            font-weight: 400;
+            line-height: 1.2rem;
+            color: #a0a0a0;
+            span:not(:last-of-type)::after {
+                content: '•';
+                margin: 0 4px;
+            }
+        }
+        #owner:hover {
+            color: #6a6a6a;
+        }
+    }
+}

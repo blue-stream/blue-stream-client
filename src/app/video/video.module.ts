@@ -5,6 +5,7 @@ import { VideoRoutingModule } from './video-routing.module';
 import { VideoThumbnailComponent } from './video-thumbnail/video-thumbnail.component';
 import { VideosComponent } from './videos/videos.component';
 import { SharedModule } from '../shared/shared.module';
+import { VideoTileComponent } from './video-tile/video-tile.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     VideoThumbnailComponent,
     VideosComponent,
+    VideoTileComponent,
   ],
   providers: [
   ]
