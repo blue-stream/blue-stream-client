@@ -10,6 +10,8 @@ import { VideoSection } from './video-section.model';
 })
 export class VideoService {
 
+  public maxVideoColumnsAllowed: number;
+
   constructor() { }
 
   getVideos(): Observable<Video[]> {

@@ -1,3 +1,5 @@
-<div id="video-section-list" >
-    <bs-video-section-item [sections]="sections | async"></bs-video-section-item>
+<div class="container" bsVideoResponsiveView (layoutChanged)="layoutChanged($event)">
+    <div  id="video-section-list" [style.width.px]="width">
+        <bs-video-section-item [sections]="sections | async"></bs-video-section-item>
+    </div>
 </div>

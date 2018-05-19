@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { VideoService } from '../shared/video.service';
 import { VideoSection } from '../shared/video-section.model';
+import { VideoConstants } from '../shared/constants';
 
 @Component({
   selector: 'bs-video-section-list',
@@ -10,6 +11,7 @@ import { VideoSection } from '../shared/video-section.model';
 })
 export class VideoSectionListComponent implements OnInit {
 
+  width: number;
   sections: Observable<VideoSection[]>;
   constructor(private videoService: VideoService) { }
 
@@ -17,4 +19,8 @@ export class VideoSectionListComponent implements OnInit {
     this.sections = this.videoService.getSections();
   }
 
+  layoutChanged(maxVideosAllowed: number) {
+    this.videoService.maxVideoColumnsAllowed = maxVideosAllowed;
+    this.width = maxVideosAllowed * VideoConstants.videoTileWidth;
+  }
 }
