@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.4"></a>
+## [0.2.4](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.3...v0.2.4) (2018-05-19)
+
+
+### Bug Fixes
+
+* **video-responsive-width:** Move responsive width manager to directive ([40dc301](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/40dc301))
+
+
+
 <a name="0.2.3"></a>
 ## [0.2.3](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.2...v0.2.3) (2018-05-19)
 
