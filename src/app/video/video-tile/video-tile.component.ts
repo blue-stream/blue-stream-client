@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Video } from '../shared/video.model';
 
 @Component({
   selector: 'bs-video-tile',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-tile.component.scss']
 })
 export class VideoTileComponent implements OnInit {
+
+  @Input() horizontal = false;
+  @Input() video: Video;
 
   constructor() { }
 

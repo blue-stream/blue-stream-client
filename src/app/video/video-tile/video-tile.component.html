@@ -1,11 +1,13 @@
-<div id="video-tile" fxLayout="column" fxLayoutGap="4px">
-    <img src="assets/video-placeholder.png" />
-    <div fxLayout="column" id="video-details">
-      <a id="video-title" routerLink=".">►Box Fan~Oscillating Fan Noise Stereo Video. Rotating Fan White Noise. Box Fan 10 hours for Sleeping</a>
-      <a routerLink="." id="owner">SleepDroid Studios</a>
-      <div id="statistics">
-        <span>11k views</span>
-        <span>3 months ago</span>
+<div id="video-tile">
+  <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
+    <img [src]="video.thumbnailUrl">
+    <div id="video-details" fxLayout="column">
+      <a id="video-title" routerLink=".">{{video.title}}</a>
+      <a id="video-owner" routerLink=".">{{video.owner}}</a>
+      <div id="video-statistics">
+        <span>{{video.views}} views</span>
+        <span>{{video.publishDate | date: 'dd MMM'}}</span>
       </div>
     </div>
   </div>
+</div>
