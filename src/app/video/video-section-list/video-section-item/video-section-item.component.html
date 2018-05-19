@@ -1,0 +1,9 @@
+<div id="video-section-item">
+  <div *ngFor="let section of sections">
+    <div fxLayout="row">
+      <img class="avatar" [src]="section.avatarUrl" [alt]="section.title">
+      <h3>{{section.title}}</h3>
+    </div>
+    <bs-video-list [videos]="section.videos" horizontal="true"></bs-video-list>
+  </div>
+</div>
