@@ -2,73 +2,29 @@
     #info-container {
         display: flex;
         flex-direction: row;
-    
         #user-profile-image {
             border-radius: 50%;
             width: 48px;
             height: 48px;
             padding: 10px;
         }
-    
         #comment-info {
             margin: 0 4px;
             margin-top: 16px;
-    
             #user-link {
                 text-decoration: none;
                 font-size: 0.9rem;
                 font-weight: 500;
                 color: black;
             }
-            
             #date {
                 margin: 0 10px;
                 font-size: 0.8rem;
                 color: rgba(128, 128, 128, 0.8);
             }
-    
             #comment-text {
                 font-size: 0.9rem;
                 margin-top: 5px;
-            }
-        }
-    }
-    
-    #actions-container {
-        display: flex;
-        margin: 0 50px;
-
-        #ratings-container {
-            .rating {
-                display: inline-block;
-                margin: 0 8px;
-
-                .rating-button {
-                    color: gray;
-                
-                    &:hover {
-                        color: rgb(78, 78, 78);
-                    }
-
-                    mat-icon {
-                        font-size: 1.1rem;
-                    }
-                }
-                .rating-amount {
-                    font-size: 0.9rem;
-                }
-            }
-            mat-progress-bar {
-                height: 3px;
-                margin: 0 5px;
-            }
-        }
-
-        #reply {
-            color: gray;
-
-            &:hover {
-                color: rgb(78, 78, 78);
             }
         }
     }
