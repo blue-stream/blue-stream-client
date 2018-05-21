@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.1.4...v0.3.0) (2018-05-21)
+
+
+
+<a name="0.2.5"></a>
+## [0.2.5](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.4...v0.2.5) (2018-05-21)
+
+
+
+<a name="0.2.4"></a>
+## [0.2.4](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.3...v0.2.4) (2018-05-19)
+
+
+### Bug Fixes
+
+* **video-responsive-width:** Move responsive width manager to directive ([40dc301](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/40dc301))
+
+
+
+<a name="0.2.3"></a>
+## [0.2.3](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.1.3...v0.2.3) (2018-05-19)
+
+
+### Bug Fixes
+
+* **responsive:** Change upload component responsivity on mobile screens ([789cc06](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/789cc06))
+
+
+
+<a name="0.2.2"></a>
+## [0.2.2](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.1...v0.2.2) (2018-05-17)
+
+
+
+<a name="0.2.1"></a>
+## [0.2.1](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.0...v0.2.1) (2018-05-17)
+
+
+
+<a name="0.2.0"></a>
+# [0.2.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.1.2...v0.2.0) (2018-05-15)
+
+
+### Features
+
+* **upload-module:** Add upload module for multiple file upload ([ca71fca](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/ca71fca))
+
+
 
 <a name="0.2.5"></a>
 ## [0.2.5](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.4...v0.2.5) (2018-05-21)
