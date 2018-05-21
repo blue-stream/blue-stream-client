@@ -1,4 +1,4 @@
-import { Video } from './video.model';
+import { Video } from '../../shared/models/video.model';
 
 export class VideoSection {
     title: string;
