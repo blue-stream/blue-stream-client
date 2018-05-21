@@ -1,0 +1,23 @@
+#container {
+    margin: auto;
+    position: relative;
+    #video-list {
+        overflow: hidden;
+        #scroll-container {
+            transform: translateX(0px);
+            transition: transform 0.15s cubic-bezier(0.4, 0.0, 1, 1);
+            display: inline-block;
+        }
+        button[mat-mini-fab] {
+            position: absolute;
+            top: 25%;
+            z-index: 100;
+            &#left-button {
+                left: -18px;
+            }
+            &#right-button {
+                right: -18px;
+            }
+        }
+    }
+}

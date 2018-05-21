@@ -1,0 +1,30 @@
+<div id="upload-progress-bar">
+  <div class="progress-text" fxLayout="row">
+    <div [ngSwitch]="file.status">
+      <span *ngSwitchCase="fileUploadStatus.Success">
+        Done
+      </span>
+      <span *ngSwitchCase="fileUploadStatus.Error">
+        Failed
+      </span>
+      <span *ngSwitchCase="fileUploadStatus.Progress">
+        Uploading
+      </span>
+      <span *ngSwitchCase="fileUploadStatus.Pending">
+        Pending
+      </span>
+      <span *ngSwitchDefault>
+        Unknown
+      </span>
+    </div>
+    <div fxLayout="row" fxFlex *ngIf="file.status === fileUploadStatus.Progress">
+      <span>{{file.progress}}%</span>
+      <span fxFlex></span>
+      <span>About {{file.eta}} seconds left</span>
+      <button id="cancel" mat-icon-button (click)="cancelUpload()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="progress" [style.width]="file.progress+'%'"></div>
+</div>

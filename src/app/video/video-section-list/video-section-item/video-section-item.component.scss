@@ -1,0 +1,24 @@
+#video-section-item {
+    #section {
+        &:not(:last-of-type) {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 8px;
+        }
+        #avatar {
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+        }
+        #title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        #subscribe-button {
+            background: #f00;
+            color: #fff;
+        }
+        #subscribe-count {
+            color: #fafafa;
+        }
+    }
+}

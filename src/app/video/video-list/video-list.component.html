@@ -1,0 +1,15 @@
+<div>
+  <div id="container">
+    <div id="video-list">
+      <button mat-mini-fab id="left-button" (click)="scrollLeft()" *ngIf="horizontal && startIndex > 0">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <div id="scroll-container" [style.white-space]="horizontal ? 'nowrap' : 'normal'" [style.transform]="'translateX(' + -startIndex * (videoTileWidth + 2 * videoTileMargin) + 'px)'">
+        <bs-video-tile [video]="video" *ngFor="let video of videos"></bs-video-tile>
+      </div>
+      <button mat-mini-fab id="right-button" (click)="scrollRight()" *ngIf="horizontal && startIndex + videoService.maxVideoColumnsAllowed < videos.length">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

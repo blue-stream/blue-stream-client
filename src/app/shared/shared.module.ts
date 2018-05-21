@@ -14,7 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
@@ -49,10 +49,13 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     MatChipsModule,
     FlexLayoutModule,
     MatTooltipModule,
-    ProgressBarComponent
+    ConfirmDialogComponent
   ],
   declarations: [
-    ProgressBarComponent
+    ConfirmDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule { }

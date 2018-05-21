@@ -1,0 +1,41 @@
+$video-width: 210px;
+$video-height: 118px;
+#video-tile {
+    text-align: start;
+    display: inline-block;
+    margin: 10px 2px;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+        width: $video-width;
+        height: $video-height;
+    }
+    #video-details {
+        width: $video-width;
+        a {
+            text-decoration: none;
+        }
+        #video-title {
+            padding-bottom: 10px;
+            font-weight: 500;
+            line-height: 1.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #000;
+        }
+        #video-owner,
+        #video-statistics {
+            font-size: 0.8rem;
+            font-weight: 400;
+            line-height: 1.2rem;
+            color: #a0a0a0;
+        }
+        #video-statistics {
+            span:not(:last-of-type)::after {
+                content: '•';
+                margin: 0 4px;
+            }
+        }
+    }
+}

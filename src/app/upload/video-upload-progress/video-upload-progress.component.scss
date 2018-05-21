@@ -1,0 +1,23 @@
+#video-upload-progress {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    video {
+        border-radius: 5px;
+    }
+    #upload-details {
+        width: 100%;
+    }
+    #file-name {
+        margin: 0px;
+        text-overflow: ellipsis;
+        max-width: 500px;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+    }
+    #file-size {
+        margin: 0 8px;
+        display: flex;
+        align-items: center;
+    }
+}

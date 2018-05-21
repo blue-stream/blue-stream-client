@@ -1,0 +1,13 @@
+<div id="video-tile">
+  <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
+    <img [src]="video.thumbnailUrl">
+    <div id="video-details" fxLayout="column">
+      <a id="video-title" routerLink=".">{{video.title}}</a>
+      <a id="video-owner" routerLink=".">{{video.owner}}</a>
+      <div id="video-statistics">
+        <span>{{video.views}} views</span>
+        <span>{{video.publishDate | date: 'dd MMM'}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,9 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'upload',
+    loadChildren: './upload/upload.module#UploadModule'
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
-  }
+  },
 ];
 
 @NgModule({
