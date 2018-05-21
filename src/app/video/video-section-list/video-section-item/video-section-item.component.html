@@ -1,8 +1,16 @@
 <div id="video-section-item">
-  <div *ngFor="let section of sections">
-    <div fxLayout="row">
-      <img class="avatar" [src]="section.avatarUrl" [alt]="section.title">
-      <h3>{{section.title}}</h3>
+  <div id="section" *ngFor="let section of sections">
+    <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="12px">
+      <img *ngIf="section.avatarUrl" id="avatar" [src]="section.avatarUrl" [alt]="section.title">
+      <h3 id="title">{{section.title}}</h3>
+      <span fxFlex></span>
+      <button fxHide.lt-md mat-raised-button id="subscribe-button">
+        SUBSCRIBE
+        <span id="subscribe-count">5M</span>
+      </button>
+      <button mat-icon-button *ngIf="section.isDismissable">
+        <mat-icon>clear</mat-icon>
+      </button>
     </div>
     <bs-video-list [videos]="section.videos" horizontal="true"></bs-video-list>
   </div>
