@@ -10,9 +10,16 @@ export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
 
+  replies: Comment[] = [];
+  showReplies: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  loadReplies() {
+
   }
 
 }

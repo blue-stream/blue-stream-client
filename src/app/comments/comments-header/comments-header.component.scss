@@ -1,0 +1,22 @@
+#container {
+    #comments-amount {
+        margin: 0 12px;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+    #add-comment-container {
+        display: flex;
+        margin-bottom: 20px;
+        #comment-input {
+            width: 100%;
+        }
+        #user-profile-image {
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            padding: 10px;
+            padding-bottom: 0px;
+        }
+    }
+}

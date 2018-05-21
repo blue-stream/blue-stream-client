@@ -1,4 +1,4 @@
 <div id="container">
-    <span id="comments-amount">{{commentsAmount}} Comments</span>
-    <bs-comment-list></bs-comment-list>
+    <bs-comments-header [commentsAmount]="comments.length"></bs-comments-header>
+    <bs-comment-list [comments]="comments"></bs-comment-list>
 </div>

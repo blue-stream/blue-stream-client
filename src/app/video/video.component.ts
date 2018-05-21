@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { VideoService } from './shared/video.service';
 import { Video } from './models/video.model';
 
 @Component({
@@ -10,17 +11,23 @@ import { Video } from './models/video.model';
 })
 export class VideoComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private videoService: VideoService) { }
 
   video: Video;
   routeIdSubscription: any;
+  recommendedVideos: any = [];
 
   ngOnInit() {
     this.loadVideoInfo();
+    this.loadRecommendedVideos();
     // Subscribe to the id of the video in the route parameter
     this.routeIdSubscription = this.route.params.subscribe(params => {
       this.video.id = params.id;
     });
+  }
+
+  loadRecommendedVideos() {
+    this.recommendedVideos = this.videoService.getVideos();
   }
 
   loadVideoInfo() {

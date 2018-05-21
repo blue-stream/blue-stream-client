@@ -8,4 +8,8 @@
     </div>
   </div>
   <bs-comment-action-buttons [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
+  <button mat-button id="replies-expander" *ngIf="replies.length !== 0">view all {{replies.length}} replies</button>
+  <div id="replies-container" *ngIf="showReplies">
+    <bs-comment-list></bs-comment-list>
+  </div>
 </div>

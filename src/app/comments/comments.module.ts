@@ -5,6 +5,7 @@ import { CommentComponent } from './comment-list/comment/comment.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentActionButtonsComponent } from './comment-list/comment/comment-action-buttons/comment-action-buttons.component';
+import { CommentsHeaderComponent } from './comments-header/comments-header.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CommentActionButtonsComponent } from './comment-list/comment/comment-ac
     CommentsComponent,
     CommentComponent,
     CommentListComponent,
-    CommentActionButtonsComponent
+    CommentActionButtonsComponent,
+    CommentsHeaderComponent
   ],
   exports: [CommentsComponent]
 })
