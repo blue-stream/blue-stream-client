@@ -16,10 +16,11 @@ export class CommentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.loadReplies();
   }
 
   loadReplies() {
-
+    this.replies = this.comment.replies;
   }
 
 }

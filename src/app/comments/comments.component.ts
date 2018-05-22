@@ -23,11 +23,22 @@ export class CommentsComponent implements OnInit {
       dislikes: 12,
       likes: 12,
       id: '1213',
-      text: 'Very good video, good good job'
+      text: 'Very good video, good good job',
+      replies: []
+    };
+
+    const comment2: Comment = {
+      date: '12/12/12',
+      user: 'Almog',
+      dislikes: 12,
+      likes: 12,
+      id: '1213',
+      text: 'Very good video, good good job',
+      replies: [comment, comment, comment]
     };
 
     this.comments.push(comment);
-    this.comments.push(comment);
+    this.comments.push(comment2);
     this.comments.push(comment);
   }
 }
