@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.0...v0.3.0) (2018-05-22)
+
+
+### Features
+
+* **Watch:** Add watch page ([cd95c01](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/cd95c01))
+
+
+
+<a name="0.2.7"></a>
+## [0.2.7](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.6...v0.2.7) (2018-05-22)
+
+
+### Bug Fixes
+
+* **video-left-right-swipe:** Fix button visibility when changing mode ([4e5f07f](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/4e5f07f))
+
+
+
+<a name="0.2.6"></a>
+## [0.2.6](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.3.1...v0.2.6) (2018-05-21)
+
+
+
 <a name="0.2.9"></a>
 ## [0.2.9](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.0...v0.2.9) (2018-05-22)
 
