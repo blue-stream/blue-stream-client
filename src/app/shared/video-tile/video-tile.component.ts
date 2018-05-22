@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Video } from '../shared/video.model';
+import { Video } from '../models/video.model';
 
 @Component({
   selector: 'bs-video-tile',

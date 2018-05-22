@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { VideoService } from '../../shared/video.service';
-import { Video } from '../../shared/video.model';
 import { VideoSection } from '../../shared/video-section.model';
 
 @Component({

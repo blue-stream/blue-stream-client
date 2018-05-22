@@ -10,10 +10,8 @@ import { VideoPrimaryInfoComponent } from './video-primary-info/video-primary-in
 import { VideoSecondaryInfoComponent } from './video-secondary-info/video-secondary-info.component';
 import { VideoOwnerComponent } from './video-owner/video-owner.component';
 import { VideoDescriptionComponent } from './video-description/video-description.component';
-import { VideoTileComponent } from './video-tile/video-tile.component';
 import { VideoSectionListComponent } from './video-section-list/video-section-list.component';
 import { VideoSectionItemComponent } from './video-section-list/video-section-item/video-section-item.component';
-import { VideoListComponent } from './video-list/video-list.component';
 import { VideoResponsiveViewDirective } from './shared/video-responsive-view.directive';
 
 @NgModule({
@@ -30,10 +28,8 @@ import { VideoResponsiveViewDirective } from './shared/video-responsive-view.dir
     VideoSecondaryInfoComponent,
     VideoOwnerComponent,
     VideoDescriptionComponent,
-    VideoTileComponent,
     VideoSectionListComponent,
     VideoSectionItemComponent,
-    VideoListComponent,
     VideoResponsiveViewDirective
   ],
   providers: [

@@ -15,6 +15,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { VideoTileComponent } from './video-tile/video-tile.component';
+import { VideoListComponent } from './video-list/video-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -32,7 +35,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatSnackBarModule,
     MatChipsModule,
     FlexLayoutModule,
-    MatTooltipModule
+    RouterModule
   ],
   exports: [
     MatToolbarModule,
@@ -48,11 +51,16 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatSnackBarModule,
     MatChipsModule,
     FlexLayoutModule,
-    MatTooltipModule,
-    ConfirmDialogComponent
+    RouterModule,
+    ConfirmDialogComponent,
+    VideoTileComponent,
+    VideoListComponent
+
   ],
   declarations: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    VideoTileComponent,
+    VideoListComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

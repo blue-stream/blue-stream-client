@@ -1,6 +1,6 @@
 {
   "name": "blue-stream",
-  "version": "0.4.0",
+  "version": "0.2.9",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

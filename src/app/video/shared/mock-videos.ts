@@ -1,5 +1,5 @@
-import { Video } from './video.model';
 import { VideoSection } from './video-section.model';
+import { Video } from '../../shared/models/video.model';
 
 export const VIDEOS1: Video[] = [
     // tslint:disable-next-line:max-line-length

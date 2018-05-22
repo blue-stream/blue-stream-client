@@ -4,6 +4,11 @@
     #video-list {
         overflow: hidden;
         #scroll-container {
+            &.vertical {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
             transform: translateX(0px);
             transition: transform 0.15s cubic-bezier(0.4, 0.0, 1, 1);
             display: inline-block;
