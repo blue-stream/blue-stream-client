@@ -4,7 +4,7 @@ import { WatchComponent } from './watch.component';
 
 const routes: Routes = [
   {
-    path: '/:id',
+    path: ':id',
     component: WatchComponent
   },
 ];
