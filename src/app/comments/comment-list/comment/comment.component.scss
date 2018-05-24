@@ -1,0 +1,33 @@
+#container {
+    #info-container {
+        display: flex;
+        flex-direction: row;
+        #user-profile-image {
+            padding: 10px;
+            padding-bottom: 0px;
+        }
+        #comment-info {
+            margin: 0 4px;
+            margin-top: 16px;
+            #user-link {
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: black;
+            }
+            #date {
+                margin: 0 10px;
+                font-size: 0.8rem;
+                color: rgba(128, 128, 128, 0.8);
+            }
+            #comment-text {
+                font-size: 0.9rem;
+                margin-top: 5px;
+                margin-bottom: 0px;
+            }
+        }
+    }
+    #replies-container {
+        margin: 0 50px;
+    }
+}

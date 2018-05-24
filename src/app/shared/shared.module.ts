@@ -13,6 +13,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
@@ -61,11 +62,9 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     RouterModule,
     AvatarComponent,
     VideoPlayerComponent,
-
     ConfirmDialogComponent,
     VideoTileComponent,
     VideoListComponent
-
   ],
   declarations: [
     ConfirmDialogComponent,
