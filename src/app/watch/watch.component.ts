@@ -1,15 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Video } from '../shared/models/video.model';
 import { VideoService } from '../core/services/video.service';
-
+import { Video } from '../shared/models/video.model';
 
 @Component({
-  selector: 'bs-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  selector: 'bs-watch',
+  templateUrl: './watch.component.html',
+  styleUrls: ['./watch.component.scss']
 })
-export class VideoComponent implements OnInit, OnDestroy {
+export class WatchComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private videoService: VideoService) { }
 
@@ -41,7 +40,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       likes: 123,
       dislikes: 34,
       catagory: 'Cool',
-      thumbnailUrl: '',
+      thumbnailUrl: ''
     };
   }
 

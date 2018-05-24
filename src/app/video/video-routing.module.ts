@@ -5,10 +5,6 @@ import { VideoSectionListComponent } from './video-section-list/video-section-li
 
 const routes: Routes = [
   {
-    path: 'watch/:id',
-    component: VideoComponent
-  },
-  {
     path: '',
     component: VideoSectionListComponent
   }
