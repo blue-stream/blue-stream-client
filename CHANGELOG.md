@@ -103,7 +103,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-<<<<<<< HEAD
 * **video-responsive-width:** Move responsive width manager to directive ([40dc301](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/40dc301))
 
 
@@ -135,14 +134,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **upload-module:** Add upload module for multiple file upload ([ca71fca](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/ca71fca))
-=======
-* **video-left-right-swipe:** Fix button visibility when changing mode ([4e5f07f](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/4e5f07f))
-
-
-
-<a name="0.2.6"></a>
-## [0.2.6](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.5...v0.2.6) (2018-05-21)
->>>>>>> origin/master
 
 
 
