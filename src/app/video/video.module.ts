@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VideoRoutingModule } from './video-routing.module';
-import { VideoThumbnailComponent } from './video-thumbnail/video-thumbnail.component';
 import { SharedModule } from '../shared/shared.module';
 import { VideoComponent } from './video.component';
 import { CommentsModule } from '../comments/comments.module';
@@ -22,7 +21,6 @@ import { VideoResponsiveViewDirective } from './shared/video-responsive-view.dir
     CommentsModule
   ],
   declarations: [
-    VideoThumbnailComponent,
     VideoComponent,
     VideoPrimaryInfoComponent,
     VideoSecondaryInfoComponent,
