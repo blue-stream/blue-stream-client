@@ -7,11 +7,16 @@ import { WatchDescriptionComponent } from './watch-description/watch-description
 import { WatchOwnerComponent } from './watch-owner/watch-owner.component';
 import { WatchPrimaryInfoComponent } from './watch-primary-info/watch-primary-info.component';
 import { WatchSecondaryInfoComponent } from './watch-secondary-info/watch-secondary-info.component';
+import { SharedModule } from '../shared/shared.module';
+import { CommentsModule } from '../comments/comments.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    WatchRoutingModule
+    WatchRoutingModule,
+
+    SharedModule,
+    CommentsModule
   ],
   declarations: [
     WatchComponent,
