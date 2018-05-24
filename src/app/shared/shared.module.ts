@@ -12,11 +12,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
 import { VideoListComponent } from './video-list/video-list.component';
 import { RouterModule } from '@angular/router';
+import { AvatarComponent } from './avatar/avatar.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
+import { SafeUrlPipe } from './safe-url.pipe';
+import { VideoProgressComponent } from './video-player/video-progress/video-progress.component';
+import { VideoActionsComponent } from './video-player/video-actions/video-actions.component';
 
 @NgModule({
   imports: [
@@ -34,6 +40,7 @@ import { RouterModule } from '@angular/router';
     MatSnackBarModule,
     MatChipsModule,
     FlexLayoutModule,
+    MatSliderModule,
     RouterModule
   ],
   exports: [
@@ -49,8 +56,11 @@ import { RouterModule } from '@angular/router';
     MatProgressBarModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatSliderModule,
     FlexLayoutModule,
     RouterModule,
+    AvatarComponent,
+    VideoPlayerComponent,
 
     ConfirmDialogComponent,
     VideoTileComponent,
@@ -60,7 +70,12 @@ import { RouterModule } from '@angular/router';
   declarations: [
     ConfirmDialogComponent,
     VideoTileComponent,
-    VideoListComponent
+    VideoListComponent,
+    AvatarComponent,
+    VideoPlayerComponent,
+    SafeUrlPipe,
+    VideoProgressComponent,
+    VideoActionsComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

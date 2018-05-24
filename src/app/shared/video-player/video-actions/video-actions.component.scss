@@ -1,0 +1,13 @@
+#video-actions {
+    height: 48px;
+    justify-content: center;
+    mat-icon {
+        color: #fff;
+    }
+    #volume {
+        mat-slider {
+            padding: 0;
+        }
+    }
+}
+

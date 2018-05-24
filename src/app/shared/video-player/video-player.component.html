@@ -1,0 +1,11 @@
+<div id="video-container">
+  <video #video autoplay (click)="toggleVideo()" (timeupdate)="updateProgress()">
+    <source [src]="source | safeUrl">
+  </video>
+  <div id="gradient-bottom">
+    <div id="video-actions" fxLayout="column">
+      <bs-video-progress [value]="progress" (progressChanged)="progressChanged($event)"></bs-video-progress>
+      <bs-video-actions [currentTime]="video.currentTime" [duration]="video.duration" [volume]="video.volume"></bs-video-actions>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+#video-container {
+    position: relative;
+    video {
+        width: 100%;
+        height: auto;
+    }
+    #gradient-bottom {
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        right: 0;
+        padding-top: 50px;
+        height: 53px;
+        z-index: 1;
+        background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.7));
+        #video-actions {
+            justify-content: center;
+            width: 100%;
+        }
+    }
+}
