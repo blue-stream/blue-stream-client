@@ -1,0 +1,37 @@
+<h3 id="title">
+  {{video.title}}
+</h3>
+<div id="info-container">
+  <p id="views">
+    {{video.views}} views
+  </p>
+  <span fxFlex></span>
+  <div id="actions-container">
+    <div id='ratings-container'>
+      <div class="rating">
+        <button matTooltip="Like" mat-icon-button>
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <span class="rating-amount">{{video.likes}}</span>
+      </div>
+      <div class="rating">
+        <button matTooltip="dislike" mat-icon-button>
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <span class="rating-amount">{{video.dislikes}}</span>
+      </div>
+      <mat-progress-bar mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
+    </div>
+    <div class="action-button-container">
+      <button matTooltip="Like" mat-icon-button >
+        <mat-icon>share</mat-icon>
+      </button>
+      <span>SHARE</span>
+    </div>
+    <div class="action-button-container">
+      <button matTooltip="Add to playlist" mat-icon-button>
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

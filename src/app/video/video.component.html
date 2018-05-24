@@ -1,0 +1,11 @@
+<div id="container">
+  <div id="video-container" >
+      <video fxFlex="854px" fxFlex.lt-md="426px" fxFlex.lt-lg="640px" fxFlex.gt-lg="854px" [src]="videoURL" controls></video>
+      <bs-video-primary-info [video]="video"></bs-video-primary-info>
+      <bs-video-secondary-info [video]="video"></bs-video-secondary-info>
+      <bs-comments></bs-comments>
+  </div>
+  <div id="other-videos-container">
+    <bs-video-list [videos]="recommendedVideos | async"></bs-video-list>
+  </div>
+</div>

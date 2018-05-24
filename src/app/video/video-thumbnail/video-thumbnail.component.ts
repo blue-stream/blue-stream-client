@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideoThumbnailComponent implements OnInit {
 
+  videoID: string = 'test-id'; // Change later to video class (containing video.id)
+
   constructor() { }
 
   ngOnInit() {
