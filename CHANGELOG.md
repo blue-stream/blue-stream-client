@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.7...v0.4.0) (2018-05-24)
+
+
+### Features
+
+* **Watch:** Add watch page ([cd95c01](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/cd95c01))
+* **Watch:** Add watch page ([7b726a4](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/7b726a4))
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.1.4...v0.3.0) (2018-05-21)
+
+
+
+<a name="0.1.4"></a>
+## [0.1.4](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.5...v0.1.4) (2018-05-21)
+
+
+
+<a name="0.1.3"></a>
+## [0.1.3](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.2...v0.1.3) (2018-05-17)
+
+
+
+<a name="0.1.2"></a>
+## [0.1.2](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.1.1...v0.1.2) (2018-05-15)
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.0...v0.3.0) (2018-05-22)
 
