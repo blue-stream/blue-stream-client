@@ -1,15 +1,24 @@
 <div id="video-actions" fxLayout="row" fxLayoutAlign="center center">
-  <button mat-icon-button>
-    <mat-icon>play_arrow</mat-icon>
+  <button mat-icon-button (click)="toggleVideoClick()" [ngSwitch]="playing">
+    <mat-icon *ngSwitchCase="false">play_arrow</mat-icon>
+    <mat-icon *ngSwitchCase="true">pause</mat-icon>
   </button>
   <div fxLayout="row" id="volume" fxLayoutAlign="center center">
-    <button mat-icon-button>
-      <mat-icon>volume_up</mat-icon>
+    <button mat-icon-button (click)="mute()" [ngSwitch]="true">
+      <mat-icon *ngSwitchCase="volume === 0">volume_off</mat-icon>
+      <mat-icon *ngSwitchCase="volume > 0 && volume < 0.2">volume_mute</mat-icon>
+      <mat-icon *ngSwitchCase="volume >= 0.2 && volume < 0.6">volume_down</mat-icon>
+      <mat-icon *ngSwitchCase="volume >= 0.6">volume_up</mat-icon>
     </button>
-    <mat-slider min="0" max="100" step="1" value="27"></mat-slider>
+    <mat-slider min="0" max="1" step="0.05" [value]="volume" (input)="volumeSliderChange($event)"></mat-slider>
+  </div>
+  <div id="video-time" *ngIf="duration">
+    <span>{{secondsToTime(currentTime)}}</span>
+    <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
-  <button mat-icon-button>
-    <mat-icon>fullscreen</mat-icon>
+  <button mat-icon-button (click)="toggleFullscreenClick()" [ngSwitch]="fullscreen">
+    <mat-icon *ngSwitchCase="false">fullscreen</mat-icon>
+    <mat-icon *ngSwitchCase="true">fullscreen_exit</mat-icon>
   </button>
 </div>

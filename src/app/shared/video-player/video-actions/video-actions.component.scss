@@ -7,6 +7,17 @@
     #volume {
         mat-slider {
             padding: 0;
+            width: 52px;
+        }
+    }
+    #video-time {
+        margin: 0 10px;
+        span {
+            color: #ddd;
+
+            &:not(:last-child)::after {
+                content: ' / '
+            }
         }
     }
 }

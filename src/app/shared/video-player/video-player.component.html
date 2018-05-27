@@ -1,11 +1,12 @@
 <div id="video-container">
-  <video #video autoplay (click)="toggleVideo()" (timeupdate)="updateProgress()">
+  <video #video autoplay [volume]="volume" (click)="toggleVideo()" (dblclick)="toggleFullscreen()" (timeupdate)="updateProgress()">
     <source [src]="source | safeUrl">
   </video>
   <div id="gradient-bottom">
     <div id="video-actions" fxLayout="column">
       <bs-video-progress [value]="progress" (progressChanged)="progressChanged($event)"></bs-video-progress>
-      <bs-video-actions [currentTime]="video.currentTime" [duration]="video.duration" [volume]="video.volume"></bs-video-actions>
+      <bs-video-actions [playing]="playing" [fullscreen]="fullscreen" [currentTime]="video.currentTime" [duration]="video.duration"
+        [volume]="video.volume" (volumeChange)="volumeChange($event)" (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"></bs-video-actions>
     </div>
   </div>
 </div>

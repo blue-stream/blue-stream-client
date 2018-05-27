@@ -1,8 +1,12 @@
 #video-container {
     position: relative;
+    margin: auto;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
     video {
         width: 100%;
-        height: auto;
+        height: 100%;
     }
     #gradient-bottom {
         position: absolute;
@@ -17,5 +21,16 @@
             justify-content: center;
             width: 100%;
         }
+    }
+}
+
+::ng-deep #video-container {
+    .mat-slider-wrapper {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .mat-slider-thumb {
+        width: 20px;
+        height: 20px;
+        transform: scale(0.6);
     }
 }
