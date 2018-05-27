@@ -1,11 +1,11 @@
 <div id="container">
   <div id="video-container" >
-      <video fxFlex="854px" fxFlex.lt-md="426px" fxFlex.lt-lg="640px" fxFlex.gt-lg="854px" [src]="videoURL" controls></video>
+      <video fxFlex="854px" fxFlex.lt-sm="426px" fxFlex.lt-md="854px" fxFlex.lt-lg="640px" fxFlex.gt-lg="854px" [src]="videoURL" controls></video>
       <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
       <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
-      <bs-comments></bs-comments>
   </div>
   <div id="other-videos-container">
     <bs-video-list mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
   </div>
+  <bs-comments></bs-comments>
 </div>

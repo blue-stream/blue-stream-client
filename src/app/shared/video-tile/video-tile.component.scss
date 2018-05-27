@@ -1,5 +1,7 @@
-$video-width: 210px;
-$video-height: 118px;
+$vertical-video-width: 210px;
+$vertical-video-height: 118px;
+$horizontal-video-width: 168px;
+$horizontal-video-height: 94px;
 a {
     text-decoration: none;
 }
@@ -7,15 +9,19 @@ a {
 #video-tile {
     text-align: start;
     display: inline-block;
-    margin: 10px 2px;
+    margin: 2px 2px;
     overflow: hidden;
     cursor: pointer;
     img {
-        width: $video-width;
-        height: $video-height;
+        width: $vertical-video-width;
+        height: $vertical-video-height;
+    }
+    .img-horizontal {
+        width: $horizontal-video-width;
+        height: $horizontal-video-height; 
     }
     #video-details {
-        width: $video-width;
+        width: $vertical-video-width;
         a {
             text-decoration: none;
         }

@@ -1,9 +1,35 @@
 #container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-rows: auto;
     justify-content: center;
-    flex-wrap: wrap;
+    grid-template-areas: 
+     "video video other-videos"
+     "comments comments other-videos"
+     "comments comments other-videos";
+
+    @media screen and (max-width: 959px) {
+        grid-template-areas: 
+        "video video video"
+        "other-videos other-videos other-videos"
+        "comments comments comments";
+    }
+
+    @media screen and (max-width: 1279px){
+        
+    }
+
+    @media screen and (min-width: 1920px){
+        
+    }
+
+    #video-container {
+        grid-area: video;
+    }
     #other-videos-container {
         margin: 0 20px;
+        grid-area: other-videos;
+    }
+    bs-comments {
+        grid-area: comments;
     }
 }

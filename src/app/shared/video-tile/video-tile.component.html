@@ -1,7 +1,7 @@
 <div id="video-tile">
   <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
     <a [routerLink]="['/watch',video.id]">
-      <img [src]="video.thumbnailUrl">
+      <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal}">
     </a>
     <div id="video-details" fxLayout="column">
       <a id="video-title" [routerLink]="['/watch', video.id]">{{video.title}}</a>
