@@ -8,17 +8,17 @@
     </div>
   </div>
   <bs-comment-action-buttons [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
-  <div id="replies-container">
-    <button mat-button [ngSwitch]="showReplies" (click)="showReplies = !showReplies" id="replies-expander" *ngIf="replies.length !== 0">
+  <div id="replies-container" *ngIf="repliesAmount">
+    <button mat-button [ngSwitch]="showReplies" (click)="onShowReplies()" id="replies-expander">
       <span *ngSwitchCase="true">
         Hide replies
       </span>
       <span *ngSwitchCase="false">
-        View all {{replies.length}} replies
+        View all {{repliesAmount}} replies
       </span>
     </button>
     <div id="replies" *ngIf="showReplies">
-      <bs-comment-list [comments]="comment.replies"></bs-comment-list>
+      <bs-comment-list [comments]="replies"></bs-comment-list>
     </div>
   </div>
 </div>
