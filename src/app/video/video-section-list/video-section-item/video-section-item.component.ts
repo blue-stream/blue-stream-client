@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { VideoService } from '../../shared/video.service';
-import { VideoSection } from '../../shared/video-section.model';
+import { VideoSection } from '../../../shared/models/video-section.model';
 
 @Component({
   selector: 'bs-video-section-item',

@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'watch',
+    loadChildren: './watch/watch.module#WatchModule'
+  },
+  {
     path: 'upload',
     loadChildren: './upload/upload.module#UploadModule'
   },

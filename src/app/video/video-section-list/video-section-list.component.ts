@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { VideoService } from '../shared/video.service';
-import { VideoSection } from '../shared/video-section.model';
 import { VideoConstants } from '../shared/constants';
+import { VideoSection } from '../../shared/models/video-section.model';
+import { VideoService } from '../../core/services/video.service';
 
 @Component({
   selector: 'bs-video-section-list',

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VideoSectionListComponent } from './video-section-list/video-section-list.component';
+import { WatchComponent } from './watch.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: VideoSectionListComponent
-  }
+    path: ':id',
+    component: WatchComponent
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VideoRoutingModule { }
+export class WatchRoutingModule { }

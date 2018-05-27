@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Video } from '../../shared/models/video.model';
 
-import { Video } from '../models/video.model';
 
 @Component({
-  selector: 'bs-video-primary-info',
-  templateUrl: './video-primary-info.component.html',
-  styleUrls: ['./video-primary-info.component.scss']
+  selector: 'bs-watch-primary-info',
+  templateUrl: './watch-primary-info.component.html',
+  styleUrls: ['./watch-primary-info.component.scss']
 })
-export class VideoPrimaryInfoComponent implements OnInit {
+export class WatchPrimaryInfoComponent implements OnInit {
 
   @Input() video: Video;
 
