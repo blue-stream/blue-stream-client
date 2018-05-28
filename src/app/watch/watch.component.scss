@@ -2,28 +2,31 @@
     display: grid;
     grid-template-rows: auto;
     justify-content: center;
-    grid-template-areas: 
-     "video video other-videos"
-     "comments comments other-videos"
-     "comments comments other-videos";
-
+    grid-template-areas: "video video other-videos" "comments comments other-videos" "comments comments other-videos";
     @media screen and (max-width: 959px) {
-        grid-template-areas: 
-        "video video video"
-        "other-videos other-videos other-videos"
-        "comments comments comments";
+        grid-template-areas: "video video video" "other-videos other-videos other-videos" "comments comments comments";
     }
-
-    @media screen and (max-width: 1279px){
-        
-    }
-
-    @media screen and (min-width: 1920px){
-        
-    }
-
+    @media screen and (max-width: 1279px) {}
+    @media screen and (min-width: 1920px) {}
     #video-container {
         grid-area: video;
+        video {
+            width: 854px;
+
+            @media screen and (max-width: 599px) {
+                width: 426px;
+            }
+            @media screen and (min-width: 600px) and (max-width: 959px) {
+                max-width: 854px;
+                width: 95vw;
+            }
+            @media screen and (min-width: 960px) and (max-width: 1279px) {
+                width: 640px;
+            }
+            @media screen and (min-width: 1280px) and (max-width: 1919px) {
+                width: 854px;
+            }
+        }
     }
     #other-videos-container {
         margin: 0 20px;
