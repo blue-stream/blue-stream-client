@@ -1,4 +1,4 @@
-<div #videoProgress id="video-progress-container" (click)="changeTime($event)">
-  <div id="video-buffer-progress" [style.width]="value + 12 + '%'"> </div>
-  <div id="video-progress" [style.width]="value + '%'"></div>
+<div id="progress-slider">
+  <div id="buffer" [style.width]="'calc(' + (value + 12) + '% - 16px)'"></div>
+  <mat-slider min="0" max="100" [value]="value" (input)="changeTime($event)"></mat-slider>
 </div>

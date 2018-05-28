@@ -14,7 +14,6 @@
         left: 0;
         right: 0;
         padding-top: 50px;
-        height: 53px;
         z-index: 1;
         background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.7));
         #video-actions {
@@ -24,13 +23,3 @@
     }
 }
 
-::ng-deep #video-container {
-    .mat-slider-wrapper {
-        background-color: rgba(255, 255, 255, 0.5);
-    }
-    .mat-slider-thumb {
-        width: 20px;
-        height: 20px;
-        transform: scale(0.6);
-    }
-}

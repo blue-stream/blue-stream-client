@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'bs-video-progress',
@@ -18,9 +19,8 @@ export class VideoProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeTime(event: MouseEvent) {
-    const percent = event.offsetX / this.videoProgress.nativeElement.offsetWidth * 100;
-    this.progressChanged.next(percent);
+  changeTime(event: MatSliderChange) {
+    this.progressChanged.next(event.value);
   }
 
 }

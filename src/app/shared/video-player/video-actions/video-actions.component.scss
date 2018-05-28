@@ -8,6 +8,7 @@
         mat-slider {
             padding: 0;
             width: 52px;
+            height: 25px;
         }
     }
     #video-time {
@@ -22,3 +23,14 @@
     }
 }
 
+::ng-deep #video-actions {
+    .mat-slider-wrapper {
+        top: 12px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .mat-slider-thumb {
+        width: 20px;
+        height: 20px;
+        transform: scale(0.6);
+    }
+}
