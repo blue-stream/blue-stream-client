@@ -9,13 +9,24 @@
             padding: 0;
             width: 52px;
             height: 25px;
+            opacity: 0;
+            visibility: hidden;
+            width: 0;
+            transition: all 250ms ease-in;
+
+        }
+        &:hover {
+            mat-slider {
+                visibility: visible;
+                opacity: 1;
+                width: 100px;
+            }
         }
     }
     #video-time {
         margin: 0 10px;
         span {
             color: #ddd;
-
             &:not(:last-child)::after {
                 content: ' / '
             }
@@ -24,6 +35,9 @@
 }
 
 ::ng-deep #video-actions {
+    .mat-slider-horizontal {
+        min-width: 0;
+    }
     .mat-slider-wrapper {
         top: 12px;
         background-color: rgba(255, 255, 255, 0.5);

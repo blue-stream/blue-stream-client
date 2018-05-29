@@ -2,12 +2,13 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import * as moment from 'moment';
 import * as format from 'format-duration';
+
 @Component({
   selector: 'bs-video-actions',
   templateUrl: './video-actions.component.html',
   styleUrls: ['./video-actions.component.scss']
 })
-export class VideoActionsComponent implements OnInit {
+export class VideoActionsComponent {
 
   @Input() volume: number;
   @Input() currentTime;
@@ -15,19 +16,16 @@ export class VideoActionsComponent implements OnInit {
   @Input() fullscreen: boolean;
   @Input() playing: boolean;
   @Output() volumeChange: EventEmitter<number>;
-  @Output() toggleVideo: EventEmitter<void>;
-  @Output() toggleFullscreen: EventEmitter<void>;
+  @Output() toggleVideo: EventEmitter<boolean>;
+  @Output() toggleFullscreen: EventEmitter<boolean>;
+  @Output() toggleWideScreen: EventEmitter<boolean>;
+  isWideScreen: boolean = false;
 
   constructor() {
     this.volumeChange = new EventEmitter<number>();
-    this.toggleVideo = new EventEmitter<void>();
-    this.toggleFullscreen = new EventEmitter<void>();
-  }
-
-  ngOnInit() {
-    console.log('volume', this.volume);
-    console.log('currentTime', this.currentTime);
-    console.log('duration', this.duration);
+    this.toggleVideo = new EventEmitter<boolean>();
+    this.toggleFullscreen = new EventEmitter<boolean>();
+    this.toggleWideScreen = new EventEmitter<boolean>();
   }
 
   mute() {
@@ -39,11 +37,11 @@ export class VideoActionsComponent implements OnInit {
   }
 
   toggleVideoClick() {
-    this.toggleVideo.next();
+    this.toggleVideo.next(this.playing);
   }
 
   toggleFullscreenClick() {
-    this.toggleFullscreen.next();
+    this.toggleFullscreen.next(this.fullscreen);
   }
 
   volumeSliderChange(event: MatSliderChange) {
@@ -54,4 +52,8 @@ export class VideoActionsComponent implements OnInit {
     return format(seconds * 1000);
   }
 
+  onToggleWideScreen() {
+    this.isWideScreen = !this.isWideScreen;
+    this.toggleWideScreen.next(this.isWideScreen);
+  }
 }

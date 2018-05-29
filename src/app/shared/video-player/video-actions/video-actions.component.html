@@ -17,8 +17,13 @@
     <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
+  <button mat-icon-button *ngIf="!fullscreen" [ngSwitch]="isWideScreen" (click)="onToggleWideScreen()">
+    <mat-icon *ngSwitchCase="true">crop_landscape</mat-icon>
+    <mat-icon *ngSwitchCase="false">crop_3_2</mat-icon>
+  </button>
   <button mat-icon-button (click)="toggleFullscreenClick()" [ngSwitch]="fullscreen">
     <mat-icon *ngSwitchCase="false">fullscreen</mat-icon>
     <mat-icon *ngSwitchCase="true">fullscreen_exit</mat-icon>
   </button>
+
 </div>
