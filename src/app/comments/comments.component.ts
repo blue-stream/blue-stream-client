@@ -18,7 +18,7 @@ export class CommentsComponent implements OnInit {
   }
 
   loadComments() {
-    this.commentService.getComment().subscribe( comments => {
+    this.commentService.getComments().subscribe( comments => {
       this.comments = comments;
     });
   }

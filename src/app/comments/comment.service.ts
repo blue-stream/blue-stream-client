@@ -11,7 +11,7 @@ export class CommentService {
 
   constructor() { }
 
-  getComment(): Observable<Comment[]> {
+  getComments(): Observable<Comment[]> {
     return Observable.of(MOCK_COMMENTS);
   }
 
