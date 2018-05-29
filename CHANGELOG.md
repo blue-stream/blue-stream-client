@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.1"></a>
+## [0.4.1](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.0...v0.4.1) (2018-05-29)
+
+
+### Bug Fixes
+
+* **changelog:** Fix conflicts ([b925913](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/b925913))
+* **routing:** Fix routing path ([3c4ab20](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/3c4ab20))
+* **selectors:** Change selectors to bs-watch-* instead of bs-video-* ([8d97d9b](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/8d97d9b))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.2.7...v0.4.0) (2018-05-24)
 
