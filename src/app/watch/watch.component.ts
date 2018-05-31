@@ -15,7 +15,7 @@ export class WatchComponent implements OnInit, OnDestroy {
   video: Video;
   routeIdSubscription: any;
   recommendedVideos: any = [];
-  isVideoWide: boolean = true;
+  isVideoWide: boolean = false;
 
   ngOnInit() {
     this.loadVideoInfo();
