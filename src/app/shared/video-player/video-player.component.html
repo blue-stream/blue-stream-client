@@ -1,13 +1,14 @@
-<div id="video-container" (mousemove)="mouseMove.next()">
+<div id="video-container" (mousemove)="mouseMove.next()" dir="ltr">
   <span id="video-title" *ngIf="fullscreen && !hideActions">{{video.title}}</span>
   <video #videoPlayer autoplay [volume]="volume" (click)="toggleVideo()" (dblclick)="toggleFullscreen()" (timeupdate)="updateProgress()">
     <source [src]="video.sourceUrl | safeUrl">
   </video>
   <div id="gradient-bottom">
     <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions">
-      <bs-video-progress [value]="progress" (progressChanged)="progressChanged($event)"></bs-video-progress>
+      <bs-video-progress [value]="progress" [duration]="videoPlayer.duration" (progressChanged)="progressChanged($event)" (progressChangeStart)="onProgressChangeStart()" (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
       <bs-video-actions [playing]="!videoPlayer.paused" [fullscreen]="fullscreen" [currentTime]="videoPlayer.currentTime" [duration]="videoPlayer.duration"
-        [volume]="videoPlayer.volume" (volumeChange)="volumeChange($event)" (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"></bs-video-actions>
+        [volume]="videoPlayer.volume" (volumeChange)="volumeChange($event)" (toggleWideScreen)="toggleWideScreen.next($event)"
+        (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"></bs-video-actions>
     </div>
   </div>
 </div>

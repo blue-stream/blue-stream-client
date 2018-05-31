@@ -1,9 +1,13 @@
 #video-container {
+    direction: ltr !important;
     position: relative;
     margin: auto;
     background-color: #000;
     width: 100%;
     height: 100%;
+    & * {
+        direction: ltr !important;
+    }
     video {
         width: 100%;
         height: 100%;

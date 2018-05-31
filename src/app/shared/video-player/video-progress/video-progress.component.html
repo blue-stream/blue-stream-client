@@ -1,4 +1,4 @@
-<div id="progress-slider">
+<div id="progress-slider" dir="ltr">
   <div id="buffer" [style.width]="'calc(' + (value + 12) + '% - 16px)'"></div>
-  <mat-slider min="0" max="100" [value]="value" (input)="changeTime($event)"></mat-slider>
+  <mat-slider dir="ltr" min="0" max="100" [value]="value" (change)="onProgressChange()" (input)="progressSliderChange.next($event)"></mat-slider>
 </div>

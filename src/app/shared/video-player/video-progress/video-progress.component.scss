@@ -26,6 +26,13 @@
 
 ::ng-deep #progress-slider {
     mat-slider {
+        & * {
+            direction: ltr;
+            transform-origin: 0 !important;
+        }
+        .mat-slider-track-background {
+            transform: none !important;
+        }
         .mat-slider-track-wrapper,
         .mat-slider-track-fill,
         .mat-slider-track-background,
@@ -33,6 +40,7 @@
         .mat-slider-ticks,
         .mat-slider-horizontal,
         .mat-slider-wrapper {
+            direction: ltr;
             height: 5px;
         }
         .mat-slider-wrapper {
