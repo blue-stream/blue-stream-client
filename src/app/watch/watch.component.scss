@@ -7,16 +7,16 @@
     "video-player other-videos"
     "video-info other-videos"
     "comments other-videos";
-    @media screen and (max-width: 959px) {
+    @media screen and (min-width: 1280px) and (max-width: 1919px) {
+        grid-template-columns: 854px minmax(300px, 402px);
+    }
+    @media screen and (max-width: 1020px) {
         grid-template-columns: minmax(426px, 854px);
         grid-template-areas: 
         "video-player"
         "video-info "
         "other-videos" 
         "comments";
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1919px) {
-        grid-template-columns: 854px minmax(300px, 402px);
     }
     &.wide-video-container {
         grid-template-columns: minmax(0px, auto) minmax(400px, 1200px) minmax(300px, 402px)  minmax(0px, auto);
