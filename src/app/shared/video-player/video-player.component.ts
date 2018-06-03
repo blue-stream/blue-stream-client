@@ -14,6 +14,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class VideoPlayerComponent implements OnInit {
 
+  private static readonly timeToHideActions = 3 * 1000;
+
   @Input() video: Video;
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
   @Output() toggleWideScreen: EventEmitter<boolean>;
@@ -33,7 +35,7 @@ export class VideoPlayerComponent implements OnInit {
       .map(() => {
         this.hideActions = false;
       })
-      .debounceTime(300000)
+      .debounceTime(VideoPlayerComponent.timeToHideActions)
       .subscribe(() => {
         this.hideActions = true;
       });
