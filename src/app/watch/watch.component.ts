@@ -41,7 +41,8 @@ export class WatchComponent implements OnInit, OnDestroy {
       likes: 123,
       dislikes: 34,
       catagory: 'Cool',
-      thumbnailUrl: ''
+      thumbnailUrl: '',
+      sourceUrl: 'assets/video.mp4'
     };
   }
 

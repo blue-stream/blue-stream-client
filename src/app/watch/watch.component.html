@@ -1,5 +1,5 @@
 <div id="container" [ngClass]="{'wide-video-container':isVideoWide}">
-  <video id="video-player" [src]="videoURL" controls></video>
+  <bs-video-player id="video-player" (toggleWideScreen)="isVideoWide = !isVideoWide" [video]="video"></bs-video-player>
   <div id="video-info">
     <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
