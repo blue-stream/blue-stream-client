@@ -1,21 +1,61 @@
 @import '~@angular/material/theming';
 @import 'src/theme.scss';
-#video-progress-container {
+
+#progress-slider {
     width: 100%;
-    height: 5px;
-    background-color: rgba(255, 255, 255, .2);
-    position: relative;
-    #video-buffer-progress,
-    #video-progress {
-        position: absolute;
-        max-width: 100%;
+    height: 10px;
+    #buffer {
+        background-color: rgba(255,255,255,0.8);
         height: 5px;
-        transition: all .1s linear;
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        width: 60%;
+        max-width: calc(100% - 16px);
     }
-    #video-buffer-progress {
-        background: rgba(255, 255, 255, 0.5);
+    mat-slider {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        padding-bottom: 5px;
+        .mat-slider-thumb {
+            display: none;
+        }
     }
-    #video-progress {
-        background: mat-color($app-accent);
+}
+
+::ng-deep #progress-slider {
+    mat-slider {
+        & * {
+            direction: ltr;
+            transform-origin: 0 !important;
+        }
+        .mat-slider-track-background {
+            transform: none !important;
+        }
+        .mat-slider-track-wrapper,
+        .mat-slider-track-fill,
+        .mat-slider-track-background,
+        .mat-slider-ticks-container,
+        .mat-slider-ticks,
+        .mat-slider-horizontal,
+        .mat-slider-wrapper {
+            direction: ltr;
+            height: 5px;
+        }
+        .mat-slider-wrapper {
+            top: 0;
+        }
+        .mat-slider-thumb {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 150ms ease-in;
+        }
+        &:hover {
+            .mat-slider-thumb {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
     }
 }

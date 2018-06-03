@@ -9,4 +9,5 @@ export class Video {
     catagory?: string;
     owner: string;
     thumbnailUrl: string;
+    sourceUrl?: string;
 }

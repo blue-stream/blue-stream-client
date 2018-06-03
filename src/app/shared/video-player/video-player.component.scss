@@ -1,8 +1,25 @@
 #video-container {
+    direction: ltr !important;
     position: relative;
+    margin: auto;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    & * {
+        direction: ltr !important;
+    }
     video {
         width: 100%;
-        height: auto;
+        height: 100%;
+    }
+    #video-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 16px;
+        color: #fff;
+        font-size: 1.5rem;
     }
     #gradient-bottom {
         position: absolute;
@@ -10,12 +27,19 @@
         left: 0;
         right: 0;
         padding-top: 50px;
-        height: 53px;
         z-index: 1;
         background: linear-gradient(transparent 10%, rgba(0, 0, 0, 0.7));
         #video-actions {
             justify-content: center;
             width: 100%;
+            transition: all 250ms ease-in;
+            visibility: visible;
+            opacity: 1;
+            &.hidden {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(60px);
+            }
         }
     }
 }
