@@ -1,11 +1,11 @@
-<div id="container">
-  <div id="video-container" >
-      <video fxFlex="854px" fxFlex.lt-md="426px" fxFlex.lt-lg="640px" fxFlex.gt-lg="854px" [src]="videoURL" controls></video>
-      <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
-      <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
-      <bs-comments></bs-comments>
+<div id="container" [ngClass]="{'wide-video-container':isVideoWide}">
+  <video id="video-player" [src]="videoURL" controls></video>
+  <div id="video-info">
+    <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
+    <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
   <div id="other-videos-container">
     <bs-video-list mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
   </div>
+  <bs-comments></bs-comments>
 </div>
