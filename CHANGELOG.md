@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.1...v0.5.0) (2018-06-03)
+
+
+### Bug Fixes
+
+* **video-player:** Video seeking jump by 1% instead of 1 second ([9853768](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/9853768))
+
+
+### Features
+
+* **video-player:** Add responsive video-player ([c18994b](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/c18994b))
+* **Watch:** Add responsive layout ([106b11a](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/commit/106b11a))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://gitlab.com/sapir-optimizations/blue-stream/blue-stream-client/compare/v0.4.0...v0.4.1) (2018-05-29)
 
