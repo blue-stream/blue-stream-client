@@ -1,31 +1,58 @@
 @import '~@angular/material/theming';
 @import 'src/theme.scss';
-
 #progress-slider {
     width: 100%;
-    height: 10px;
+    height: 5px;
+    #mouse-hover-progress {
+        height: 3px;
+        background-color: rgba(255, 255, 255, 0.9);
+        left: 8px;
+        right: 8px;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 250ms ease-in, height 150ms ease-in;
+    }
     #buffer {
-        background-color: rgba(255,255,255,0.8);
-        height: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        height: 3px;
         position: absolute;
         left: 8px;
         right: 8px;
         width: 60%;
         max-width: calc(100% - 16px);
+        transition: height 150ms ease-in;
     }
     mat-slider {
+        height: 5px;
+        cursor: pointer;
         position: absolute;
         width: 100%;
-        height: 5px;
-        padding-bottom: 5px;
+        transition: height 150ms ease-in;
         .mat-slider-thumb {
             display: none;
+        }
+    }
+    &:hover {
+        #mouse-hover-progress {
+            opacity: 1;
+        }
+    }
+    &:hover,
+    &:active {
+        #mouse-hover-progress,
+        #buffer {
+            height: 5px;
         }
     }
 }
 
 ::ng-deep #progress-slider {
+    .mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+        background-color: #fff !important;
+        border-color: #fff;
+    }
     mat-slider {
+        padding: 0;
         & * {
             direction: ltr;
             transform-origin: 0 !important;
@@ -33,6 +60,7 @@
         .mat-slider-track-background {
             transform: none !important;
         }
+        
         .mat-slider-track-wrapper,
         .mat-slider-track-fill,
         .mat-slider-track-background,
@@ -41,17 +69,30 @@
         .mat-slider-horizontal,
         .mat-slider-wrapper {
             direction: ltr;
-            height: 5px;
+            height: 3px;
+            transition: height 150ms ease-in;
         }
         .mat-slider-wrapper {
             top: 0;
         }
         .mat-slider-thumb {
+            cursor: pointer;
             opacity: 0;
+            right: -14px;
             visibility: hidden;
             transition: all 150ms ease-in;
         }
-        &:hover {
+        &:hover,
+        &:active {
+            .mat-slider-track-wrapper,
+            .mat-slider-track-fill,
+            .mat-slider-track-background,
+            .mat-slider-ticks-container,
+            .mat-slider-ticks,
+            .mat-slider-horizontal,
+            .mat-slider-wrapper {
+                height: 5px;
+            }
             .mat-slider-thumb {
                 opacity: 1;
                 visibility: visible;

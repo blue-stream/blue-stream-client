@@ -1,11 +1,13 @@
 #video-actions {
-    height: 48px;
+    height: 40px;
     justify-content: center;
     mat-icon {
         color: #fff;
     }
+    
     #volume {
         mat-slider {
+            cursor: pointer;
             padding: 0;
             width: 52px;
             height: 25px;
@@ -46,5 +48,20 @@
         width: 20px;
         height: 20px;
         transform: scale(0.6);
+    }
+}
+
+::ng-deep .video-menu {
+    background-color: rgba(28,28,28,0.9);
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+
+    button[mat-menu-item] {
+        color: #fff;
+        font-size: 0.8rem;
+        mat-icon {
+            color: #fff !important;
+        }
     }
 }

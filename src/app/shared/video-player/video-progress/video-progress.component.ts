@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ElementRef } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { Subject } from 'rxjs';
 import 'rxjs/add/operator/throttleTime';
@@ -8,15 +8,15 @@ import 'rxjs/add/operator/throttleTime';
   templateUrl: './video-progress.component.html',
   styleUrls: ['./video-progress.component.scss']
 })
-export class VideoProgressComponent implements OnInit {
+export class VideoProgressComponent {
 
   @Input() value = 0;
   @Input() duration;
-  @ViewChild('videoProgress') videoProgress: ElementRef;
   @Output() progressChangeStart: EventEmitter<void>;
   @Output() progressChanged: EventEmitter<number>;
   @Output() progressChangeEnd: EventEmitter<void>;
   progressSliderChange: Subject<MatSliderChange>;
+  mouseProgress: number;
 
   constructor() {
     this.progressChanged = new EventEmitter<number>();
@@ -29,16 +29,18 @@ export class VideoProgressComponent implements OnInit {
       })
       .subscribe((progress: number) => {
         this.progressChangeStart.next();
-        if (Math.abs(progress - this.value) >= 1) {
+        if (this.duration * Math.abs(progress - this.value) / 100 >= 3) {
           this.progressChanged.next(progress);
         }
       });
   }
 
-  onProgressChange() {
+  onProgressChange(progress: number) {
+    this.progressChanged.next(progress);
     this.progressChangeEnd.next();
   }
 
-  ngOnInit() {
+  onMouseProgressMove(event: MouseEvent) {
+    this.mouseProgress = event.offsetX;
   }
 }

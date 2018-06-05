@@ -16,9 +16,13 @@ export class VideoActionsComponent {
   @Input() fullscreen: boolean;
   @Input() playing: boolean;
   @Output() volumeChange: EventEmitter<number>;
+  @Output() toggleMenu: EventEmitter<boolean>;
   @Output() toggleVideo: EventEmitter<boolean>;
   @Output() toggleFullscreen: EventEmitter<boolean>;
   @Output() toggleWideScreen: EventEmitter<boolean>;
+  @Output() captureImage: EventEmitter<void>;
+  @Output() downloadVideo: EventEmitter<void>;
+
   isWideScreen: boolean = false;
 
   constructor() {
@@ -26,6 +30,9 @@ export class VideoActionsComponent {
     this.toggleVideo = new EventEmitter<boolean>();
     this.toggleFullscreen = new EventEmitter<boolean>();
     this.toggleWideScreen = new EventEmitter<boolean>();
+    this.toggleMenu = new EventEmitter<boolean>();
+    this.captureImage = new EventEmitter<void>();
+    this.downloadVideo = new EventEmitter<void>();
   }
 
   mute() {
@@ -55,5 +62,17 @@ export class VideoActionsComponent {
   onToggleWideScreen() {
     this.isWideScreen = !this.isWideScreen;
     this.toggleWideScreen.next(this.isWideScreen);
+  }
+
+  onCaptureImage() {
+    this.captureImage.next();
+  }
+
+  onDownloadVideo() {
+    this.downloadVideo.next();
+  }
+
+  onMenuToggle(status: boolean) {
+    this.toggleMenu.next(status);
   }
 }

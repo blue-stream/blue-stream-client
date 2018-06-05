@@ -4,11 +4,11 @@
     <source [src]="video.sourceUrl | safeUrl">
   </video>
   <div id="gradient-bottom">
-    <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions">
-      <bs-video-progress [value]="progress" [duration]="videoPlayer.duration" (progressChanged)="progressChanged($event)" (progressChangeStart)="onProgressChangeStart()" (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
+    <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions && !isMenuOpened">
+      <bs-video-progress [value]="progress" [duration]="videoPlayer.duration" (progressChanged)="onProgressChanged($event)" (progressChangeStart)="onProgressChangeStart()" (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
       <bs-video-actions [playing]="!videoPlayer.paused" [fullscreen]="fullscreen" [currentTime]="videoPlayer.currentTime" [duration]="videoPlayer.duration"
-        [volume]="videoPlayer.volume" (volumeChange)="volumeChange($event)" (toggleWideScreen)="toggleWideScreen.next($event)"
-        (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"></bs-video-actions>
+      [volume]="videoPlayer.volume" (volumeChange)="volumeChange($event)" (toggleWideScreen)="toggleWideScreen.next($event)"
+      (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()" (toggleMenu)="onToggleMenu($event)" (captureImage)="onCaptureImage()" (downloadVideo)="onDownloadVideo()"></bs-video-actions>
     </div>
   </div>
 </div>

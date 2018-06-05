@@ -17,9 +17,27 @@
     <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
+  <mat-menu #videoMenu="matMenu" yPosition="above" xPosition="before" class="video-menu">
+    <button mat-menu-item (click)="onCaptureImage()">
+      <mat-icon>image</mat-icon>
+      <span>Capture image</span>
+    </button>
+    <button mat-menu-item (click)="onDownloadVideo()">
+      <mat-icon>get_app</mat-icon>
+      <span>Download video</span>
+    </button>
+    <button mat-menu-item >
+        <mat-icon>slow_motion_video</mat-icon>
+        <span>Speed</span>
+      </button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)" (menuClosed)="onMenuToggle(false)">
+    <mat-icon>settings</mat-icon>
+  </button>
   <button mat-icon-button *ngIf="!fullscreen" [ngSwitch]="isWideScreen" (click)="onToggleWideScreen()">
-    <mat-icon *ngSwitchCase="true">crop_landscape</mat-icon>
-    <mat-icon *ngSwitchCase="false">crop_3_2</mat-icon>
+    <mat-icon *ngSwitchCase="false">crop_landscape</mat-icon>
+    <mat-icon *ngSwitchCase="true">crop_3_2</mat-icon>
   </button>
   <button mat-icon-button (click)="toggleFullscreenClick()" [ngSwitch]="fullscreen">
     <mat-icon *ngSwitchCase="false">fullscreen</mat-icon>

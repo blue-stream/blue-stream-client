@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
@@ -42,6 +43,7 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     MatChipsModule,
     FlexLayoutModule,
     MatSliderModule,
+    MatMenuModule,
     RouterModule
   ],
   exports: [
@@ -58,6 +60,7 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     MatSnackBarModule,
     MatChipsModule,
     MatSliderModule,
+    MatMenuModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
