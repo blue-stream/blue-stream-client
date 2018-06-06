@@ -1,6 +1,7 @@
 #container {
     width:100%;
     display: grid;
+    margin-top: 20px;
     justify-content: center;
     grid-template-columns: minmax(640px, 854px) minmax(300px, 402px);
     grid-template-areas: 
@@ -19,6 +20,7 @@
         "comments";
     }
     &.wide-video-container {
+        margin-top: 0;
         grid-template-columns: minmax(0px, auto) minmax(400px, 1200px) minmax(300px, 402px)  minmax(0px, auto);
         justify-content: stretch;
         grid-template-areas: 
