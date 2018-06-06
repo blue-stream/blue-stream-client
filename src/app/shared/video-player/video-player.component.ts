@@ -83,6 +83,10 @@ export class VideoPlayerComponent implements OnInit {
     this.videoPlayer.nativeElement.volume = volume;
   }
 
+  speedChange(speed: number) {
+    this.videoPlayer.nativeElement.playbackRate = speed;
+  }
+
   updateProgress() {
     const { currentTime, duration } = this.videoPlayer.nativeElement;
     this.progress = ((100 / duration) * currentTime);

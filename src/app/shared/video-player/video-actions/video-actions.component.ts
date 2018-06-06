@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
+import { playerConfig } from '../video-player.config';
 import * as moment from 'moment';
 import * as format from 'format-duration';
 
@@ -15,18 +16,21 @@ export class VideoActionsComponent {
   @Input() duration;
   @Input() fullscreen: boolean;
   @Input() playing: boolean;
+  @Input() playbackRate: number = 1;
   @Output() volumeChange: EventEmitter<number>;
+  @Output() speedChange: EventEmitter<number>;
   @Output() toggleMenu: EventEmitter<boolean>;
   @Output() toggleVideo: EventEmitter<boolean>;
   @Output() toggleFullscreen: EventEmitter<boolean>;
   @Output() toggleWideScreen: EventEmitter<boolean>;
   @Output() captureImage: EventEmitter<void>;
   @Output() downloadVideo: EventEmitter<void>;
-
+  availableSpeed: number[] = playerConfig.availableSpeed;
   isWideScreen: boolean = false;
 
   constructor() {
     this.volumeChange = new EventEmitter<number>();
+    this.speedChange = new EventEmitter<number>();
     this.toggleVideo = new EventEmitter<boolean>();
     this.toggleFullscreen = new EventEmitter<boolean>();
     this.toggleWideScreen = new EventEmitter<boolean>();
@@ -74,5 +78,9 @@ export class VideoActionsComponent {
 
   onMenuToggle(status: boolean) {
     this.toggleMenu.next(status);
+  }
+
+  onSpeedChange(speed: number) {
+    this.speedChange.next(speed);
   }
 }
