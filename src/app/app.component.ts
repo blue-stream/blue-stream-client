@@ -1,7 +1,9 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouteSpecificConfig, SideNavMode, routeConfig, defaultRouteConfig } from './route-specific.config';
+import { SideNavMode, routeConfig, defaultRouteConfig } from './route-specific.config';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'bs-root',
@@ -12,10 +14,16 @@ import { RouteSpecificConfig, SideNavMode, routeConfig, defaultRouteConfig } fro
 export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   isSideNavOpen: boolean = true;
-
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    translate: TranslateService,
+    private router: Router
+  ) {
+    translate.setDefaultLang('en');
+    translate.use('he');
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

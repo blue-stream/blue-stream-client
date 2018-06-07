@@ -1,0 +1,77 @@
+{
+    "DASHBOARD": {
+        "HOME": "דף הבית",
+        "POPULAR": "סרטונים פופולארים",
+        "SUBSCRIPTIONS": "מינויים"
+    },
+    "UPLOADER": {
+        "FILE_UPLOADER": {
+            "TITLE": "בחר קבצים להעלאה",
+            "DESCRIPTION": "או גרור ושחרר קבצי וידאו"
+        },
+        "UPLOAD_PROGRESS_BAR": {
+            "DONE": "בוצע",
+            "FAILED": "נכשל",
+            "UPLOADING": "מעלה",
+            "PENDING": "ממתין",
+            "UNKNOWN": "לא ידוע",
+            "TIME_LEFT": "נותרו כ{{value}} שניות",
+            "CANCEL_UPLOAD_DIALOG": {
+                "TITLE": "העלאת קובץ",
+                "TEXT": "האם אתה בטוח שברצונך לבטל העלאה זו?",
+                "CANCEL_BUTTON": "אל תבטל",
+                "CONFIRM_BUTTON": "בטל העלאה"
+            }
+        },
+        "UPLOAD_FORM": {
+            "TITLE": "כותרת",
+            "DESCRIPTION": "תיאור",
+            "TAGS": "תיוגים",
+            "PUBLISH": "פרסם"
+        },
+        "UPLOAD_PROGRESS": {
+            "ERROR": "אירעה שגיאה",
+            "SUCCESS": "לחץ על \"פרסם\" כדי להפוך את הסרטון שלך לפעיל.",
+            "PROGRESS": "הסרטון עדיין נטען. אשאר את הדף פתוח עד לסיום הטעינה.",
+            "PENDING": "העלאה ממתינה",
+            "UNKNOWN": "לא ידוע",
+            "FILE_SIZE": "{{size}} MB"
+        }
+    },
+    "COMMENTS": {
+        "COMMENT_LIST": {
+            "COMMENT": {
+                "HIDE_REPLIES": "הסתר תגובות",
+                "VIEW_REPLIES": "הצג {{replies}} תגובות",
+                "COMMENT_ACTION_BUTTONS": {
+                    "REPLY": "הגב"
+                }
+            }
+        },
+        "COMMENTS_HEADER": {
+            "COMMENTS_AMOUNT": "{{amount}} תגובות"
+        }
+    },
+    "WATCH": {
+        "WATCH_OWNER": {
+            "PUBLISH_DATE": "פורסם ב{{date}}"
+        },
+        "WATCH_PRIMARY_INFO": {
+            "VIEWS": "{{views}} צפיות",
+            "SHARE": "שתף",
+            "ADD_PLAYLIST": "הוסף לרשימה",
+            "LIKE": "אהבתי",
+            "DISLIKE": "לא אהבתי"
+        }
+    },
+    "SHARED": {
+        "VIDEO_SECTION_LIST": {
+            "VIDEO_SECTION_ITEM": {
+                "SUBSCRIBE": "הירשם כמנוי"
+            }
+        },
+        "VIDEO_TILE": {
+            "VIEWS": "{{views}} צפיות"
+        }
+    }
+}

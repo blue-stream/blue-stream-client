@@ -7,7 +7,7 @@
       <a id="video-title" [routerLink]="['/watch', video.id]">{{video.title}}</a>
       <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
       <div id="video-statistics">
-        <span>{{video.views}} views</span>
+        <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
         <span>{{video.publishDate | date: 'dd MMM'}}</span>
       </div>
     </div>

@@ -10,11 +10,11 @@
   <bs-comment-action-buttons [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
   <div id="replies-container" *ngIf="repliesAmount">
     <button mat-button [ngSwitch]="showReplies" (click)="onShowReplies()" id="replies-expander">
-      <span *ngSwitchCase="true">
-        Hide replies
+      <span *ngSwitchCase="true" translate>
+        COMMENTS.COMMENT_LIST.COMMENT.HIDE_REPLIES
       </span>
-      <span *ngSwitchCase="false">
-        View all {{repliesAmount}} replies
+      <span *ngSwitchCase="false" translate [translateParams]="{replies: repliesAmount}">
+        COMMENTS.COMMENT_LIST.COMMENT.VIEW_REPLIES
       </span>
     </button>
     <div id="replies" *ngIf="showReplies">

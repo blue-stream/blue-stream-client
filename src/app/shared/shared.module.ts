@@ -25,6 +25,7 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { VideoProgressComponent } from './video-player/video-progress/video-progress.component';
 import { VideoActionsComponent } from './video-player/video-actions/video-actions.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -41,9 +42,11 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     MatProgressBarModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatTooltipModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
+    TranslateModule,
     RouterModule
   ],
   exports: [
@@ -59,6 +62,7 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     MatProgressBarModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatTooltipModule,
     MatSliderModule,
     MatMenuModule,
     FlexLayoutModule,
@@ -67,7 +71,8 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
     VideoPlayerComponent,
     ConfirmDialogComponent,
     VideoTileComponent,
-    VideoListComponent
+    VideoListComponent,
+    TranslateModule,
   ],
   declarations: [
     ConfirmDialogComponent,
