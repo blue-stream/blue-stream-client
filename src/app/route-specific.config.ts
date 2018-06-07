@@ -18,4 +18,9 @@ export const routeConfig: RouteSpecificConfig = {
         sideNavMode: 'side',
         isNavDefaultlyOpen: true
     }
-}
+};
+
+export const defaultRouteConfig: RouteConfig = {
+    sideNavMode: 'side',
+    isNavDefaultlyOpen: true
+};

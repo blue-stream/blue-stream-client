@@ -1,7 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { RouteSpecificConfig, SideNavMode, routeConfig } from './route-specific.config';
+import { RouteSpecificConfig, SideNavMode, routeConfig, defaultRouteConfig } from './route-specific.config';
 
 @Component({
   selector: 'bs-root',
@@ -11,13 +11,11 @@ import { RouteSpecificConfig, SideNavMode, routeConfig } from './route-specific.
 
 export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
-  router: Router;
   isSideNavOpen: boolean = true;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _router: Router) {
-    this.router = _router;
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -37,13 +35,17 @@ export class AppComponent implements OnDestroy {
       url = this.router.url.slice(0, this.router.url.length);
     }
 
-    if (routeConfig[url].sideNavMode === 'side') {
-      this.isSideNavOpen = !this.mobileQuery.matches;
-      return this.mobileQuery.matches ? 'over' : 'side';
-    } else {
-      this.isSideNavOpen = routeConfig[url].isNavDefaultlyOpen;
+    if (routeConfig[url]) {
+      if (routeConfig[url].sideNavMode === 'side') {
+        this.isSideNavOpen = !this.mobileQuery.matches;
+        return this.mobileQuery.matches ? 'over' : 'side';
+      } else {
+        this.isSideNavOpen = routeConfig[url].isNavDefaultlyOpen;
+      }
+
+      return routeConfig[url].sideNavMode;
     }
 
-    return routeConfig[url].sideNavMode;
+    return defaultRouteConfig.sideNavMode;
   }
 }
