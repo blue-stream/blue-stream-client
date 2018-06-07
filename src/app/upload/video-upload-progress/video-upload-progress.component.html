@@ -6,23 +6,25 @@
     <div fxLayout="row">
       <h3 id="file-name">{{uploadFile.file.name}}</h3>
       <span fxFlex></span>
-      <span id="file-size">{{uploadFile.file.size / 1024 / 1024 | number: '.2'}} MB</span>
+      <span id="file-size" translate [translateParams]="{size: ((uploadFile.file.size / 1024 / 1024) | number: '.2')}">
+        UPLOADER.UPLOAD_PROGRESS.FILE_SIZE
+      </span>
     </div>
     <span [ngSwitch]="uploadFile.status">
-      <p *ngSwitchCase="uploadStatus.Error">
-        Error
+      <p *ngSwitchCase="uploadStatus.Error" translate>
+        UPLOADER.UPLOAD_PROGRESS.ERROR
       </p>
-      <p *ngSwitchCase="uploadStatus.Success">
-        Click "Publish" to make your video live.
+      <p *ngSwitchCase="uploadStatus.Success" translate>
+        UPLOADER.UPLOAD_PROGRESS.SUCCESS
       </p>
-      <p *ngSwitchCase="uploadStatus.Progress">
-        Your video is still uploading. Please keep this page open until it's done.
+      <p *ngSwitchCase="uploadStatus.Progress" translate>
+        UPLOADER.UPLOAD_PROGRESS.PROGRESS
       </p>
-      <p *ngSwitchCase="uploadStatus.Pending">
-        Pending
+      <p *ngSwitchCase="uploadStatus.Pending" translate>
+        UPLOADER.UPLOAD_PROGRESS.PENDING
       </p>
-      <p *ngSwitchDefault>
-        Unknown
+      <p *ngSwitchDefault translate>
+        UPLOADER.UPLOAD_PROGRESS.UNKNOWN
       </p>
     </span>
     <bs-upload-progress-bar [file]="uploadFile"></bs-upload-progress-bar>

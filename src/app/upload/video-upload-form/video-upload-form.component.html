@@ -2,21 +2,21 @@
   <bs-video-upload-progress [uploadFile]="file"></bs-video-upload-progress>
   <form fxLayout="column">
     <mat-form-field appearance="outline">
-      <mat-label>Title</mat-label>
+      <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
       <input matInput [value]="file.file.name">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
+      <mat-label translate>UPLOADER.UPLOAD_FORM.DESCRIPTION</mat-label>
       <textarea rows="4" matInput></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Tags</mat-label>
+      <mat-label translate>UPLOADER.UPLOAD_FORM.TAGS</mat-label>
       <input matInput />
     </mat-form-field>
   </form>
   <mat-card-actions align="end">
-    <button mat-button color="primary">Publish</button>
+    <button mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
   </mat-card-actions>
 </mat-card>

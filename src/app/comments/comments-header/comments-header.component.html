@@ -1,5 +1,5 @@
 <div id="container">
-  <span id="comments-amount">{{commentsAmount}} Comments</span>
+  <span id="comments-amount" translate [translateParams]="{amount: commentsAmount}">COMMENTS.COMMENTS_HEADER.COMMENTS_AMOUNT</span>
   <div id="add-comment-container">
     <bs-avatar id="user-profile-image" source="assets/user-profile-placeholder.png"></bs-avatar>
     <mat-form-field id="comment-input">

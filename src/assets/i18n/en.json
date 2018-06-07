@@ -1,0 +1,77 @@
+{
+    "DASHBOARD": {
+        "HOME": "Home",
+        "POPULAR": "Popular",
+        "SUBSCRIPTIONS": "Subscriptions"
+    },
+    "UPLOADER": {
+        "FILE_UPLOADER": {
+            "TITLE": "Select files to upload",
+            "DESCRIPTION": "Or drag and drop video files"
+        },
+        "UPLOAD_PROGRESS_BAR": {
+            "DONE": "Done",
+            "FAILED": "Failed",
+            "UPLOADING": "Uploading",
+            "PENDING": "Pending",
+            "UNKNOWN": "Unknown",
+            "TIME_LEFT": "About {{value}} seconds left",
+            "CANCEL_UPLOAD_DIALOG": {
+                "TITLE": "File upload",
+                "TEXT": "Do you really want to cancel this upload?",
+                "CANCEL_BUTTON": "Do not cancel",
+                "CONFIRM_BUTTON": "Cancel upload"
+            }
+        },
+        "UPLOAD_FORM": {
+            "TITLE": "Title",
+            "DESCRIPTION": "Description",
+            "TAGS": "Tags",
+            "PUBLISH": "Publish"
+        },
+        "UPLOAD_PROGRESS": {
+            "ERROR":"An error occurred",
+            "SUCCESS": "Click \"Publish\" to make your video live.",
+            "PROGRESS": "Your video is still uploading. Please keep this page open until it's done.",
+            "PENDING":"Upload is pending",
+            "UNKNOWN": "Unknown status",
+            "FILE_SIZE": "{{size}} MB"
+        }
+    },
+    "COMMENTS": {
+        "COMMENT_LIST": {
+            "COMMENT": {
+                "HIDE_REPLIES": "Hide replies",
+                "VIEW_REPLIES": "View {{replies}} replies",
+                "COMMENT_ACTION_BUTTONS": {
+                    "REPLY": "Reply"
+                }
+            }
+        },
+        "COMMENTS_HEADER": {
+            "COMMENTS_AMOUNT": "{{amount}} comments"
+        }
+    },
+    "WATCH": {
+        "WATCH_OWNER": {
+            "PUBLISH_DATE": "Published at {{date}}"
+        },
+        "WATCH_PRIMARY_INFO": {
+            "VIEWS": "{{views}} views",
+            "SHARE": "Share",
+            "ADD_PLAYLIST": "Add to playlist",
+            "LIKE": "Like",
+            "DISLIKE": "Dislike"
+        }
+    },
+    "SHARED": {
+        "VIDEO_SECTION_LIST": {
+            "VIDEO_SECTION_ITEM": {
+                "SUBSCRIBE": "Subscribe"
+            }
+        },
+        "VIDEO_TILE": {
+            "VIEWS": "{{views}} views"
+        }
+    }
+}

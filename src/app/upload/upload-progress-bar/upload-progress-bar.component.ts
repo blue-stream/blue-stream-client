@@ -25,10 +25,10 @@ export class UploadProgressBarComponent {
     const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: {
-        title: 'File upload',
-        text: 'Do you really want to cancel this upload?',
-        cancelButtonText: 'Do not cancel',
-        confirmButtonText: 'Cancel upload'
+        title: 'UPLOADER.UPLOAD_PROGRESS_BAR.CANCEL_UPLOAD_DIALOG.TITLE',
+        text: 'UPLOADER.UPLOAD_PROGRESS_BAR.CANCEL_UPLOAD_DIALOG.TEXT',
+        cancelButtonText: 'UPLOADER.UPLOAD_PROGRESS_BAR.CANCEL_UPLOAD_DIALOG.CANCEL_BUTTON',
+        confirmButtonText: 'UPLOADER.UPLOAD_PROGRESS_BAR.CANCEL_UPLOAD_DIALOG.CONFIRM_BUTTON'
       } as ConfirmDialogData
     });
 
