@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import fscreen from 'fscreen';
-import { Video } from '../models/video.model';
+import { saveAs } from 'file-saver';
 import { BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { Video } from '../models/video.model';
 
 @Component({
   selector: 'bs-video-player',
@@ -24,11 +26,12 @@ export class VideoPlayerComponent implements OnInit {
   mouseMove: BehaviorSubject<void>;
   previousVideoState: boolean | null = null;
   hideActions: boolean = false;
+  isMenuOpened: boolean = false;
   fullscreen: boolean = false;
   volume: number;
   progress = 0;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
     this.toggleWideScreen = new EventEmitter<boolean>();
     this.mouseMove = new BehaviorSubject<void>(null);
     this.mouseMove
@@ -80,9 +83,13 @@ export class VideoPlayerComponent implements OnInit {
     this.videoPlayer.nativeElement.volume = volume;
   }
 
+  speedChange(speed: number) {
+    this.videoPlayer.nativeElement.playbackRate = speed;
+  }
+
   updateProgress() {
     const { currentTime, duration } = this.videoPlayer.nativeElement;
-    this.progress = Math.floor((100 / duration) * currentTime);
+    this.progress = ((100 / duration) * currentTime);
   }
 
   onProgressChangeStart() {
@@ -100,9 +107,49 @@ export class VideoPlayerComponent implements OnInit {
     }
   }
 
-  progressChanged(progress: number) {
+  onProgressChanged(progress: number) {
     const video = this.videoPlayer.nativeElement;
     this.progress = progress;
     video.currentTime = video.duration * progress / 100;
+  }
+
+  onCaptureImage() {
+    const videoPaused = this.videoPlayer.nativeElement.paused;
+
+    if (!videoPaused) {
+      this.pauseVideo();
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = this.videoPlayer.nativeElement.videoWidth;
+    canvas.height = this.videoPlayer.nativeElement.videoHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(this.videoPlayer.nativeElement, 0, 0, canvas.width, canvas.height);
+
+    const image = canvas.toDataURL('image/jpeg');
+    const data = atob(image.substring('data:image/jpeg;base64,'.length));
+    const asArray = new Uint8Array(data.length);
+
+    for (let i = 0; i < data.length; ++i) {
+      asArray[i] = data.charCodeAt(i);
+    }
+
+    const blob = new Blob([asArray.buffer], { type: 'image/jpeg' });
+    const imageUrl = window.URL.createObjectURL(blob);
+    saveAs(blob, `${this.video.title}-${this.videoPlayer.nativeElement.currentTime}.jpeg`);
+
+    if (!videoPaused) {
+      this.playVideo();
+    }
+  }
+
+  onDownloadVideo() {
+    this.httpClient
+      .get(this.video.sourceUrl, { responseType: 'blob' })
+      .subscribe(data => saveAs(data, `${this.video.title}.mp4`));
+  }
+
+  onToggleMenu(isOpened: boolean) {
+    this.isMenuOpened = isOpened;
   }
 }

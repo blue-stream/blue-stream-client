@@ -17,13 +17,36 @@
     <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
+  <button mat-icon-button [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)" (menuClosed)="onMenuToggle(false)">
+    <mat-icon>settings</mat-icon>
+  </button>
   <button mat-icon-button *ngIf="!fullscreen" [ngSwitch]="isWideScreen" (click)="onToggleWideScreen()">
-    <mat-icon *ngSwitchCase="true">crop_landscape</mat-icon>
-    <mat-icon *ngSwitchCase="false">crop_3_2</mat-icon>
+    <mat-icon *ngSwitchCase="false">crop_landscape</mat-icon>
+    <mat-icon *ngSwitchCase="true">crop_3_2</mat-icon>
   </button>
   <button mat-icon-button (click)="toggleFullscreenClick()" [ngSwitch]="fullscreen">
     <mat-icon *ngSwitchCase="false">fullscreen</mat-icon>
     <mat-icon *ngSwitchCase="true">fullscreen_exit</mat-icon>
   </button>
-
 </div>
+
+<mat-menu #videoMenu="matMenu" yPosition="above" xPosition="before" class="menu video-menu">
+  <button mat-menu-item (click)="onCaptureImage()">
+    <mat-icon>image</mat-icon>
+    <span>Capture image</span>
+  </button>
+  <button mat-menu-item (click)="onDownloadVideo()">
+    <mat-icon>get_app</mat-icon>
+    <span>Download video</span>
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="speedMenu">
+    <mat-icon>slow_motion_video</mat-icon>
+    <span>Speed</span>
+  </button>
+</mat-menu>
+<mat-menu #speedMenu="matMenu" yPosition="above" xPosition="before" class="menu speed-menu">
+  <button mat-menu-item *ngFor="let speed of availableSpeed" (click)="onSpeedChange(speed)">
+    <mat-icon>{{playbackRate === speed ? 'check' : ''}}</mat-icon>
+    <span>{{speed === 1 ? 'Normal' : speed}}</span>
+  </button>
+</mat-menu>

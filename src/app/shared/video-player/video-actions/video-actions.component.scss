@@ -1,11 +1,12 @@
 #video-actions {
-    height: 48px;
+    height: 40px;
     justify-content: center;
     mat-icon {
         color: #fff;
     }
     #volume {
         mat-slider {
+            cursor: pointer;
             padding: 0;
             width: 52px;
             height: 25px;
@@ -13,7 +14,6 @@
             visibility: hidden;
             width: 0;
             transition: all 250ms ease-in;
-
         }
         &:hover {
             mat-slider {
@@ -46,5 +46,41 @@
         width: 20px;
         height: 20px;
         transform: scale(0.6);
+    }
+}
+
+::ng-deep .menu {
+    background-color: rgba(28, 28, 28, 0.9);
+    
+    button[mat-menu-item] {
+        color: #fff;
+        font-size: 0.8rem;
+        mat-icon {
+            color: #fff !important;
+        }
+        &::after {
+            color: #fff;
+        }
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+    &.video-menu {
+        position: absolute;
+        bottom: 50px;
+        right: 10px;
+    }
+    &.speed-menu {
+        min-width: 100px;
+        position: absolute;
+        bottom: 0;
+        right: 2px;
+        button[mat-menu-item] {
+            mat-icon {
+                margin: 0;
+                font-size: 15px;
+                height: 15px;
+            }
+        }
     }
 }
