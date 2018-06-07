@@ -26,14 +26,9 @@ export class AppComponent implements OnDestroy {
   }
 
   getSideNavMode(): SideNavMode {
-    let url: string = '';
-    const endIndex = this.router.url.slice(1, this.router.url.length).indexOf('/');
-
-    if (endIndex) {
-      url = this.router.url.slice(0, endIndex + 1);
-    } else {
-      url = this.router.url.slice(0, this.router.url.length);
-    }
+    const urlRegex: RegExp = /(?!\/)\w+(?=\/)/;
+    const urlRegexExec: RegExpExecArray = urlRegex.exec(this.router.url);
+    const url: string = urlRegexExec ? urlRegexExec[0] : '';
 
     if (routeConfig[url]) {
       if (routeConfig[url].sideNavMode === 'side') {

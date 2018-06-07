@@ -10,7 +10,7 @@ export interface RouteSpecificConfig {
 }
 
 export const routeConfig: RouteSpecificConfig = {
-    '/watch': {
+    'watch': {
         sideNavMode: 'over',
         isNavDefaultlyOpen: false
     },
