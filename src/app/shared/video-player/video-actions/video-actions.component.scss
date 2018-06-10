@@ -49,37 +49,65 @@
     }
 }
 
-::ng-deep .menu {
-    background-color: rgba(28, 28, 28, 0.9);
-    
-    button[mat-menu-item] {
-        color: #fff;
-        font-size: 0.8rem;
-        mat-icon {
-            color: #fff !important;
+::ng-deep {
+    html[dir=rtl] {
+        .cdk-overlay-connected-position-bounding-box {
+            align-items: flex-start !important;
+            direction: rtl;
         }
-        &::after {
-            color: #fff;
-        }
-        &:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .mat-menu-content {
+            direction: rtl;
         }
     }
-    &.video-menu {
-        position: absolute;
-        bottom: 50px;
-        right: 10px;
+    #video-actions {
+        mat-slider * {
+            direction: ltr;
+            transform-origin: 0 !important;
+            .mat-slider-track-wrapper,
+            .mat-slider-track-fill,
+            .mat-slider-track-background,
+            .mat-slider-ticks-container,
+            .mat-slider-ticks,
+            .mat-slider-horizontal,
+            .mat-slider-wrapper {
+                direction: ltr;
+            }
+            .mat-slider-track-background {
+                transform: scaleX(1) !important;
+            }
+        }
     }
-    &.speed-menu {
-        min-width: 100px;
-        position: absolute;
-        bottom: 0;
-        right: 2px;
+    .menu {
+        background-color: rgba(28, 28, 28, 0.9);
         button[mat-menu-item] {
+            color: #fff;
+            font-size: 0.8rem;
             mat-icon {
-                margin: 0;
-                font-size: 15px;
-                height: 15px;
+                color: #fff !important;
+            }
+            &::after {
+                color: #fff;
+            }
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+        &.video-menu {
+            position: absolute;
+            bottom: 50px;
+            right: 10px;
+        }
+        &.speed-menu {
+            min-width: 100px;
+            position: absolute;
+            bottom: 0;
+            right: 2px;
+            button[mat-menu-item] {
+                mat-icon {
+                    margin: 0;
+                    font-size: 15px;
+                    height: 15px;
+                }
             }
         }
     }

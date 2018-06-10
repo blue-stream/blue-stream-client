@@ -17,7 +17,7 @@
     <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
-  <button mat-icon-button [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)" (menuClosed)="onMenuToggle(false)">
+  <button mat-icon-button dir="ltr" [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)" (menuClosed)="onMenuToggle(false)">
     <mat-icon>settings</mat-icon>
   </button>
   <button mat-icon-button *ngIf="!fullscreen" [ngSwitch]="isWideScreen" (click)="onToggleWideScreen()">
@@ -30,23 +30,23 @@
   </button>
 </div>
 
-<mat-menu #videoMenu="matMenu" yPosition="above" xPosition="before" class="menu video-menu">
+<mat-menu #videoMenu="matMenu" yPosition="above" xPosition="before" class="menu video-menu" dir="ltr">
   <button mat-menu-item (click)="onCaptureImage()">
     <mat-icon>image</mat-icon>
-    <span>Capture image</span>
+    <span translate>SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.CAPTURE</span>
   </button>
   <button mat-menu-item (click)="onDownloadVideo()">
     <mat-icon>get_app</mat-icon>
-    <span>Download video</span>
+    <span translate>SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.DOWNLOAD</span>
   </button>
   <button mat-menu-item [matMenuTriggerFor]="speedMenu">
     <mat-icon>slow_motion_video</mat-icon>
-    <span>Speed</span>
+    <span translate>SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.SPEED</span>
   </button>
 </mat-menu>
 <mat-menu #speedMenu="matMenu" yPosition="above" xPosition="before" class="menu speed-menu">
   <button mat-menu-item *ngFor="let speed of availableSpeed" (click)="onSpeedChange(speed)">
     <mat-icon>{{playbackRate === speed ? 'check' : ''}}</mat-icon>
-    <span>{{speed === 1 ? 'Normal' : speed}}</span>
+    <span>{{speed === 1 ? ('SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.NORMAL' | translate) : speed}}</span>
   </button>
 </mat-menu>
