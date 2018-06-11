@@ -72,6 +72,14 @@
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} views"
+        },
+        "VIDEO_PLAYER": {
+            "VIDEO_ACTIONS": {
+                "CAPTURE": "Capture image",
+                "DOWNLOAD": "Download video",
+                "SPEED": "Speed",
+                "NORMAL": "Normal"
+            }
         }
     }
 }

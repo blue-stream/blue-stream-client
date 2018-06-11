@@ -72,6 +72,14 @@
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} צפיות"
+        },
+        "VIDEO_PLAYER": {
+            "VIDEO_ACTIONS": {
+                "CAPTURE": "צלם תמונה",
+                "DOWNLOAD": "הורד סירטון",
+                "SPEED": "מהירות",
+                "NORMAL": "רגיל"
+            }
         }
     }
 }
