@@ -1,0 +1,48 @@
+image: node:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - package
+  
+before_script: 
+    - npm install --silent --progress=false
+
+cache:
+  paths:
+   - node_modules/
+   
+variables: 
+    CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+    NODE_ENV: 'test'
+  
+review:
+  stage: package
+  image: docker:latest
+  cache: {}
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:test .
+    - docker push $CONTAINER_IMAGE:test
+  only:
+   - master
+
+release:
+  stage: package
+  image: docker:latest
+  cache: {}
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_TAG --tag $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:$CI_COMMIT_TAG
+    - docker push $CONTAINER_IMAGE:latest
+  only:
+   - tags
