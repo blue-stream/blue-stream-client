@@ -30,6 +30,7 @@ export class VideoPlayerComponent implements OnInit {
   fullscreen: boolean = false;
   volume: number;
   progress = 0;
+  buffer = 0;
 
   constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
     this.toggleWideScreen = new EventEmitter<boolean>();
@@ -90,6 +91,8 @@ export class VideoPlayerComponent implements OnInit {
   updateProgress() {
     const { currentTime, duration } = this.videoPlayer.nativeElement;
     this.progress = ((100 / duration) * currentTime);
+    const videoPlayer = this.videoPlayer.nativeElement;
+    this.buffer = (videoPlayer.buffered.end(videoPlayer.buffered.length - 1) / videoPlayer.duration) * 100;
   }
 
   onProgressChangeStart() {

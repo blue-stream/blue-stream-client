@@ -11,6 +11,7 @@ import 'rxjs/add/operator/throttleTime';
 export class VideoProgressComponent {
 
   @Input() value = 0;
+  @Input() buffer = 0;
   @Input() duration;
   @Output() progressChangeStart: EventEmitter<void>;
   @Output() progressChanged: EventEmitter<number>;
