@@ -8,31 +8,31 @@ import { HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
+import { VideoUpload } from './video-upload.interface';
 
 @Injectable()
 export class FileUploaderService {
 
   public url = 'http://localhost:3001/api/upload';
 
-  private files: FileUpload[];
-  private queue: BehaviorSubject<FileUpload[]>;
+  private files: VideoUpload[];
+  private queue: BehaviorSubject<VideoUpload[]>;
 
   constructor(private httpClient: HttpClient) {
     this.files = [];
-    this.queue = <BehaviorSubject<FileUpload[]>>new BehaviorSubject(this.files);
+    this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
   }
+
+
 
   public getQueue() {
     return this.queue.asObservable();
   }
 
-  public addToQueue(files: File[]) {
-    files.forEach((file: File) => {
-      const fileUpload = new FileUpload(file);
-
-      this.files.push(fileUpload);
-      this.queue.next(this.files);
-    });
+  public addToQueue(file: File, videoId: string) {
+    const fileUpload = new FileUpload(file);
+    this.files.push({ fileUpload: fileUpload, id: videoId });
+    this.queue.next(this.files);
   }
 
   public clearQueue() {
@@ -41,20 +41,20 @@ export class FileUploaderService {
   }
 
   public uploadAll() {
-    this.files.forEach((file: FileUpload) => {
-      if (file.isUploadable()) {
-        this.upload(file);
+    this.files.forEach((video: VideoUpload) => {
+      if (video.fileUpload.isUploadable()) {
+        this.upload(video.fileUpload, video.id);
       }
     });
   }
 
   private removeFromQueue(fileUpload) {
-    this.files = this.files.filter((file: FileUpload) => {
-      return file.file.name !== fileUpload.file.name;
+    this.files = this.files.filter((video: VideoUpload) => {
+      return video.fileUpload.file.name !== fileUpload.file.name;
     });
   }
 
-  private upload(fileUpload: FileUpload) {
+  private upload(fileUpload: FileUpload, videoId: string) {
     const formData: FormData = new FormData();
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
 
