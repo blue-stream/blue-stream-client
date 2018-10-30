@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FileUpload } from '../file-upload';
 import { FileUploaderService } from '../file-uploader.service';
+import { VideoService } from '../../core/services/video.service';
+import { Video } from '../../shared/models/video.model';
+import { VideoUpload } from '../video-upload.interface';
 
 @Component({
   selector: 'bs-video-uploader',
@@ -9,21 +12,26 @@ import { FileUploaderService } from '../file-uploader.service';
   styleUrls: ['./video-uploader.component.scss']
 })
 export class VideoUploaderComponent implements OnInit {
-  fileUploadQueue: Observable<FileUpload[]>;
+  fileUploadQueue: Observable<VideoUpload[]>;
 
-  constructor(private fileUploaderService: FileUploaderService) { }
+  constructor(private fileUploaderService: FileUploaderService,
+    private videoService: VideoService) { }
 
   ngOnInit() {
     this.fileUploadQueue = this.fileUploaderService.getQueue();
   }
 
   filesSelected(files: FileList) {
-    this.addToQueue(files);
+    Array.from(files).forEach(async file => {
+      const video: Partial<Video> = {
+        title: files[0].name,
+      };
+
+      this.videoService.create(video).subscribe(returnedVideo => {
+        this.fileUploaderService.addToQueue(file, returnedVideo.id);
+      });
+    });
+
     this.fileUploaderService.uploadAll();
   }
-
-  addToQueue(files: FileList) {
-    this.fileUploaderService.addToQueue(Array.from(files));
-  }
-
 }
