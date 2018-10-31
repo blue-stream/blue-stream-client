@@ -23,15 +23,14 @@ export class FileUploaderService {
     this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
   }
 
-
-
   public getQueue() {
     return this.queue.asObservable();
   }
 
   public addToQueue(file: File, videoId: string) {
     const fileUpload = new FileUpload(file);
-    this.files.push({ fileUpload: fileUpload, id: videoId });
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId };
+    this.files.push(videoUpload);
     this.queue.next(this.files);
   }
 
