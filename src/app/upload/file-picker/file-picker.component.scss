@@ -2,6 +2,7 @@
 @import 'src/theme.scss';
 #file-picker {
     display: flex;
+    height: 99%;
     input[type=file] {
         display: none;
     }
