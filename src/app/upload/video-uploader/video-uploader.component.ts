@@ -12,26 +12,25 @@ import { VideoUpload } from '../video-upload.interface';
   styleUrls: ['./video-uploader.component.scss']
 })
 export class VideoUploaderComponent implements OnInit {
-  fileUploadQueue: Observable<VideoUpload[]>;
+  videoUploadQueue: Observable<VideoUpload[]>;
 
   constructor(private fileUploaderService: FileUploaderService,
     private videoService: VideoService) { }
 
   ngOnInit() {
-    this.fileUploadQueue = this.fileUploaderService.getQueue();
+    this.videoUploadQueue = this.fileUploaderService.getQueue();
   }
 
   filesSelected(files: FileList) {
     Array.from(files).forEach(async file => {
       const video: Partial<Video> = {
-        title: files[0].name,
+        title: file.name,
       };
 
       this.videoService.create(video).subscribe(returnedVideo => {
         this.fileUploaderService.addToQueue(file, returnedVideo.id);
       });
     });
-
     this.fileUploaderService.uploadAll();
   }
 }
