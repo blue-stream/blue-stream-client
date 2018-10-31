@@ -8,6 +8,7 @@ import { FileUpload } from '../file-upload';
 })
 export class VideoUploadFormComponent implements OnInit {
 
+  @Input() isPublishReady: boolean;
   @Input('file') file: FileUpload;
 
   constructor() { }
