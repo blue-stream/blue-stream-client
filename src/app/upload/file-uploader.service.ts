@@ -10,10 +10,13 @@ import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
 import { VideoUpload } from './video-upload.interface';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class FileUploaderService {
 
-  public url = 'http://localhost:3001/api/upload';
+  private serviceUrl: string = environment.uploadServiceUrl;
+  private apiUrl: string = 'api/upload';
 
   private files: VideoUpload[];
   private queue: BehaviorSubject<VideoUpload[]>;
@@ -57,9 +60,10 @@ export class FileUploaderService {
     const formData: FormData = new FormData();
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
 
-    const req = new HttpRequest('POST', this.url, formData, {
+    const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
       reportProgress: true
     });
+
 
     fileUpload.loadedBytes = 0;
     fileUpload.uploadTimestamp = Date.now();
