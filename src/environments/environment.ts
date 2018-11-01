@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  videoServiceUrl: 'localhost:3002/',
+  videoServiceUrl: 'http://localhost:3002/',
+  uploadServiceUrl: 'http://localhost:3003/',
 };
 
 /*

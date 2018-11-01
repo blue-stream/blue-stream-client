@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  videoServiceUrl: 'localhost:3002/',
+  videoServiceUrl: 'http://localhost:3002/',
+  uploadServiceUrl: 'http://localhost:3003/',
 };
