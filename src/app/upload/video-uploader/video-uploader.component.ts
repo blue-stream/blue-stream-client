@@ -5,6 +5,7 @@ import { FileUploaderService } from '../file-uploader.service';
 import { VideoService } from '../../core/services/video.service';
 import { Video } from '../../shared/models/video.model';
 import { VideoUpload } from '../video-upload.interface';
+import { forkJoin, of, interval } from 'rxjs';
 
 @Component({
   selector: 'bs-video-uploader',
@@ -22,15 +23,23 @@ export class VideoUploaderComponent implements OnInit {
   }
 
   filesSelected(files: FileList) {
+    const videosToUpload = [];
+
     Array.from(files).forEach(async file => {
       const video: Partial<Video> = {
         title: file.name,
       };
 
-      this.videoService.create(video).subscribe(returnedVideo => {
-        this.fileUploaderService.addToQueue(file, returnedVideo.id);
-      });
+      videosToUpload.push(this.videoService.create(video));
     });
-    this.fileUploaderService.uploadAll();
+
+    forkJoin(videosToUpload).subscribe(videoIds => {
+      videoIds.forEach((id, index) => {
+        this.fileUploaderService.addToQueue(files[index], id);
+      });
+
+      this.fileUploaderService.uploadAll();
+    });
+
   }
 }
