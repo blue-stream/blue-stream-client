@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { throwError } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,6 +10,10 @@ import { VIDEOS1, SECTIONS } from '../../shared/models/mock-videos';
 import { VideoSection } from '../../shared/models/video-section.model';
 
 import { environment } from '../../../environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +25,10 @@ export class VideoService {
 
   public maxVideoColumnsAllowed: number;
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   create(video: Partial<Video>): Observable<Video> {
-    return this.http.post(`${this.serviceUrl}${this.apiUrl}`, video)
-      .map((res: Response) => res.json())
-      .catch((error: any) => throwError(error.json().error || 'Server error'));
+    return this.httpClient.post<Video>(`${this.serviceUrl}${this.apiUrl}`, video, httpOptions);
   }
 
 
