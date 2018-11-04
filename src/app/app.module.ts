@@ -33,9 +33,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-
     SharedModule,
-    CoreModule
+    CoreModule,
   ],
   providers: [
     MediaMatcher,
