@@ -28,9 +28,12 @@ export class VideoService {
   constructor(private httpClient: HttpClient) { }
 
   create(video: Partial<Video>): Observable<Video> {
-    return this.httpClient.post<Video>(`${this.serviceUrl}${this.apiUrl}`, video, httpOptions);
+    return this.httpClient.post<Video>(`${this.serviceUrl}${this.apiUrl}/mock`, video, httpOptions);
   }
 
+  update(video: Partial<Video>): Observable<Video> {
+    return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}`, video, httpOptions);
+  }
 
   getVideos(): Observable<Video[]> {
     return Observable.of(VIDEOS1);
