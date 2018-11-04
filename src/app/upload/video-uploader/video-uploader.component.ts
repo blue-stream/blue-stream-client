@@ -22,6 +22,13 @@ export class VideoUploaderComponent implements OnInit {
     this.videoUploadQueue = this.fileUploaderService.getQueue();
   }
 
+  publishVideo(video: Video) {
+    console.log(video);
+   /* this.videoService.update(video).subscribe(updatedVideo => {
+      console.log('Video published');
+    }); */
+  }
+
   filesSelected(files: FileList) {
     const videosToUpload = [];
 
