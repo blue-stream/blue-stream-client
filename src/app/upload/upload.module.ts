@@ -10,12 +10,13 @@ import { VideoUploaderComponent } from './video-uploader/video-uploader.componen
 import { VideoUploadFormComponent } from './video-upload-form/video-upload-form.component';
 import { VideoUploadProgressComponent } from './video-upload-progress/video-upload-progress.component';
 import { UploadProgressBarComponent } from './upload-progress-bar/upload-progress-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     UploadRoutingModule,
-
+    ReactiveFormsModule,
     SharedModule
   ],
   declarations: [
