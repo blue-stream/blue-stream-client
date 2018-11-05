@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { FileUpload } from '../file-upload';
@@ -25,8 +25,12 @@ export class VideoUploadFormComponent implements OnInit {
 
   createForm() {
     this.uploadForm = this.fb.group({
-      title: this.fb.control(this.file.file.name),
-      description: this.fb.control(''),
+      title: this.fb.control(this.file.file.name, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(256)
+      ]),
+      description: this.fb.control('', Validators.maxLength(5000)),
       tags: this.fb.array([]),
     });
   }
@@ -44,14 +48,14 @@ export class VideoUploadFormComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-        const tags = this.uploadForm.get('tags') as FormArray;
-        tags.push(this.fb.control(value.trim()));
+      const tags = this.uploadForm.get('tags') as FormArray;
+      tags.push(this.fb.control(value.trim()));
     }
 
     if (input) {
-        input.value = '';
+      input.value = '';
     }
-}
+  }
 
   onSubmit(event: Event) {
     this.videoSubmitted.emit(this.uploadForm.value);
