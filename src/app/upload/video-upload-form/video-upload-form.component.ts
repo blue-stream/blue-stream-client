@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { FileUpload } from '../file-upload';
 import { Video } from 'src/app/shared/models/video.model';
@@ -19,7 +19,7 @@ export class VideoUploadFormComponent implements OnInit {
   @Output() videoSubmitted: EventEmitter<Video> = new EventEmitter();
 
   uploadForm: FormGroup;
-  separatorKeysCodes = [ENTER, COMMA];
+  separatorKeysCodes = [ENTER];
 
   constructor(private fb: FormBuilder) {
   }
