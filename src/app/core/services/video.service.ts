@@ -12,7 +12,9 @@ import { VideoSection } from '../../shared/models/video-section.model';
 import { environment } from '../../../environments/environment';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+ }),
 };
 
 @Injectable({
@@ -28,11 +30,11 @@ export class VideoService {
   constructor(private httpClient: HttpClient) { }
 
   create(video: Partial<Video>): Observable<Video> {
-    return this.httpClient.post<Video>(`${this.serviceUrl}${this.apiUrl}/mock`, video, httpOptions);
+    return this.httpClient.post<Video>(`${this.serviceUrl}${this.apiUrl}`, video, httpOptions);
   }
 
   update(video: Partial<Video>): Observable<Video> {
-    return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}`, video, httpOptions);
+    return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}/${video.id}`, video, httpOptions);
   }
 
   getVideos(): Observable<Video[]> {
