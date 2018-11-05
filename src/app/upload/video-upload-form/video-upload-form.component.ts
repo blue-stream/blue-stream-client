@@ -4,6 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
 import { FileUpload } from '../file-upload';
 import { Video } from 'src/app/shared/models/video.model';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -27,10 +28,11 @@ export class VideoUploadFormComponent implements OnInit {
     this.uploadForm = this.fb.group({
       title: this.fb.control(this.file.file.name, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(256)
+        Validators.minLength(environment.titleMinLength),
+        Validators.maxLength(environment.titleMaxLength)
       ]),
-      description: this.fb.control('', Validators.maxLength(5000)),
+      description: this.fb.control('',
+        Validators.maxLength(environment.descriptionMaxLength)),
       tags: this.fb.array([]),
     });
   }
