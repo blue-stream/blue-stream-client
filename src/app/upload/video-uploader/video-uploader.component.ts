@@ -41,8 +41,8 @@ export class VideoUploaderComponent implements OnInit {
     });
 
     forkJoin(videosToUpload).subscribe(videoIds => {
-      videoIds.forEach((id, index) => {
-        this.fileUploaderService.addToQueue(files[index], id);
+      videoIds.forEach((video, index) => {
+        this.fileUploaderService.addToQueue(files[index], video.id);
       });
 
       this.fileUploaderService.uploadAll();
