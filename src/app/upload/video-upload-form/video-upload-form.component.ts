@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material';
-import { FileUpload } from '../file-upload';
+import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 
@@ -15,18 +15,19 @@ import { environment } from '../../../environments/environment';
 export class VideoUploadFormComponent implements OnInit {
 
   @Input() isPublishReady: boolean;
-  @Input('file') file: FileUpload;
+  @Input() videoUpload: VideoUpload;
   @Output() videoSubmitted: EventEmitter<Video> = new EventEmitter();
 
   uploadForm: FormGroup;
   separatorKeysCodes = [ENTER];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder) {
   }
 
   createForm() {
     this.uploadForm = this.fb.group({
-      title: this.fb.control(this.file.file.name, [
+      title: this.fb.control(this.videoUpload.fileUpload.file.name, [
         Validators.required,
         Validators.minLength(environment.titleMinLength),
         Validators.maxLength(environment.titleMaxLength)
@@ -60,12 +61,13 @@ export class VideoUploadFormComponent implements OnInit {
   }
 
   onSubmit(event: Event) {
-    this.videoSubmitted.emit(this.uploadForm.value);
+    const video: Video = {...this.uploadForm.value, ...{id: this.videoUpload.id}};
+    this.videoSubmitted.emit(video);
   }
 
   ngOnInit() {
     this.uploadForm = new FormGroup({
-      title: new FormControl(this.file.file.name),
+      title: new FormControl(this.videoUpload.fileUpload.file.name),
       description: new FormControl(''),
       tags: new FormControl(''),
     });
