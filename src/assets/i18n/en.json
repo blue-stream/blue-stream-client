@@ -29,6 +29,10 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish"
         },
+        "VIDEO_UPLOADER": {
+            "PUBLISH_SUCCESS": "Video was published successfully",
+            "PUBLISH_SUCCESS_APPROVAL": "OK"
+        },
         "UPLOAD_PROGRESS": {
             "ERROR":"An error occurred",
             "SUCCESS": "Click \"Publish\" to make your video live.",

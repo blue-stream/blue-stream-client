@@ -29,6 +29,10 @@
             "TAGS": "תיוגים",
             "PUBLISH": "פרסם"
         },
+        "VIDEO_UPLOADER": {
+            "PUBLISH_SUCCESS": "הסרטון פורסם בהצלחה",
+            "PUBLISH_SUCCESS_APPROVAL": "אישור"
+        },
         "UPLOAD_PROGRESS": {
             "ERROR": "אירעה שגיאה",
             "SUCCESS": "לחץ על \"פרסם\" כדי להפוך את הסרטון שלך לפעיל.",
