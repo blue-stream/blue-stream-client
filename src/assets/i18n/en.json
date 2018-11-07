@@ -39,6 +39,7 @@
             "PROGRESS": "Your video is still uploading. Please keep this page open until it's done.",
             "PENDING":"Upload is pending",
             "UNKNOWN": "Unknown status",
+            "PUBLISHED": "Video was published successfully",
             "FILE_SIZE": "{{size}} MB"
         }
     },

@@ -13,6 +13,8 @@ export class VideoUploadProgressComponent implements OnInit {
   videoUrl: SafeUrl;
   uploadStatus = FileUploadStatus;
   @Input('uploadFile') uploadFile: FileUpload;
+  @Input() isPublished: boolean;
+
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
   constructor(private sanitizer: DomSanitizer) { }

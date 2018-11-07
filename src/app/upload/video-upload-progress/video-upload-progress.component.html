@@ -10,7 +10,7 @@
         UPLOADER.UPLOAD_PROGRESS.FILE_SIZE
       </span>
     </div>
-    <span [ngSwitch]="uploadFile.status">
+    <span [ngSwitch]="uploadFile.status" *ngIf="!isPublished; else publishedText">
       <p *ngSwitchCase="uploadStatus.Error" translate>
         UPLOADER.UPLOAD_PROGRESS.ERROR
       </p>
@@ -27,6 +27,13 @@
         UPLOADER.UPLOAD_PROGRESS.UNKNOWN
       </p>
     </span>
+    <ng-template #publishedText>
+      <span>
+        <p translate>
+          UPLOADER.UPLOAD_PROGRESS.PUBLISHED 
+        </p>
+      </span>
+    </ng-template>
     <bs-upload-progress-bar [file]="uploadFile"></bs-upload-progress-bar>
   </div>
 
