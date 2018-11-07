@@ -34,7 +34,10 @@
         </p>
       </span>
     </ng-template>
-    <bs-upload-progress-bar [file]="uploadFile"></bs-upload-progress-bar>
+    <div fxLayout="row">
+        <bs-upload-progress-bar fxFlex [file]="uploadFile"></bs-upload-progress-bar>
+        <button id="cancel-btn" mat-flat-button color="warn">Cancel</button>
+    </div>
   </div>
 
 </div>
