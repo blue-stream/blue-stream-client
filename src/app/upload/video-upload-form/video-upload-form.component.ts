@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
-
+import { VideoService } from '../../core/services/video.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'bs-video-upload-form',
@@ -19,10 +20,14 @@ export class VideoUploadFormComponent implements OnInit {
   @Output() videoSubmitted: EventEmitter<Video> = new EventEmitter();
 
   uploadForm: FormGroup;
+  isPublished: boolean = false;
   separatorKeysCodes = [ENTER];
 
   constructor(
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private videoService: VideoService,
+    public snackBar: MatSnackBar,
+    private translateService: TranslateService) {
   }
 
   createForm() {
@@ -62,7 +67,22 @@ export class VideoUploadFormComponent implements OnInit {
 
   onSubmit(event: Event) {
     const video: Video = {...this.uploadForm.value, ...{id: this.videoUpload.id}};
-    this.videoSubmitted.emit(video);
+    this.publishVideo(video);
+  }
+
+  publishVideo(video: Video) {
+    this.videoService.update(video).subscribe(updatedVideo => {
+      this.isPublished = true;
+
+      this.translateService.get([
+        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
+        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL']).subscribe(translations => {
+          this.snackBar.open(
+            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS'],
+            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL'],
+            { duration: 2000 });
+        });
+    });
   }
 
   ngOnInit() {
@@ -74,5 +94,4 @@ export class VideoUploadFormComponent implements OnInit {
 
     this.createForm();
   }
-
 }
