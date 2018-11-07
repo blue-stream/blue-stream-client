@@ -1,7 +1,7 @@
 <mat-card fxLayout="column">
   <bs-video-upload-progress [uploadFile]="videoUpload.fileUpload"></bs-video-upload-progress>
 
-  <form fxLayout="column" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <form fxLayout="column" *ngIf="!isPublished" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
       <input matInput formControlName="title">
