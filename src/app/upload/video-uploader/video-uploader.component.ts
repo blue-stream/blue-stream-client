@@ -6,7 +6,6 @@ import { Video } from '../../shared/models/video.model';
 import { VideoUpload } from '../video-upload.interface';
 import { forkJoin } from 'rxjs';
 
-
 @Component({
   selector: 'bs-video-uploader',
   templateUrl: './video-uploader.component.html',
@@ -41,6 +40,6 @@ export class VideoUploaderComponent implements OnInit {
 
       this.fileUploaderService.uploadAll();
     });
-
   }
+
 }
