@@ -59,7 +59,7 @@ export class FileUploaderService {
   private upload(fileUpload: FileUpload, videoId: string) {
     const formData: FormData = new FormData();
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
-
+    formData.append('videoId', videoId);
     const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
       reportProgress: true
     });
