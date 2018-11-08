@@ -40,7 +40,8 @@
             "PENDING":"Upload is pending",
             "UNKNOWN": "Unknown status",
             "PUBLISHED": "Video was published successfully",
-            "FILE_SIZE": "{{size}} MB"
+            "FILE_SIZE": "{{size}} MB",
+            "CANCEL": "Cancel"
         }
     },
     "COMMENTS": {

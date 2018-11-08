@@ -40,7 +40,8 @@
             "PENDING": "העלאה ממתינה",
             "UNKNOWN": "לא ידוע",
             "PUBLISHED": "הסרטון פורסם בהצלחה",
-            "FILE_SIZE": "{{size}} MB"
+            "FILE_SIZE": "{{size}} MB",
+            "CANCEL": "בטל"
         }
     },
     "COMMENTS": {
