@@ -4,8 +4,7 @@ import { FileUploaderService } from '../file-uploader.service';
 import { VideoService } from '../../core/services/video.service';
 import { Video } from '../../shared/models/video.model';
 import { VideoUpload } from '../video-upload.interface';
-import { forkJoin, of, interval } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
