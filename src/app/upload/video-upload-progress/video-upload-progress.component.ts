@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogData } from '../../shared/confirm-dialog/confirm-dialog-data';
 import { FileUploaderService } from '../file-uploader.service';
+import { VideoUpload } from '../video-upload.interface';
 
 @Component({
   selector: 'bs-video-upload-progress',
@@ -16,8 +17,9 @@ export class VideoUploadProgressComponent implements OnInit {
 
   videoUrl: SafeUrl;
   uploadStatus = FileUploadStatus;
-  @Input('uploadFile') uploadFile: FileUpload;
+  @Input() videoUpload: VideoUpload;
   @Input() isPublished: boolean;
+
 
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
@@ -28,7 +30,7 @@ export class VideoUploadProgressComponent implements OnInit {
 
   ngOnInit() {
     this.videoPlayer.nativeElement.muted = 'muted';
-    this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.uploadFile.file));
+    this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.videoUpload.fileUpload.file));
   }
 
   cancelUpload() {
@@ -44,7 +46,7 @@ export class VideoUploadProgressComponent implements OnInit {
 
     confirmDialog.afterClosed().subscribe((confirm: boolean) => {
       if (confirm) {
-        this.fileUploaderService.cancel(this.uploadFile);
+        this.fileUploaderService.cancel(this.videoUpload);
       }
     });
 

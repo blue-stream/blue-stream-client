@@ -1,16 +1,17 @@
-<div id="video-upload-progress" fxLayout="row" fxLayout.lt-md="column-reverse" fxLayoutAlign="center center" fxLayoutGap="8px">
+<div id="video-upload-progress" fxLayout="row" fxLayout.lt-md="column-reverse" fxLayoutAlign="center center"
+  fxLayoutGap="8px">
   <video #videoPlayer width="180" height="100" autoplay loop>
     <source [src]="videoUrl">
   </video>
   <div fxLayout="column" fxFlex id="upload-details">
     <div fxLayout="row">
-      <h3 id="file-name">{{uploadFile.file.name}}</h3>
+      <h3 id="file-name">{{videoUpload.fileUpload.file.name}}</h3>
       <span fxFlex></span>
-      <span id="file-size" translate [translateParams]="{size: ((uploadFile.file.size / 1024 / 1024) | number: '.2')}">
+      <span id="file-size" translate [translateParams]="{size: ((videoUpload.fileUpload.file.size / 1024 / 1024) | number: '.2')}">
         UPLOADER.UPLOAD_PROGRESS.FILE_SIZE
       </span>
     </div>
-    <span [ngSwitch]="uploadFile.status" *ngIf="!isPublished; else publishedText">
+    <span [ngSwitch]="videoUpload.fileUpload.status" *ngIf="!isPublished; else publishedText">
       <p *ngSwitchCase="uploadStatus.Error" translate>
         UPLOADER.UPLOAD_PROGRESS.ERROR
       </p>
@@ -30,18 +31,11 @@
     <ng-template #publishedText>
       <span>
         <p translate>
-          UPLOADER.UPLOAD_PROGRESS.PUBLISHED 
+          UPLOADER.UPLOAD_PROGRESS.PUBLISHED
         </p>
       </span>
     </ng-template>
-    <div fxLayout="row">
-        <bs-upload-progress-bar fxFlex [file]="uploadFile"></bs-upload-progress-bar>
-        <button id="cancel-btn" (click)="cancelUpload()" mat-button color="warn">
-          <span translate>
-              UPLOADER.UPLOAD_PROGRESS.CANCEL
-          </span>
-        </button>
-    </div>
+    <bs-upload-progress-bar (uploadCancelled)="cancelUpload()" fxFlex [file]="this.videoUpload.fileUpload"></bs-upload-progress-bar>
   </div>
 
 </div>

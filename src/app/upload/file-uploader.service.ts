@@ -50,10 +50,12 @@ export class FileUploaderService {
     });
   }
 
-  private removeFromQueue(fileUpload) {
+  private removeFromQueue(videoUpload: VideoUpload) {
     this.files = this.files.filter((video: VideoUpload) => {
-      return video.fileUpload.file.name !== fileUpload.file.name;
+      return video.id !== videoUpload.id;
     });
+
+    this.queue.next(this.files);
   }
 
   private upload(fileUpload: FileUpload, videoId: string) {
@@ -88,12 +90,11 @@ export class FileUploaderService {
     return fileUpload;
   }
 
-  public cancel(fileUpload: FileUpload) {
-    fileUpload.request.unsubscribe();
-    fileUpload.progress = 0;
-    fileUpload.status = FileUploadStatus.Pending;
-    this.removeFromQueue(fileUpload);
-    this.queue.next(this.files);
+  public cancel(videoUpload: VideoUpload) {
+    videoUpload.fileUpload.request.unsubscribe();
+    videoUpload.fileUpload.progress = 0;
+    videoUpload.fileUpload.status = FileUploadStatus.Pending;
+    this.removeFromQueue(videoUpload);
   }
 
   private uploadProgress(fileUpload: FileUpload, event: HttpProgressEvent) {
