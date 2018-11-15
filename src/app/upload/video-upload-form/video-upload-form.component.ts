@@ -7,20 +7,20 @@ import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
 
 @Component({
   selector: 'bs-video-upload-form',
   templateUrl: './video-upload-form.component.html',
   styleUrls: ['./video-upload-form.component.scss']
 })
-export class VideoUploadFormComponent implements OnInit {
+export class VideoUploadFormComponent extends ComponentCanDeactivate implements OnInit {
 
   @Input() isPublishReady: boolean;
   @Input() videoUpload: VideoUpload;
   @Output() videoSubmitted: EventEmitter<Video> = new EventEmitter();
 
   uploadForm: FormGroup;
-  isPublished: boolean = false;
   separatorKeysCodes = [ENTER];
 
   constructor(
@@ -28,6 +28,7 @@ export class VideoUploadFormComponent implements OnInit {
     private videoService: VideoService,
     public snackBar: MatSnackBar,
     private translateService: TranslateService) {
+    super();
   }
 
   createForm() {
@@ -66,14 +67,15 @@ export class VideoUploadFormComponent implements OnInit {
   }
 
   onSubmit(event: Event) {
-    const video: Video = {...this.uploadForm.value, ...{id: this.videoUpload.id}};
+    const video: Video = { ...this.uploadForm.value, ...{ id: this.videoUpload.id } };
     this.publishVideo(video);
   }
 
   publishVideo(video: Video) {
     video.published = true;
+    this.videoUpload.published = true;
     this.videoService.update(video).subscribe(updatedVideo => {
-      this.isPublished = true;
+      this.videoUpload.published = true;
 
       this.translateService.get([
         'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
@@ -95,4 +97,9 @@ export class VideoUploadFormComponent implements OnInit {
 
     this.createForm();
   }
+
+  canDeactivate(): boolean {
+    return this.videoUpload.published;
+  }
+
 }

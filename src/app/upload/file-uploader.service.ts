@@ -26,13 +26,25 @@ export class FileUploaderService {
     this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
   }
 
+  public areVideosPublished(): boolean {
+    let areVideosPublished: boolean = true;
+
+    this.files.forEach((file) => {
+      if (!file.published) {
+        areVideosPublished = false;
+      }
+    });
+
+    return areVideosPublished;
+  }
+
   public getQueue() {
     return this.queue.asObservable();
   }
 
   public addToQueue(file: File, videoId: string) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }

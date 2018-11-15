@@ -13,6 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { FullscreenOverlayContainer, OverlayContainer } from '@angular/cdk/overlay';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
+import { CanDeactivateGuard } from './core/can-deactivate/can-deactivate.guard';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     MediaMatcher,
+    CanDeactivateGuard,
     { provide: OverlayContainer, useClass: FullscreenOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
