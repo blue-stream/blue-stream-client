@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  videoServiceUrl: 'http://localhost:3002/',
-  uploadServiceUrl: 'http://localhost:3003/',
+  videoServiceUrl: 'http://localhost:5001/',
+  uploadServiceUrl: 'http://localhost:5002/',
   titleMinLength: 3,
   titleMaxLength: 256,
   descriptionMaxLength: 5000,
