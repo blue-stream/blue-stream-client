@@ -87,5 +87,10 @@
                 "NORMAL": "רגיל"
             }
         }
+    },
+    "CORE": {
+        "CAN_DEACTIVATE_GUARD": {
+            "CONFIRM_MESSAGE": "ישנם שינויים שלא שמרת בעמוד, אתה בטוח שברצונך לצאת?"
+        }
     }
 }

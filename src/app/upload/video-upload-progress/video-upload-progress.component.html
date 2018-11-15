@@ -11,7 +11,7 @@
         UPLOADER.UPLOAD_PROGRESS.FILE_SIZE
       </span>
     </div>
-    <span [ngSwitch]="videoUpload.fileUpload.status" *ngIf="!isPublished; else publishedText">
+    <span [ngSwitch]="videoUpload.fileUpload.status" *ngIf="!videoUpload.published; else publishedText">
       <p *ngSwitchCase="uploadStatus.Error" translate>
         UPLOADER.UPLOAD_PROGRESS.ERROR
       </p>
