@@ -71,6 +71,7 @@ export class VideoUploadFormComponent implements OnInit {
   }
 
   publishVideo(video: Video) {
+    video.published = true;
     this.videoService.update(video).subscribe(updatedVideo => {
       this.isPublished = true;
 

@@ -11,4 +11,5 @@ export class Video {
     tags?: string[];
     thumbnailUrl: string;
     sourceUrl?: string;
+    published?: boolean = false;
 }
