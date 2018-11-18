@@ -28,7 +28,7 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   filesSelected(files: FileList) {
     const videosToUpload = [];
 
-    Array.from(files).forEach(async file => {
+    Array.from(files).forEach(file => {
       const video: Partial<Video> = {
         title: file.name,
       };
