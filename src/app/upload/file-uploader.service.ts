@@ -8,31 +8,45 @@ import { HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
+import { VideoUpload } from './video-upload.interface';
+
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class FileUploaderService {
 
-  public url = 'http://localhost:3001/api/upload';
+  private serviceUrl: string = environment.uploadServiceUrl;
+  private apiUrl: string = 'api/upload';
 
-  private files: FileUpload[];
-  private queue: BehaviorSubject<FileUpload[]>;
+  private files: VideoUpload[];
+  private queue: BehaviorSubject<VideoUpload[]>;
 
   constructor(private httpClient: HttpClient) {
     this.files = [];
-    this.queue = <BehaviorSubject<FileUpload[]>>new BehaviorSubject(this.files);
+    this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
+  }
+
+  public areVideosPublished(): boolean {
+    let areVideosPublished: boolean = true;
+
+    this.files.forEach((file) => {
+      if (!file.published) {
+        areVideosPublished = false;
+      }
+    });
+
+    return areVideosPublished;
   }
 
   public getQueue() {
     return this.queue.asObservable();
   }
 
-  public addToQueue(files: File[]) {
-    files.forEach((file: File) => {
-      const fileUpload = new FileUpload(file);
-
-      this.files.push(fileUpload);
-      this.queue.next(this.files);
-    });
+  public addToQueue(file: File, videoId: string) {
+    const fileUpload = new FileUpload(file);
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false };
+    this.files.push(videoUpload);
+    this.queue.next(this.files);
   }
 
   public clearQueue() {
@@ -41,26 +55,29 @@ export class FileUploaderService {
   }
 
   public uploadAll() {
-    this.files.forEach((file: FileUpload) => {
-      if (file.isUploadable()) {
-        this.upload(file);
+    this.files.forEach((video: VideoUpload) => {
+      if (video.fileUpload.isUploadable()) {
+        this.upload(video.fileUpload, video.id);
       }
     });
   }
 
-  private removeFromQueue(fileUpload) {
-    this.files = this.files.filter((file: FileUpload) => {
-      return file.file.name !== fileUpload.file.name;
+  private removeFromQueue(videoUpload: VideoUpload) {
+    this.files = this.files.filter((video: VideoUpload) => {
+      return video.id !== videoUpload.id;
     });
+
+    this.queue.next(this.files);
   }
 
-  private upload(fileUpload: FileUpload) {
+  private upload(fileUpload: FileUpload, videoId: string) {
     const formData: FormData = new FormData();
+    formData.append('videoId', videoId);
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
-
-    const req = new HttpRequest('POST', this.url, formData, {
+    const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
       reportProgress: true
     });
+
 
     fileUpload.loadedBytes = 0;
     fileUpload.uploadTimestamp = Date.now();
@@ -85,12 +102,11 @@ export class FileUploaderService {
     return fileUpload;
   }
 
-  public cancel(fileUpload: FileUpload) {
-    fileUpload.request.unsubscribe();
-    fileUpload.progress = 0;
-    fileUpload.status = FileUploadStatus.Pending;
-    this.removeFromQueue(fileUpload);
-    this.queue.next(this.files);
+  public cancel(videoUpload: VideoUpload) {
+    videoUpload.fileUpload.request.unsubscribe();
+    videoUpload.fileUpload.progress = 0;
+    videoUpload.fileUpload.status = FileUploadStatus.Pending;
+    this.removeFromQueue(videoUpload);
   }
 
   private uploadProgress(fileUpload: FileUpload, event: HttpProgressEvent) {

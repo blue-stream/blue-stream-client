@@ -1,22 +1,36 @@
 <mat-card fxLayout="column">
-  <bs-video-upload-progress [uploadFile]="file"></bs-video-upload-progress>
-  <form fxLayout="column">
+  <bs-video-upload-progress [videoUpload]="videoUpload"></bs-video-upload-progress>
+
+  <form fxLayout="column" *ngIf="!this.videoUpload.published" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
-      <input matInput [value]="file.file.name">
+      <input matInput formControlName="title">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label translate>UPLOADER.UPLOAD_FORM.DESCRIPTION</mat-label>
-      <textarea rows="4" matInput></textarea>
+      <textarea rows="4" matInput id="description" formControlName="description"></textarea>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label translate>UPLOADER.UPLOAD_FORM.TAGS</mat-label>
-      <input matInput />
+    <mat-form-field appearance="outline" >
+      <mat-chip-list #tagList>
+        <mat-chip *ngFor="let tag of uploadForm.get('tags').controls; let index = index;" [selectable]="true"
+                 [removable]="true" (removed)="removeTag(index)">
+          {{tag.value}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input FormArrayName="tags"
+               placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}"
+               [matChipInputFor]="tagList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
     </mat-form-field>
+
+    <mat-card-actions align="end">
+      <button type="submit" [disabled]="!isPublishReady || !uploadForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+    </mat-card-actions>
   </form>
-  <mat-card-actions align="end">
-    <button mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
-  </mat-card-actions>
+  
 </mat-card>

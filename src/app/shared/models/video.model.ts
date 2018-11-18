@@ -8,6 +8,8 @@ export class Video {
     dislikes: number;
     catagory?: string;
     owner: string;
+    tags?: string[];
     thumbnailUrl: string;
     sourceUrl?: string;
+    published?: boolean = false;
 }

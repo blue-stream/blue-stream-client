@@ -4,7 +4,7 @@ import { VideoService } from './services/video.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [],
   providers: [

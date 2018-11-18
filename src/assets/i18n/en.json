@@ -29,13 +29,19 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish"
         },
+        "VIDEO_UPLOADER": {
+            "PUBLISH_SUCCESS": "Video was published successfully",
+            "PUBLISH_SUCCESS_APPROVAL": "OK"
+        },
         "UPLOAD_PROGRESS": {
             "ERROR":"An error occurred",
             "SUCCESS": "Click \"Publish\" to make your video live.",
             "PROGRESS": "Your video is still uploading. Please keep this page open until it's done.",
             "PENDING":"Upload is pending",
             "UNKNOWN": "Unknown status",
-            "FILE_SIZE": "{{size}} MB"
+            "PUBLISHED": "Video was published successfully",
+            "FILE_SIZE": "{{size}} MB",
+            "CANCEL": "Cancel"
         }
     },
     "COMMENTS": {
@@ -80,6 +86,11 @@
                 "SPEED": "Speed",
                 "NORMAL": "Normal"
             }
+        }
+    },
+    "CORE": {
+        "CAN_DEACTIVATE_GUARD": {
+            "CONFIRM_MESSAGE": "You have unsaved changes, are you sure you want to leave this page?"
         }
     }
 }

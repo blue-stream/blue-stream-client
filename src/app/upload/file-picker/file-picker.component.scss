@@ -2,6 +2,7 @@
 @import 'src/theme.scss';
 #file-picker {
     display: flex;
+    height: 99%;
     input[type=file] {
         display: none;
     }
@@ -32,6 +33,7 @@
         border: 1px dashed mat-color($app-primary);
         .upload-icon-container {
             background-color: mat-color($app-primary);
+            transform: scale(1.03);
         }
     }
     #title {
