@@ -67,7 +67,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   }
 
   onSubmit(event: Event) {
-    const video: Video = { ...this.uploadForm.value, ...{ id: this.videoUpload.id } };
+    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
     this.publishVideo(video);
   }
 
