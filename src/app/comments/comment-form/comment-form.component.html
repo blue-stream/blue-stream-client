@@ -1,0 +1,9 @@
+<div id="add-comment-container">
+  <bs-avatar id="user-profile-image" source="assets/user-profile-placeholder.png"></bs-avatar>
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field id="comment-input">
+      <input matInput formControlName="text" placeholder="Add a public comment...">
+    </mat-form-field>
+    <button id="submit-button" type="submit" [disabled]="!commentForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+  </form>
+</div>
