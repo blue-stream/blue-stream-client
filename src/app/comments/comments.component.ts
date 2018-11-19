@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Comment } from './models/comment.model';
 import { CommentService } from './comment.service';
@@ -10,16 +10,21 @@ import { CommentService } from './comment.service';
 })
 export class CommentsComponent implements OnInit {
   comments: Comment[] = [];
+  @Input() videoId: string;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    this.loadComments();
+    const startIndex: number = 0;
+    const commentsToLoad: number = 0;
+    this.loadComments(startIndex, commentsToLoad);
   }
 
-  loadComments() {
-    this.commentService.getComments().subscribe( comments => {
-      this.comments = comments;
-    });
+  loadComments(startIndex: number, commentsToLoad: number) {
+    const endIndex: number = startIndex + commentsToLoad;
+    this.commentService.getMany({ video: this.videoId } as Partial<Comment>, startIndex, endIndex)
+      .subscribe(comments => {
+        this.comments = comments;
+      });
   }
 }
