@@ -56,6 +56,10 @@
         },
         "COMMENTS_HEADER": {
             "COMMENTS_AMOUNT": "{{amount}} comments"
+        },
+        "COMMENTS_FORM": {
+            "COMMENT_POSTED": "Comment was posted successfully",
+            "COMMENT_POSTED_APPROVE": "OK"
         }
     },
     "WATCH": {

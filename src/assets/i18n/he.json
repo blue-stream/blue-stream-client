@@ -56,6 +56,10 @@
         },
         "COMMENTS_HEADER": {
             "COMMENTS_AMOUNT": "{{amount}} תגובות"
+        },
+        "COMMENTS_FORM": {
+            "COMMENT_POSTED": "התגובה פורסמה בהצלחה",
+            "COMMENT_POSTED_APPROVE": "אישור"
         }
     },
     "WATCH": {
