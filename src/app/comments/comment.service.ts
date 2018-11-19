@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/of';
 import { Comment } from './models/comment.model';
-import { MOCK_COMMENTS, MOCK_REPLIES } from './models/comments.mock';
 
 import { environment } from './../../environments/environment';
 
@@ -31,30 +30,27 @@ export class CommentService {
     return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment.id}`, comment, httpOptions);
   }
 
-  get(commentFilter: Partial<Comment>): Observable<Comment[]> {
+  getMany(commentFilter: Partial<Comment>, startIndex: number, endIndex: number): Observable<Comment[]> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    const params = new HttpParams();
-    const options = ({
-      headers, params
-    });
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}`, options);
-  }
+    const options = {
+      headers,
+      params: {
+        parent: commentFilter.parentCommentId,
+        text: commentFilter.text,
+        user: commentFilter.user,
+        video: commentFilter.video,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+      },
+    };
 
-  getComments(): Observable<Comment[]> {
-    return Observable.of(MOCK_COMMENTS);
-  }
+    Object.keys(options.params).forEach((key: string) => {
+      return options.params[key] ===
+          undefined && delete options.params[key];
+  });
 
-  getReplies(commentId: string): Observable<Comment[]> {
-    const replies: Comment[] = MOCK_REPLIES.filter(comment => comment.parentCommentId === commentId);
-
-    return Observable.of(replies);
-  }
-
-  getRepliesAmount(commentId: string): Observable<number> {
-    const replies: Comment[] = MOCK_REPLIES.filter(comment => comment.parentCommentId === commentId);
-
-    return Observable.of(replies.length);
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
   }
 }
