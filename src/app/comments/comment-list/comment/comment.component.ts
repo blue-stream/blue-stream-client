@@ -30,15 +30,15 @@ export class CommentComponent implements OnInit {
   }
 
   loadReplies() {
-    this.commentService.getReplies(this.comment.id).subscribe(replies => {
-      this.replies = replies;
-    });
+   // this.commentService.getReplies(this.comment.id).subscribe(replies => {
+   //   this.replies = replies;
+   // });
   }
 
   loadRepliesAmount() {
-    this.commentService.getRepliesAmount(this.comment.id).subscribe(repliesAmount => {
-      this.repliesAmount = repliesAmount;
-    });
+  //  this.commentService.getRepliesAmount(this.comment.id).subscribe(repliesAmount => {
+  //    this.repliesAmount = repliesAmount;
+  //  });
   }
 
 }
