@@ -30,6 +30,30 @@ export class CommentService {
     return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment.id}`, comment, httpOptions);
   }
 
+  getAmount(commentFilter: Partial<Comment>): Observable<number> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+
+    const options = {
+      headers,
+      params: {
+        parent: commentFilter.parentCommentId,
+        text: commentFilter.text,
+        user: commentFilter.user,
+        video: commentFilter.video,
+      },
+    };
+
+    Object.keys(options.params).forEach((key: string) => {
+      return options.params[key] ===
+        undefined && delete options.params[key];
+    });
+
+    return this.httpClient
+      .get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
+
+  }
+
   getMany(commentFilter: Partial<Comment>, startIndex: number, endIndex: number): Observable<Comment[]> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -48,8 +72,8 @@ export class CommentService {
 
     Object.keys(options.params).forEach((key: string) => {
       return options.params[key] ===
-          undefined && delete options.params[key];
-  });
+        undefined && delete options.params[key];
+    });
 
     return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
   }
