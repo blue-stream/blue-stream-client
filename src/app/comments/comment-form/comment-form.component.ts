@@ -42,7 +42,7 @@ export class CommentFormComponent implements OnInit {
   onSubmit(event: Event) {
     const comment: Comment = {
       ...this.commentForm.value,
-      parentCommentId: this.parent,
+      parent: this.parent,
       user: this.user,
       video: this.videoId,
     };

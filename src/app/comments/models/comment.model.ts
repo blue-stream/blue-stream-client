@@ -1,10 +1,11 @@
 export interface Comment {
-    id: string;
+    _id: string;
     user: string;
     text: string;
     date: Date;
     likes: number;
     dislikes: number;
-    parentCommentId: string;
+    parent: string | null;
     video: string;
+    repliesAmount: number;
 }

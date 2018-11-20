@@ -19,7 +19,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.loadCommentsAmount();
-    this.loadNextComments();
+    this.loadNextRootComments();
   }
 
   loadCommentsAmount() {
@@ -32,18 +32,20 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  loadNextComments() {
-    this.loadComments(
+  loadNextRootComments() {
+    this.loadRootComments(
       this.comments.length,
       this.commentsToLoad);
   }
+
   onScroll() {
-    this.loadNextComments();
+    this.loadNextRootComments();
   }
 
-  loadComments(startIndex: number, commentsToLoad: number) {
+  loadRootComments(startIndex: number, commentsToLoad: number) {
     const endIndex: number = startIndex + commentsToLoad;
-    this.commentService.getMany({ video: this.videoId } as Partial<Comment>, startIndex, endIndex)
+
+    this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
         this.comments = this.comments.concat(comments);
       });

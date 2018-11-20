@@ -12,33 +12,24 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
 
   replies: Comment[] = [];
-  repliesAmount: number = 0;
   showReplies: boolean = false;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    this.loadRepliesAmount();
   }
 
   onShowReplies() {
     this.showReplies = !this.showReplies;
 
-    if (this.showReplies) {
+    if (this.showReplies && this.replies.length === 0) {
       this.loadReplies();
     }
   }
 
   loadReplies() {
-   // this.commentService.getReplies(this.comment.id).subscribe(replies => {
-   //   this.replies = replies;
-   // });
+   this.commentService.getReplies(this.comment._id).subscribe(replies => {
+     this.replies = replies;
+    });
   }
-
-  loadRepliesAmount() {
-  //  this.commentService.getRepliesAmount(this.comment.id).subscribe(repliesAmount => {
-  //    this.repliesAmount = repliesAmount;
-  //  });
-  }
-
 }
