@@ -13,12 +13,11 @@ export class CommentsComponent implements OnInit {
 
   comments: Comment[] = [];
   totalCommentsAmount: number;
-  commentsToLoad: number = 10;
+  commentsToLoad: number = 20;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    const startIndex: number = 0;
     this.loadCommentsAmount();
     this.loadNextComments();
   }
@@ -36,7 +35,10 @@ export class CommentsComponent implements OnInit {
   loadNextComments() {
     this.loadComments(
       this.comments.length,
-      this.comments.length + this.commentsToLoad);
+      this.commentsToLoad);
+  }
+  onScroll() {
+    this.loadNextComments();
   }
 
   loadComments(startIndex: number, commentsToLoad: number) {

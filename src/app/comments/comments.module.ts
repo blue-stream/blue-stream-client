@@ -9,12 +9,14 @@ import { CommentsHeaderComponent } from './comments-header/comments-header.compo
 import { CommentService } from './comment.service';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     CommentsComponent,
