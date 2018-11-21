@@ -18,6 +18,7 @@ export class CommentFormComponent implements OnInit {
   @Output() commentSubmitted: EventEmitter<Comment> = new EventEmitter();
 
   commentForm: FormGroup;
+  showButtons: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +38,14 @@ export class CommentFormComponent implements OnInit {
         Validators.maxLength(environment.commentMaxLength)
       ]),
     });
+  }
+
+  onFocus() {
+    this.showButtons = true;
+  }
+
+  onBlur() {
+    this.commentForm.get('text').markAsUntouched();
   }
 
   onSubmit(event: Event) {

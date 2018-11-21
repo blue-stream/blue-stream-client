@@ -59,7 +59,10 @@
         },
         "COMMENTS_FORM": {
             "COMMENT_POSTED": "התגובה פורסמה בהצלחה",
-            "COMMENT_POSTED_APPROVE": "אישור"
+            "COMMENT_POSTED_APPROVE": "אישור",
+            "POST": "הגב",
+            "REPLY": "הגב",
+            "CANCEL": "בטל"
         }
     },
     "WATCH": {

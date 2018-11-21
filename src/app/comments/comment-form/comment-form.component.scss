@@ -1,23 +1,18 @@
 #add-comment-container {
     display: flex;
     margin-bottom: 20px;
-    
     #user-profile-image {
         padding: 10px;
         padding-bottom: 0px;
     }
-
     form {
         margin-top: 10px;
-        flex: 1 0 0;
-        display: flex;
-
+        width: 100%;
         #comment-input {
-            flex: 6 0 0;
+            width: 100%;
         }
-        #submit-button {
-            flex: 1 0 0;
+        #buttons-container {
+               
         }
-
     }
 }

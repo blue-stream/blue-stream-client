@@ -59,7 +59,10 @@
         },
         "COMMENTS_FORM": {
             "COMMENT_POSTED": "Comment was posted successfully",
-            "COMMENT_POSTED_APPROVE": "OK"
+            "COMMENT_POSTED_APPROVE": "OK",
+            "POST": "Comment",
+            "REPLY": "Reply",
+            "CANCEL": "Cancel"
         }
     },
     "WATCH": {
