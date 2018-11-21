@@ -58,6 +58,7 @@ export class CommentsComponent implements OnInit {
     this.commentService.delete(commentId).subscribe(res => {
       this.comments = [];
       this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
+      this.loadCommentsAmount();
       this.translateService.get([
         'COMMENTS.DELETE_SUCCESS',
         'COMMENTS.DELETE_SUCCESS_APPROVAL']).subscribe(translations => {
@@ -82,6 +83,7 @@ export class CommentsComponent implements OnInit {
   onCommentSubmitted() {
     // Load all of the comments loaded so far + the newly created one.
     this.comments = [];
+    this.loadCommentsAmount();
     this.loadRootComments(0, this.comments.length + this.commentsToLoad + 1);
   }
 
