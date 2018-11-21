@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Comment } from './models/comment.model';
 import { CommentService } from './comment.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'bs-comments',
@@ -15,7 +16,10 @@ export class CommentsComponent implements OnInit {
   totalCommentsAmount: number;
   commentsToLoad: number = 20;
 
-  constructor(private commentService: CommentService) { }
+  constructor(
+    private commentService: CommentService,
+    public snackBar: MatSnackBar,
+    private translateService: TranslateService) { }
 
   ngOnInit() {
     this.loadCommentsAmount();
@@ -29,6 +33,21 @@ export class CommentsComponent implements OnInit {
 
     this.commentService.getAmount(commentFilter).subscribe(amount => {
       this.totalCommentsAmount = amount;
+    });
+  }
+
+  onDelete(commentId: string) {
+    this.commentService.delete(commentId).subscribe(res => {
+      this.comments = [];
+      this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
+      this.translateService.get([
+        'COMMENTS.DELETE_SUCCESS',
+        'COMMENTS.DELETE_SUCCESS_APPROVAL']).subscribe(translations => {
+          this.snackBar.open(
+            translations['COMMENTS.DELETE_SUCCESS'],
+            translations['COMMENTS.DELETE_SUCCESS_APPROVAL'],
+            { duration: 2000 });
+        });
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../../models/comment.model';
 import { CommentService } from '../../comment.service';
 
@@ -11,6 +11,7 @@ export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
   @Input() isReply: boolean = false;
+  @Output() deleteComment: EventEmitter<string> = new EventEmitter();
 
   replies: Comment[] = [];
   showReplies: boolean = false;
@@ -21,12 +22,20 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCommentSubmitted() {
+    this.loadReplies();
+  }
+
   onShowReplies() {
     this.showReplies = !this.showReplies;
 
     if (this.showReplies && this.replies.length === 0) {
       this.loadReplies();
     }
+  }
+
+  onDelete() {
+    this.deleteComment.emit(this.comment._id);
   }
 
   loadReplies() {

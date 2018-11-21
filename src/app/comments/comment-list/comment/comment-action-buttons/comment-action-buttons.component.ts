@@ -11,10 +11,15 @@ export class CommentActionButtonsComponent implements OnInit {
   @Input() dislikes: number;
   @Input() isReply: boolean = false;
   @Output() replyClicked: EventEmitter<void> = new EventEmitter();
+  @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  delete() {
+    this.deleteClicked.emit();
   }
 
   reply() {

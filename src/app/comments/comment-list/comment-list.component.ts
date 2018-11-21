@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Comment } from '../models/comment.model';
 
@@ -10,10 +10,14 @@ import { Comment } from '../models/comment.model';
 export class CommentListComponent implements OnInit {
   @Input() comments: Comment[] = [];
   @Input() isReplyList: boolean = false;
-
+  @Output() deleteComment: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDelete(commentId: string) {
+    this.deleteComment.emit(commentId);
   }
 
 }

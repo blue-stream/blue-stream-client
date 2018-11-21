@@ -6,5 +6,5 @@ infiniteScroll
 [fromRoot]="true" 
 [infiniteScrollContainer]="'#side-nav-container'">
     <bs-comments-header (commentSubmitted)="onCommentSubmitted()" [commentsAmount]="totalCommentsAmount"></bs-comments-header>
-    <bs-comment-list [comments]="comments"></bs-comment-list>
+    <bs-comment-list (deleteComment)="onDelete($event)" [comments]="comments"></bs-comment-list>
 </div>

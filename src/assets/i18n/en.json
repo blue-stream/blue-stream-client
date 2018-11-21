@@ -45,12 +45,15 @@
         }
     },
     "COMMENTS": {
+        "DELETE_SUCCESS": "Comment was removed successfully",
+        "DELETE_SUCCESS_APPROVAL": "OK",
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "Hide replies",
                 "VIEW_REPLIES": "View {{replies}} replies",
                 "COMMENT_ACTION_BUTTONS": {
-                    "REPLY": "Reply"
+                    "REPLY": "Reply",
+                    "DELETE": "Delete"
                 }
             }
         },

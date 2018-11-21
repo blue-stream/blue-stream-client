@@ -45,12 +45,15 @@
         }
     },
     "COMMENTS": {
+        "DELETE_SUCCESS": "התגובה נמחקה בהצלחה",
+        "DELETE_SUCCESS_APPROVAL": "אישור",
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "הסתר תגובות",
                 "VIEW_REPLIES": "הצג {{replies}} תגובות",
                 "COMMENT_ACTION_BUTTONS": {
-                    "REPLY": "הגב"
+                    "REPLY": "הגב",
+                    "DELETE": "מחק"
                 }
             }
         },

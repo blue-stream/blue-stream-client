@@ -30,6 +30,10 @@ export class CommentService {
     return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment._id}`, comment, httpOptions);
   }
 
+  delete(commentId: string): Observable<Comment> {
+    return this.httpClient.delete<Comment>(`${this.serviceUrl}${this.apiUrl}/${commentId}`, httpOptions);
+  }
+
   getAmount(commentFilter: Partial<Comment>): Observable<number> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
