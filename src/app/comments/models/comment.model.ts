@@ -2,7 +2,7 @@ export interface Comment {
     _id: string;
     user: string;
     text: string;
-    date: Date;
+    createdAt: Date;
     likes: number;
     dislikes: number;
     parent: string | null;

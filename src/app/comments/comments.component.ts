@@ -42,6 +42,12 @@ export class CommentsComponent implements OnInit {
     this.loadNextRootComments();
   }
 
+  onCommentSubmitted() {
+    // Load all of the comments loaded so far + the newly created one.
+    this.comments = [];
+    this.loadRootComments(0, this.comments.length + this.commentsToLoad + 1);
+  }
+
   loadRootComments(startIndex: number, commentsToLoad: number) {
     const endIndex: number = startIndex + commentsToLoad;
 

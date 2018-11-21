@@ -33,7 +33,6 @@ export class CommentFormComponent implements OnInit {
   createForm() {
     this.commentForm = this.fb.group({
       text: this.fb.control('', [
-        Validators.required,
         Validators.minLength(environment.commentMinLength),
         Validators.maxLength(environment.commentMaxLength)
       ]),
@@ -55,6 +54,8 @@ export class CommentFormComponent implements OnInit {
       user: this.user,
       video: this.videoId,
     };
+
+    this.commentForm.setValue({ text: '' });
     this.publishComment(comment);
   }
 
