@@ -5,9 +5,9 @@
       <input (blur)="onBlur()" (focus)="onFocus()" matInput formControlName="text" placeholder="Add a public comment...">
     </mat-form-field>
     <div *ngIf="showButtons" id="buttons-container">
-      <button *ngIf="!parent; else replyButton" id="submit-button" type="submit" [disabled]="!commentForm.valid" mat-button color="primary">{{'COMMENTS.COMMENTS_FORM.POST' | translate}}</button>
+      <button *ngIf="!parent; else replyButton" id="submit-button" type="submit" [disabled]="!commentForm.valid" mat-raised-button color="primary">{{'COMMENTS.COMMENTS_FORM.POST' | translate}}</button>
       <ng-template #replyButton>
-        <button id="submit-button" type="submit" [disabled]="!commentForm.valid" mat-button color="primary">{{'COMMENTS.COMMENTS_FORM.REPLY' | translate}}</button>
+        <button id="submit-button" type="submit" [disabled]="!commentForm.valid" mat-raised-button color="primary">{{'COMMENTS.COMMENTS_FORM.REPLY' | translate}}</button>
       </ng-template>
       <button id="cancel-button" (click)="showButtons = false" mat-button color="primary">{{'COMMENTS.COMMENTS_FORM.CANCEL' | translate}}</button>
     </div>
