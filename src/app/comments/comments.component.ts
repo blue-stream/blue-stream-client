@@ -3,6 +3,8 @@ import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Comment } from './models/comment.model';
 import { CommentService } from './comment.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material';
+import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-delete-dialog.component';
 
 @Component({
   selector: 'bs-comments',
@@ -19,11 +21,23 @@ export class CommentsComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     public snackBar: MatSnackBar,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadCommentsAmount();
     this.loadNextRootComments();
+  }
+
+  openDeleteCommentDialog(commentId: string): void {
+    const dialogRef = this.dialog.open(CommentDeleteDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteComment(commentId);
+      }
+    });
   }
 
   loadCommentsAmount() {
@@ -37,6 +51,10 @@ export class CommentsComponent implements OnInit {
   }
 
   onDelete(commentId: string) {
+    this.openDeleteCommentDialog(commentId);
+  }
+
+  deleteComment(commentId: string) {
     this.commentService.delete(commentId).subscribe(res => {
       this.comments = [];
       this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);

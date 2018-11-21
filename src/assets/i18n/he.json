@@ -47,6 +47,11 @@
     "COMMENTS": {
         "DELETE_SUCCESS": "התגובה נמחקה בהצלחה",
         "DELETE_SUCCESS_APPROVAL": "אישור",
+        "COMMENT_DELETE_DIALOG": {
+            "APPROVE": "מחק",
+            "CANCEL": "בטל",
+            "TITLE": "האם אתה בטוח שברצונך למחוק את התגובה?"
+        },
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "הסתר תגובות",

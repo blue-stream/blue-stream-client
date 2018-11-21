@@ -47,6 +47,11 @@
     "COMMENTS": {
         "DELETE_SUCCESS": "Comment was removed successfully",
         "DELETE_SUCCESS_APPROVAL": "OK",
+        "COMMENT_DELETE_DIALOG": {
+            "APPROVE": "Delete",
+            "CANCEL": "Cancel",
+            "TITLE": "Delete comment?"
+        },
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "Hide replies",
