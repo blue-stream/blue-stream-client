@@ -9,6 +9,8 @@ import { Comment } from '../models/comment.model';
 })
 export class CommentListComponent implements OnInit {
   @Input() comments: Comment[] = [];
+  @Input() isReplyList: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

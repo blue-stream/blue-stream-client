@@ -7,7 +7,10 @@
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
-  <bs-comment-action-buttons [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
+  <bs-comment-action-buttons [isReply]="isReply" (replyClicked)="showReplyForm = !showReplyForm" [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
+  <div id="reply-form-container" *ngIf="showReplyForm">
+    <bs-comment-form [parent]="comment._id"></bs-comment-form>
+  </div>
   <div id="replies-container" *ngIf="comment.repliesAmount">
     <button mat-button [ngSwitch]="showReplies" (click)="onShowReplies()" id="replies-expander">
       <span *ngSwitchCase="true" translate>
@@ -18,7 +21,7 @@
       </span>
     </button>
     <div id="replies" *ngIf="showReplies">
-      <bs-comment-list [comments]="replies"></bs-comment-list>
+      <bs-comment-list [isReplyList]="true" [comments]="replies"></bs-comment-list>
     </div>
   </div>
 </div>

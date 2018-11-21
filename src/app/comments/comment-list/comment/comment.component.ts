@@ -10,9 +10,11 @@ import { CommentService } from '../../comment.service';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
+  @Input() isReply: boolean = false;
 
   replies: Comment[] = [];
   showReplies: boolean = false;
+  showReplyForm: boolean = false;
 
   constructor(private commentService: CommentService) { }
 
