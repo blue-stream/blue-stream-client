@@ -12,7 +12,8 @@
             width: 100%;
         }
         #buttons-container {
-               
+            display: flex;
+            flex-direction: row-reverse;
         }
     }
 }
