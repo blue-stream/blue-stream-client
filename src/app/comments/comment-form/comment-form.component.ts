@@ -56,6 +56,7 @@ export class CommentFormComponent implements OnInit {
     };
 
     this.commentForm.setValue({ text: '' });
+    this.showButtons = false;
     this.publishComment(comment);
   }
 

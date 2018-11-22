@@ -23,7 +23,10 @@ export class CommentComponent implements OnInit {
   }
 
   onCommentSubmitted() {
+    this.comment.repliesAmount++;
+    this.showReplyForm = false;
     this.loadReplies();
+    this.showReplies = true;
   }
 
   onShowReplies() {

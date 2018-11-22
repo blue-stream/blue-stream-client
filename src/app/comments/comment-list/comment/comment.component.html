@@ -7,7 +7,8 @@
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
-  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="isReply" (replyClicked)="showReplyForm = !showReplyForm" [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
+  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="isReply" (replyClicked)="showReplyForm = !showReplyForm"
+    [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
   <div id="reply-form-container" *ngIf="showReplyForm">
     <bs-comment-form (commentSubmitted)="onCommentSubmitted()" [parent]="comment._id"></bs-comment-form>
   </div>
@@ -16,9 +17,11 @@
       <span *ngSwitchCase="true" translate>
         COMMENTS.COMMENT_LIST.COMMENT.HIDE_REPLIES
       </span>
+      <mat-icon *ngSwitchCase="true">keyboard_arrow_up</mat-icon>
       <span *ngSwitchCase="false" translate [translateParams]="{replies: comment.repliesAmount}">
         COMMENTS.COMMENT_LIST.COMMENT.VIEW_REPLIES
       </span>
+      <mat-icon *ngSwitchCase="false">keyboard_arrow_down</mat-icon>
     </button>
     <div id="replies" *ngIf="showReplies">
       <bs-comment-list [isReplyList]="true" [comments]="replies"></bs-comment-list>
