@@ -70,7 +70,8 @@
             "COMMENT_POSTED_APPROVE": "OK",
             "POST": "Comment",
             "REPLY": "Reply",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "TEXT_INPUT": "Add a public comment"
         }
     },
     "WATCH": {
