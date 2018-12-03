@@ -12,9 +12,8 @@ const httpOptions = {
   }),
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class CommentService {
 
   private serviceUrl: string = environment.commentServiceUrl;
