@@ -6,10 +6,12 @@ import { Comment } from './models/comment.model';
 
 import { environment } from './../../environments/environment';
 
+const httpHeaders: HttpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+});
+
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
+  headers: httpHeaders,
 };
 
 @Injectable()
@@ -34,11 +36,8 @@ export class CommentService {
   }
 
   getAmount(commentFilter: Partial<Comment>): Observable<number> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-
     const options = {
-      headers,
+      httpHeaders,
       params: {
         parent: commentFilter.parent,
         text: commentFilter.text,
@@ -59,11 +58,8 @@ export class CommentService {
   }
 
   getRootComments(video: string, startIndex: number, endIndex: number): Observable<Comment[]> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-
     const options = {
-      headers,
+      httpHeaders,
       params: {
         video,
         startIndex: startIndex.toString(),
@@ -81,11 +77,8 @@ export class CommentService {
   }
 
   getReplies(parent: string): Observable<Comment[]> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-
     const options = {
-      headers,
+      httpHeaders,
       params: {
         parent,
       },
@@ -101,11 +94,8 @@ export class CommentService {
   }
 
   getMany(commentFilter: Partial<Comment>, startIndex: number, endIndex: number): Observable<Comment[]> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-
     const options = {
-      headers,
+      httpHeaders,
       params: {
         parent: commentFilter.parent,
         text: commentFilter.text,
