@@ -56,7 +56,7 @@ export class CommentsComponent implements OnInit {
 
   deleteComment(commentId: string) {
     this.commentService.delete(commentId).subscribe(res => {
-      this.comments.splice(this.comments.findIndex(comment => comment._id === commentId), 1);
+      this.comments.splice(this.comments.findIndex(comment => comment.id === commentId), 1);
       this.loadCommentsAmount();
 
       this.translateService.get([
@@ -92,6 +92,7 @@ export class CommentsComponent implements OnInit {
 
     this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
+        console.log(comments);
         this.comments = this.comments.concat(comments);
       });
   }

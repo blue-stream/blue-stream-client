@@ -38,11 +38,11 @@ export class CommentComponent implements OnInit {
   }
 
   onDelete() {
-    this.deleteComment.emit(this.comment._id);
+    this.deleteComment.emit(this.comment.id);
   }
 
   loadReplies() {
-   this.commentService.getReplies(this.comment._id).subscribe(replies => {
+   this.commentService.getReplies(this.comment.id).subscribe(replies => {
      this.replies = replies;
     });
   }

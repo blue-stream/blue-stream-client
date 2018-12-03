@@ -26,7 +26,7 @@ export class CommentService {
   }
 
   update(comment: Partial<Comment>): Observable<Comment> {
-    return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment._id}`, comment, httpOptions);
+    return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment.id}`, comment, httpOptions);
   }
 
   delete(commentId: string): Observable<Comment> {
@@ -71,7 +71,13 @@ export class CommentService {
       },
     };
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/root`, options);
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/root`, options)
+      .map(comments => {
+        return comments.map(comment => {
+          comment.id = (comment as any)._id;
+          return comment;
+        });
+      });
   }
 
   getReplies(parent: string): Observable<Comment[]> {
@@ -85,7 +91,13 @@ export class CommentService {
       },
     };
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/replies`, options);
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/replies`, options)
+      .map(comments => {
+        return comments.map(comment => {
+          comment.id = (comment as any)._id;
+          return comment;
+        });
+      });
   }
 
   getMany(commentFilter: Partial<Comment>, startIndex: number, endIndex: number): Observable<Comment[]> {
@@ -110,6 +122,12 @@ export class CommentService {
       }
     });
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options)
+      .map(comments => {
+        return comments.map(comment => {
+          comment.id = (comment as any)._id;
+          return comment;
+        });
+      });
   }
 }
