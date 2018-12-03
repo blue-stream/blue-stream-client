@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MatChipInputEvent, MatSnackBar } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { Comment } from '../models/comment.model';
 import { CommentService } from '../comment.service';
@@ -47,19 +47,20 @@ export class CommentFormComponent implements OnInit {
   }
 
   onSubmit(event: Event) {
-    const comment: Comment = {
-      ...this.commentForm.value,
+    const text: string = this.commentForm.get('text').value.trim();
+
+    const comment: Partial<Comment> = {
+      text,
       parent: this.parent,
       user: this.user,
       video: this.videoId,
     };
 
     this.commentForm.setValue({ text: '' });
-    this.showButtons = false;
     this.publishComment(comment);
   }
 
-  publishComment(comment: Comment) {
+  publishComment(comment: Partial<Comment>) {
     this.commentService.create(comment).subscribe(createdComment => {
       this.commentService.commentSubmitted.next();
       this.translateService.get([
