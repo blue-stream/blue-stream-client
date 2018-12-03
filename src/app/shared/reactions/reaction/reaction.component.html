@@ -1,0 +1,6 @@
+<div class="container">
+  <button [ngClass]="{'reaction-chosen': isLike() }" (click)="likeVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.LIKE' | translate" mat-icon-button>
+    <mat-icon>{{iconName}}</mat-icon>
+  </button>
+  <span class="rating-amount">{{amount}}</span>
+</div>

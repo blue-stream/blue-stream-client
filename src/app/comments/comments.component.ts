@@ -102,7 +102,6 @@ export class CommentsComponent implements OnInit {
 
     this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
-        console.log(comments);
         this.comments = this.comments.concat(comments);
       });
   }

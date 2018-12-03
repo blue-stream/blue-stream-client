@@ -26,6 +26,8 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { VideoProgressComponent } from './video-player/video-progress/video-progress.component';
 import { VideoActionsComponent } from './video-player/video-actions/video-actions.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReactionsComponent } from './reactions/reactions.component';
+import { ReactionComponent } from './reactions/reaction/reaction.component';
 
 @NgModule({
   imports: [
@@ -82,7 +84,9 @@ import { TranslateModule } from '@ngx-translate/core';
     VideoPlayerComponent,
     SafeUrlPipe,
     VideoProgressComponent,
-    VideoActionsComponent
+    VideoActionsComponent,
+    ReactionsComponent,
+    ReactionComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
