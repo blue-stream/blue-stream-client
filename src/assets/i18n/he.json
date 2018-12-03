@@ -45,17 +45,33 @@
         }
     },
     "COMMENTS": {
+        "DELETE_SUCCESS": "התגובה נמחקה בהצלחה",
+        "DELETE_SUCCESS_APPROVAL": "אישור",
+        "COMMENT_DELETE_DIALOG": {
+            "APPROVE": "מחק",
+            "CANCEL": "בטל",
+            "TITLE": "האם אתה בטוח שברצונך למחוק את התגובה?"
+        },
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "הסתר תגובות",
                 "VIEW_REPLIES": "הצג {{replies}} תגובות",
                 "COMMENT_ACTION_BUTTONS": {
-                    "REPLY": "הגב"
+                    "REPLY": "הגב",
+                    "DELETE": "מחק"
                 }
             }
         },
         "COMMENTS_HEADER": {
             "COMMENTS_AMOUNT": "{{amount}} תגובות"
+        },
+        "COMMENTS_FORM": {
+            "COMMENT_POSTED": "התגובה פורסמה בהצלחה",
+            "COMMENT_POSTED_APPROVE": "אישור",
+            "POST": "הגב",
+            "REPLY": "הגב",
+            "CANCEL": "בטל",
+            "TEXT_INPUT": "הוסף תגובה"
         }
     },
     "WATCH": {

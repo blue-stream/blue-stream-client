@@ -7,5 +7,5 @@
   <div id="other-videos-container">
     <bs-video-list mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
   </div>
-  <bs-comments></bs-comments>
+  <bs-comments [videoId]="video.id"></bs-comments>
 </div>

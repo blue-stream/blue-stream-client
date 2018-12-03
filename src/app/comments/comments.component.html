@@ -1,4 +1,10 @@
-<div id="container">
-    <bs-comments-header [commentsAmount]="comments.length"></bs-comments-header>
-    <bs-comment-list [comments]="comments"></bs-comment-list>
+<div id="container" 
+infiniteScroll 
+[infiniteScrollDistance]="2" 
+[infiniteScrollThrottle]="150" 
+(scrolled)="onScroll()"
+[fromRoot]="true" 
+[infiniteScrollContainer]="'#side-nav-container'">
+    <bs-comments-header [commentsAmount]="totalCommentsAmount"></bs-comments-header>
+    <bs-comment-list (deleteComment)="onDelete($event)" [comments]="comments"></bs-comment-list>
 </div>

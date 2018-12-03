@@ -7,18 +7,24 @@
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
-  <bs-comment-action-buttons [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
-  <div id="replies-container" *ngIf="repliesAmount">
+  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="isReply" (replyClicked)="showReplyForm = !showReplyForm"
+    [likes]="comment.likes" [dislikes]="comment.dislikes"></bs-comment-action-buttons>
+  <div id="reply-form-container" *ngIf="showReplyForm">
+    <bs-comment-form (commentSubmitted)="onCommentSubmitted()" [parent]="comment.id"></bs-comment-form>
+  </div>
+  <div id="replies-container" *ngIf="comment.repliesAmount">
     <button mat-button [ngSwitch]="showReplies" (click)="onShowReplies()" id="replies-expander">
       <span *ngSwitchCase="true" translate>
         COMMENTS.COMMENT_LIST.COMMENT.HIDE_REPLIES
       </span>
-      <span *ngSwitchCase="false" translate [translateParams]="{replies: repliesAmount}">
+      <mat-icon *ngSwitchCase="true">keyboard_arrow_up</mat-icon>
+      <span *ngSwitchCase="false" translate [translateParams]="{replies: comment.repliesAmount}">
         COMMENTS.COMMENT_LIST.COMMENT.VIEW_REPLIES
       </span>
+      <mat-icon *ngSwitchCase="false">keyboard_arrow_down</mat-icon>
     </button>
     <div id="replies" *ngIf="showReplies">
-      <bs-comment-list [comments]="replies"></bs-comment-list>
+      <bs-comment-list [isReplyList]="true" [comments]="replies"></bs-comment-list>
     </div>
   </div>
 </div>

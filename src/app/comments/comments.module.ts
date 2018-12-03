@@ -7,18 +7,29 @@ import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentActionButtonsComponent } from './comment-list/comment/comment-action-buttons/comment-action-buttons.component';
 import { CommentsHeaderComponent } from './comments-header/comments-header.component';
 import { CommentService } from './comment.service';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-delete-dialog.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     CommentsComponent,
     CommentComponent,
     CommentListComponent,
     CommentActionButtonsComponent,
-    CommentsHeaderComponent
+    CommentsHeaderComponent,
+    CommentFormComponent,
+    CommentDeleteDialogComponent
+  ],
+  entryComponents: [
+    CommentDeleteDialogComponent,
   ],
   exports: [CommentsComponent],
   providers: [CommentService]

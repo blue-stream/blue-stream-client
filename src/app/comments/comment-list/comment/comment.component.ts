@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../../models/comment.model';
 import { CommentService } from '../../comment.service';
 
@@ -10,35 +10,40 @@ import { CommentService } from '../../comment.service';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
+  @Input() isReply: boolean = false;
+  @Output() deleteComment: EventEmitter<string> = new EventEmitter();
 
   replies: Comment[] = [];
-  repliesAmount: number = 0;
   showReplies: boolean = false;
+  showReplyForm: boolean = false;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
-    this.loadRepliesAmount();
+  }
+
+  onCommentSubmitted() {
+    this.comment.repliesAmount++;
+    this.showReplyForm = false;
+    this.loadReplies();
+    this.showReplies = true;
   }
 
   onShowReplies() {
     this.showReplies = !this.showReplies;
 
-    if (this.showReplies) {
+    if (this.showReplies && this.replies.length === 0) {
       this.loadReplies();
     }
   }
 
+  onDelete() {
+    this.deleteComment.emit(this.comment.id);
+  }
+
   loadReplies() {
-    this.commentService.getReplies(this.comment.id).subscribe(replies => {
-      this.replies = replies;
+   this.commentService.getReplies(this.comment.id).subscribe(replies => {
+     this.replies = replies;
     });
   }
-
-  loadRepliesAmount() {
-    this.commentService.getRepliesAmount(this.comment.id).subscribe(repliesAmount => {
-      this.repliesAmount = repliesAmount;
-    });
-  }
-
 }

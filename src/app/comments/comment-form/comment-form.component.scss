@@ -1,0 +1,19 @@
+#add-comment-container {
+    display: flex;
+    margin-bottom: 20px;
+    #user-profile-image {
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+    form {
+        margin-top: 10px;
+        width: 100%;
+        #comment-input {
+            width: 100%;
+        }
+        #buttons-container {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+}

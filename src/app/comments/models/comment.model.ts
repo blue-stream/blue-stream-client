@@ -2,8 +2,10 @@ export interface Comment {
     id: string;
     user: string;
     text: string;
-    date: Date;
+    createdAt: Date;
     likes: number;
     dislikes: number;
-    parentCommentId: string;
+    parent: string | null;
+    video: string;
+    repliesAmount: number;
 }

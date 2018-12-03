@@ -45,17 +45,33 @@
         }
     },
     "COMMENTS": {
+        "DELETE_SUCCESS": "Comment was removed successfully",
+        "DELETE_SUCCESS_APPROVAL": "OK",
+        "COMMENT_DELETE_DIALOG": {
+            "APPROVE": "Delete",
+            "CANCEL": "Cancel",
+            "TITLE": "Delete comment?"
+        },
         "COMMENT_LIST": {
             "COMMENT": {
                 "HIDE_REPLIES": "Hide replies",
                 "VIEW_REPLIES": "View {{replies}} replies",
                 "COMMENT_ACTION_BUTTONS": {
-                    "REPLY": "Reply"
+                    "REPLY": "Reply",
+                    "DELETE": "Delete"
                 }
             }
         },
         "COMMENTS_HEADER": {
             "COMMENTS_AMOUNT": "{{amount}} comments"
+        },
+        "COMMENTS_FORM": {
+            "COMMENT_POSTED": "Comment was posted successfully",
+            "COMMENT_POSTED_APPROVE": "OK",
+            "POST": "Comment",
+            "REPLY": "Reply",
+            "CANCEL": "Cancel",
+            "TEXT_INPUT": "Add a public comment"
         }
     },
     "WATCH": {

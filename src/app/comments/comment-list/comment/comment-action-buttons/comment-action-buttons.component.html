@@ -13,5 +13,6 @@
       <span class="rating-amount">{{dislikes}}</span>
     </div>
   </div>
-  <button id="reply" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.REPLY' | translate}}</button>
+  <button *ngIf="!isReply" id="reply" (click)="reply()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.REPLY' | translate}}</button>
+  <button id="delete" (click)="delete()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.DELETE' | translate}}</button>
 </div>
