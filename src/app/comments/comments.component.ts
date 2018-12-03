@@ -56,9 +56,9 @@ export class CommentsComponent implements OnInit {
 
   deleteComment(commentId: string) {
     this.commentService.delete(commentId).subscribe(res => {
-      this.comments = [];
-      this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
+      this.comments.splice(this.comments.findIndex(comment => comment._id === commentId), 1);
       this.loadCommentsAmount();
+
       this.translateService.get([
         'COMMENTS.DELETE_SUCCESS',
         'COMMENTS.DELETE_SUCCESS_APPROVAL']).subscribe(translations => {
