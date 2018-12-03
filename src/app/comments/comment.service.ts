@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/observable/of';
 import { Comment } from './models/comment.model';
 
@@ -21,7 +21,11 @@ export class CommentService {
   private serviceUrl: string = environment.commentServiceUrl;
   private apiUrl: string = 'api/comment';
 
-  constructor(private httpClient: HttpClient) { }
+  public commentSubmitted: Subject<void>;
+
+  constructor(private httpClient: HttpClient) {
+    this.commentSubmitted = new Subject<void>();
+  }
 
   create(comment: Partial<Comment>): Observable<Comment> {
     return this.httpClient.post<Comment>(`${this.serviceUrl}${this.apiUrl}`, comment, httpOptions);

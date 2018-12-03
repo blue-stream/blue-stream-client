@@ -15,7 +15,6 @@ export class CommentFormComponent implements OnInit {
   @Input() user: string = 'a@a';
   @Input() videoId: string = '123456789112345678911234';
   @Input() parent: string;
-  @Output() commentSubmitted: EventEmitter<Comment> = new EventEmitter();
 
   commentForm: FormGroup;
   showButtons: boolean = false;
@@ -62,7 +61,7 @@ export class CommentFormComponent implements OnInit {
 
   publishComment(comment: Comment) {
     this.commentService.create(comment).subscribe(createdComment => {
-      this.commentSubmitted.emit(comment);
+      this.commentService.commentSubmitted.next();
       this.translateService.get([
         'COMMENTS.COMMENTS_FORM.COMMENT_POSTED',
         'COMMENTS.COMMENTS_FORM.COMMENT_POSTED_APPROVE']).subscribe(translations => {

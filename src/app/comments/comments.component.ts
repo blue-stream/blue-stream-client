@@ -22,7 +22,11 @@ export class CommentsComponent implements OnInit {
     private commentService: CommentService,
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+    this.commentService.commentSubmitted.subscribe(() => {
+      this.onCommentSubmitted();
+    });
+  }
 
   ngOnInit() {
     this.loadCommentsAmount();
