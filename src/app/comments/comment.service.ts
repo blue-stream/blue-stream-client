@@ -21,10 +21,10 @@ export class CommentService {
   private serviceUrl: string = environment.commentServiceUrl;
   private apiUrl: string = 'api/comment';
 
-  public commentSubmitted: Subject<void>;
+  public commentSubmitted: Subject<Partial<Comment>>;
 
   constructor(private httpClient: HttpClient) {
-    this.commentSubmitted = new Subject<void>();
+    this.commentSubmitted = new Subject<Comment>();
   }
 
   create(comment: Partial<Comment>): Observable<Comment> {

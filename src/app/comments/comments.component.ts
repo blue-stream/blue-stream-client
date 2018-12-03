@@ -23,8 +23,8 @@ export class CommentsComponent implements OnInit {
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
     public dialog: MatDialog) {
-    this.commentService.commentSubmitted.subscribe(() => {
-      this.onCommentSubmitted();
+    this.commentService.commentSubmitted.subscribe((comment) => {
+      this.onCommentSubmitted(comment);
     });
   }
 
@@ -60,7 +60,8 @@ export class CommentsComponent implements OnInit {
 
   deleteComment(commentId: string) {
     this.commentService.delete(commentId).subscribe(res => {
-      this.comments.splice(this.comments.findIndex(comment => comment.id === commentId), 1);
+      this.comments = [];
+      this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
       this.loadCommentsAmount();
 
       this.translateService.get([
@@ -84,11 +85,16 @@ export class CommentsComponent implements OnInit {
     this.loadNextRootComments();
   }
 
-  onCommentSubmitted() {
+  onCommentSubmitted(comment: Partial<Comment>) {
     // Load all of the comments loaded so far + the newly created one.
-    this.comments = [];
     this.loadCommentsAmount();
-    this.loadRootComments(0, this.comments.length + this.commentsToLoad + 1);
+
+    if (!comment.parent) {
+      this.comments = [];
+
+      this.loadRootComments(0, this.comments.length + this.commentsToLoad + 1);
+    }
+
   }
 
   loadRootComments(startIndex: number, commentsToLoad: number) {

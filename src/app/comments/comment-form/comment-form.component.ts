@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
@@ -15,6 +15,7 @@ export class CommentFormComponent implements OnInit {
   @Input() user: string = 'a@a';
   @Input() videoId: string = '123456789112345678911234';
   @Input() parent: string;
+  @Output() commentSubmitted: EventEmitter<Partial<Comment>> = new EventEmitter();
 
   commentForm: FormGroup;
   showButtons: boolean = false;
@@ -62,7 +63,8 @@ export class CommentFormComponent implements OnInit {
 
   publishComment(comment: Partial<Comment>) {
     this.commentService.create(comment).subscribe(createdComment => {
-      this.commentService.commentSubmitted.next();
+      this.commentSubmitted.emit(comment);
+      this.commentService.commentSubmitted.next(comment);
       this.translateService.get([
         'COMMENTS.COMMENTS_FORM.COMMENT_POSTED',
         'COMMENTS.COMMENTS_FORM.COMMENT_POSTED_APPROVE']).subscribe(translations => {
