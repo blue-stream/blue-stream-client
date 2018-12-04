@@ -1,5 +1,5 @@
 <div class="container">
-  <button [ngClass]="{'reaction-chosen': isActive }" (click)="onClick()" [matTooltip]="toolTip | translate" mat-icon-button>
+  <button [color]="isActive? 'primary' : ''" (click)="onClick()" [matTooltip]="toolTip | translate" mat-icon-button>
     <mat-icon [ngClass]="{'small-icons': smallIcon }">{{iconName}}</mat-icon>
   </button>
   <span *ngIf="showAmount" class="rating-amount">{{amount}}</span>

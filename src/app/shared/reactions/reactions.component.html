@@ -9,7 +9,6 @@
       [toolTip]="'SHARED.REACTIONS.LIKE'"
       (reactionSubmitted)="like()">
     </bs-reaction>
-
     <bs-reaction class="rating"
       [iconName]="'thumb_down'"
       [smallIcon]="smallIcons"
@@ -19,7 +18,6 @@
       [toolTip]="'SHARED.REACTIONS.DISLIKE'"
       (reactionSubmitted)="dislike()">
     </bs-reaction>
-
     <mat-progress-bar *ngIf="showBar" mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
   </div>
 </div>
