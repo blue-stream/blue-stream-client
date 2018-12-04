@@ -60,11 +60,20 @@ export class ReactionsComponent implements OnInit {
   }
 
   loadReaction() {
-    this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction).subscribe(returnedReaction => {
-      if (returnedReaction) {
-        this.chosenReactionType = returnedReaction.type;
-      }
-    });
+    this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
+      .subscribe(
+        returnedReaction => {
+          if (returnedReaction) {
+            this.chosenReactionType = returnedReaction.type;
+          }
+        },
+        error => {
+          if (error.status === 404) {
+            this.chosenReactionType = undefined;
+          } else {
+            throw error;
+          }
+        });
   }
 
   updateAmountsLocally(previousReactionType: ReactionType, newReactionType: ReactionType) {
