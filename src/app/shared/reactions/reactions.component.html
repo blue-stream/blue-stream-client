@@ -2,6 +2,7 @@
   <div id='ratings-container'>
     <bs-reaction class="rating"
       [iconName]="'thumb_up'"
+      [smallIcon]="smallIcons"
       [amount]="likesAmount"
       [showAmount]='showAmounts'
       [isActive]="isLike()"
@@ -11,6 +12,7 @@
 
     <bs-reaction class="rating"
       [iconName]="'thumb_down'"
+      [smallIcon]="smallIcons"
       [amount]="dislikesAmount"
       [showAmount]='showAmounts'
       [isActive]="isDislike()"

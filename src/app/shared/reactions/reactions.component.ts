@@ -13,6 +13,7 @@ export class ReactionsComponent implements OnInit {
   @Input() resourceType: ResourceType = ResourceType.Video;
   @Input() showAmounts: boolean = true;
   @Input() showBar: boolean = true;
+  @Input() smallIcons: boolean = false;
 
   likesAmount: number = 0;
   dislikesAmount: number = 0;

@@ -1,18 +1,11 @@
 <div id="actions-container">
-  <div id='ratings-container'>
-    <div class="rating">
-      <button matTooltip="Like" mat-icon-button class="rating-button">
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-      <span class="rating-amount">{{likes}}</span>
-    </div>
-    <div class="rating">
-      <button matTooltip="dislike" mat-icon-button class="rating-button">
-        <mat-icon>thumb_down</mat-icon>
-      </button>
-      <span class="rating-amount">{{dislikes}}</span>
-    </div>
-  </div>
+    <bs-reactions
+    [resource]="comment.id"
+    [resourceType]="resourceType"
+    [showAmounts]=true
+    [showBar]=false
+    [smallIcons]=true>
+  </bs-reactions>
   <button *ngIf="!isReply" id="reply" (click)="reply()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.REPLY' | translate}}</button>
   <button id="delete" (click)="delete()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.DELETE' | translate}}</button>
 </div>

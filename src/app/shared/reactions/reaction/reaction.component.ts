@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class ReactionComponent implements OnInit {
 
   @Input() iconName: string = 'thumb_up';
+  @Input() smallIcon: boolean = false;
   @Input() amount: number = 0;
   @Input() showAmount: boolean = true;
   @Input() isActive: boolean = false;

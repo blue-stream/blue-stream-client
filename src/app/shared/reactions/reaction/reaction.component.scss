@@ -2,9 +2,15 @@
     .rating-amount {
         font-size: 0.9rem;
     }
+    .small-icons {
+        font-size: 1.1rem;
+    }
 
+    color: gray;
+    &:hover {
+        color: rgb(78, 78, 78);
+    }
     .reaction-chosen {
-       // color: rgb(78, 78, 78);
-       color: red;
+        color: red;
     }
 }
