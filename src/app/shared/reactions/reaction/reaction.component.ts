@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'bs-reaction',
@@ -9,11 +9,18 @@ export class ReactionComponent implements OnInit {
 
   @Input() iconName: string = 'thumb_up';
   @Input() amount: number = 0;
+  @Input() showAmount: boolean = true;
   @Input() isActive: boolean = false;
+  @Input() toolTip: string = 'WATCH.WATCH_PRIMARY_INFO.LIKE';
+  @Output() reactionSubmitted: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClick() {
+    this.reactionSubmitted.emit();
   }
 
 }

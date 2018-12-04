@@ -1,17 +1,23 @@
 <div id="actions-container">
   <div id='ratings-container'>
-    <div class="rating">
-      <button [ngClass]="{'reaction-chosen': isLike() }" (click)="likeVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.LIKE' | translate" mat-icon-button>
-        <mat-icon>thumb_up</mat-icon>
-      </button>
-      <span class="rating-amount">{{video.likes}}</span>
-    </div>
-    <div class="rating">
-      <button [ngClass]="{'reaction-chosen': isDislike() }" (click)="dislikeVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.DISLIKE' | translate" mat-icon-button>
-        <mat-icon>thumb_down</mat-icon>
-      </button>
-      <span class="rating-amount">{{video.dislikes}}</span>
-    </div>
-    <mat-progress-bar mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
+    <bs-reaction class="rating"
+      [iconName]="'thumb_up'"
+      [amount]="likesAmount"
+      [showAmount]='showAmounts'
+      [isActive]="isLike()"
+      [toolTip]="'SHARED.REACTIONS.LIKE'"
+      (reactionSubmitted)="like()">
+    </bs-reaction>
+
+    <bs-reaction class="rating"
+      [iconName]="'thumb_down'"
+      [amount]="dislikesAmount"
+      [showAmount]='showAmounts'
+      [isActive]="isDislike()"
+      [toolTip]="'SHARED.REACTIONS.DISLIKE'"
+      (reactionSubmitted)="dislike()">
+    </bs-reaction>
+
+    <mat-progress-bar *ngIf="showBar" mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
   </div>
 </div>

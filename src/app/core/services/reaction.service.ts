@@ -13,6 +13,11 @@ const httpOptions = {
   headers: httpHeaders,
 };
 
+interface TypeAmount {
+  type: string;
+  amount: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +50,11 @@ export class ReactionService {
 
     return this.httpClient.get<Reaction>(`${this.serviceUrl}${this.apiUrl}/one`, options);
   }
+
+  getAmountOfTypes(resource: string): Observable<TypeAmount[]> {
+    return this.httpClient.get<TypeAmount[]>(`${this.serviceUrl}${this.apiUrl}/${resource}/amounts`, httpOptions);
+  }
+
   update(resource: string, user: string, type: ReactionType): Observable<Reaction> {
     const options = {
       httpHeaders,

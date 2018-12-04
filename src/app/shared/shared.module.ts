@@ -75,6 +75,7 @@ import { ReactionComponent } from './reactions/reaction/reaction.component';
     VideoTileComponent,
     VideoListComponent,
     TranslateModule,
+    ReactionsComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
