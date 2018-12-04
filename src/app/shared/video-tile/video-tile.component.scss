@@ -4,13 +4,13 @@ $horizontal-video-width: 168px;
 $horizontal-video-height: 94px;
 a {
     text-decoration: none;
+    display: block;
 }
 
 #video-tile {
     text-align: start;
     display: inline-block;
     margin: 2px 2px;
-    overflow: hidden;
     cursor: pointer;
     img {
         width: $vertical-video-width;
@@ -22,16 +22,15 @@ a {
     }
     #video-details {
         width: $vertical-video-width;
-        a {
-            text-decoration: none;
+        &.horizontal {
+            width: 300px-$horizontal-video-width;
         }
         #video-title {
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             font-weight: 500;
+            max-height: 3.2rem;
             line-height: 1.4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
             color: #000;
         }
         #video-owner,

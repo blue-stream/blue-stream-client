@@ -3,8 +3,8 @@
     <a [routerLink]="['/watch',video.id]">
       <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal}">
     </a>
-    <div id="video-details" fxLayout="column">
-      <a id="video-title" [routerLink]="['/watch', video.id]">{{video.title}}</a>
+    <div id="video-details" fxLayout="column" [ngClass]="{'horizontal':horizontal}">
+      <a id="video-title" [routerLink]="['/watch', video.id]" [clamp]="2">{{video.title}}</a>
       <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
       <div id="video-statistics">
         <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
