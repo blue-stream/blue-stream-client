@@ -3,7 +3,7 @@
     <bs-avatar id="user-profile-image" source="assets/user-profile-placeholder.png"></bs-avatar>
     <div id="comment-info">
       <a id="user-link" href="">{{comment.user}}</a>
-      <span id="date">{{comment.date | date}}</span>
+      <span id="date">{{getTimeAgo()}}</span>
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
