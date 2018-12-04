@@ -26,6 +26,7 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { VideoProgressComponent } from './video-player/video-progress/video-progress.component';
 import { VideoActionsComponent } from './video-player/video-actions/video-actions.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxTextOverflowClampModule } from 'ngx-text-overflow-clamp';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatSliderModule,
     MatMenuModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    NgxTextOverflowClampModule
   ],
   exports: [
     MatToolbarModule,
