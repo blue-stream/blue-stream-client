@@ -1,10 +1,10 @@
-<div id="video-tile">
+<div id="video-tile" [ngClass]="{'horizontal':horizontal}">
   <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
     <a [routerLink]="['/watch',video.id]">
       <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal}">
     </a>
-    <div id="video-details" fxLayout="column" [ngClass]="{'horizontal':horizontal}">
-      <a id="video-title" [routerLink]="['/watch', video.id]" [clamp]="2">{{video.title}}</a>
+    <div id="video-details" [ngClass]="{'horizontal':horizontal}">
+      <a id="video-title" [routerLink]="['/watch', video.id]" [clamp]="1">{{video.title}}</a>
       <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
       <div id="video-statistics">
         <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
