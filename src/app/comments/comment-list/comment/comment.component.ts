@@ -17,13 +17,15 @@ export class CommentComponent implements OnInit {
   replies: Comment[] = [];
   showReplies: boolean = false;
   showReplyForm: boolean = false;
+  timeAgo: string;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
+    this.timeAgo = this.getTimeAgo();
   }
 
-  getTimeAgo() {
+  getTimeAgo(): string {
     return moment(this.comment.createdAt).fromNow();
   }
 
