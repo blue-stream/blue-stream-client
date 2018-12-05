@@ -63,10 +63,14 @@ export class ReactionsComponent implements OnInit {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
+      .catch(error => {
+        return Observable.empty();
+      })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {
             this.chosenReactionType = (returnedReaction as Reaction).type;
+<<<<<<< HEAD
           }
         },
         error => {
@@ -74,6 +78,8 @@ export class ReactionsComponent implements OnInit {
             this.chosenReactionType = undefined;
           } else {
             throw error;
+=======
+>>>>>>> f8aa780403544282989a156efea890050e9b416a
           }
         });
   }
