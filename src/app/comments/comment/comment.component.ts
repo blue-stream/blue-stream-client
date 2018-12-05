@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Comment } from '../../models/comment.model';
-import { CommentService } from '../../comment.service';
+import { Comment } from '../models/comment.model';
+import { CommentService } from '../comment.service';
 import * as moment from 'moment';
 
 @Component({
