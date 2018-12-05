@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReactionType, ResourceType, Reaction } from '../models/reaction.model';
 import { ReactionService } from 'src/app/core/services/reaction.service';
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/empty';
 
 @Component({
   selector: 'bs-reactions',
@@ -61,17 +63,13 @@ export class ReactionsComponent implements OnInit {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
+      .catch(error => {
+        return Observable.empty();
+      })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {
-            this.chosenReactionType = returnedReaction.type;
-          }
-        },
-        error => {
-          if (error.status === 404) {
-            this.chosenReactionType = undefined;
-          } else {
-            throw error;
+            this.chosenReactionType = (returnedReaction as Reaction).type;
           }
         });
   }
