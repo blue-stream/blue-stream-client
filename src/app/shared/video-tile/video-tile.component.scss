@@ -2,6 +2,9 @@ $vertical-video-width: 210px;
 $vertical-video-height: 118px;
 $horizontal-video-width: 168px;
 $horizontal-video-height: 94px;
+$has-description-video-width: 246px;
+$has-description-video-height: 138px;
+
 a {
     text-decoration: none;
     display: block;
@@ -24,6 +27,10 @@ a {
     .img-horizontal {
         width: $horizontal-video-width;
         height: $horizontal-video-height; 
+    }
+    .img-has-description {
+        width: $has-description-video-width;
+        height: $has-description-video-height;
     }
     #video-details {
         width: $vertical-video-width;
@@ -51,7 +58,8 @@ a {
             color: #000;
         }
         #video-owner,
-        #video-statistics {
+        #video-statistics,
+        #seperator {
             font-size: 0.8rem;
             font-weight: 400;
             line-height: 1.2rem;
@@ -63,5 +71,12 @@ a {
                 margin: 0 4px;
             }
         }
+        #seperator {
+            span::after {
+                content: '•';
+                margin: 0 4px;
+            }
+        }
+
     }
 }

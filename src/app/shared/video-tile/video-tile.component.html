@@ -1,15 +1,19 @@
 <div id="video-tile" [ngClass]="{'horizontal':horizontal}">
   <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
     <a [routerLink]="['/watch',video.id]">
-      <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal}">
+      <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal, 'img-has-description':description}">
     </a>
     <div id="video-details" [ngClass]="{'horizontal':horizontal}">
       <a id="video-title" [routerLink]="['/watch', video.id]">{{video.title}}</a>
-      <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
-      <div id="video-statistics">
-        <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
-        <span>{{video.publishDate | date: 'dd MMM'}}</span>
+      <div [fxLayout]="description ? 'row wrap' : 'column'">
+          <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
+          <div id="seperator" *ngIf="description"><span></span></div>
+          <div id="video-statistics">
+            <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
+            <span>{{video.publishDate | date: 'dd MMM'}}</span>
+          </div>
       </div>
+      <div id="description" *ngIf="description">{{video.description}}</div>
     </div>
   </div>
 </div>
