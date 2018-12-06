@@ -81,14 +81,7 @@ export class CommentService {
   }
 
   getReplies(parent: string): Observable<Comment[]> {
-    const options = {
-      httpHeaders,
-      params: {
-        parent,
-      },
-    };
-
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/replies`, options)
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/${parent}/replies`, httpOptions)
       .map(comments => {
         return comments.map(comment => {
           comment.id = (comment as any)._id;
