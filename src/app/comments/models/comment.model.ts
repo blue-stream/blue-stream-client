@@ -6,6 +6,6 @@ export interface Comment {
     likes: number;
     dislikes: number;
     parent: string | null;
-    video: string;
+    resource: string;
     repliesAmount: number;
 }

@@ -46,7 +46,7 @@ export class CommentsComponent implements OnInit {
 
   loadCommentsAmount() {
     const commentFilter: Partial<Comment> = {
-      video: this.videoId,
+      resource: this.videoId,
     };
 
     this.commentService.getAmount(commentFilter).subscribe(amount => {
