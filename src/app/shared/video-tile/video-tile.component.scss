@@ -33,11 +33,20 @@ a {
             min-width: 0;
         }
         #video-title {
+            display: block;
+            /* autoprefixer: ignore next */
+            display: -webkit-box;
+            /* autoprefixer: ignore next */
+            -webkit-line-clamp: 2;
+            /* autoprefixer: ignore next */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
             min-width: 0;
             padding-bottom: 8px;
             font-weight: 500;
-            max-height: 2.5rem;
-            line-height: 1.4rem;
+            max-height: 3.2rem;
+            line-height: 1.6rem;
             white-space: normal;
             color: #000;
         }

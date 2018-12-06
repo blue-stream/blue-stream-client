@@ -4,7 +4,7 @@
       <img [src]="video.thumbnailUrl" [ngClass]="{'img-horizontal':horizontal}">
     </a>
     <div id="video-details" [ngClass]="{'horizontal':horizontal}">
-      <a id="video-title" [routerLink]="['/watch', video.id]" [clamp]="1">{{video.title}}</a>
+      <a id="video-title" [routerLink]="['/watch', video.id]">{{video.title}}</a>
       <a id="video-owner" [routerLink]="['/upload']">{{video.owner}}</a>
       <div id="video-statistics">
         <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
