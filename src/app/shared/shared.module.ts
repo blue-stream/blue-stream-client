@@ -28,6 +28,7 @@ import { VideoActionsComponent } from './video-player/video-actions/video-action
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
+import { EllipsisModule } from 'ngx-ellipsis';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { ReactionComponent } from './reactions/reaction/reaction.component';
     MatSliderModule,
     MatMenuModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    EllipsisModule
   ],
   exports: [
     MatToolbarModule,

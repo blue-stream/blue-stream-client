@@ -4,14 +4,19 @@ $horizontal-video-width: 168px;
 $horizontal-video-height: 94px;
 a {
     text-decoration: none;
+    display: block;
 }
 
 #video-tile {
     text-align: start;
     display: inline-block;
     margin: 2px 2px;
-    overflow: hidden;
     cursor: pointer;
+    &.horizontal {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
     img {
         width: $vertical-video-width;
         height: $vertical-video-height;
@@ -22,16 +27,19 @@ a {
     }
     #video-details {
         width: $vertical-video-width;
-        a {
-            text-decoration: none;
+        &.horizontal {
+            width: auto;
+            box-sizing: border-box;
+            min-width: 0;
         }
         #video-title {
-            padding-bottom: 10px;
+            display: block;
+            min-width: 0;
+            padding-bottom: 8px;
             font-weight: 500;
-            line-height: 1.4rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            max-height: 3.2rem;
+            line-height: 1.6rem;
+            white-space: normal;
             color: #000;
         }
         #video-owner,
