@@ -23,15 +23,17 @@ export class VideoListComponent implements OnInit, DoCheck {
   constructor() { }
 
   ngOnInit(): void {
-    this.endIndex = this.getVideosPerRow();
+    if (this.mode === 'horizontal') { this.endIndex = this.getVideosPerRow(); }
   }
 
   ngDoCheck() {
-    const videosPerRow = this.getVideosPerRow();
-    if (this.startIndex + videosPerRow > this.videos.length) {
-      this.startIndex = this.videos.length - videosPerRow;
+    if (this.mode === 'horizontal') {
+      const videosPerRow = this.getVideosPerRow();
+      if (this.startIndex + videosPerRow > this.videos.length) {
+        this.startIndex = this.videos.length - videosPerRow;
+      }
+      this.endIndex = this.startIndex + videosPerRow;
     }
-    this.endIndex = this.startIndex + videosPerRow;
   }
 
   scrollLeft() {
