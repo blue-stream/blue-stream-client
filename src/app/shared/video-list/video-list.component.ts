@@ -16,6 +16,7 @@ export class VideoListComponent implements OnInit, DoCheck {
   startIndex = 0;
   endIndex = 0;
   @Input() videos: Video[];
+  @Input() description = false;
   @Input() mode: 'grid' | 'horizontal' | 'vertical';
   @ViewChild('videoList') videoList: ElementRef;
 
