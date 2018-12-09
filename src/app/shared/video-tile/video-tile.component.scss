@@ -2,6 +2,9 @@ $vertical-video-width: 210px;
 $vertical-video-height: 118px;
 $horizontal-video-width: 168px;
 $horizontal-video-height: 94px;
+$horizontal-with-description-video-width: 246px;
+$horizontal-with-description-video-height: 138px;
+
 a {
     text-decoration: none;
     display: block;
@@ -25,6 +28,10 @@ a {
         width: $horizontal-video-width;
         height: $horizontal-video-height; 
     }
+    .img-horizontal-with-description {
+        width: $horizontal-with-description-video-width;
+        height: $horizontal-with-description-video-height;
+    }
     #video-details {
         width: $vertical-video-width;
         &.horizontal {
@@ -43,7 +50,8 @@ a {
             color: #000;
         }
         #video-owner,
-        #video-statistics {
+        #video-statistics,
+        #seperator {
             font-size: 0.8rem;
             font-weight: 400;
             line-height: 1.2rem;
@@ -55,5 +63,22 @@ a {
                 margin: 0 4px;
             }
         }
+        #seperator {
+            span::after {
+                content: '•';
+                margin: 0 4px;
+            }
+        }
+        #video-description {
+            color: hsl(0, 0%, 53.3%);
+            padding-top: 8px;
+            margin-bottom: 8px;
+            display: block;
+            line-height: 1.4rem;
+            max-height: 3.6rem;
+            font-weight: 400;
+            font-size: 13px;
+        }
+
     }
 }

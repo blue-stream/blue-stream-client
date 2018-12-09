@@ -9,6 +9,7 @@ import { Video } from '../models/video.model';
 export class VideoTileComponent implements OnInit {
 
   @Input() horizontal = false;
+  @Input() description = false;
   @Input() video: Video;
 
   constructor() { }

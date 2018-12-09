@@ -1,9 +1,13 @@
 import { VideoSection } from './video-section.model';
 import { Video } from './video.model';
 
+const description = `הרצאה מול קהל חי ,כנס איגוד המתח הנמוך, המתארת מחקר מול עסקים קטנים ובינונים במדינת ישראל.
+המחקר מתמקד בחלקים שהכשילו עסקים וכן בחלקים דרכם הצליחו עסקים.
+ד"ר כהן יוסף מסביר את החלקים השונים להצלחה וכישלון של עסקים כפי שעלו במחקר ומתמקד בחלק של השיווק וניהול השיווק. משך ההרצאה 30 דקות.`;
+
 export const VIDEOS1: Video[] = [
     // tslint:disable-next-line:max-line-length
-    { id: '123456789112345678911234', likes: 12, dislikes: 10, description: 'video description', owner: 'מרצה בכיר', title: 'סימטריה ושבירתה – עקרון הסימטריה מיוון העתיקה עד פייר קירי וגם: מדוע הוא לא תמיד עובד', publishDate: new Date(), views: 20, thumbnailUrl: 'https://i.ytimg.com/vi/QkoIGq51odA/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCjHua_iqypMPdc3QGJCZ4yxVM2hw' },
+    { id: '123456789112345678911234', likes: 12, dislikes: 10, description: description, owner: 'מרצה בכיר', title: 'סימטריה ושבירתה – עקרון הסימטריה מיוון העתיקה עד פייר קירי וגם: מדוע הוא לא תמיד עובד', publishDate: new Date(), views: 20, thumbnailUrl: 'https://i.ytimg.com/vi/QkoIGq51odA/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCjHua_iqypMPdc3QGJCZ4yxVM2hw' },
     // tslint:disable-next-line:max-line-length
     { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'גלילאו ולידתה של השיטה המדעית המודרנית וגם: על גופים נופלים ופרות כדוריות', publishDate: new Date(), views: 598, thumbnailUrl: 'https://i.ytimg.com/vi/d7O_e_16bXQ/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBVObd_Dg9vGiRVSl_A6bybo4zyCw' },
     // tslint:disable-next-line:max-line-length
