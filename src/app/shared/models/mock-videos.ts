@@ -3,11 +3,11 @@ import { Video } from './video.model';
 
 export const VIDEOS1: Video[] = [
     // tslint:disable-next-line:max-line-length
-    { id: '123456789112345678911234', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'LG G7 ThinQ Camera Review - AI Camera with an IQ', publishDate: new Date(), views: 20, thumbnailUrl: 'https://i.ytimg.com/vi/QkoIGq51odA/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCjHua_iqypMPdc3QGJCZ4yxVM2hw' },
+    { id: '123456789112345678911234', likes: 12, dislikes: 10, description: 'video description', owner: 'מרצה בכיר', title: 'סימטריה ושבירתה – עקרון הסימטריה מיוון העתיקה עד פייר קירי וגם: מדוע הוא לא תמיד עובד', publishDate: new Date(), views: 20, thumbnailUrl: 'https://i.ytimg.com/vi/QkoIGq51odA/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCjHua_iqypMPdc3QGJCZ4yxVM2hw' },
     // tslint:disable-next-line:max-line-length
-    { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'Lenovo Mirage Solo Review - Good, Standalone Roomscale VR?', publishDate: new Date(), views: 598, thumbnailUrl: 'https://i.ytimg.com/vi/d7O_e_16bXQ/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBVObd_Dg9vGiRVSl_A6bybo4zyCw' },
+    { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'גלילאו ולידתה של השיטה המדעית המודרנית וגם: על גופים נופלים ופרות כדוריות', publishDate: new Date(), views: 598, thumbnailUrl: 'https://i.ytimg.com/vi/d7O_e_16bXQ/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBVObd_Dg9vGiRVSl_A6bybo4zyCw' },
     // tslint:disable-next-line:max-line-length
-    { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'Nokia 6.1 Review - The All-Metal Android One', publishDate: new Date(), views: 7159, thumbnailUrl: 'https://i.ytimg.com/vi/YzzadwPgk_M/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCrmv5pWpH18qRAZ3xzzyK5sY5rNw' },
+    { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'אור ואופטיקה - רבדים שונים של הבנה וגם: על פרמה ועקרונות מינימום בפיזיקה', publishDate: new Date(), views: 7159, thumbnailUrl: 'https://i.ytimg.com/vi/YzzadwPgk_M/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCrmv5pWpH18qRAZ3xzzyK5sY5rNw' },
     // tslint:disable-next-line:max-line-length
     { id: 'abc', likes: 12, dislikes: 10, description: 'video description', owner: 'Android Headlines', title: 'Android P Multi-Tasking Preview - New Isn\'t Always Better', publishDate: new Date(), views: 3664, thumbnailUrl: 'https://i.ytimg.com/vi/RQWYoL0WsQA/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLD9T6LJDqPQ4a6hnnrp__NLWGPb5w' },
     // tslint:disable-next-line:max-line-length
