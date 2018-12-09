@@ -46,7 +46,7 @@ export class CommentService {
         parent: commentFilter.parent,
         text: commentFilter.text,
         user: commentFilter.user,
-        video: commentFilter.video,
+        resource: commentFilter.resource,
       },
     };
 
@@ -61,11 +61,11 @@ export class CommentService {
 
   }
 
-  getRootComments(video: string, startIndex: number, endIndex: number): Observable<Comment[]> {
+  getRootComments(resource: string, startIndex: number, endIndex: number): Observable<Comment[]> {
     const options = {
       httpHeaders,
       params: {
-        video,
+        resource,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
       },
@@ -81,14 +81,7 @@ export class CommentService {
   }
 
   getReplies(parent: string): Observable<Comment[]> {
-    const options = {
-      httpHeaders,
-      params: {
-        parent,
-      },
-    };
-
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/replies`, options)
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/${parent}/replies`, httpOptions)
       .map(comments => {
         return comments.map(comment => {
           comment.id = (comment as any)._id;
@@ -104,7 +97,7 @@ export class CommentService {
         parent: commentFilter.parent,
         text: commentFilter.text,
         user: commentFilter.user,
-        video: commentFilter.video,
+        resource: commentFilter.resource,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
       },

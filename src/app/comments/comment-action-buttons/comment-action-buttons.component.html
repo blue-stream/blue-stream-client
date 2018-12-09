@@ -1,0 +1,11 @@
+<div id="actions-container">
+    <bs-reactions
+    [resource]="comment.id"
+    [resourceType]="resourceType"
+    [showAmounts]=true
+    [showBar]=false
+    [smallIcons]=true>
+  </bs-reactions>
+  <button *ngIf="!isReply" id="reply" (click)="reply()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.REPLY' | translate}}</button>
+  <button id="delete" (click)="delete()" mat-button disableRipple="true">{{'COMMENTS.COMMENT_LIST.COMMENT.COMMENT_ACTION_BUTTONS.DELETE' | translate}}</button>
+</div>

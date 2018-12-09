@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SideNavMode, routeConfig, defaultRouteConfig } from './route-specific.config';
 import { TranslateService } from '@ngx-translate/core';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'bs-root',
@@ -24,6 +24,7 @@ export class AppComponent implements OnDestroy {
   ) {
     translate.setDefaultLang('en');
     translate.use('he');
+    moment.locale(translate.currentLang);
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

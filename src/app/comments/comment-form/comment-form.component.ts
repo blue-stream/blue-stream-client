@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CommentFormComponent implements OnInit {
 
   @Input() user: string = 'a@a';
-  @Input() videoId: string = '123456789112345678911234';
+  @Input() resource: string = '123456789112345678911234';
   @Input() parent: string;
   @Output() commentSubmitted: EventEmitter<Partial<Comment>> = new EventEmitter();
 
@@ -54,7 +54,7 @@ export class CommentFormComponent implements OnInit {
       text,
       parent: this.parent,
       user: this.user,
-      video: this.videoId,
+      resource: this.resource,
     };
 
     this.commentForm.setValue({ text: '' });
