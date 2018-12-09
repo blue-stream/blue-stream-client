@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Video } from '../../shared/models/video.model';
-
+import { ReactionService } from 'src/app/core/services/reaction.service';
+import { Reaction, ResourceType, ReactionType } from 'src/app/shared/models/reaction.model';
 
 @Component({
   selector: 'bs-watch-primary-info',
@@ -10,13 +11,11 @@ import { Video } from '../../shared/models/video.model';
 export class WatchPrimaryInfoComponent implements OnInit {
 
   @Input() video: Video;
+  currentReactionType: ReactionType;
+  resourceType: ResourceType = ResourceType.Video;
 
-  constructor() { }
+  constructor(private reactionService: ReactionService) { }
 
   ngOnInit() {
-  }
-
-  getLikesToDislikesRatio(): number {
-    return (this.video.likes * 100) / (this.video.likes + this.video.dislikes);
   }
 }

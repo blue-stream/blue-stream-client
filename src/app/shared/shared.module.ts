@@ -26,6 +26,8 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { VideoProgressComponent } from './video-player/video-progress/video-progress.component';
 import { VideoActionsComponent } from './video-player/video-actions/video-actions.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ReactionsComponent } from './reactions/reactions.component';
+import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 
 @NgModule({
@@ -75,6 +77,7 @@ import { EllipsisModule } from 'ngx-ellipsis';
     VideoTileComponent,
     VideoListComponent,
     TranslateModule,
+    ReactionsComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -84,7 +87,9 @@ import { EllipsisModule } from 'ngx-ellipsis';
     VideoPlayerComponent,
     SafeUrlPipe,
     VideoProgressComponent,
-    VideoActionsComponent
+    VideoActionsComponent,
+    ReactionsComponent,
+    ReactionComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

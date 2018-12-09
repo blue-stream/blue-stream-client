@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ResourceType } from 'src/app/shared/models/reaction.model';
 
 @Component({
   selector: 'bs-comment-action-buttons',
@@ -7,11 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CommentActionButtonsComponent implements OnInit {
 
-  @Input() likes: number;
-  @Input() dislikes: number;
+  @Input() comment: Comment;
   @Input() isReply: boolean = false;
   @Output() replyClicked: EventEmitter<void> = new EventEmitter();
   @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
+
+  resourceType = ResourceType.Comment;
 
   constructor() { }
 

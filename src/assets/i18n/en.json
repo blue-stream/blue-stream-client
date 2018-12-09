@@ -81,9 +81,7 @@
         "WATCH_PRIMARY_INFO": {
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
-            "ADD_PLAYLIST": "Add to playlist",
-            "LIKE": "Like",
-            "DISLIKE": "Dislike"
+            "ADD_PLAYLIST": "Add to playlist"
         }
     },
     "SHARED": {
@@ -102,6 +100,10 @@
                 "SPEED": "Speed",
                 "NORMAL": "Normal"
             }
+        },
+        "REACTIONS": {
+            "LIKE": "Like",
+            "DISLIKE": "Dislike"
         }
     },
     "CORE": {

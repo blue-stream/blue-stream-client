@@ -1,0 +1,11 @@
+#actions-container {
+    display: flex;
+    margin: 0 50px;    
+
+    #reply {
+        color: gray;
+        &:hover {
+            color: rgb(78, 78, 78);
+        }
+    }
+}

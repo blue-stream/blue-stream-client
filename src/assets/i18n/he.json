@@ -81,9 +81,7 @@
         "WATCH_PRIMARY_INFO": {
             "VIEWS": "{{views}} צפיות",
             "SHARE": "שתף",
-            "ADD_PLAYLIST": "הוסף לרשימה",
-            "LIKE": "אהבתי",
-            "DISLIKE": "לא אהבתי"
+            "ADD_PLAYLIST": "הוסף לרשימה"
         }
     },
     "SHARED": {
@@ -102,6 +100,10 @@
                 "SPEED": "מהירות",
                 "NORMAL": "רגיל"
             }
+        },
+        "REACTIONS": {
+            "LIKE": "אהבתי",
+            "DISLIKE": "לא אהבתי"
         }
     },
     "CORE": {

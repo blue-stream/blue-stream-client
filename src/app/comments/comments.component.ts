@@ -46,7 +46,7 @@ export class CommentsComponent implements OnInit {
 
   loadCommentsAmount() {
     const commentFilter: Partial<Comment> = {
-      video: this.videoId,
+      resource: this.videoId,
     };
 
     this.commentService.getAmount(commentFilter).subscribe(amount => {
@@ -102,7 +102,6 @@ export class CommentsComponent implements OnInit {
 
     this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
-        console.log(comments);
         this.comments = this.comments.concat(comments);
       });
   }

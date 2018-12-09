@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Comment } from '../../models/comment.model';
-import { CommentService } from '../../comment.service';
+import { Comment } from '../models/comment.model';
+import { CommentService } from '../comment.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'bs-comment',
@@ -16,10 +17,16 @@ export class CommentComponent implements OnInit {
   replies: Comment[] = [];
   showReplies: boolean = false;
   showReplyForm: boolean = false;
+  timeAgo: string;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
+    this.timeAgo = this.getTimeAgo();
+  }
+
+  getTimeAgo(): string {
+    return moment(this.comment.createdAt).fromNow();
   }
 
   onCommentSubmitted() {
@@ -42,8 +49,8 @@ export class CommentComponent implements OnInit {
   }
 
   loadReplies() {
-   this.commentService.getReplies(this.comment.id).subscribe(replies => {
-     this.replies = replies;
+    this.commentService.getReplies(this.comment.id).subscribe(replies => {
+      this.replies = replies;
     });
   }
 }

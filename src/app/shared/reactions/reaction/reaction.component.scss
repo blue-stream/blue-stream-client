@@ -1,0 +1,16 @@
+.container {
+    .rating-amount {
+        font-size: 0.9rem;
+    }
+    .small-icons {
+        font-size: 1.1rem;
+    }
+
+    color: gray;
+    &:hover {
+        color: rgb(78, 78, 78);
+    }
+    .reaction-chosen {
+        color: rgba(28, 56, 218, 0.856);
+    }
+}
