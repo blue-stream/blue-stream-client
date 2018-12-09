@@ -34,14 +34,6 @@ a {
         }
         #video-title {
             display: block;
-            /* autoprefixer: ignore next */
-            display: -webkit-box;
-            /* autoprefixer: ignore next */
-            -webkit-line-clamp: 2;
-            /* autoprefixer: ignore next */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
             min-width: 0;
             padding-bottom: 8px;
             font-weight: 500;
