@@ -83,22 +83,18 @@ export class ReactionsComponent implements OnInit {
 
   updateAmountsLocally(previousReactionType: ReactionType, newReactionType: ReactionType) {
     if (previousReactionType === ReactionType.Like) {
-      if (newReactionType === undefined) {
-        this.likesAmount--;
-      } else if (newReactionType === ReactionType.Like) {
+      if (newReactionType === undefined || newReactionType === ReactionType.Like) {
         this.likesAmount--;
       } else {
         this.dislikesAmount++;
         this.likesAmount--;
       }
     } else if (previousReactionType === ReactionType.Dislike) {
-      if (newReactionType === undefined) {
+      if (newReactionType === undefined || newReactionType === ReactionType.Dislike) {
         this.dislikesAmount--;
       } else if (newReactionType === ReactionType.Like) {
         this.dislikesAmount--;
         this.likesAmount++;
-      } else if (newReactionType === ReactionType.Dislike) {
-        this.dislikesAmount--;
       }
     } else if (previousReactionType === undefined) {
       if (newReactionType === ReactionType.Like) {
