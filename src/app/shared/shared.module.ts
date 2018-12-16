@@ -29,6 +29,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -78,6 +79,7 @@ import { EllipsisModule } from 'ngx-ellipsis';
     VideoListComponent,
     TranslateModule,
     ReactionsComponent,
+    SearchComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -89,7 +91,8 @@ import { EllipsisModule } from 'ngx-ellipsis';
     VideoProgressComponent,
     VideoActionsComponent,
     ReactionsComponent,
-    ReactionComponent
+    ReactionComponent,
+    SearchComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

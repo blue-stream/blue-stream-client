@@ -1,0 +1,6 @@
+<div id="search-container">
+  <input #searchBox (keyup)="onType(searchBox.value)" id="search-bar" type="search" placeholder="חפש">
+  <button id="submit-button" mat-icon-button (click)="onSubmit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
