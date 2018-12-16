@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Video } from '../models/video.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bs-video-player',
@@ -31,6 +32,7 @@ export class VideoPlayerComponent implements OnInit {
   volume: number;
   progress = 0;
   buffer = 0;
+  streamerUrl: string;
 
   constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
     this.toggleWideScreen = new EventEmitter<boolean>();
@@ -43,6 +45,8 @@ export class VideoPlayerComponent implements OnInit {
       .subscribe(() => {
         this.hideActions = true;
       });
+    const apiUrl = 'api/streamer/video/';
+    this.streamerUrl = environment.streamerServiceUrl + apiUrl;
   }
 
   ngOnInit() {
@@ -148,7 +152,7 @@ export class VideoPlayerComponent implements OnInit {
 
   onDownloadVideo() {
     this.httpClient
-      .get(this.video.sourceUrl, { responseType: 'blob' })
+      .get(this.video.contentPath, { responseType: 'blob' })
       .subscribe(data => saveAs(data, `${this.video.title}.mp4`));
   }
 

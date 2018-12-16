@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../core/services/video.service';
 import { Video } from '../shared/models/video.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'bs-watch',
@@ -12,38 +13,37 @@ export class WatchComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private videoService: VideoService) { }
 
-  video: Video;
+  video: Observable<Video>;
   routeIdSubscription: any;
-  recommendedVideos: any = [];
+  recommendedVideos: Observable<Video[]>;
   isVideoWide: boolean = false;
 
   ngOnInit() {
-    this.loadVideoInfo();
-    this.loadRecommendedVideos();
-    // Subscribe to the id of the video in the route parameter
     this.routeIdSubscription = this.route.params.subscribe(params => {
-      this.video.id = params.id;
+      this.loadRecommendedVideos(params.id);
+      this.loadVideoInfo(params.id);
     });
   }
 
-  loadRecommendedVideos() {
+  loadRecommendedVideos(id: string) {
     this.recommendedVideos = this.videoService.getVideos();
   }
 
-  loadVideoInfo() {
-    this.video = {
-      id: '123456789',
-      title: 'Test Video',
-      description: 'test test test test test test test test test test test',
-      views: 103,
-      publishDate: new Date(),
-      owner: 'Best Videos',
-      likes: 123,
-      dislikes: 34,
-      catagory: 'Cool',
-      thumbnailUrl: '',
-      sourceUrl: 'http://localhost:3001/video/sample.mp4'
-    };
+  loadVideoInfo(id: string) {
+    this.video = this.videoService.getVideo(id);
+    // this.video = {
+    //   id: '123456789',
+    //   title: 'Test Video',
+    //   description: 'test test test test test test test test test test test',
+    //   views: 103,
+    //   publishDate: new Date(),
+    //   owner: 'Best Videos',
+    //   likes: 123,
+    //   dislikes: 34,
+    //   catagory: 'Cool',
+    //   thumbnailPath: '',
+    //   contentPath: 'http://localhost:3001/video/sample.mp4'
+    // };
   }
 
   ngOnDestroy() {

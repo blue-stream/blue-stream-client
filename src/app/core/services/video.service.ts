@@ -38,7 +38,11 @@ export class VideoService {
   }
 
   getVideos(): Observable<Video[]> {
-    return Observable.of(VIDEOS1);
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions);
+  }
+
+  getVideo(id: string): Observable<Video> {
+    return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
   getSections(): Observable<VideoSection[]> {
