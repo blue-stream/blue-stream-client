@@ -13,7 +13,8 @@ export class WatchComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private videoService: VideoService) { }
 
-  video: Observable<Video>;
+  video: Video;
+  videoSubscription: any;
   routeIdSubscription: any;
   recommendedVideos: Observable<Video[]>;
   isVideoWide: boolean = false;
@@ -30,24 +31,12 @@ export class WatchComponent implements OnInit, OnDestroy {
   }
 
   loadVideoInfo(id: string) {
-    this.video = this.videoService.getVideo(id);
-    // this.video = {
-    //   id: '123456789',
-    //   title: 'Test Video',
-    //   description: 'test test test test test test test test test test test',
-    //   views: 103,
-    //   publishDate: new Date(),
-    //   owner: 'Best Videos',
-    //   likes: 123,
-    //   dislikes: 34,
-    //   catagory: 'Cool',
-    //   thumbnailPath: '',
-    //   contentPath: 'http://localhost:3001/video/sample.mp4'
-    // };
+    this.videoSubscription = this.videoService.getVideo(id).subscribe(video => this.video = video);
   }
 
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
+    this.videoSubscription.unsubscribe();
   }
 
 }
