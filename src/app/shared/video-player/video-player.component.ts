@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Video } from '../models/video.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bs-video-player',
@@ -45,8 +44,6 @@ export class VideoPlayerComponent implements OnInit {
       .subscribe(() => {
         this.hideActions = true;
       });
-    const apiUrl = 'api/streamer/video/';
-    this.streamerUrl = environment.streamerServiceUrl + apiUrl;
   }
 
   ngOnInit() {

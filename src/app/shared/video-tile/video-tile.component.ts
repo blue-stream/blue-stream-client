@@ -12,12 +12,8 @@ export class VideoTileComponent implements OnInit {
   @Input() horizontal = false;
   @Input() description = false;
   @Input() video: Video;
-  streamerUrl: string;
 
-  constructor() {
-    const apiUrl = 'api/streamer/thumbnail/';
-    this.streamerUrl = environment.streamerServiceUrl + apiUrl;
-  }
+  constructor() {}
 
   ngOnInit() {
   }
