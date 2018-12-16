@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'popular',
+    loadChildren: './popular/popular.module#PopularModule'
+  },
+  {
     path: 'watch',
     loadChildren: './watch/watch.module#WatchModule'
   },
