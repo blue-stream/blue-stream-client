@@ -45,7 +45,11 @@ export class CommentComponent implements OnInit {
   }
 
   onDelete() {
-    this.deleteComment.emit(this.comment.id);
+    if (this.isReply) {
+      this.commentService.commentRemoved.next(this.comment.id);
+    } else {
+      this.deleteComment.emit(this.comment.id);
+    }
   }
 
   loadReplies() {

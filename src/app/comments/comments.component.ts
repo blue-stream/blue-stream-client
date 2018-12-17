@@ -26,6 +26,10 @@ export class CommentsComponent implements OnInit {
     this.commentService.commentSubmitted.subscribe((comment) => {
       this.onCommentSubmitted(comment);
     });
+
+    this.commentService.commentRemoved.subscribe((id) => {
+      this.onDeleteReply(id);
+    });
   }
 
   ngOnInit() {
@@ -33,13 +37,13 @@ export class CommentsComponent implements OnInit {
     this.loadNextRootComments();
   }
 
-  openDeleteCommentDialog(commentId: string): void {
+  openDeleteCommentDialog(commentId: string, isReply: boolean): void {
     const dialogRef = this.dialog.open(CommentDeleteDialogComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteComment(commentId);
+        this.deleteComment(commentId, isReply);
       }
     });
   }
@@ -55,13 +59,23 @@ export class CommentsComponent implements OnInit {
   }
 
   onDelete(commentId: string) {
-    this.openDeleteCommentDialog(commentId);
+    this.openDeleteCommentDialog(commentId, false);
   }
 
-  deleteComment(commentId: string) {
+  onDeleteReply(commentId: string) {
+    this.openDeleteCommentDialog(commentId, true);
+  }
+
+  deleteComment(commentId: string, isReply: boolean) {
     this.commentService.delete(commentId).subscribe(res => {
       this.comments = [];
-      this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
+
+      if (!isReply) {
+        this.loadRootComments(0, this.comments.length + this.commentsToLoad - 1);
+      } else {
+        this.loadRootComments(0, this.comments.length + this.commentsToLoad);
+      }
+
       this.loadCommentsAmount();
 
       this.translateService.get([
