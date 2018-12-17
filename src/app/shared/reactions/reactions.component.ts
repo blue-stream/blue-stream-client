@@ -3,6 +3,9 @@ import { ReactionType, ResourceType, Reaction } from '../models/reaction.model';
 import { ReactionService } from 'src/app/core/services/reaction.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-reactions',
@@ -63,6 +66,9 @@ export class ReactionsComponent implements OnInit {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
+    .catch(error => {
+      return Observable.empty();
+    })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {

@@ -15,9 +15,9 @@ const httpOptions = {
  }),
 };
 const streamerServiceUrl: string = environment.streamerServiceUrl;
-const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video';
-const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail';
-const previewApiUrl: string = streamerServiceUrl + 'api/streamer/preview';
+const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video/';
+const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail/';
+const previewApiUrl: string = streamerServiceUrl + 'api/streamer/preview/';
 
 const concatStreamerUrl = video => {
   video.contentPath = contentApiUrl.concat(video.contentPath);
