@@ -1,4 +1,4 @@
-<div id="container" [ngClass]="{'wide-video-container':isVideoWide}">
+<div id="container" *ngIf="video" [ngClass]="{'wide-video-container':isVideoWide}">
   <bs-video-player id="video-player" (toggleWideScreen)="isVideoWide = !isVideoWide" [video]="video"></bs-video-player>
   <div id="video-info">
     <bs-watch-primary-info [video]="video"></bs-watch-primary-info>

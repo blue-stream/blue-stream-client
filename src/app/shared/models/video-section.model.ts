@@ -4,5 +4,5 @@ export class VideoSection {
     title: string;
     isDismissable: boolean;
     videos?: Video[];
-    avatarUrl: string;
+    avatarUrl?: string;
 }
