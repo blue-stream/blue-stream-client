@@ -66,9 +66,6 @@ export class ReactionsComponent implements OnInit {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
-    .catch(error => {
-      return Observable.empty();
-    })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {
