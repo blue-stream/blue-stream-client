@@ -31,7 +31,6 @@ export class VideoPlayerComponent implements OnInit {
   volume: number;
   progress = 0;
   buffer = 0;
-  streamerUrl: string;
 
   constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
     this.toggleWideScreen = new EventEmitter<boolean>();

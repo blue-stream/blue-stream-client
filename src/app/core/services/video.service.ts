@@ -57,6 +57,16 @@ export class VideoService {
   }
 
   getSections(): Observable<VideoSection[]> {
-    return Observable.of(SECTIONS);
+    const popularSection: VideoSection = {
+      avatarUrl: 'https://yt3.ggpht.com/a-/AJLlDp3e4kBLYNaQLZe_25ulQcEyRHFKqF3FcIxEsA=s88-mo-c-c0xffffffff-rj-k-no',
+      isDismissable: true,
+      title: 'Popular Videos',
+      videos: [],
+    };
+
+    return this.getVideos().pipe( map( (videos: Video[]) => {
+      popularSection.videos = videos;
+      return [popularSection];
+    }) );
   }
 }
