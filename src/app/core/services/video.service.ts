@@ -48,12 +48,12 @@ export class VideoService {
 
   getVideos(): Observable<Video[]> {
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
-    pipe(map(videos => videos.map(concatStreamerUrl)));
+    pipe( map(videos => videos.map(concatStreamerUrl)) );
   }
 
   getVideo(id: string): Observable<Video> {
     return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions).
-    pipe(concatStreamerUrl);
+    pipe( map(concatStreamerUrl) );
   }
 
   getSections(): Observable<VideoSection[]> {
