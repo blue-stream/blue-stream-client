@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { map } from 'rxjs/operators';
 
 import { Video } from '../../shared/models/video.model';
 import { VIDEOS1, SECTIONS } from '../../shared/models/mock-videos';
@@ -15,6 +13,17 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
  }),
+};
+const streamerServiceUrl: string = environment.streamerServiceUrl;
+const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video';
+const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail';
+const previewApiUrl: string = streamerServiceUrl + 'api/streamer/preview';
+
+const concatStreamerUrl = video => {
+  video.contentPath = contentApiUrl.concat(video.contentPath);
+  video.thumbnailPath = thumbnailApiUrl.concat(video.thumbnailPath);
+  video.previewPath = previewApiUrl.concat(video.previewPath);
+  return video;
 };
 
 @Injectable({
@@ -38,11 +47,13 @@ export class VideoService {
   }
 
   getVideos(): Observable<Video[]> {
-    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions);
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
+    pipe(map(videos => videos.map(concatStreamerUrl)));
   }
 
   getVideo(id: string): Observable<Video> {
-    return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
+    return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions).
+    pipe(concatStreamerUrl);
   }
 
   getSections(): Observable<VideoSection[]> {
