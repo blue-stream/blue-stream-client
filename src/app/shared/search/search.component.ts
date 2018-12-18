@@ -13,7 +13,6 @@ export class SearchComponent {
 
   onType(searchString: string) {
     this.searchString = searchString;
-    console.log(this.searchString);
   }
 
   onSubmit() {

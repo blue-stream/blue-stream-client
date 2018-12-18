@@ -104,6 +104,9 @@
         "REACTIONS": {
             "LIKE": "אהבתי",
             "DISLIKE": "לא אהבתי"
+        },
+        "SEARCH": {
+            "PLACEHOLDER": "חפש"
         }
     },
     "CORE": {

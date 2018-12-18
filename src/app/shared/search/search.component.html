@@ -1,5 +1,5 @@
 <div id="search-container">
-  <input #searchBox (keyup)="onType(searchBox.value)" id="search-bar" type="search" placeholder="חפש">
+  <input #searchBox (keyup)="onType(searchBox.value)" id="search-bar" type="search" [placeholder]="'SHARED.SEARCH.PLACEHOLDER' | translate">
   <button id="submit-button" mat-icon-button (click)="onSubmit()">
     <mat-icon>search</mat-icon>
   </button>
