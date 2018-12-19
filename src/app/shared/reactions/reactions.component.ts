@@ -23,7 +23,7 @@ export class ReactionsComponent implements OnInit {
   likesAmount: number = 0;
   dislikesAmount: number = 0;
   chosenReactionType: ReactionType;
-  user = 'a@a';
+  user = 'user@domain';
 
   constructor(private reactionService: ReactionService) { }
 
