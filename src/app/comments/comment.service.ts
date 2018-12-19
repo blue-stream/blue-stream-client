@@ -23,9 +23,11 @@ export class CommentService {
   private apiUrl: string = 'api/comment';
 
   public commentSubmitted: Subject<Partial<Comment>>;
+  public commentRemoved: Subject<string>;
 
   constructor(private httpClient: HttpClient) {
-    this.commentSubmitted = new Subject<Comment>();
+    this.commentSubmitted = new Subject<Partial<Comment>>();
+    this.commentRemoved = new Subject<string>();
   }
 
   create(comment: Partial<Comment>): Observable<Comment> {
@@ -33,7 +35,7 @@ export class CommentService {
   }
 
   update(comment: Partial<Comment>): Observable<Comment> {
-    return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment.id}`, comment, httpOptions);
+    return this.httpClient.put<Comment>(`${this.serviceUrl}${this.apiUrl}/${comment.id}`, { text: comment.text, }, httpOptions);
   }
 
   delete(commentId: string): Observable<Comment> {
@@ -72,23 +74,11 @@ export class CommentService {
       },
     };
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/root`, options)
-      .map(comments => {
-        return comments.map(comment => {
-          comment.id = (comment as any)._id;
-          return comment;
-        });
-      });
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/root`, options);
   }
 
   getReplies(parent: string): Observable<Comment[]> {
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/${parent}/replies`, httpOptions)
-      .map(comments => {
-        return comments.map(comment => {
-          comment.id = (comment as any)._id;
-          return comment;
-        });
-      });
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/${parent}/replies`, httpOptions);
   }
 
   getMany(commentFilter: Partial<Comment>, startIndex: number, endIndex: number): Observable<Comment[]> {
@@ -110,12 +100,6 @@ export class CommentService {
       }
     });
 
-    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options)
-      .map(comments => {
-        return comments.map(comment => {
-          comment.id = (comment as any)._id;
-          return comment;
-        });
-      });
+    return this.httpClient.get<Comment[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
   }
 }
