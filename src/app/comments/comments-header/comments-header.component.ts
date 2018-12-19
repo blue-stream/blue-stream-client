@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CommentsHeaderComponent implements OnInit {
   @Input() commentsAmount: number;
+  @Input() resource: string;
   constructor() { }
 
   ngOnInit() {
