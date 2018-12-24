@@ -12,10 +12,20 @@ export class VideoTileComponent implements OnInit {
   @Input() horizontal = false;
   @Input() description = false;
   @Input() video: Video;
+  image: string;
 
   constructor() {}
 
   ngOnInit() {
+    this.image = this.video.thumbnailPath;
+  }
+
+  mouseEnter() {
+    this.image = this.image = this.video.previewPath;
+  }
+
+  mouseLeave() {
+    this.image = this.video.thumbnailPath;
   }
 
 }
