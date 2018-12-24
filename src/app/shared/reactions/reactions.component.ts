@@ -30,7 +30,7 @@ export class ReactionsComponent implements OnChanges {
   ngOnChanges() {
     this.likesAmount = 0;
     this.dislikesAmount = 0;
-    this.chosenReactionType = null;
+    this.chosenReactionType = undefined;
     this.loadReaction();
     this.loadReactionsAmount();
   }
