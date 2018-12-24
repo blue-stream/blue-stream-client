@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { ReactionType, ResourceType, Reaction } from '../models/reaction.model';
 import { ReactionService } from 'src/app/core/services/reaction.service';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
   templateUrl: './reactions.component.html',
   styleUrls: ['./reactions.component.scss']
 })
-export class ReactionsComponent implements OnInit {
+export class ReactionsComponent implements OnChanges {
 
   @Input() resource: string;
   @Input() resourceType: ResourceType = ResourceType.Video;
@@ -20,14 +20,17 @@ export class ReactionsComponent implements OnInit {
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
 
-  likesAmount: number = 0;
-  dislikesAmount: number = 0;
+  likesAmount: number;
+  dislikesAmount: number;
   chosenReactionType: ReactionType;
   user = 'user@domain';
 
   constructor(private reactionService: ReactionService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.likesAmount = 0;
+    this.dislikesAmount = 0;
+    this.chosenReactionType = null;
     this.loadReaction();
     this.loadReactionsAmount();
   }

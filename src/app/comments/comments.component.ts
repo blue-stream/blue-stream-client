@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Comment } from './models/comment.model';
 import { CommentService } from './comment.service';
@@ -11,10 +11,10 @@ import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-de
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnChanges {
   @Input() videoId: string;
 
-  comments: Comment[] = [];
+  comments: Comment[];
   totalCommentsAmount: number;
   commentsToLoad: number = 20;
 
@@ -32,7 +32,9 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.comments = [];
+    this.totalCommentsAmount = 0;
     this.loadCommentsAmount();
     this.loadNextRootComments();
   }
