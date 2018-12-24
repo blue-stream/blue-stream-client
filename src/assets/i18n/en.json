@@ -104,6 +104,9 @@
         "REACTIONS": {
             "LIKE": "Like",
             "DISLIKE": "Dislike"
+        },
+        "SEARCH": {
+            "PLACEHOLDER": "Search"
         }
     },
     "CORE": {
