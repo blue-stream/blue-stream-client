@@ -58,7 +58,7 @@ export class VideoService {
 
   getSections(): Observable<VideoSection[]> {
     const popularSection: VideoSection = {
-      isDismissable: true,
+      isDismissable: false,
       title: 'סרטונים פופולארים',
     };
 
