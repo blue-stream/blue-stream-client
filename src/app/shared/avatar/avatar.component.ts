@@ -9,7 +9,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 export class AvatarComponent implements OnInit {
 
   @Input() source: string;
-  @Input() size: 'x-small' | 'small' | 'medium' | 'large' = 'medium';
+  @Input() size: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' = 'medium';
   @Input() alt?: string;
 
   constructor() { }
