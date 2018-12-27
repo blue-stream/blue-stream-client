@@ -30,7 +30,7 @@ import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   imports: [
     CommonModule,
@@ -50,6 +50,7 @@ import { SearchComponent } from './search/search.component';
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
+    MatTabsModule,
     TranslateModule,
     RouterModule,
     EllipsisModule
@@ -70,6 +71,7 @@ import { SearchComponent } from './search/search.component';
     MatTooltipModule,
     MatSliderModule,
     MatMenuModule,
+    MatTabsModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
