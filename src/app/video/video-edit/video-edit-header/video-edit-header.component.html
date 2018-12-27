@@ -1,0 +1,7 @@
+<div id="video-edit-header" fxLayout="row" fxLayout.lt-md="column-reverse" fxLayoutAlign="start center"
+  fxLayoutGap="18px">
+  <a [routerLink]="['/watch',video.id]">
+    <img [src]="video.thumbnailPath" width="180" height="100">
+  </a>
+  <h3 id="video-title">{{video.title}}</h3>
+</div>

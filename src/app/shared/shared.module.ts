@@ -30,6 +30,7 @@ import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { SearchComponent } from './search/search.component';
     MatMenuModule,
     TranslateModule,
     RouterModule,
-    EllipsisModule
+    EllipsisModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatToolbarModule,
@@ -80,6 +82,7 @@ import { SearchComponent } from './search/search.component';
     TranslateModule,
     ReactionsComponent,
     SearchComponent,
+    ReactiveFormsModule
   ],
   declarations: [
     ConfirmDialogComponent,
