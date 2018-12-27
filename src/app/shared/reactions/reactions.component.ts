@@ -1,15 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { ReactionType, ResourceType, Reaction } from '../models/reaction.model';
 import { ReactionService } from 'src/app/core/services/reaction.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-reactions',
   templateUrl: './reactions.component.html',
   styleUrls: ['./reactions.component.scss']
 })
-export class ReactionsComponent implements OnInit {
+export class ReactionsComponent implements OnChanges {
 
   @Input() resource: string;
   @Input() resourceType: ResourceType = ResourceType.Video;
@@ -17,14 +20,17 @@ export class ReactionsComponent implements OnInit {
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
 
-  likesAmount: number = 0;
-  dislikesAmount: number = 0;
+  likesAmount: number;
+  dislikesAmount: number;
   chosenReactionType: ReactionType;
-  user = 'a@a';
+  user = 'user@domain';
 
   constructor(private reactionService: ReactionService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.likesAmount = 0;
+    this.dislikesAmount = 0;
+    this.chosenReactionType = undefined;
     this.loadReaction();
     this.loadReactionsAmount();
   }
@@ -63,9 +69,9 @@ export class ReactionsComponent implements OnInit {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
-      .catch(error => {
-        return Observable.empty();
-      })
+    .catch(error => {
+      return Observable.empty();
+    })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {

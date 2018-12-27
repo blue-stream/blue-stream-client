@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import fscreen from 'fscreen';
@@ -14,7 +14,7 @@ import { Video } from '../models/video.model';
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.scss']
 })
-export class VideoPlayerComponent implements OnInit {
+export class VideoPlayerComponent implements OnInit, OnChanges {
 
   private static readonly timeToHideActions = 3 * 1000;
 
@@ -29,8 +29,8 @@ export class VideoPlayerComponent implements OnInit {
   isMenuOpened: boolean = false;
   fullscreen: boolean = false;
   volume: number;
-  progress = 0;
-  buffer = 0;
+  progress;
+  buffer;
 
   constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
     this.toggleWideScreen = new EventEmitter<boolean>();
@@ -47,6 +47,14 @@ export class VideoPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.volume = this.videoPlayer.nativeElement.volume;
+  }
+
+  ngOnChanges() {
+    this.progress = 0;
+    this.buffer = 0;
+    this.previousVideoState = null;
+    this.videoPlayer.nativeElement.load();
+    this.videoPlayer.nativeElement.play();
   }
 
   toggleFullscreen() {
@@ -92,7 +100,9 @@ export class VideoPlayerComponent implements OnInit {
     const { currentTime, duration } = this.videoPlayer.nativeElement;
     this.progress = ((100 / duration) * currentTime);
     const videoPlayer = this.videoPlayer.nativeElement;
-    this.buffer = (videoPlayer.buffered.end(videoPlayer.buffered.length - 1) / videoPlayer.duration) * 100;
+    if (videoPlayer.buffered.length) {
+      this.buffer = (videoPlayer.buffered.end(videoPlayer.buffered.length - 1) / videoPlayer.duration) * 100;
+    }
   }
 
   onProgressChangeStart() {
@@ -148,7 +158,7 @@ export class VideoPlayerComponent implements OnInit {
 
   onDownloadVideo() {
     this.httpClient
-      .get(this.video.sourceUrl, { responseType: 'blob' })
+      .get(this.video.contentPath, { responseType: 'blob' })
       .subscribe(data => saveAs(data, `${this.video.title}.mp4`));
   }
 

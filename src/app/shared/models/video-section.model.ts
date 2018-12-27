@@ -3,6 +3,6 @@ import { Video } from './video.model';
 export class VideoSection {
     title: string;
     isDismissable: boolean;
-    videos: Video[];
-    avatarUrl: string;
+    videos?: Video[];
+    avatarUrl?: string;
 }

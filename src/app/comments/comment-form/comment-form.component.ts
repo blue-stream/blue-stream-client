@@ -12,8 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class CommentFormComponent implements OnInit {
 
-  @Input() user: string = 'a@a';
-  @Input() resource: string = '123456789112345678911234';
+  @Input() user: string = 'user@domain';
+  @Input() resource: string;
   @Input() parent: string;
   @Output() commentSubmitted: EventEmitter<Partial<Comment>> = new EventEmitter();
 

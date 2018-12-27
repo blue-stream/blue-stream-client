@@ -1,15 +1,22 @@
 export class Video {
-    id: string;
+    id?: string;
     title: string;
     description: string;
     views: number;
-    publishDate: Date;
-    likes: number;
-    dislikes: number;
-    catagory?: string;
     owner: string;
+    thumbnailPath: string;
+    contentPath?: string;
+    previewPath?: string;
+    originalPath?: string;
+    status?: VideoStatus;
     tags?: string[];
-    thumbnailUrl: string;
-    sourceUrl?: string;
-    published?: boolean = false;
+    published?: boolean;
+    publishDate: Date;
+}
+
+export enum VideoStatus {
+    UPLOADED = 'UPLOADED',
+    PENDING = 'PENDING',
+    FAILED = 'FAILED',
+    READY = 'READY',
 }
