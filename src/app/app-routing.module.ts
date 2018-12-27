@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: './upload/upload.module#UploadModule',
   },
   {
+    path: 'channel',
+    loadChildren: './channel/channel.module#ChannelModule',
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
   },
