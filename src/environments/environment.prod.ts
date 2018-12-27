@@ -5,6 +5,7 @@ export const environment = {
   commentServiceUrl: 'http://localhost:5003/',
   reactionServiceUrl: 'http://localhost:5004/',
   streamerServiceUrl: 'http://localhost:5005/',
+  channelServiceUrl: 'http://localhost:5006/',
   titleMinLength: 3,
   titleMaxLength: 256,
   commentMaxLength: 1000,
