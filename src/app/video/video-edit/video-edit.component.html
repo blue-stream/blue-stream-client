@@ -29,7 +29,8 @@
       </mat-form-field>
     
       <mat-card-actions align="end">
-        <button type="submit" [disabled]="!videoForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+        <button type="button" [disabled]="!videoForm.valid" (click)="publishVideo()" *ngIf="!video.published" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+        <button type="submit" [disabled]="!videoForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
       </mat-card-actions>
     </form>
   </mat-card>

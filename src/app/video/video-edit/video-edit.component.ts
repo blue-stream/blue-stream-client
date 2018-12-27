@@ -81,17 +81,29 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
   }
 
   onSubmit(event: Event) {
-    const video: Video = { ...this.videoForm.value, id: this.video.id };
-    this.publishVideo(video);
-    this.videoSaved = true;
+    this.saveVideo();
   }
 
-  publishVideo(video: Video) {
-    video.published = true;
-    this.video.published = true;
+  saveVideo() {
+    const video: Video = { ...this.videoForm.value, id: this.video.id };
     this.videoService.update(video).subscribe(updatedVideo => {
-      this.video.published = true;
+      this.videoSaved = true;
+      this.translateService.get([
+        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS',
+        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL']).subscribe(translations => {
+          this.snackBar.open(
+            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS'],
+            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL'],
+            { duration: 2000 });
+        });
+    });
+  }
 
+  publishVideo() {
+    const video: Video = { ...this.videoForm.value, id: this.video.id };
+    video.published = true;
+    this.videoService.update(video).subscribe(updatedVideo => {
+      this.videoSaved = true;
       this.translateService.get([
         'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
         'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL']).subscribe(translations => {

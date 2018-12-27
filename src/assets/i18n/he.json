@@ -27,11 +27,14 @@
             "TITLE": "כותרת",
             "DESCRIPTION": "תיאור",
             "TAGS": "תיוגים",
-            "PUBLISH": "פרסם"
+            "PUBLISH": "פרסם",
+            "SAVE": "שמור"
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "הסרטון פורסם בהצלחה",
-            "PUBLISH_SUCCESS_APPROVAL": "אישור"
+            "PUBLISH_SUCCESS_APPROVAL": "אישור",
+            "SAVE_SUCCESS": "הסרטון נשמר בהצלחה",
+            "SAVE_SUCCESS_APPROVAL": "אישור"
         },
         "UPLOAD_PROGRESS": {
             "ERROR": "אירעה שגיאה",

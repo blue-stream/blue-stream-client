@@ -27,11 +27,14 @@
             "TITLE": "Title",
             "DESCRIPTION": "Description",
             "TAGS": "Tags",
-            "PUBLISH": "Publish"
+            "PUBLISH": "Publish",
+            "SAVE": "Save"
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "Video was published successfully",
-            "PUBLISH_SUCCESS_APPROVAL": "OK"
+            "PUBLISH_SUCCESS_APPROVAL": "OK",
+            "SAVE_SUCCESS": "Video was saved successfully",
+            "SAVE_SUCCESS_APPROVAL": "OK"
         },
         "UPLOAD_PROGRESS": {
             "ERROR":"An error occurred",
