@@ -30,7 +30,7 @@ import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   imports: [
     CommonModule,
@@ -82,6 +82,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     TranslateModule,
     ReactionsComponent,
     SearchComponent,
+    SafeUrlPipe,
   ],
   declarations: [
     ConfirmDialogComponent,
