@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Component, OnInit, Input } from '@angular/core';
+import { PatternGeneratorService } from '../pattern-generator.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'bs-avatar',
@@ -12,9 +13,12 @@ export class AvatarComponent implements OnInit {
   @Input() size: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' = 'medium';
   @Input() alt?: string;
 
-  constructor() { }
+  constructor(private userService: UserService, private patternGenerator: PatternGeneratorService) { }
 
   ngOnInit() {
+    if (!this.source) {
+      this.source = this.patternGenerator.getPatternAsUri(this.userService.getUser());
+    }
   }
 
 }
