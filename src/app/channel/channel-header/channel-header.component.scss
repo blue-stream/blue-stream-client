@@ -1,9 +1,13 @@
 #container {
     display: flex;
-    justify-content: center;
-
+    justify-content: start;
     #user-profile-image {
         padding: 10px 15px;
         padding-bottom: 0px;
+    }
+    #info-container {
+        #description {
+            text-overflow: ellipsis;
+        }
     }
 }

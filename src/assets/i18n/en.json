@@ -84,6 +84,24 @@
             "ADD_PLAYLIST": "Add to playlist"
         }
     },
+    "CHANNEL": {
+        "HOME": {
+            "TAB_LABEL": "HOME"
+        },
+        "VIDEOS": {
+            "TAB_LABEL": "VIDEOS"
+        },
+        "STATS": {
+            "TITLE": "Stats",
+            "JOIN_DATE": "Joined {{date}}",
+            "TOTAL_VIEWS": "{{views}} views",
+            "VIDEOS_AMOUNT": "{{amount}} videos"
+        },
+        "ABOUT": {
+            "TAB_LABEL": "ABOUT",
+            "DESCRIPTION_TITLE": "Description"
+        }
+    },
     "SHARED": {
         "VIDEO_SECTION_LIST": {
             "VIDEO_SECTION_ITEM": {

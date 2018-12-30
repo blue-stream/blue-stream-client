@@ -1,4 +1,4 @@
-img {
-    height: 150px;
-    width: 100vw;
+#header-image {
+    height: calc((100vw - 240px) / 6.2 - 1px);
+    background-attachment: fixed;
 }

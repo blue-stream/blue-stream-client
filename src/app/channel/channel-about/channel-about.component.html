@@ -1,0 +1,13 @@
+<div id="container">
+    <div id="basic-info" *ngIf="description">
+        <div id="description">
+            <p id="title" translate>
+                CHANNEL.ABOUT.DESCRIPTION_TITLE
+            </p>
+            <p>
+                {{description}}
+            </p>
+        </div>
+    </div>
+    <bs-channel-stats id="stats"></bs-channel-stats>
+</div>

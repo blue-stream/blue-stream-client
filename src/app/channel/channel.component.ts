@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { ChannelService } from './channel.service';
 import { Channel } from './channel.model';
+import { PatternGeneratorService } from '../shared/pattern-generator.service';
 
 @Component({
   selector: 'bs-channel',
@@ -11,8 +13,9 @@ import { Channel } from './channel.model';
 export class ChannelComponent implements OnInit, OnDestroy {
   routeIdSubscription: any;
   channel: Channel;
+  headerImage: any;
 
-  constructor(private route: ActivatedRoute, private channelService: ChannelService) { }
+  constructor(private patternGenerator: PatternGeneratorService, private route: ActivatedRoute, private channelService: ChannelService) { }
 
   ngOnInit() {
     this.routeIdSubscription = this.route.params.subscribe(params => {
@@ -21,10 +24,9 @@ export class ChannelComponent implements OnInit, OnDestroy {
   }
 
   loadChannel(id: string) {
-    console.log(id);
     this.channelService.getChannel(id).subscribe(channel => {
       this.channel = channel;
-      console.log(channel);
+      this.headerImage = this.patternGenerator.getPatternAsUrl(channel.name);
     });
   }
 

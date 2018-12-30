@@ -1,10 +1,11 @@
-<img src="/assets/channel_placeholder.jpg">
+<div id="header-image" [ngStyle]="{'background-image': headerImage}"></div>
 <bs-channel-header [channel]="channel"></bs-channel-header>
 <mat-tab-group>
-    <mat-tab label="HOME"> </mat-tab>
-    <mat-tab label="VIDEOS">  </mat-tab>
-    <mat-tab label="PLAYLISTS">  </mat-tab>
-    <mat-tab label="COMMUNITY">  </mat-tab>
-    <mat-tab label="CHANNELS">  </mat-tab>
-    <mat-tab label="ABOUT">  </mat-tab>
+    <mat-tab label="{{'CHANNEL.HOME.TAB_LABEL' | translate}}">
+        <bs-channel-home></bs-channel-home>
+    </mat-tab>
+    <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}"> </mat-tab>
+    <mat-tab label="{{'CHANNEL.ABOUT.TAB_LABEL' | translate}}">
+        <bs-channel-about></bs-channel-about>
+    </mat-tab>
 </mat-tab-group>

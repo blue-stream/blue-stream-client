@@ -84,6 +84,24 @@
             "ADD_PLAYLIST": "הוסף לרשימה"
         }
     },
+    "CHANNEL": {
+        "HOME": {
+            "TAB_LABEL": "ראשי"
+        },
+        "VIDEOS": {
+            "TAB_LABEL": "סרטונים"
+        },
+        "STATS": {
+            "TITLE": "סטטיסטיקות",
+            "JOIN_DATE": " הצטרף ב {{date}}",
+            "TOTAL_VIEWS": "{{views}} צפיות",
+            "VIDEOS_AMOUNT": "{{amount}} סרטונים"
+        },
+        "ABOUT": {
+            "TAB_LABEL": "אודות",
+            "DESCRIPTION_TITLE": "תיאור"
+        }
+    },
     "SHARED": {
         "VIDEO_SECTION_LIST": {
             "VIDEO_SECTION_ITEM": {
