@@ -103,10 +103,9 @@
         }
     },
     "SHARED": {
-        "VIDEO_SECTION_LIST": {
-            "VIDEO_SECTION_ITEM": {
-                "SUBSCRIBE": "הירשם כמנוי"
-            }
+        "SUBSCRIBE-BUTTON": {
+            "SUBSCRIBE": "עקוב",
+            "UNSUBSCRIBE": "בטל עקיבה"
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} צפיות"

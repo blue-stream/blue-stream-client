@@ -5,4 +5,5 @@
         <p id="title">{{channel.name}}</p>
         <p id="description">{{channel.description}}</p>
     </div>
+    <bs-subscribe-button id="subscribe-button" color="hsl(0, 0%, 93.3%)" textColor="hsla(0, 0%, 6.7%, .6)" [channelId]="channel.id" [subscribersAmount]="20"></bs-subscribe-button>
 </div>

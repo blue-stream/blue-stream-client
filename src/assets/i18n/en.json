@@ -103,10 +103,9 @@
         }
     },
     "SHARED": {
-        "VIDEO_SECTION_LIST": {
-            "VIDEO_SECTION_ITEM": {
-                "SUBSCRIBE": "Subscribe"
-            }
+        "SUBSCRIBE-BUTTON": {
+            "SUBSCRIBE": "SUBSCRIBE",
+            "UNSUBSCRIBE": "UNSUBSCRIBE"
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} views"

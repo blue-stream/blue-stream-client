@@ -31,6 +31,8 @@ import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -83,6 +85,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     ReactionsComponent,
     SearchComponent,
     SafeUrlPipe,
+    SubscribeButtonComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -95,7 +98,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     VideoActionsComponent,
     ReactionsComponent,
     ReactionComponent,
-    SearchComponent
+    SearchComponent,
+    SubscribeButtonComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

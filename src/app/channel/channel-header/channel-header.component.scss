@@ -1,11 +1,14 @@
 #container {
+    margin: 0px 50px;
     padding-top: 10px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     #user-profile-image {
         padding: 0px 15px;
     }
     #info-container {
+        flex: 1 1 0;
+        margin: 0px 10px;
         #title {
             font-size: 1.4rem;
             font-weight: 400;
@@ -16,5 +19,8 @@
             margin-top: 0px;
             text-overflow: ellipsis;
         }
+    }
+    #subscribe-button {
+        margin: auto;
     }
 }

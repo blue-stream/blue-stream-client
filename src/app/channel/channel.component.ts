@@ -12,7 +12,7 @@ import { PatternGeneratorService } from '../shared/pattern-generator.service';
 })
 export class ChannelComponent implements OnInit, OnDestroy {
   routeIdSubscription: any;
-  channel: Channel;
+  channel: Partial<Channel> = {};
   headerImage: any;
 
   constructor(private patternGenerator: PatternGeneratorService, private route: ActivatedRoute, private channelService: ChannelService) { }

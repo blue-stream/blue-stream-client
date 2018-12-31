@@ -1,0 +1,4 @@
+<button mat-flat-button (click)="onClick()" [ngStyle]="{'background-color': color, 'color': textColor}" id="subscribe-button">
+    {{'SHARED.SUBSCRIBE-BUTTON.SUBSCRIBE' | translate}}
+  <span [ngStyle]="{'color': textColor}" id="subscribe-count">{{subscribersAmount}}</span>
+</button>

@@ -6,6 +6,8 @@
     </mat-tab>
     <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}"> </mat-tab>
     <mat-tab label="{{'CHANNEL.ABOUT.TAB_LABEL' | translate}}">
-        <bs-channel-about [description]="channel.description"></bs-channel-about>
+        <div id="about-container">
+            <bs-channel-about [description]="channel.description"></bs-channel-about>
+        </div>
     </mat-tab>
 </mat-tab-group>
