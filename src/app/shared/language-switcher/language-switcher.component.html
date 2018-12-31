@@ -1,4 +1,4 @@
-<mat-button-toggle-group (change)="switch($event)" name="fontStyle" aria-label="Font Style">
+<mat-button-toggle-group id="button-group" [value]="getLanguage()" (change)="switch($event)">
   <mat-button-toggle value="he">עברית</mat-button-toggle>
   <mat-button-toggle value="en">English</mat-button-toggle>
 </mat-button-toggle-group>

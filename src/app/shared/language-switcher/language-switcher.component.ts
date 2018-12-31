@@ -13,4 +13,8 @@ export class LanguageSwitcherComponent {
   switch(event) {
     this.translator.use(event.value);
   }
+
+  getLanguage() {
+    return this.translator.currentLang;
+  }
 }
