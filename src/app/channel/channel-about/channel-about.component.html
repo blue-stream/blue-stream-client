@@ -1,13 +1,13 @@
 <div id="container">
-    <div id="basic-info" *ngIf="description">
+    <div id="basic-info">
         <div id="description">
             <p id="title" translate>
                 CHANNEL.ABOUT.DESCRIPTION_TITLE
             </p>
             <p>
-                {{description}}
+                {{channel.description}}
             </p>
         </div>
     </div>
-    <bs-channel-stats id="stats"></bs-channel-stats>
+    <bs-channel-stats [creationDate]="channel.createdAt" [totalViews]="25535" [videosAmount]="5765" id="stats"></bs-channel-stats>
 </div>

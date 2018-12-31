@@ -93,7 +93,7 @@
         },
         "STATS": {
             "TITLE": "סטטיסטיקות",
-            "JOIN_DATE": " הצטרף ב {{date}}",
+            "JOIN_DATE": " הצטרף ב",
             "TOTAL_VIEWS": "{{views}} צפיות",
             "VIDEOS_AMOUNT": "{{amount}} סרטונים"
         },

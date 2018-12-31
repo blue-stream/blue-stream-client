@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
@@ -32,6 +33,7 @@ import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
+import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,7 @@ import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.co
     MatSnackBarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatButtonToggleModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
@@ -74,6 +77,7 @@ import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.co
     MatSliderModule,
     MatMenuModule,
     MatTabsModule,
+    MatButtonToggleModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
@@ -86,6 +90,7 @@ import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.co
     SearchComponent,
     SafeUrlPipe,
     SubscribeButtonComponent,
+    LanguageSwitcherComponent,
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -99,7 +104,8 @@ import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.co
     ReactionsComponent,
     ReactionComponent,
     SearchComponent,
-    SubscribeButtonComponent
+    SubscribeButtonComponent,
+    LanguageSwitcherComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

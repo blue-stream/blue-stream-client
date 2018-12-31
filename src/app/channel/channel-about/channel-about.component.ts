@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Channel } from '../channel.model';
 
 @Component({
   selector: 'bs-channel-about',
@@ -6,6 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./channel-about.component.scss']
 })
 export class ChannelAboutComponent {
-  @Input() description: string;
+  @Input() channel: Channel;
   constructor() { }
 }
