@@ -10,4 +10,9 @@
             <bs-channel-about [channel]="channel"></bs-channel-about>
         </div>
     </mat-tab>
+    <mat-tab *ngIf="isUserTheOwner" label="{{'CHANNEL.MANAGE.TAB_LABEL' | translate}}">
+        <div id="about-container">
+            <bs-channel-manage [channel]="channel"></bs-channel-manage>
+        </div>
+    </mat-tab>
 </mat-tab-group>

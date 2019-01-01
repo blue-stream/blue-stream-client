@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ChannelAboutComponent } from './channel-about/channel-about.component';
 import { ChannelHomeComponent } from './channel-home/channel-home.component';
 import { ChannelStatsComponent } from './channel-stats/channel-stats.component';
+import { ChannelManageComponent } from './channel-manage/channel-manage.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ChannelStatsComponent } from './channel-stats/channel-stats.component';
     SharedModule,
     ChannelRoutingModule,
   ],
-  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent],
+  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent, ChannelManageComponent],
   providers: [ChannelService],
 })
 export class ChannelModule { }

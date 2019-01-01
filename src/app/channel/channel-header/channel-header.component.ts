@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Channel } from '../channel.model';
 
 @Component({
@@ -6,11 +6,7 @@ import { Channel } from '../channel.model';
   templateUrl: './channel-header.component.html',
   styleUrls: ['./channel-header.component.scss']
 })
-export class ChannelHeaderComponent implements OnInit {
+export class ChannelHeaderComponent {
   @Input() channel: Channel;
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

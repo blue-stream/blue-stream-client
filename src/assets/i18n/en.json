@@ -100,6 +100,9 @@
         "ABOUT": {
             "TAB_LABEL": "ABOUT",
             "DESCRIPTION_TITLE": "Description"
+        },
+        "MANAGE": {
+            "TAB_LABEL": "MANAGE"
         }
     },
     "SHARED": {
