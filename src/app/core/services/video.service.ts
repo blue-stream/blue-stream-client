@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Video } from '../../shared/models/video.model';
+import { Video, VideoStatus } from '../../shared/models/video.model';
 import { VIDEOS1, SECTIONS } from '../../shared/models/mock-videos';
 import { VideoSection } from '../../shared/models/video-section.model';
 
@@ -25,6 +25,11 @@ const concatStreamerUrl = video => {
   video.previewPath = previewApiUrl.concat(video.previewPath);
   return video;
 };
+
+const checkReadyStatus = video => {
+  return video.status === VideoStatus.READY;
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +57,10 @@ export class VideoService {
 
   getVideos(): Observable<Video[]> {
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
-    pipe( map(videos => videos.map(concatStreamerUrl)) );
+    pipe(
+      map(videos => videos.map(concatStreamerUrl)),
+      map(videos => videos.filter(checkReadyStatus))
+    );
   }
 
   getVideo(id: string): Observable<Video> {
