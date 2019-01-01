@@ -9,14 +9,14 @@
         <div class="action-button-container">
             <a [routerLink]="['/video',videoId,'edit']">
                 <button mat-flat-button color="primary" [matTooltip]="'WATCH.WATCH_OWNER.EDIT' | translate">
-                    <mat-icon>edit</mat-icon>
+                    
                     <span translate>WATCH.WATCH_OWNER.EDIT</span>
                 </button>
             </a>
         </div>
         <div class="action-button-container">
             <button mat-flat-button color="warn" [matTooltip]="'WATCH.WATCH_OWNER.DELETE.ACTION' | translate" (click)="onDeleteVideo()">
-                <mat-icon>delete</mat-icon>
+                
                 <span translate>WATCH.WATCH_OWNER.DELETE.ACTION</span>
             </button>
         </div>
