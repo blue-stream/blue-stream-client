@@ -79,7 +79,14 @@
     },
     "WATCH": {
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "Published at {{date}}"
+            "PUBLISH_DATE": "Published at {{date}}",
+            "EDIT": "Edit",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
+                "ACTION": "Delete",
+                "DELETE_SUCCESS": "Video was deleted succesfully",
+                "DELETE_SUCCESS_APPROVAL": "OK"
+            }
         },
         "WATCH_PRIMARY_INFO": {
             "VIEWS": "{{views}} views",

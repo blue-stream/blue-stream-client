@@ -46,6 +46,10 @@ export class VideoService {
     return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}/${video.id}`, video, httpOptions);
   }
 
+  delete(id: string) {
+    return this.httpClient.delete<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
+  }
+
   getVideos(): Observable<Video[]> {
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
     pipe( map(videos => videos.map(concatStreamerUrl)) );

@@ -4,7 +4,21 @@
         <a id="channel-link" href="">{{owner}}</a>
         <span id="publish-date" translate [translateParams]="{date: (publishDate | date)}">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
     </div>
-    <div id="video-actions">
-
+    <span fxFlex></span>
+    <div id="actions-container" *ngIf="currentUser === userId">
+        <div class="action-button-container">
+            <a [routerLink]="['/video',videoId,'edit']">
+                <button mat-flat-button color="primary" [matTooltip]="'WATCH.WATCH_OWNER.EDIT' | translate">
+                    <mat-icon>edit</mat-icon>
+                    <span translate>WATCH.WATCH_OWNER.EDIT</span>
+                </button>
+            </a>
+        </div>
+        <div class="action-button-container">
+            <button mat-flat-button color="warn" [matTooltip]="'WATCH.WATCH_OWNER.DELETE.ACTION' | translate" (click)="onDeleteVideo()">
+                <mat-icon>delete</mat-icon>
+                <span translate>WATCH.WATCH_OWNER.DELETE.ACTION</span>
+            </button>
+        </div>
     </div>
 </div>

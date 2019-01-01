@@ -79,7 +79,14 @@
     },
     "WATCH": {
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "פורסם ב{{date}}"
+            "PUBLISH_DATE": "פורסם ב{{date}}",
+            "EDIT": "ערוך",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "אתה בטוח שברצונך למחוק את הסרטון?",
+                "ACTION": "מחק",
+                "DELETE_SUCCESS": "הסרטון נמחק בהצלחה",
+                "DELETE_SUCCESS_APPROVAL": "אישור"
+            }
         },
         "WATCH_PRIMARY_INFO": {
             "VIEWS": "{{views}} צפיות",
