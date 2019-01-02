@@ -1,0 +1,23 @@
+.info-header {
+    color: gray;
+    margin-bottom: 0px;
+    .edit-button {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        transition: transform 0.2s ease;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+            transform: rotate(-25deg);
+        }
+        &:active {
+            color:rgb(90, 90, 90);
+        }
+    }
+}
+
+.info {
+    margin-top: 7px;
+}

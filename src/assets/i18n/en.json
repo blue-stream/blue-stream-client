@@ -102,7 +102,9 @@
             "DESCRIPTION_TITLE": "Description"
         },
         "MANAGE": {
-            "TAB_LABEL": "MANAGE"
+            "TAB_LABEL": "MANAGE",
+            "CHANNEL_NAME": "Channel Name",
+            "CHANNEL_DESCRIPTION": "Channel Description"
         }
     },
     "SHARED": {

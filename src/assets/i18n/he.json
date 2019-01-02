@@ -102,7 +102,9 @@
             "DESCRIPTION_TITLE": "תיאור"
         },
         "MANAGE": {
-            "TAB_LABEL": "נהל"
+            "TAB_LABEL": "נהל",
+            "CHANNEL_NAME": "שם ערוץ",
+            "CHANNEL_DESCRIPTION": "תיאור הערוץ"
         }
     },
     "SHARED": {

@@ -1,0 +1,38 @@
+<p class="info-header">
+    {{ 'CHANNEL.MANAGE.CHANNEL_NAME' | translate}}
+    <mat-icon *ngIf="!isEditNameActive && !isEditDescriptionActive" (click)="onEditName()" class="edit-button">edit</mat-icon>
+</p>
+<p *ngIf="!isEditNameActive;else editNameTemplate" class="info">{{channel.name}}</p>
+<ng-template #editNameTemplate>
+    <form #nameForm="ngForm" (ngSubmit)="updateName()">
+        <mat-form-field appearance="fill">
+            <input matInput required minlength="2" maxlength="32" [(ngModel)]="newName" name="name">
+        </mat-form-field>
+        <button mat-icon-button (click)="cancelEditName()">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button type="submit" *ngIf="nameForm.form.valid" mat-icon-button>
+            <mat-icon>done</mat-icon>
+        </button>
+    </form>
+</ng-template>
+
+
+<p class="info-header">
+    {{ 'CHANNEL.MANAGE.CHANNEL_DESCRIPTION' | translate}}
+    <mat-icon *ngIf="!isEditDescriptionActive && !isEditNameActive" (click)="onEditDescription()" class="edit-button">edit</mat-icon>
+</p>
+<p *ngIf="!isEditDescriptionActive;else editDescriptionTemplate" class="info">{{channel.description}}</p>
+<ng-template #editDescriptionTemplate>
+    <form #descriptionForm="ngForm" (ngSubmit)="updateDescription()">
+        <mat-form-field appearance="fill">
+            <input matInput required minlength="2" maxlength="128" [(ngModel)]="newDescription" name="description">
+        </mat-form-field>
+        <button mat-icon-button (click)="cancelEditDescription()">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button type="submit" *ngIf="descriptionForm.form.valid" mat-icon-button>
+            <mat-icon>done</mat-icon>
+        </button>
+    </form>
+</ng-template>

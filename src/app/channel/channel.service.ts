@@ -27,4 +27,12 @@ export class ChannelService {
     return this.httpClient.get<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
+  updateName(id: string, name: string): Observable<Channel> {
+    return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}/name`, { name }, httpOptions);
+  }
+
+  updateDescription(id: string, description: string): Observable<Channel> {
+    return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}/description`, { description }, httpOptions);
+  }
+
 }
