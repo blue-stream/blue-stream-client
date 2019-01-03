@@ -6,6 +6,14 @@
         <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
         <input matInput formControlName="title">
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+          <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
+          <mat-select formControlName="published">
+            <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
+            <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
+          </mat-select>
+      </mat-form-field>
     
       <mat-form-field appearance="outline">
         <mat-label translate>UPLOADER.UPLOAD_FORM.DESCRIPTION</mat-label>
@@ -29,7 +37,6 @@
       </mat-form-field>
     
       <mat-card-actions align="end">
-        <button type="button" [disabled]="!videoForm.valid" (click)="publishVideo()" *ngIf="!video.published" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
         <button type="submit" [disabled]="!videoForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
       </mat-card-actions>
     </form>

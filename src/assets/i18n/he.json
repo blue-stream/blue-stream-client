@@ -28,7 +28,12 @@
             "DESCRIPTION": "תיאור",
             "TAGS": "תיוגים",
             "PUBLISH": "פרסם",
-            "SAVE": "שמור"
+            "SAVE": "שמור",
+            "VISIBILITY": {
+                "FIELD": "נראות",
+                "PUBLIC": "ציבורי",
+                "PRIVATE": "פרטי"
+            }
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "הסרטון פורסם בהצלחה",

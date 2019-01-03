@@ -22,6 +22,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
   uploadForm: FormGroup;
   separatorKeysCodes = [ENTER];
+  videoSaved = false;
 
   constructor(
     private fb: FormBuilder,
@@ -67,16 +68,29 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   }
 
   onSubmit(event: Event) {
-    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
-    this.publishVideo(video);
+    this.saveVideo();
   }
 
-  publishVideo(video: Video) {
-    video.published = true;
-    this.videoUpload.published = true;
+  saveVideo() {
+    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
     this.videoService.update(video).subscribe(updatedVideo => {
-      this.videoUpload.published = true;
+      this.videoSaved = true;
+      this.translateService.get([
+        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS',
+        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL']).subscribe(translations => {
+          this.snackBar.open(
+            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS'],
+            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL'],
+            { duration: 2000 });
+        });
+    });
+  }
 
+  publishVideo() {
+    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
+    video.published = true;
+    this.videoService.update(video).subscribe(updatedVideo => {
+      this.videoSaved = true;
       this.translateService.get([
         'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
         'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL']).subscribe(translations => {
@@ -89,17 +103,11 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   }
 
   ngOnInit() {
-    this.uploadForm = new FormGroup({
-      title: new FormControl(this.videoUpload.fileUpload.file.name),
-      description: new FormControl(''),
-      tags: new FormControl(''),
-    });
-
     this.createForm();
   }
 
   canDeactivate(): boolean {
-    return this.videoUpload.published;
+    return this.videoSaved;
   }
 
 }

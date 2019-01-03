@@ -55,6 +55,9 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
       description: this.fb.control(this.video.description,
         Validators.maxLength(environment.descriptionMaxLength)),
       tags: this.fb.array(this.video.tags),
+      published: this.fb.control(this.video.published, [
+        Validators.required
+      ]),
     });
   }
 
@@ -94,22 +97,6 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
           this.snackBar.open(
             translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS'],
             translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL'],
-            { duration: 2000 });
-        });
-    });
-  }
-
-  publishVideo() {
-    const video: Video = { ...this.videoForm.value, id: this.video.id };
-    video.published = true;
-    this.videoService.update(video).subscribe(updatedVideo => {
-      this.videoSaved = true;
-      this.translateService.get([
-        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
-        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL']).subscribe(translations => {
-          this.snackBar.open(
-            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS'],
-            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL'],
             { duration: 2000 });
         });
     });

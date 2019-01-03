@@ -28,7 +28,12 @@
             "DESCRIPTION": "Description",
             "TAGS": "Tags",
             "PUBLISH": "Publish",
-            "SAVE": "Save"
+            "SAVE": "Save",
+            "VISIBILITY": {
+                "FIELD": "Visibility",
+                "PUBLIC": "Public",
+                "PRIVATE": "Private"
+            }
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "Video was published successfully",

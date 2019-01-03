@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -48,6 +49,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatSelectModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
@@ -72,6 +74,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatSliderModule,
     MatMenuModule,
+    MatSelectModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
