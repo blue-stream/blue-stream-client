@@ -9,6 +9,7 @@ import { WatchPrimaryInfoComponent } from './watch-primary-info/watch-primary-in
 import { WatchSecondaryInfoComponent } from './watch-secondary-info/watch-secondary-info.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentsModule } from '../comments/comments.module';
+import { WatchAlertMessageComponent } from './watch-alert-message/watch-alert-message.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CommentsModule } from '../comments/comments.module';
     WatchDescriptionComponent,
     WatchOwnerComponent,
     WatchPrimaryInfoComponent,
-    WatchSecondaryInfoComponent
+    WatchSecondaryInfoComponent,
+    WatchAlertMessageComponent
   ]
 })
 export class WatchModule { }

@@ -83,6 +83,10 @@
         }
     },
     "WATCH": {
+        "WATCH_ALERT_MESSAGE": {
+            "FAILED": "הסרטון נכשל במהלך תהליך העיבוד, נסה שנית להעלות את הסרטון.",
+            "PROCESSING": "הסרטון עדיין בתהליך העיבוד."
+        },
         "WATCH_OWNER": {
             "PUBLISH_DATE": "פורסם ב{{date}}",
             "EDIT": "ערוך",

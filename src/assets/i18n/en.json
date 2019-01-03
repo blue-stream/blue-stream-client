@@ -83,6 +83,10 @@
         }
     },
     "WATCH": {
+        "WATCH_ALERT_MESSAGE": {
+            "FAILED": "This video has failed being processing, please try to upload the video again.",
+            "PROCESSING": "This video is still being processed."
+        },
         "WATCH_OWNER": {
             "PUBLISH_DATE": "Published at {{date}}",
             "EDIT": "Edit",

@@ -1,0 +1,15 @@
+#alert-message {
+    font-weight: 1000;
+    background-color: #ff9800;
+    padding: 12px;
+    color: white;
+    opacity: 0.83;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    vertical-align: bottom;
+    
+    mat-icon {
+        vertical-align: bottom;
+        padding: 0 5px;
+    }
+}

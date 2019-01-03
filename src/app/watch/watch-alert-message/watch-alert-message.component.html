@@ -1,0 +1,5 @@
+<div id="alert-message">
+    <mat-icon>warning</mat-icon>
+    <span *ngIf="status === failed" translate>WATCH.WATCH_ALERT_MESSAGE.FAILED</span>
+    <span *ngIf="!(status === failed)" translate>WATCH.WATCH_ALERT_MESSAGE.PROCESSING</span>
+</div>
