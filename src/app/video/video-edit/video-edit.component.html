@@ -6,14 +6,6 @@
         <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
         <input matInput formControlName="title">
       </mat-form-field>
-
-      <mat-form-field appearance="outline">
-          <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
-          <mat-select formControlName="published">
-            <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
-            <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
-          </mat-select>
-      </mat-form-field>
     
       <mat-form-field appearance="outline">
         <mat-label translate>UPLOADER.UPLOAD_FORM.DESCRIPTION</mat-label>
@@ -34,6 +26,14 @@
                  [matChipInputAddOnBlur]="true"
                  (matChipInputTokenEnd)="addTag($event)">
         </mat-chip-list>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" id="visibility">
+          <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
+          <mat-select formControlName="published">
+            <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
+            <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
+          </mat-select>
       </mat-form-field>
     
       <mat-card-actions align="end">
