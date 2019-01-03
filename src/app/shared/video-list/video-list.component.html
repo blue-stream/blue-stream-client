@@ -1,14 +1,14 @@
 <div>
   <div id="container">
     <div #videoList id="video-list">
-      <button mat-mini-fab id="left-button" (click)="scrollLeft()" *ngIf="mode === 'horizontal' && startIndex > 0">
+      <button mat-mini-fab id="left-button" (click)="dir.value === 'rtl' ? scrollNext() : scrollPrev()" *ngIf="mode === 'horizontal' && ((dir.value === 'rtl' && endIndex < videos.length) || (dir.value === 'ltr' && startIndex > 0))">
         <mat-icon>chevron_left</mat-icon>
       </button>
       <div id="scroll-container" [class.vertical]="mode === 'vertical'" [style.white-space]="mode === 'horizontal' ? 'nowrap' : 'normal'"
-        [style.transform]="'translateX(' + -startIndex * (videoConstants.videoTileWidth) + 'px)'">
+        [style.transform]="'translateX(' + (dir.value === 'ltr' ? -1 : 1) * startIndex * (videoConstants.videoTileWidth) + 'px)'">
         <bs-video-tile [video]="video" [horizontal]="mode === 'vertical'" [description]="description" *ngFor="let video of videos"></bs-video-tile>
       </div>
-      <button mat-mini-fab id="right-button" (click)="scrollRight()" *ngIf="mode === 'horizontal' && endIndex  < videos.length">
+      <button mat-mini-fab id="right-button" (click)="dir.value === 'rtl' ? scrollPrev() : scrollNext()" *ngIf="mode === 'horizontal' && ((dir.value === 'ltr' && endIndex  < videos.length) || (dir.value === 'rtl' && startIndex > 0))">
         <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
