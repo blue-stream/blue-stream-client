@@ -9,44 +9,10 @@ import { ChannelService } from '../channel.service';
 })
 export class ChannelManageComponent implements OnInit {
   @Input() channel: Channel;
-  isEditNameActive: boolean = false;
-  isEditDescriptionActive: boolean = false;
-  newName: string;
-  newDescription: string;
+  isEditActive: boolean = false;
 
   constructor(private channelService: ChannelService) { }
 
   ngOnInit() {
   }
-
-  onEditName() {
-    this.isEditNameActive = true;
-    this.newName = this.channel.name;
-  }
-
-  onEditDescription() {
-    this.isEditDescriptionActive = true;
-    this.newDescription = this.channel.description;
-  }
-
-  cancelEditDescription() {
-    this.isEditDescriptionActive = false;
-  }
-
-  cancelEditName() {
-    this.isEditNameActive = false;
-  }
-
-  updateDescription() {
-    this.channelService.updateDescription(this.channel.id, this.newDescription).subscribe(channel => {
-      console.log(channel);
-    });
-  }
-
-  updateName(name: string) {
-    this.channelService.updateName(this.channel.id, this.newName).subscribe(channel => {
-      console.log(channel);
-    });
-  }
-
 }

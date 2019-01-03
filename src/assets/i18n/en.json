@@ -105,6 +105,10 @@
             "TAB_LABEL": "MANAGE",
             "CHANNEL_NAME": "Channel Name",
             "CHANNEL_DESCRIPTION": "Channel Description"
+        },
+        "FORM": {
+            "NAME_INPUT": "Name",
+            "DESCRIPTION_INPUT": "Description"
         }
     },
     "SHARED": {

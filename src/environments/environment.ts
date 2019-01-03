@@ -14,6 +14,10 @@ export const environment = {
   titleMaxLength: 256,
   commentMaxLength: 1000,
   commentMinLength: 1,
+  channelNameMinLength: 2,
+  channelNameMaxLength: 32,
+  channelDescriptionMinLength: 2,
+  channelDescriptionMaxLength: 128,
   descriptionMaxLength: 5000,
 };
 

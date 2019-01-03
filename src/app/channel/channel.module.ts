@@ -10,15 +10,18 @@ import { ChannelHomeComponent } from './channel-home/channel-home.component';
 import { ChannelStatsComponent } from './channel-stats/channel-stats.component';
 import { ChannelManageComponent } from './channel-manage/channel-manage.component';
 import { FormsModule } from '@angular/forms';
+import { ChannelFormComponent } from './channel-form/channel-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ChannelRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent, ChannelManageComponent],
+  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent, ChannelManageComponent, ChannelFormComponent],
   providers: [ChannelService],
 })
 export class ChannelModule { }

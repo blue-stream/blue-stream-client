@@ -27,6 +27,10 @@ export class ChannelService {
     return this.httpClient.get<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
+  create(channel: Partial<Channel>): Observable<Channel> {
+    return this.httpClient.post<Channel>(`${this.serviceUrl}${this.apiUrl}`, channel, httpOptions);
+  }
+
   updateName(id: string, name: string): Observable<Channel> {
     return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}/name`, { name }, httpOptions);
   }

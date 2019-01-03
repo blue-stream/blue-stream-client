@@ -105,6 +105,10 @@
             "TAB_LABEL": "נהל",
             "CHANNEL_NAME": "שם ערוץ",
             "CHANNEL_DESCRIPTION": "תיאור הערוץ"
+        },
+        "FORM": {
+            "NAME_INPUT": "שם",
+            "DESCRIPTION_INPUT": "תיאור"
         }
     },
     "SHARED": {
