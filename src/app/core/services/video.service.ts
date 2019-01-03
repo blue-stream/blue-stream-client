@@ -30,6 +30,10 @@ const checkReadyStatus = video => {
   return video.status === VideoStatus.READY;
 };
 
+const checkPublished = video => {
+  return video.published === true;
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +63,8 @@ export class VideoService {
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
     pipe(
       map(videos => videos.map(concatStreamerUrl)),
-      map(videos => videos.filter(checkReadyStatus))
+      map(videos => videos.filter(checkReadyStatus)),
+      map(videos => videos.filter(checkPublished))
     );
   }
 
