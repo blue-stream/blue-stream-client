@@ -94,6 +94,7 @@
             }
         },
         "WATCH_PRIMARY_INFO": {
+            "PRIVATE_VIDEO": "Private video",
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
             "ADD_PLAYLIST": "Add to playlist"

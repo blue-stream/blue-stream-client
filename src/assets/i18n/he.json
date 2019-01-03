@@ -94,6 +94,7 @@
             }
         },
         "WATCH_PRIMARY_INFO": {
+            "PRIVATE_VIDEO": "סרטון פרטי",
             "VIEWS": "{{views}} צפיות",
             "SHARE": "שתף",
             "ADD_PLAYLIST": "הוסף לרשימה"
