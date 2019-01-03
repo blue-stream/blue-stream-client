@@ -17,6 +17,7 @@ export class WatchPrimaryInfoComponent implements OnInit {
   @Input() video: Video;
   currentReactionType: ReactionType;
   resourceType: ResourceType = ResourceType.Video;
+  currentUser = 'user@domain';
 
   constructor(
     private reactionService: ReactionService,
