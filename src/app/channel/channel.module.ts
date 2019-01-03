@@ -12,6 +12,8 @@ import { ChannelManageComponent } from './channel-manage/channel-manage.componen
 import { FormsModule } from '@angular/forms';
 import { ChannelFormComponent } from './channel-form/channel-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChannelGridComponent } from './channel-grid/channel-grid.component';
+import { ChannelGridItemComponent } from './channel-grid-item/channel-grid-item.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent, ChannelManageComponent, ChannelFormComponent],
+  declarations: [ChannelComponent, ChannelHeaderComponent, ChannelAboutComponent, ChannelHomeComponent, ChannelStatsComponent, ChannelManageComponent, ChannelFormComponent, ChannelGridComponent, ChannelGridItemComponent],
   providers: [ChannelService],
 })
 export class ChannelModule { }
