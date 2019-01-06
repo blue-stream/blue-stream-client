@@ -27,11 +27,19 @@
             "TITLE": "כותרת",
             "DESCRIPTION": "תיאור",
             "TAGS": "תיוגים",
-            "PUBLISH": "פרסם"
+            "PUBLISH": "פרסם",
+            "SAVE": "שמור",
+            "VISIBILITY": {
+                "FIELD": "נראות",
+                "PUBLIC": "ציבורי",
+                "PRIVATE": "פרטי"
+            }
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "הסרטון פורסם בהצלחה",
-            "PUBLISH_SUCCESS_APPROVAL": "אישור"
+            "PUBLISH_SUCCESS_APPROVAL": "אישור",
+            "SAVE_SUCCESS": "הסרטון נשמר בהצלחה",
+            "SAVE_SUCCESS_APPROVAL": "אישור"
         },
         "UPLOAD_PROGRESS": {
             "ERROR": "אירעה שגיאה",
@@ -79,9 +87,17 @@
             "PUBLISH_DATE": "פורסם ב{{date}}"
         },
         "WATCH_PRIMARY_INFO": {
+            "PRIVATE_VIDEO": "סרטון פרטי",
             "VIEWS": "{{views}} צפיות",
             "SHARE": "שתף",
-            "ADD_PLAYLIST": "הוסף לרשימה"
+            "ADD_PLAYLIST": "הוסף לרשימה",
+            "EDIT": "ערוך",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "אתה בטוח שברצונך למחוק את הסרטון?",
+                "ACTION": "מחק",
+                "DELETE_SUCCESS": "הסרטון נמחק בהצלחה",
+                "DELETE_SUCCESS_APPROVAL": "אישור"
+            }
         }
     },
     "SHARED": {

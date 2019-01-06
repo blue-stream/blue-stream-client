@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
@@ -30,6 +31,7 @@ import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -47,12 +49,14 @@ import { SearchComponent } from './search/search.component';
     MatSnackBarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatSelectModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
     TranslateModule,
     RouterModule,
-    EllipsisModule
+    EllipsisModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatToolbarModule,
@@ -70,6 +74,7 @@ import { SearchComponent } from './search/search.component';
     MatTooltipModule,
     MatSliderModule,
     MatMenuModule,
+    MatSelectModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
@@ -80,6 +85,7 @@ import { SearchComponent } from './search/search.component';
     TranslateModule,
     ReactionsComponent,
     SearchComponent,
+    ReactiveFormsModule
   ],
   declarations: [
     ConfirmDialogComponent,

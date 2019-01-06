@@ -14,5 +14,4 @@ export class WatchOwnerComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
