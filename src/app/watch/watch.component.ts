@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../core/services/video.service';
 import { Video, VideoStatus } from '../shared/models/video.model';
 import { Observable } from 'rxjs/Observable';
+import { ViewsService } from '../core/services/views.service';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'bs-watch',
@@ -11,7 +13,11 @@ import { Observable } from 'rxjs/Observable';
 })
 export class WatchComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private videoService: VideoService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private videoService: VideoService,
+    private viewService: ViewsService,
+  ) { }
 
   video: Video;
   videoSubscription: any;
@@ -21,9 +27,14 @@ export class WatchComponent implements OnInit, OnDestroy {
   videoReady = VideoStatus.READY;
 
   ngOnInit() {
-    this.routeIdSubscription = this.route.params.subscribe(params => {
-      this.loadRecommendedVideos(params.id);
-      this.loadVideoInfo(params.id);
+    this.routeIdSubscription = this.route.params.pipe(
+      flatMap(params => {
+        const id = params.id;
+        return this.viewService.increaseView(id).map(() => id);
+      })
+    ).subscribe((videoId: string) => {
+      this.loadRecommendedVideos(videoId);
+      this.loadVideoInfo(videoId);
     });
   }
 
