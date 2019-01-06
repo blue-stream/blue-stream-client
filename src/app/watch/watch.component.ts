@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../core/services/video.service';
-import { Video } from '../shared/models/video.model';
+import { Video, VideoStatus } from '../shared/models/video.model';
 import { Observable } from 'rxjs/Observable';
 import { ViewsService } from '../core/services/views.service';
 import { flatMap } from 'rxjs/operators';
@@ -24,6 +24,7 @@ export class WatchComponent implements OnInit, OnDestroy {
   routeIdSubscription: any;
   recommendedVideos: Observable<Video[]>;
   isVideoWide: boolean = false;
+  videoReady = VideoStatus.READY;
 
   ngOnInit() {
     this.routeIdSubscription = this.route.params.pipe(

@@ -1,6 +1,7 @@
 <div id="container" *ngIf="video" [ngClass]="{'wide-video-container':isVideoWide}">
   <bs-video-player id="video-player" (toggleWideScreen)="isVideoWide = !isVideoWide" [video]="video"></bs-video-player>
   <div id="video-info">
+    <bs-watch-alert-message [status]="video.status" *ngIf="video.status !== videoReady"></bs-watch-alert-message>
     <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
