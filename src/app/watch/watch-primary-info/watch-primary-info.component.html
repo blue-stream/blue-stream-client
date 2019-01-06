@@ -27,12 +27,7 @@
     </div>
     <div class="action-button-container" *ngIf="video.owner === currentUser">
           <button mat-icon-button [matMenuTriggerFor]="menu">
-<<<<<<< HEAD
             <mat-icon>more_horiz</mat-icon>
-=======
-            <mat-icon>edit</mat-icon>
-            <span translate>ערוך</span>
->>>>>>> 28c502ece64bf8f0f52286c715d3cf7dd8d63f44
           </button>
           <mat-menu #menu="matMenu">
             <a [routerLink]="['/video',video.id,'edit']">
