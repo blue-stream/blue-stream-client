@@ -88,7 +88,13 @@
             "PROCESSING": "This video is still being processed."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "Published at {{date}}",
+            "PUBLISH_DATE": "Published at {{date}}"
+        },
+        "WATCH_PRIMARY_INFO": {
+            "PRIVATE_VIDEO": "Private video",
+            "VIEWS": "{{views}} views",
+            "SHARE": "Share",
+            "ADD_PLAYLIST": "Add to playlist",
             "EDIT": "Edit",
             "DELETE": {
                 "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
@@ -96,11 +102,6 @@
                 "DELETE_SUCCESS": "Video was deleted succesfully",
                 "DELETE_SUCCESS_APPROVAL": "OK"
             }
-        },
-        "WATCH_PRIMARY_INFO": {
-            "VIEWS": "{{views}} views",
-            "SHARE": "Share",
-            "ADD_PLAYLIST": "Add to playlist"
         }
     },
     "SHARED": {
