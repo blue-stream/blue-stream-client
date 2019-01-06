@@ -9,7 +9,6 @@ export class WatchOwnerComponent implements OnInit {
 
   @Input() owner: string;
   @Input() publishDate: string;
-  currentUser: string = 'user@domain';
 
   constructor() { }
 
