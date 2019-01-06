@@ -10,8 +10,6 @@ import { VideoConstants } from '../../video/shared/constants';
 })
 export class VideoListComponent implements OnInit, DoCheck {
 
-  // TODO : Add RTL support (use Directionality)
-
   readonly videoConstants = VideoConstants;
   showNextButton = true;
   startIndex = 0;
@@ -34,6 +32,22 @@ export class VideoListComponent implements OnInit, DoCheck {
         this.startIndex = this.videos.length - videosPerRow;
       }
       this.endIndex = this.startIndex + videosPerRow;
+    }
+  }
+
+  clickLeft() {
+    if (this.dir.value === 'rtl') {
+      this.scrollNext();
+    } else {
+      this.scrollPrev();
+    }
+  }
+
+  clickRight() {
+    if (this.dir.value === 'rtl') {
+      this.scrollPrev();
+    } else {
+      this.scrollNext();
     }
   }
 
