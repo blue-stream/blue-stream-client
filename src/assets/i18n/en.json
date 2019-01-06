@@ -2,7 +2,9 @@
     "DASHBOARD": {
         "HOME": "Home",
         "POPULAR": "Popular",
-        "SUBSCRIPTIONS": "Subscriptions"
+        "SUBSCRIPTIONS": "Subscriptions",
+        "ALL_CHANNELS": "All Channels",
+        "USER_CHANNELS": "My Channels"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

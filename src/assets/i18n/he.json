@@ -2,7 +2,9 @@
     "DASHBOARD": {
         "HOME": "דף הבית",
         "POPULAR": "סרטונים פופולארים",
-        "SUBSCRIPTIONS": "מינויים"
+        "SUBSCRIPTIONS": "מינויים",
+        "ALL_CHANNELS": "כל הערוצים",
+        "USER_CHANNELS": "הערוצים שלי"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

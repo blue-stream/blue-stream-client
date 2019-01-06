@@ -9,6 +9,10 @@ const routes: Routes = [
     component: ChannelsComponent
   },
   {
+    path: 'user',
+    component: ChannelsComponent
+  },
+  {
     path: 'channel/:id',
     component: ChannelComponent
   }

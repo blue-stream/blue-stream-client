@@ -1,17 +1,22 @@
 #container {
-    min-width: 250px;
-    height: 200px;
-    background-color: rgb(223, 223, 223);
-    margin: 20px;
+    width: 150px;
+    height: 150px;
+    margin: 20px 30px;
     border-radius: 5px;
     #image {
-        height: 150px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        #channel-name {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 400;
+        height: 100px;
+        width: 100px;
+        border-radius: 100px;
+        margin: auto;
+        transition: 500ms;
+        &:hover {
+            transform: scale(1.05);
         }
+    }
+    #channel-name {
+        margin: 4px 0px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 400;
     }
 }
