@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ChannelService } from './channel.service';
-import { Channel } from './channel.model';
-import { PatternGeneratorService } from '../shared/pattern-generator.service';
-import { UserService } from '../shared/user.service';
+import { ChannelService } from '../channel.service';
+import { Channel } from '../channel.model';
+import { PatternGeneratorService } from '../../shared/pattern-generator.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'bs-channel',

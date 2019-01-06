@@ -27,6 +27,34 @@ export class ChannelService {
     return this.httpClient.get<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
+  getMany(
+    channelFilter: Partial<Channel>,
+    startIndex: number,
+    endIndex: number,
+    sortOrder: '' | '-' = '',
+    sortBy: 'name' | 'description' | 'user' = 'name'): Observable<Channel[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        name: channelFilter.name,
+        description: channelFilter.description,
+        user: channelFilter.user,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<Channel[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
+  }
+
   create(channel: Partial<Channel>): Observable<Channel> {
     return this.httpClient.post<Channel>(`${this.serviceUrl}${this.apiUrl}`, channel, httpOptions);
   }

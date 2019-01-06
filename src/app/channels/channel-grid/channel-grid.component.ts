@@ -7,7 +7,7 @@ import { Channel } from '../channel.model';
   styleUrls: ['./channel-grid.component.scss']
 })
 export class ChannelGridComponent implements OnInit {
-  @Input() channels: Channel[];
+  @Input() channels: Channel[] = [];
 
   constructor() { }
 

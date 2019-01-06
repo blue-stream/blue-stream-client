@@ -1,0 +1,17 @@
+#container {
+    min-width: 250px;
+    height: 200px;
+    background-color: rgb(223, 223, 223);
+    margin: 20px;
+    border-radius: 5px;
+    #image {
+        height: 150px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        #channel-name {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+        }
+    }
+}

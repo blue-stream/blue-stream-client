@@ -14,9 +14,10 @@ export class ChannelGridItemComponent implements OnInit {
   constructor(private patternGenerator: PatternGeneratorService) { }
 
   ngOnInit() {
+    this.getImage();
   }
 
-  changeImage() {
+  getImage() {
     this.image = this.patternGenerator.getPatternAsUrl(this.channel.name);
   }
 

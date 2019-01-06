@@ -16,8 +16,8 @@ const routes: Routes = [
     loadChildren: './upload/upload.module#UploadModule',
   },
   {
-    path: 'channel',
-    loadChildren: './channel/channel.module#ChannelModule',
+    path: 'channels',
+    loadChildren: './channels/channels.module#ChannelsModule',
   },
   {
     path: '',
