@@ -96,6 +96,9 @@
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS"
         },
+        "CHANNELS": {
+            "TAB_LABEL": "MY CHANNELS"
+        },
         "STATS": {
             "TITLE": "Stats",
             "JOIN_DATE": "Joined ",

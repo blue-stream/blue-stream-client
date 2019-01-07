@@ -96,6 +96,9 @@
         "VIDEOS": {
             "TAB_LABEL": "סרטונים"
         },
+        "CHANNELS": {
+            "TAB_LABEL": "הערוצים שלי"
+        },
         "STATS": {
             "TITLE": "סטטיסטיקות",
             "JOIN_DATE": " הצטרף ב",

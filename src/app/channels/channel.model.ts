@@ -5,4 +5,5 @@ export interface Channel {
     description: string;
     createdAt: Date;
     updatedAt: Date;
+    isProfile: boolean;
 }

@@ -50,6 +50,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
     this.channelService.getChannel(id).subscribe(channel => {
       this.channel = channel;
       this.loadHeaderImage();
+      this.channel.isProfile = true; /// TODO: REMOVE LATER!!!!!!!!!!!!
 
       if (this.channel.user === this.userService.getUser()) {
         this.isUserTheOwner = true;

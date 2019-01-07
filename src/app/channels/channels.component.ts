@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChannelService } from './channel.service';
 import { Channel } from './channel.model';
 import { UserService } from '../shared/user.service';
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChannelsComponent implements OnInit {
 
+  @Input() isUserChannels: boolean;
   channels: Channel[] = [];
   channelFilter: Partial<Channel> = {};
   urlSubscription: any;
@@ -23,6 +24,9 @@ export class ChannelsComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if (this.isUserChannels) {
+      this.channelFilter.user = this.userService.getUser();
+    }
     this.urlSubscription = this.route.url.subscribe(url => {
       this.changeFilter(url.pop().toString());
       this.loadChannelsAmount();
