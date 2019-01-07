@@ -5,7 +5,6 @@ import { ChannelService } from '../channel.service';
 import { MatSnackBar } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/shared/user.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
 
 @Component({
@@ -43,7 +42,6 @@ export class ChannelFormComponent implements OnInit {
 
   changeImage() {
     const channelName: string = this.channelForm.get('name').value.trim();
-    console.log(channelName);
     this.channelImage = this.patternGenerator.getPatternAsUrl(channelName);
   }
 
@@ -75,12 +73,15 @@ export class ChannelFormComponent implements OnInit {
   }
 
   updateChannel(channel: Partial<Channel>) {
-
+    this.channelService.update(this.channel.id, channel).subscribe(retChannel => {
+      this.channel = retChannel;
+      this.channelService.channelUpdated.next(retChannel);
+      this.closeForm.emit();
+    });
   }
 
   createChannel(channel: Partial<Channel>) {
     this.channelService.create(channel).subscribe(retChannel => {
-      console.log(retChannel);
       this.closeForm.emit();
     });
   }

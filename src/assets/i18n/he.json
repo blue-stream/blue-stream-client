@@ -90,6 +90,9 @@
         "HOME": {
             "TAB_LABEL": "ראשי"
         },
+        "ADD": {
+            "TITLE": "הוספת ערוץ חדש"
+        },
         "VIDEOS": {
             "TAB_LABEL": "סרטונים"
         },
@@ -110,7 +113,10 @@
         },
         "FORM": {
             "NAME_INPUT": "שם",
-            "DESCRIPTION_INPUT": "תיאור"
+            "DESCRIPTION_INPUT": "תיאור",
+            "CREATE": "צור",
+            "UPDATE": "עדכן",
+            "CANCEL": "בטל"
         }
     },
     "SHARED": {

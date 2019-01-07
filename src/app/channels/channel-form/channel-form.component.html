@@ -13,8 +13,14 @@
   </div>
 
   <div id="buttons-container">
-    <button id="submit-button" type="submit" [disabled]="!channelForm.valid" mat-raised-button color="primary">{{'COMMENTS.COMMENTS_FORM.POST'
-      | translate}}</button>
-    <button id="cancel-button" (click)="cancel()" mat-button>{{'COMMENTS.COMMENTS_FORM.CANCEL' | translate}}</button>
+    <button id="submit-button" type="submit" [disabled]="!channelForm.valid" mat-raised-button color="primary">
+      <span *ngIf="isEditForm;else createButtonTemplate">
+          {{'CHANNEL.FORM.UPDATE'| translate}}
+      </span>
+      <ng-template #createButtonTemplate>
+          {{'CHANNEL.FORM.CREATE'| translate}}
+      </ng-template>
+    </button>
+    <button id="cancel-button" (click)="cancel()" mat-button>{{'CHANNEL.FORM.CANCEL' | translate}}</button>
   </div>
 </form>

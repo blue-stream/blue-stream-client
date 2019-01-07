@@ -2,20 +2,25 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChannelComponent } from './channel/channel.component';
 import { ChannelsComponent } from './channels.component';
+import { ChannelAddComponent } from './channel-add/channel-add.component';
 
 const routes: Routes = [
   {
     path: 'all',
-    component: ChannelsComponent
+    component: ChannelsComponent,
   },
   {
     path: 'user',
-    component: ChannelsComponent
+    component: ChannelsComponent,
+  },
+  {
+    path: 'create',
+    component: ChannelAddComponent,
   },
   {
     path: 'channel/:id',
-    component: ChannelComponent
-  }
+    component: ChannelComponent,
+  },
 ];
 
 @NgModule({

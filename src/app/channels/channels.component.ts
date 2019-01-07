@@ -12,7 +12,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ChannelsComponent implements OnInit {
 
   channels: Channel[] = [];
+  channelFilter: Partial<Channel> = {};
   urlSubscription: any;
+  totalChannelsAmount: number;
+  channelsToLoad: number = 40;
 
   constructor(
     private channelService: ChannelService,
@@ -21,22 +24,41 @@ export class ChannelsComponent implements OnInit {
 
   ngOnInit() {
     this.urlSubscription = this.route.url.subscribe(url => {
-      const filter: Partial<Channel> = this.getFilter(url.pop().toString());
-      this.loadChannels(filter);
+      this.changeFilter(url.pop().toString());
+      this.loadChannelsAmount();
+      this.loadNextChannels();
     });
   }
 
-  getFilter(url: string) {
+  loadChannelsAmount() {
+    this.channelService.getAmount(this.channelFilter).subscribe(amount => {
+      this.totalChannelsAmount = amount;
+    });
+  }
+
+  changeFilter(url: string) {
     if (url === 'user') {
-      return { user: this.userService.getUser() };
+      this.channelFilter = { user: this.userService.getUser() };
     } else if (url === 'all') {
-      return {};
+      this.channelFilter = {};
     }
   }
 
-  loadChannels(channelFilter: Partial<Channel>) {
-    this.channelService.getMany(channelFilter, 0, 20).subscribe(channels => {
-      this.channels = channels;
+  onScroll() {
+    this.loadNextChannels();
+  }
+
+  loadNextChannels() {
+    this.loadChannels(
+      this.channels.length,
+      this.channelsToLoad);
+  }
+
+  loadChannels(startIndex: number, channelsToLoad: number) {
+    const endIndex: number = startIndex + channelsToLoad;
+
+    this.channelService.getMany(this.channelFilter, startIndex, endIndex).subscribe(channels => {
+      this.channels = this.channels.concat(channels);
     });
   }
 

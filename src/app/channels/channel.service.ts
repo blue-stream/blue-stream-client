@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Channel } from './channel.model';
@@ -18,7 +18,11 @@ const httpOptions = {
 @Injectable()
 export class ChannelService {
 
-  constructor(private httpClient: HttpClient) { }
+  public channelUpdated: Subject<Channel>;
+
+  constructor(private httpClient: HttpClient) {
+    this.channelUpdated = new Subject<Channel>();
+  }
 
   private serviceUrl: string = environment.channelServiceUrl;
   private apiUrl: string = 'api/channel';
@@ -55,16 +59,31 @@ export class ChannelService {
     return this.httpClient.get<Channel[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
   }
 
+  getAmount(
+    channelFilter: Partial<Channel>): Observable<number> {
+    const options = {
+      httpHeaders,
+      params: {
+        name: channelFilter.name,
+        description: channelFilter.description,
+        user: channelFilter.user,
+      },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
+  }
+
   create(channel: Partial<Channel>): Observable<Channel> {
     return this.httpClient.post<Channel>(`${this.serviceUrl}${this.apiUrl}`, channel, httpOptions);
   }
 
-  updateName(id: string, name: string): Observable<Channel> {
-    return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}/name`, { name }, httpOptions);
+  update(id: string, updateParams: Partial<Channel>): Observable<Channel> {
+    return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}`, updateParams, httpOptions);
   }
-
-  updateDescription(id: string, description: string): Observable<Channel> {
-    return this.httpClient.put<Channel>(`${this.serviceUrl}${this.apiUrl}/${id}/description`, { description }, httpOptions);
-  }
-
 }

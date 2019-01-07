@@ -20,7 +20,12 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private userService: UserService,
     private patternGenerator: PatternGeneratorService,
     private route: ActivatedRoute,
-    private channelService: ChannelService) { }
+    private channelService: ChannelService) {
+    this.channelService.channelUpdated.subscribe((channel) => {
+      this.channel = channel;
+      this.loadHeaderImage();
+    });
+  }
 
   ngOnInit() {
     this.routeIdSubscription = this.route.params.subscribe(params => {
@@ -37,10 +42,14 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  loadHeaderImage() {
+    this.headerImage = this.patternGenerator.getPatternAsUrl(this.channel.name);
+  }
+
   loadChannel(id: string) {
     this.channelService.getChannel(id).subscribe(channel => {
       this.channel = channel;
-      this.headerImage = this.patternGenerator.getPatternAsUrl(channel.name);
+      this.loadHeaderImage();
 
       if (this.channel.user === this.userService.getUser()) {
         this.isUserTheOwner = true;

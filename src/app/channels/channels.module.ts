@@ -14,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChannelGridComponent } from './channel-grid/channel-grid.component';
 import { ChannelGridItemComponent } from './channel-grid-item/channel-grid-item.component';
 import { ChannelsComponent } from './channels.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ChannelAddComponent } from './channel-add/channel-add.component';
+
 
 @NgModule({
   imports: [
@@ -21,6 +24,7 @@ import { ChannelsComponent } from './channels.component';
     SharedModule,
     ChannelsRoutingModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
   ],
   declarations: [
     ChannelComponent,
@@ -32,7 +36,8 @@ import { ChannelsComponent } from './channels.component';
     ChannelFormComponent,
     ChannelGridComponent,
     ChannelGridItemComponent,
-    ChannelsComponent
+    ChannelsComponent,
+    ChannelAddComponent
   ],
   providers: [ChannelService],
 })

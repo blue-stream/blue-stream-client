@@ -90,6 +90,9 @@
         "HOME": {
             "TAB_LABEL": "HOME"
         },
+        "ADD": {
+            "TITLE": "Add a new channel"
+        },
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS"
         },
@@ -110,7 +113,10 @@
         },
         "FORM": {
             "NAME_INPUT": "Name",
-            "DESCRIPTION_INPUT": "Description"
+            "DESCRIPTION_INPUT": "Description",
+            "CREATE": "Create",
+            "UPDATE": "Update",
+            "CANCEL": "Cancel"
         }
     },
     "SHARED": {
