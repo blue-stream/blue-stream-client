@@ -5,6 +5,7 @@ export class Video {
     views: number;
     owner: string;
     thumbnailPath: string;
+    channel?: string;
     contentPath?: string;
     previewPath?: string;
     originalPath?: string;
