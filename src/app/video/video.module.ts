@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { VideoSectionListComponent } from './video-section-list/video-section-list.component';
 import { VideoSectionItemComponent } from './video-section-list/video-section-item/video-section-item.component';
 import { VideoResponsiveViewDirective } from './shared/video-responsive-view.directive';
+import { VideoEditComponent } from './video-edit/video-edit.component';
+import { VideoEditHeaderComponent } from './video-edit/video-edit-header/video-edit-header.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { VideoResponsiveViewDirective } from './shared/video-responsive-view.dir
   declarations: [
     VideoSectionListComponent,
     VideoSectionItemComponent,
-    VideoResponsiveViewDirective
+    VideoResponsiveViewDirective,
+    VideoEditComponent,
+    VideoEditHeaderComponent
   ],
   providers: [
   ]

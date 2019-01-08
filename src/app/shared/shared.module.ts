@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -34,6 +35,7 @@ import { SearchComponent } from './search/search.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -52,13 +54,15 @@ import { LanguageSwitcherComponent } from './language-switcher/language-switcher
     MatChipsModule,
     MatTooltipModule,
     MatButtonToggleModule,
+    MatSelectModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
     MatTabsModule,
     TranslateModule,
     RouterModule,
-    EllipsisModule
+    EllipsisModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatToolbarModule,
@@ -78,6 +82,7 @@ import { LanguageSwitcherComponent } from './language-switcher/language-switcher
     MatMenuModule,
     MatTabsModule,
     MatButtonToggleModule,
+    MatSelectModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
@@ -91,6 +96,7 @@ import { LanguageSwitcherComponent } from './language-switcher/language-switcher
     SafeUrlPipe,
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
+    ReactiveFormsModule
   ],
   declarations: [
     ConfirmDialogComponent,

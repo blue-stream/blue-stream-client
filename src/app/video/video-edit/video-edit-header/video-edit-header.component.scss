@@ -1,0 +1,15 @@
+#video-edit-header {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    img {
+        border-radius: 5px;
+    }
+    #video-title {
+        margin: 0px;
+        text-overflow: ellipsis;
+        max-width: 500px;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+    }
+}

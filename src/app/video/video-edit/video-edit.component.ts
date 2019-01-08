@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
-import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
@@ -10,43 +10,59 @@ import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
 
 @Component({
-  selector: 'bs-video-upload-form',
-  templateUrl: './video-upload-form.component.html',
-  styleUrls: ['./video-upload-form.component.scss']
+  selector: 'bs-video-edit',
+  templateUrl: './video-edit.component.html',
+  styleUrls: ['./video-edit.component.scss']
 })
-export class VideoUploadFormComponent extends ComponentCanDeactivate implements OnInit {
-
-  @Input() isPublishReady: boolean;
-  @Input() videoUpload: VideoUpload;
-  @Output() videoSubmitted: EventEmitter<Video> = new EventEmitter();
-
-  uploadForm: FormGroup;
-  separatorKeysCodes = [ENTER];
-  videoSaved = false;
+export class VideoEditComponent extends ComponentCanDeactivate implements OnInit, OnDestroy {
 
   constructor(
-    private fb: FormBuilder,
+    private route: ActivatedRoute,
     private videoService: VideoService,
+    private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private translateService: TranslateService) {
-    super();
+      super();
+     }
+
+  video: Video;
+  routeIdSubscription: any;
+  videoSubscription: any;
+  videoSaved = false;
+  videoForm: FormGroup;
+  separatorKeysCodes = [ENTER];
+
+  ngOnInit() {
+    this.routeIdSubscription = this.route.params.subscribe(params => {
+      this.loadVideoInfo(params.id);
+    });
+  }
+
+  loadVideoInfo(id: string) {
+    this.videoSubscription = this.videoService.getVideo(id).subscribe(video => {
+      this.video = video;
+      this.createForm();
+    });
   }
 
   createForm() {
-    this.uploadForm = this.fb.group({
-      title: this.fb.control(this.videoUpload.fileUpload.file.name, [
+    this.videoForm = this.fb.group({
+      title: this.fb.control(this.video.title, [
         Validators.required,
         Validators.minLength(environment.titleMinLength),
         Validators.maxLength(environment.titleMaxLength)
       ]),
-      description: this.fb.control('',
+      description: this.fb.control(this.video.description,
         Validators.maxLength(environment.descriptionMaxLength)),
-      tags: this.fb.array([]),
+      tags: this.fb.array(this.video.tags),
+      published: this.fb.control(this.video.published, [
+        Validators.required
+      ]),
     });
   }
 
   removeTag(index: number): void {
-    const tags = this.uploadForm.get('tags') as FormArray;
+    const tags = this.videoForm.get('tags') as FormArray;
 
     if (index >= 0) {
       tags.removeAt(index);
@@ -58,7 +74,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
     const value = event.value;
 
     if ((value || '').trim()) {
-      const tags = this.uploadForm.get('tags') as FormArray;
+      const tags = this.videoForm.get('tags') as FormArray;
       tags.push(this.fb.control(value.trim()));
     }
 
@@ -72,7 +88,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   }
 
   saveVideo() {
-    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
+    const video: Video = { ...this.videoForm.value, id: this.video.id };
     this.videoService.update(video).subscribe(updatedVideo => {
       this.videoSaved = true;
       this.translateService.get([
@@ -86,28 +102,12 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
     });
   }
 
-  publishVideo() {
-    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
-    video.published = true;
-    this.videoService.update(video).subscribe(updatedVideo => {
-      this.videoSaved = true;
-      this.translateService.get([
-        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS',
-        'UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL']).subscribe(translations => {
-          this.snackBar.open(
-            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS'],
-            translations['UPLOADER.VIDEO_UPLOADER.PUBLISH_SUCCESS_APPROVAL'],
-            { duration: 2000 });
-        });
-    });
-  }
-
-  ngOnInit() {
-    this.createForm();
-  }
-
   canDeactivate(): boolean {
     return this.videoSaved;
   }
 
+  ngOnDestroy() {
+    this.routeIdSubscription.unsubscribe();
+    this.videoSubscription.unsubscribe();
+  }
 }

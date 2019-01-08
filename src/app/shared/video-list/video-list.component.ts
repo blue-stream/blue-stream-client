@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, DoCheck, HostListener } from '@angular/core';
+import { Directionality } from '@angular/cdk/bidi';
+import { Component, DoCheck, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Video } from '../../shared/models/video.model';
 import { VideoConstants } from '../../video/shared/constants';
 
@@ -9,8 +10,6 @@ import { VideoConstants } from '../../video/shared/constants';
 })
 export class VideoListComponent implements OnInit, DoCheck {
 
-  // TODO : Add RTL support (use Directionality)
-
   readonly videoConstants = VideoConstants;
   showNextButton = true;
   startIndex = 0;
@@ -20,7 +19,7 @@ export class VideoListComponent implements OnInit, DoCheck {
   @Input() mode: 'grid' | 'horizontal' | 'vertical';
   @ViewChild('videoList') videoList: ElementRef;
 
-  constructor() { }
+  constructor(private dir: Directionality) { }
 
   ngOnInit(): void {
     if (this.mode === 'horizontal') { this.endIndex = this.getVideosPerRow(); }
@@ -36,16 +35,32 @@ export class VideoListComponent implements OnInit, DoCheck {
     }
   }
 
-  scrollLeft() {
-    const videosPerRow = this.getVideosPerRow();
-    this.startIndex = Math.max(this.startIndex - videosPerRow, 0);
+  clickLeft() {
+    if (this.dir.value === 'rtl') {
+      this.scrollNext();
+    } else {
+      this.scrollPrev();
+    }
   }
 
-  scrollRight() {
+  clickRight() {
+    if (this.dir.value === 'rtl') {
+      this.scrollPrev();
+    } else {
+      this.scrollNext();
+    }
+  }
+
+  scrollNext() {
     const videosPerRow = this.getVideosPerRow();
     if (this.startIndex + videosPerRow < this.videos.length) {
       this.startIndex = Math.min(this.startIndex + videosPerRow, this.videos.length - videosPerRow);
     }
+  }
+
+  scrollPrev() {
+    const videosPerRow = this.getVideosPerRow();
+    this.startIndex = Math.max(this.startIndex - videosPerRow, 0);
   }
 
   private getVideosPerRow() {

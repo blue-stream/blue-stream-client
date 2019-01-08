@@ -29,11 +29,19 @@
             "TITLE": "Title",
             "DESCRIPTION": "Description",
             "TAGS": "Tags",
-            "PUBLISH": "Publish"
+            "PUBLISH": "Publish",
+            "SAVE": "Save",
+            "VISIBILITY": {
+                "FIELD": "Visibility",
+                "PUBLIC": "Public",
+                "PRIVATE": "Private"
+            }
         },
         "VIDEO_UPLOADER": {
             "PUBLISH_SUCCESS": "Video was published successfully",
-            "PUBLISH_SUCCESS_APPROVAL": "OK"
+            "PUBLISH_SUCCESS_APPROVAL": "OK",
+            "SAVE_SUCCESS": "Video was saved successfully",
+            "SAVE_SUCCESS_APPROVAL": "OK"
         },
         "UPLOAD_PROGRESS": {
             "ERROR":"An error occurred",
@@ -77,13 +85,25 @@
         }
     },
     "WATCH": {
+        "WATCH_ALERT_MESSAGE": {
+            "FAILED": "This video has failed being processing, please try to upload the video again.",
+            "PROCESSING": "This video is still being processed."
+        },
         "WATCH_OWNER": {
             "PUBLISH_DATE": "Published at {{date}}"
         },
         "WATCH_PRIMARY_INFO": {
+            "PRIVATE_VIDEO": "Private video",
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
-            "ADD_PLAYLIST": "Add to playlist"
+            "ADD_PLAYLIST": "Add to playlist",
+            "EDIT": "Edit",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
+                "ACTION": "Delete",
+                "DELETE_SUCCESS": "Video was deleted succesfully",
+                "DELETE_SUCCESS_APPROVAL": "OK"
+            }
         }
     },
     "CHANNEL": {
