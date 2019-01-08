@@ -4,7 +4,9 @@
     <mat-tab label="{{'CHANNEL.HOME.TAB_LABEL' | translate}}">
         <bs-channel-home></bs-channel-home>
     </mat-tab>
-    <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}"> </mat-tab>
+    <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}">
+        <bs-channel-videos></bs-channel-videos>
+    </mat-tab>
     <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.CHANNELS.TAB_LABEL' | translate}}">
         <bs-channel-channels [user]="channel.user"></bs-channel-channels>
     </mat-tab>

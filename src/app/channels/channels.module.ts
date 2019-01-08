@@ -17,6 +17,7 @@ import { ChannelsComponent } from './channels.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { ChannelChannelsComponent } from './channel-channels/channel-channels.component';
+import { ChannelVideosComponent } from './channel-videos/channel-videos.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ChannelChannelsComponent } from './channel-channels/channel-channels.co
     ChannelGridItemComponent,
     ChannelsComponent,
     ChannelAddComponent,
-    ChannelChannelsComponent
+    ChannelChannelsComponent,
+    ChannelVideosComponent
   ],
   providers: [ChannelService],
 })
