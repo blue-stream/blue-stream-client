@@ -1,16 +1,15 @@
 <div id="channel-info" *ngIf="!isEditActive;else editChannelInfo">
+    <button id="edit-info-button" mat-icon-button (click)="isEditActive = true">
+        <mat-icon>edit</mat-icon>
+    </button>
     <p class="info-header">
         {{ 'CHANNEL.MANAGE.CHANNEL_NAME' | translate}}
     </p>
     <p class="info">{{channel.name}}</p>
-
     <p class="info-header">
         {{ 'CHANNEL.MANAGE.CHANNEL_DESCRIPTION' | translate}}
     </p>
     <p class="info">{{channel.description}}</p>
-    <button mat-icon-button (click)="isEditActive = true">
-        <mat-icon>edit</mat-icon>
-    </button>
 </div>
 <ng-template #editChannelInfo>
     <bs-channel-form (closeForm)="isEditActive = false" [channel]="channel"></bs-channel-form>
