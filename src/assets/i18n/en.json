@@ -116,6 +116,9 @@
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS"
         },
+        "USER_VIDEOS": {
+            "TAB_LABEL": "MY UPLOADED VIDEOS"
+        },
         "CHANNELS": {
             "TAB_LABEL": "MY CHANNELS"
         },

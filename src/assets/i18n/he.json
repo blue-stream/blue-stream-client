@@ -116,6 +116,9 @@
         "VIDEOS": {
             "TAB_LABEL": "סרטונים"
         },
+        "USER_VIDEOS": {
+            "TAB_LABEL": "הסרטונים שהעלתי"
+        },
         "CHANNELS": {
             "TAB_LABEL": "הערוצים שלי"
         },
