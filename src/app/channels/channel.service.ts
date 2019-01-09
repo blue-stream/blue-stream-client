@@ -59,6 +59,38 @@ export class ChannelService {
     return this.httpClient.get<Channel[]>(`${this.serviceUrl}${this.apiUrl}/many`, options);
   }
 
+  search(
+    searchFilter: string,
+    startIndex: number,
+    endIndex: number,
+    sortOrder: '' | '-' = '',
+    sortBy: 'name' | 'description' | 'user' = 'name'): Observable<Channel[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      },
+    };
+
+    return this.httpClient.get<Channel[]>(`${this.serviceUrl}${this.apiUrl}/search`, options);
+  }
+
+  searchAmount(
+    searchFilter: string): Observable<number> {
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+      },
+    };
+
+    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/search/amount`, options);
+  }
+
   getAmount(
     channelFilter: Partial<Channel>): Observable<number> {
     const options = {
