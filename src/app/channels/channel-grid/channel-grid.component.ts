@@ -8,6 +8,7 @@ import { Channel } from '../channel.model';
 })
 export class ChannelGridComponent implements OnInit {
   @Input() channels: Channel[] = [];
+  @Input() isSelectForUpload: boolean = false;
 
   constructor() { }
 

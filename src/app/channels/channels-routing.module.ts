@@ -15,6 +15,10 @@ const routes: Routes = [
     component: ChannelsComponent,
   },
   {
+    path: 'upload',
+    component: ChannelsComponent,
+  },
+  {
     path: 'create',
     component: ChannelAddComponent,
   },

@@ -6,7 +6,7 @@ import { CanDeactivateGuard } from '../core/can-deactivate/can-deactivate.guard'
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: VideoUploaderComponent,
     canDeactivate: [CanDeactivateGuard],
   }

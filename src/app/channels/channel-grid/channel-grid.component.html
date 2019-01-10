@@ -1,5 +1,5 @@
 <div id="container">
   <div *ngFor="let channel of channels">
-    <bs-channel-grid-item [channel]="channel"></bs-channel-grid-item>
+    <bs-channel-grid-item [isUploadLink]="isSelectForUpload" [channel]="channel"></bs-channel-grid-item>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
 import { Channel } from '../channel.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'bs-channel-grid-item',
@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class ChannelGridItemComponent implements OnInit {
   @Input() channel: Channel;
+  @Input() isUploadLink: boolean = false;
+
   image: string;
 
   constructor(
+    private route: ActivatedRoute,
     private patternGenerator: PatternGeneratorService,
     private router: Router
   ) { }
@@ -23,6 +26,18 @@ export class ChannelGridItemComponent implements OnInit {
 
   getImage() {
     this.image = this.patternGenerator.getPatternAsUrl(this.channel.name);
+  }
+
+  onClick() {
+    if (this.isUploadLink) {
+      this.openUploadPage();
+    } else {
+      this.openChannel();
+    }
+  }
+
+  openUploadPage() {
+    this.router.navigate(['/upload/', this.channel.id]);
   }
 
   openChannel() {

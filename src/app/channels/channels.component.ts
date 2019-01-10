@@ -17,6 +17,7 @@ export class ChannelsComponent implements OnInit {
   @Input() isUserChannels: boolean;
   @Input() isSearch: boolean = false;
 
+  isSelectForUpload: boolean = false;
   channels: Channel[] = [];
   channelFilter: Partial<Channel> = {};
   searchFilter: string;
@@ -72,6 +73,9 @@ export class ChannelsComponent implements OnInit {
       this.channelFilter = { user: this.userService.getUser() };
     } else if (url === 'all') {
       this.channelFilter = {};
+    } else if (url === 'upload') {
+      this.channelFilter = {};
+      this.isSelectForUpload = true;
     }
   }
 
