@@ -13,6 +13,7 @@ export class SearchComponent {
 
   onType(searchString: string) {
     this.searchString = searchString;
+    this.searchService.searchTyped.next(this.searchString);
   }
 
   onSubmit() {

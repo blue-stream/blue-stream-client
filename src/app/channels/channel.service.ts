@@ -60,7 +60,7 @@ export class ChannelService {
   }
 
   search(
-    searchFilter: string,
+    searchFilter: string = '',
     startIndex: number,
     endIndex: number,
     sortOrder: '' | '-' = '',
