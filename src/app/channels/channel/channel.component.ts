@@ -30,9 +30,6 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
     this.routeIdSubscription = this.route.params.subscribe(params => {
       this.loadChannel(params.id);
-      if (this.channel.user === this.userService.getUser()) {
-        this.isUserTheOwner = true;
-      }
     });
   }
 
