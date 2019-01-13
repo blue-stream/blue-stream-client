@@ -1,26 +1,28 @@
-<div id="header-image" [ngStyle]="{'background-image': headerImage}"></div>
-<bs-channel-header [channel]="channel"></bs-channel-header>
-<mat-tab-group>
-    <mat-tab label="{{'CHANNEL.HOME.TAB_LABEL' | translate}}">
-        <bs-channel-home></bs-channel-home>
-    </mat-tab>
-    <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}">
-        <bs-channel-videos [channelFilter]="{channel: channel.id}"></bs-channel-videos>
-    </mat-tab>
-    <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.USER_VIDEOS.TAB_LABEL' | translate}}">
-        <bs-channel-videos [channelFilter]="{user: channel.user}"></bs-channel-videos>
-    </mat-tab>
-    <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.CHANNELS.TAB_LABEL' | translate}}">
-        <bs-channel-channels [user]="channel.user"></bs-channel-channels>
-    </mat-tab>
-    <mat-tab label="{{'CHANNEL.ABOUT.TAB_LABEL' | translate}}">
-        <div id="about-container">
-            <bs-channel-about [channel]="channel"></bs-channel-about>
-        </div>
-    </mat-tab>
-    <mat-tab *ngIf="isUserTheOwner" label="{{'CHANNEL.MANAGE.TAB_LABEL' | translate}}">
-        <div id="manage-container">
-            <bs-channel-manage [channel]="channel"></bs-channel-manage>
-        </div>
-    </mat-tab>
-</mat-tab-group>
+<div id="container" *ngIf="channel">
+    <div id="header-image" [ngStyle]="{'background-image': headerImage}"></div>
+    <bs-channel-header [channel]="channel"></bs-channel-header>
+    <mat-tab-group>
+        <mat-tab label="{{'CHANNEL.HOME.TAB_LABEL' | translate}}">
+            <bs-channel-home></bs-channel-home>
+        </mat-tab>
+        <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}">
+            <bs-channel-videos [channelFilter]="{channel: channel.id}"></bs-channel-videos>
+        </mat-tab>
+        <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.USER_VIDEOS.TAB_LABEL' | translate}}">
+            <bs-channel-videos [channelFilter]="{user: channel.user}"></bs-channel-videos>
+        </mat-tab>
+        <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.CHANNELS.TAB_LABEL' | translate}}">
+            <bs-channel-channels [user]="channel.user"></bs-channel-channels>
+        </mat-tab>
+        <mat-tab label="{{'CHANNEL.ABOUT.TAB_LABEL' | translate}}">
+            <div id="about-container">
+                <bs-channel-about [channel]="channel"></bs-channel-about>
+            </div>
+        </mat-tab>
+        <mat-tab *ngIf="isUserTheOwner" label="{{'CHANNEL.MANAGE.TAB_LABEL' | translate}}">
+            <div id="manage-container">
+                <bs-channel-manage [channel]="channel"></bs-channel-manage>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

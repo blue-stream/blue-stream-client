@@ -13,7 +13,7 @@ import { UserService } from '../../shared/user.service';
 })
 export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   routeIdSubscription: any;
-  channel: Partial<Channel> = {};
+  channel: Partial<Channel>;
   headerImage: any;
   isUserTheOwner: boolean = false;
 
