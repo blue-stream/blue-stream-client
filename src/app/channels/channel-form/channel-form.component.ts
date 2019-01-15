@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/shared/user.service';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'bs-channel-form',
@@ -14,7 +15,7 @@ import { PatternGeneratorService } from 'src/app/shared/pattern-generator.servic
 })
 export class ChannelFormComponent implements OnInit {
   @Input() channel: Channel;
-  @Output() closeForm: EventEmitter<void> = new EventEmitter();
+  @Output() closeForm: EventEmitter<string | void> = new EventEmitter();
 
   isEditForm: boolean = false;
   channelForm: FormGroup;
@@ -25,6 +26,7 @@ export class ChannelFormComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private channelService: ChannelService,
+    private translateService: TranslateService,
     public snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -76,13 +78,31 @@ export class ChannelFormComponent implements OnInit {
     this.channelService.update(this.channel.id, channel).subscribe(retChannel => {
       this.channel = retChannel;
       this.channelService.channelUpdated.next(retChannel);
+
+      this.translateService.get([
+        'CHANNEL.FORM.UPDATED',
+        'CHANNEL.FORM.UPDATED_APPROVE']).subscribe(translations => {
+          this.snackBar.open(
+            translations['CHANNEL.FORM.UPDATED'],
+            translations['CHANNEL.FORM.UPDATED_APPROVE'],
+            { duration: 2000 });
+        });
+
       this.closeForm.emit();
     });
   }
 
   createChannel(channel: Partial<Channel>) {
     this.channelService.create(channel).subscribe(retChannel => {
-      this.closeForm.emit();
+      this.translateService.get([
+        'CHANNEL.FORM.CREATED',
+        'CHANNEL.FORM.CREATED_APPROVE']).subscribe(translations => {
+          this.snackBar.open(
+            translations['CHANNEL.FORM.CREATED'],
+            translations['CHANNEL.FORM.CREATED_APPROVE'],
+            { duration: 2000 });
+        });
+      this.closeForm.emit(retChannel.id);
     });
   }
 

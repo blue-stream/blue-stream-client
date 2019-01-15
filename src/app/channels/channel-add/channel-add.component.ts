@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-channel-add',
@@ -8,12 +8,12 @@ import { Location } from '@angular/common';
 })
 export class ChannelAddComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onClose() {
-    this.location.back();
+  onClose(channelId: string) {
+    this.router.navigate(['/channels/channel/', channelId]);
   }
 }

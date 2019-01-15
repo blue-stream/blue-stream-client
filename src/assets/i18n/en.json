@@ -142,7 +142,11 @@
             "DESCRIPTION_INPUT": "Description",
             "CREATE": "Create",
             "UPDATE": "Update",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "UPDATED": "Channel updated successfully",
+            "UPDATED_APPROVE": "OK",
+            "CREATED": "Channel created successfully",
+            "CREATED_APPROVE": "OK"
         }
     },
     "SHARED": {

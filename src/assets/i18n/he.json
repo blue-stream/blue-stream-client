@@ -142,7 +142,11 @@
             "DESCRIPTION_INPUT": "תיאור",
             "CREATE": "צור",
             "UPDATE": "עדכן",
-            "CANCEL": "בטל"
+            "CANCEL": "בטל",
+            "UPDATED": "הערוץ עודכן בהצלחה",
+            "UPDATED_APPROVE": "אשר",
+            "CREATED": "הערוץ נוצר בהצלחה",
+            "CREATED_APPROVE": "אשר"
         }
     },
     "SHARED": {
