@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
 import { Channel } from '../channel.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-channel-grid-item',
@@ -15,7 +15,6 @@ export class ChannelGridItemComponent implements OnInit {
   image: string;
 
   constructor(
-    private route: ActivatedRoute,
     private patternGenerator: PatternGeneratorService,
     private router: Router
   ) { }
