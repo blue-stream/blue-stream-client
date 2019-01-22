@@ -12,7 +12,7 @@
             <bs-channel-videos [channelFilter]="{user: channel.user}"></bs-channel-videos>
         </mat-tab>
         <mat-tab *ngIf="isUserTheOwner && channel.isProfile" label="{{'CHANNEL.CHANNELS.TAB_LABEL' | translate}}">
-            <bs-channel-channels [user]="channel.user"></bs-channel-channels>
+            <bs-channels [isUserChannels]="true"></bs-channels>
         </mat-tab>
         <mat-tab label="{{'CHANNEL.ABOUT.TAB_LABEL' | translate}}">
             <div id="about-container">
