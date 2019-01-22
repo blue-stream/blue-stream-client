@@ -66,12 +66,12 @@ export class VideoService {
     const options = {
       httpHeaders,
       params: {
-        id: videoFilter.id,
-        title: videoFilter.title,
-        description: videoFilter.description,
-        owner: videoFilter.owner,
-        status: videoFilter.status,
-        channel: videoFilter.channel,
+        id: videoFilter ? videoFilter.id : undefined,
+        title: videoFilter ? videoFilter.title : undefined,
+        description: videoFilter ? videoFilter.description : undefined,
+        owner: videoFilter ? videoFilter.owner : undefined,
+        status: videoFilter ? videoFilter.status : undefined,
+        channel: videoFilter ? videoFilter.channel : undefined,
       },
     };
 
