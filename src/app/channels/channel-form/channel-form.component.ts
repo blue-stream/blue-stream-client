@@ -51,11 +51,13 @@ export class ChannelFormComponent implements OnInit {
     this.channelForm = this.fb.group({
       name: this.fb.control(this.channel ? this.channel.name : '', [
         Validators.minLength(environment.channelNameMinLength),
-        Validators.maxLength(environment.channelNameMaxLength)
+        Validators.maxLength(environment.channelNameMaxLength),
+        Validators.required,
       ]),
       description: this.fb.control(this.channel ? this.channel.description : '', [
         Validators.minLength(environment.channelDescriptionMinLength),
-        Validators.maxLength(environment.channelDescriptionMaxLength)
+        Validators.maxLength(environment.channelDescriptionMaxLength),
+        Validators.required,
       ]),
     });
   }
