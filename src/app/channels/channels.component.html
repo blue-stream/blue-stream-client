@@ -1,0 +1,9 @@
+<div id="container" 
+    infiniteScroll 
+    [infiniteScrollDistance]="2" 
+    [infiniteScrollThrottle]="150" 
+    (scrolled)="onScroll()"
+    [fromRoot]="true" 
+    [infiniteScrollContainer]="'#side-nav-container'">
+    <bs-channel-grid [isSelectForUpload]="isSelectForUpload" [channels]="channels"></bs-channel-grid>
+</div>

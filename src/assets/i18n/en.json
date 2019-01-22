@@ -2,7 +2,9 @@
     "DASHBOARD": {
         "HOME": "Home",
         "POPULAR": "Popular",
-        "SUBSCRIPTIONS": "Subscriptions"
+        "SUBSCRIPTIONS": "Subscriptions",
+        "ALL_CHANNELS": "All Channels",
+        "USER_CHANNELS": "My Channels"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
@@ -104,11 +106,53 @@
             }
         }
     },
+    "CHANNEL": {
+        "HOME": {
+            "TAB_LABEL": "HOME"
+        },
+        "ADD": {
+            "TITLE": "Add a new channel"
+        },
+        "VIDEOS": {
+            "TAB_LABEL": "VIDEOS"
+        },
+        "USER_VIDEOS": {
+            "TAB_LABEL": "MY UPLOADED VIDEOS"
+        },
+        "CHANNELS": {
+            "TAB_LABEL": "MY CHANNELS"
+        },
+        "STATS": {
+            "TITLE": "Stats",
+            "JOIN_DATE": "Joined ",
+            "TOTAL_VIEWS": "{{views}} views",
+            "VIDEOS_AMOUNT": "{{amount}} videos"
+        },
+        "ABOUT": {
+            "TAB_LABEL": "ABOUT",
+            "DESCRIPTION_TITLE": "Description"
+        },
+        "MANAGE": {
+            "TAB_LABEL": "MANAGE",
+            "CHANNEL_NAME": "Channel Name",
+            "CHANNEL_DESCRIPTION": "Channel Description"
+        },
+        "FORM": {
+            "NAME_INPUT": "Name",
+            "DESCRIPTION_INPUT": "Description",
+            "CREATE": "Create",
+            "UPDATE": "Update",
+            "CANCEL": "Cancel",
+            "UPDATED": "Channel updated successfully",
+            "UPDATED_APPROVE": "OK",
+            "CREATED": "Channel created successfully",
+            "CREATED_APPROVE": "OK"
+        }
+    },
     "SHARED": {
-        "VIDEO_SECTION_LIST": {
-            "VIDEO_SECTION_ITEM": {
-                "SUBSCRIBE": "Subscribe"
-            }
+        "SUBSCRIBE-BUTTON": {
+            "SUBSCRIBE": "SUBSCRIBE",
+            "UNSUBSCRIBE": "UNSUBSCRIBE"
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} views"

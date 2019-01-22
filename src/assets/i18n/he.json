@@ -2,7 +2,9 @@
     "DASHBOARD": {
         "HOME": "דף הבית",
         "POPULAR": "סרטונים פופולארים",
-        "SUBSCRIPTIONS": "מינויים"
+        "SUBSCRIPTIONS": "מינויים",
+        "ALL_CHANNELS": "כל הערוצים",
+        "USER_CHANNELS": "הערוצים שלי"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
@@ -104,11 +106,53 @@
             }
         }
     },
+    "CHANNEL": {
+        "HOME": {
+            "TAB_LABEL": "ראשי"
+        },
+        "ADD": {
+            "TITLE": "הוספת ערוץ חדש"
+        },
+        "VIDEOS": {
+            "TAB_LABEL": "סרטונים"
+        },
+        "USER_VIDEOS": {
+            "TAB_LABEL": "הסרטונים שהעלתי"
+        },
+        "CHANNELS": {
+            "TAB_LABEL": "הערוצים שלי"
+        },
+        "STATS": {
+            "TITLE": "סטטיסטיקות",
+            "JOIN_DATE": " הצטרף ב",
+            "TOTAL_VIEWS": "{{views}} צפיות",
+            "VIDEOS_AMOUNT": "{{amount}} סרטונים"
+        },
+        "ABOUT": {
+            "TAB_LABEL": "אודות",
+            "DESCRIPTION_TITLE": "תיאור"
+        },
+        "MANAGE": {
+            "TAB_LABEL": "נהל",
+            "CHANNEL_NAME": "שם ערוץ",
+            "CHANNEL_DESCRIPTION": "תיאור הערוץ"
+        },
+        "FORM": {
+            "NAME_INPUT": "שם",
+            "DESCRIPTION_INPUT": "תיאור",
+            "CREATE": "צור",
+            "UPDATE": "עדכן",
+            "CANCEL": "בטל",
+            "UPDATED": "הערוץ עודכן בהצלחה",
+            "UPDATED_APPROVE": "אשר",
+            "CREATED": "הערוץ נוצר בהצלחה",
+            "CREATED_APPROVE": "אשר"
+        }
+    },
     "SHARED": {
-        "VIDEO_SECTION_LIST": {
-            "VIDEO_SECTION_ITEM": {
-                "SUBSCRIBE": "הירשם כמנוי"
-            }
+        "SUBSCRIBE-BUTTON": {
+            "SUBSCRIBE": "עקוב",
+            "UNSUBSCRIBE": "בטל עקיבה"
         },
         "VIDEO_TILE": {
             "VIEWS": "{{views}} צפיות"

@@ -9,11 +9,14 @@ import { VideoSection } from '../../shared/models/video-section.model';
 
 import { environment } from '../../../environments/environment';
 
+const httpHeaders: HttpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+});
+
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
- }),
+  headers: httpHeaders,
 };
+
 const streamerServiceUrl: string = environment.streamerServiceUrl;
 const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video/';
 const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail/';
@@ -59,8 +62,26 @@ export class VideoService {
     return this.httpClient.delete<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
-  getVideos(): Observable<Video[]> {
-    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, httpOptions).
+  getVideos(videoFilter?: Partial<Video>): Observable<Video[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        id: videoFilter.id,
+        title: videoFilter.title,
+        description: videoFilter.description,
+        owner: videoFilter.owner,
+        status: videoFilter.status,
+        channel: videoFilter.channel,
+      },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, options).
     pipe(
       map(videos => videos.map(concatStreamerUrl)),
       map(videos => videos.filter(checkReadyStatus)),

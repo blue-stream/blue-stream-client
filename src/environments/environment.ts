@@ -9,10 +9,15 @@ export const environment = {
   commentServiceUrl: 'http://localhost:5003/',
   reactionServiceUrl: 'http://localhost:5004/',
   streamerServiceUrl: 'http://localhost:5005/',
+  channelServiceUrl: 'http://localhost:5006/',
   titleMinLength: 3,
   titleMaxLength: 256,
   commentMaxLength: 1000,
   commentMinLength: 1,
+  channelNameMinLength: 2,
+  channelNameMaxLength: 32,
+  channelDescriptionMinLength: 2,
+  channelDescriptionMaxLength: 128,
   descriptionMaxLength: 5000,
 };
 

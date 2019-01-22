@@ -39,7 +39,7 @@ export class WatchComponent implements OnInit, OnDestroy {
   }
 
   loadRecommendedVideos(id: string) {
-    this.recommendedVideos = this.videoService.getVideos();
+    this.recommendedVideos = this.videoService.getVideos({});
   }
 
   loadVideoInfo(id: string) {

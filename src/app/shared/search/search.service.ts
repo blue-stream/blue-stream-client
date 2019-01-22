@@ -7,12 +7,10 @@ import { Subject } from 'rxjs';
 export class SearchService {
 
   public searchSubmitted: Subject<string>;
+  public searchTyped: Subject<string>;
 
-  /* Put inside componenets you want to show search results (put http request there).
-    this.searchService.searchSubmitted.subscribe((searchString) => {
-      // DO STUFF
-    });
-  */
-
-  constructor() { }
+  constructor() {
+    this.searchSubmitted = new Subject<string>();
+    this.searchTyped = new Subject<string>();
+  }
 }

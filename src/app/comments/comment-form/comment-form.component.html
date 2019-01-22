@@ -1,5 +1,5 @@
 <div id="add-comment-container">
-  <bs-avatar id="user-profile-image" source="assets/user-profile-placeholder.png"></bs-avatar>
+  <bs-avatar id="user-profile-image"></bs-avatar>
   <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <mat-form-field id="comment-input">
       <input autocomplete="off" (blur)="onBlur()" (focus)="onFocus()" matInput formControlName="text" placeholder="{{'COMMENTS.COMMENTS_FORM.TEXT_INPUT' | translate}}">

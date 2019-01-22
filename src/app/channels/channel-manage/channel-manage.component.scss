@@ -1,0 +1,25 @@
+#channel-info {
+    #edit-info-button {
+        position: absolute;
+        left: 10px;
+        transition: transform 0.3s ease;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+            transform: rotate(-25deg);
+        }
+        &:active {
+            color: rgb(90, 90, 90);
+        }
+    }
+    .info-header {
+        color: gray;
+        margin-bottom: 0px;
+    }
+    
+    .info {
+        margin-top: 7px;
+    }
+}
+

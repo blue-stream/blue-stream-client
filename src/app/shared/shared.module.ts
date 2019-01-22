@@ -16,6 +16,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { VideoTileComponent } from './video-tile/video-tile.component';
@@ -31,6 +32,9 @@ import { ReactionsComponent } from './reactions/reactions.component';
 import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
+import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -49,10 +53,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatButtonToggleModule,
     MatSelectModule,
     FlexLayoutModule,
     MatSliderModule,
     MatMenuModule,
+    MatTabsModule,
     TranslateModule,
     RouterModule,
     EllipsisModule,
@@ -74,6 +80,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatSliderModule,
     MatMenuModule,
+    MatTabsModule,
+    MatButtonToggleModule,
     MatSelectModule,
     FlexLayoutModule,
     RouterModule,
@@ -85,6 +93,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     ReactionsComponent,
     SearchComponent,
+    SafeUrlPipe,
+    SubscribeButtonComponent,
+    LanguageSwitcherComponent,
     ReactiveFormsModule
   ],
   declarations: [
@@ -98,7 +109,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     VideoActionsComponent,
     ReactionsComponent,
     ReactionComponent,
-    SearchComponent
+    SearchComponent,
+    SubscribeButtonComponent,
+    LanguageSwitcherComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
