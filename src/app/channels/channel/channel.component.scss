@@ -1,6 +1,7 @@
 #header-image {
     height: calc((100vw - 240px) / 6.2 - 1px);
     background-attachment: fixed;
+    min-height: 100px;
 }
 #about-container {
     margin: 0px 15px;
