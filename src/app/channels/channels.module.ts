@@ -16,7 +16,6 @@ import { ChannelGridItemComponent } from './channel-grid-item/channel-grid-item.
 import { ChannelsComponent } from './channels.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
-import { ChannelChannelsComponent } from './channel-channels/channel-channels.component';
 import { ChannelVideosComponent } from './channel-videos/channel-videos.component';
 import { ChannelSearchComponent } from './channel-search/channel-search.component';
 
@@ -41,7 +40,6 @@ import { ChannelSearchComponent } from './channel-search/channel-search.componen
     ChannelGridItemComponent,
     ChannelsComponent,
     ChannelAddComponent,
-    ChannelChannelsComponent,
     ChannelVideosComponent,
     ChannelSearchComponent
   ],
