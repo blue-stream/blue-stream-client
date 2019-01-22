@@ -14,6 +14,6 @@ export class ChannelAddComponent implements OnInit {
   }
 
   onClose(channelId: string) {
-    this.router.navigate(['/channels/channel/', channelId]);
+    this.router.navigate(['/channels/', channelId]);
   }
 }
