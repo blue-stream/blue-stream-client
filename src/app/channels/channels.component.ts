@@ -41,7 +41,13 @@ export class ChannelsComponent implements OnInit {
       }
 
       this.urlSubscription = this.route.url.subscribe(url => {
-        this.changeFilter(url.pop().toString());
+        const urlString = url.pop();
+        if (urlString) {
+          this.changeFilter(urlString.toString());
+        } else {
+          this.changeFilter('');
+        }
+
         this.loadChannelsAmount();
         this.loadNextChannels();
       });
@@ -71,11 +77,11 @@ export class ChannelsComponent implements OnInit {
   changeFilter(url: string) {
     if (url === 'user') {
       this.channelFilter = { user: this.userService.getUser() };
-    } else if (url === 'all') {
-      this.channelFilter = {};
     } else if (url === 'upload') {
       this.channelFilter = {};
       this.isSelectForUpload = true;
+    } else if (url === '') {
+      this.channelFilter = {};
     }
   }
 

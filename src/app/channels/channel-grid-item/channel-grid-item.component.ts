@@ -40,7 +40,7 @@ export class ChannelGridItemComponent implements OnInit {
   }
 
   openChannel() {
-    this.router.navigate(['/channels/channel/', this.channel.id]);
+    this.router.navigate(['/channels/', this.channel.id]);
   }
 
 }
