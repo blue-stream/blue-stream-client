@@ -15,7 +15,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   routeIdSubscription: any;
   channel: Partial<Channel>;
   headerImage: any;
-  isUserTheOwner: boolean = false;
+  isUserOwner: boolean = false;
 
   constructor(private userService: UserService,
     private patternGenerator: PatternGeneratorService,
@@ -35,7 +35,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.channel.user === this.userService.getUser()) {
-      this.isUserTheOwner = true;
+      this.isUserOwner = true;
     }
   }
 
@@ -49,7 +49,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
       this.loadHeaderImage();
 
       if (this.channel.user === this.userService.getUser()) {
-        this.isUserTheOwner = true;
+        this.isUserOwner = true;
       }
     });
   }
