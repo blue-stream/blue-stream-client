@@ -19,6 +19,7 @@ export class ReactionsComponent implements OnChanges {
   @Input() showAmounts: boolean = true;
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
+  @Input() reactions;
 
   likesAmount: number;
   dislikesAmount: number;
@@ -69,9 +70,9 @@ export class ReactionsComponent implements OnChanges {
 
   loadReaction() {
     this.reactionService.getOne({ user: this.user, resource: this.resource } as Reaction)
-    .catch(error => {
-      return Observable.empty();
-    })
+      .catch(error => {
+        return Observable.empty();
+      })
       .subscribe(
         returnedReaction => {
           if (returnedReaction) {

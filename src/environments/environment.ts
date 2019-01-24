@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  videoServiceUrl: 'http://localhost:5001/',
+  videoServiceUrl: 'http://localhost:3000/',
   uploadServiceUrl: 'http://localhost:5002/',
-  commentServiceUrl: 'http://localhost:5003/',
-  reactionServiceUrl: 'http://localhost:5004/',
+  commentServiceUrl: 'http://localhost:3000/',
+  reactionServiceUrl: 'http://localhost:3000/',
   streamerServiceUrl: 'http://localhost:5005/',
-  channelServiceUrl: 'http://localhost:5006/',
+  channelServiceUrl: 'http://localhost:3000/',
   titleMinLength: 3,
   titleMaxLength: 256,
   commentMaxLength: 1000,
