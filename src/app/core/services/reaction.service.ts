@@ -14,8 +14,10 @@ const httpOptions = {
 };
 
 interface TypeAmount {
-  type: string;
-  amount: number;
+  resource: string;
+  types: {
+    [id: string]: number
+  };
 }
 
 @Injectable({
@@ -55,12 +57,11 @@ export class ReactionService {
     return this.httpClient.get<TypeAmount[]>(`${this.serviceUrl}${this.apiUrl}/${resource}/amounts`, httpOptions);
   }
 
-  update(resource: string, user: string, type: ReactionType): Observable<Reaction> {
+  update(resource: string, type: ReactionType): Observable<Reaction> {
     const options = {
       httpHeaders,
       params: {
         resource,
-        user,
       },
     };
     const body = { type };
@@ -68,12 +69,11 @@ export class ReactionService {
     return this.httpClient.put<Reaction>(`${this.serviceUrl}${this.apiUrl}`, body, options);
   }
 
-  delete(resource: string, user: string): Observable<Reaction> {
+  delete(resource: string): Observable<Reaction> {
     const options = {
       httpHeaders,
       params: {
         resource,
-        user,
       },
     };
     return this.httpClient.delete<Reaction>(`${this.serviceUrl}${this.apiUrl}`, options);

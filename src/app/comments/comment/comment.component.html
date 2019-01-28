@@ -2,7 +2,7 @@
   <div id="info-container">
     <bs-avatar id="user-profile-image"></bs-avatar>
     <div id="comment-info">
-      <a id="user-link" href="">{{comment.user}}</a>
+      <a id="user-link" href="">{{comment.user.firstName || comment.user}}</a>
       <span id="date">{{timeAgo}}</span>
       <p id="comment-text">{{comment.text}}</p>
     </div>

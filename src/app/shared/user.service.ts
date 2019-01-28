@@ -7,6 +7,6 @@ export class UserService {
   constructor() { }
 
   getUser() {
-    return 'a@a';
+    return 'user@domain';
   }
 }

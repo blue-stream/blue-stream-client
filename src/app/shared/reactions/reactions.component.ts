@@ -6,6 +6,7 @@ import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'bs-reactions',
@@ -19,21 +20,35 @@ export class ReactionsComponent implements OnChanges {
   @Input() showAmounts: boolean = true;
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
-  @Input() reactions;
+  @Input() reactions: { [id: string]: number };
+  @Input() reaction: string;
 
   likesAmount: number;
   dislikesAmount: number;
   chosenReactionType: ReactionType;
-  user = 'user@domain';
+  user: string;
 
-  constructor(private reactionService: ReactionService) { }
+  constructor(private reactionService: ReactionService, userService: UserService) {
+    this.user = userService.getUser();
+  }
 
   ngOnChanges() {
     this.likesAmount = 0;
     this.dislikesAmount = 0;
     this.chosenReactionType = undefined;
-    this.loadReaction();
-    this.loadReactionsAmount();
+
+    if (!this.reaction) {
+      this.loadReaction();
+    } else {
+      this.chosenReactionType = this.reaction as ReactionType;
+    }
+
+    if (!this.reactions) {
+      this.loadReactionsAmount();
+    } else {
+      this.likesAmount = this.reactions.LIKE || 0;
+      this.dislikesAmount = this.reactions.DISLIKE || 0;
+    }
   }
 
   like() {
@@ -58,13 +73,12 @@ export class ReactionsComponent implements OnChanges {
 
   loadReactionsAmount() {
     this.reactionService.getAmountOfTypes(this.resource).subscribe(returnedAmounts => {
-      returnedAmounts.forEach(typeAmount => {
-        if (typeAmount.type === ReactionType.Like) {
-          this.likesAmount = typeAmount.amount;
-        } else {
-          this.dislikesAmount = typeAmount.amount;
-        }
-      });
+      const typeAmounts = returnedAmounts[0];
+
+      if (typeAmounts) {
+        this.likesAmount = typeAmounts.types.LIKE || 0;
+        this.dislikesAmount = typeAmounts.types.DISLIKE || 0;
+      }
     });
   }
 
@@ -117,7 +131,7 @@ export class ReactionsComponent implements OnChanges {
 
     if (this.chosenReactionType === reactionType) {
       reactionType = undefined;
-      this.reactionService.delete(this.resource, this.user).subscribe(returnedReaction => {
+      this.reactionService.delete(this.resource).subscribe(returnedReaction => {
         this.updateAmountsLocally(this.chosenReactionType, this.chosenReactionType);
         this.chosenReactionType = reactionType;
       });
@@ -137,7 +151,7 @@ export class ReactionsComponent implements OnChanges {
       });
 
     } else {
-      this.reactionService.update(this.resource, this.user, reactionType).subscribe(returnedReaction => {
+      this.reactionService.update(this.resource, reactionType).subscribe(returnedReaction => {
         this.updateAmountsLocally(this.chosenReactionType, reactionType);
         this.chosenReactionType = reactionType;
       });
