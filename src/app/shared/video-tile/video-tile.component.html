@@ -6,7 +6,7 @@
     <div id="video-details" [ngClass]="{'horizontal':horizontal}">
       <a id="video-title" [routerLink]="['/watch', video.id]" ellipsis>{{video.title}}</a>
       <div [fxLayout]="description ? 'row wrap' : 'column'">
-          <a id="video-owner" [routerLink]="['/watch', video.id]">{{video.owner.firstName || video.owner}}</a>
+          <a id="video-channel" [routerLink]="['/watch', video.id]">{{video.channel.name || video.channel}}</a>
           <div id="seperator" *ngIf="description"><span></span></div>
           <div id="video-statistics">
             <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>

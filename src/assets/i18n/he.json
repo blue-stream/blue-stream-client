@@ -147,6 +147,9 @@
             "UPDATED_APPROVE": "אשר",
             "CREATED": "הערוץ נוצר בהצלחה",
             "CREATED_APPROVE": "אשר"
+        },
+        "GRID_ITEM": {
+            "VIEWS": "כמות צפיות"
         }
     },
     "SHARED": {
