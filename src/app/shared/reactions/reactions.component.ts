@@ -73,11 +73,9 @@ export class ReactionsComponent implements OnChanges {
 
   loadReactionsAmount() {
     this.reactionService.getAmountOfTypes(this.resource).subscribe(returnedAmounts => {
-      const typeAmounts = returnedAmounts[0];
-
-      if (typeAmounts) {
-        this.likesAmount = typeAmounts.types.LIKE || 0;
-        this.dislikesAmount = typeAmounts.types.DISLIKE || 0;
+      if (returnedAmounts) {
+        this.likesAmount = returnedAmounts.types.LIKE || 0;
+        this.dislikesAmount = returnedAmounts.types.DISLIKE || 0;
       }
     });
   }
