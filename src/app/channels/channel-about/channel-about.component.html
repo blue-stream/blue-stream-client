@@ -9,5 +9,5 @@
             </p>
         </div>
     </div>
-    <bs-channel-stats [creationDate]="channel.createdAt" [totalViews]="25535" [videosAmount]="5765" id="stats"></bs-channel-stats>
+    <bs-channel-stats [creationDate]="channel.createdAt" [totalViews]="channel.views || 0" [videosAmount]="5765" id="stats"></bs-channel-stats>
 </div>

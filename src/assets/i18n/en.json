@@ -147,6 +147,9 @@
             "UPDATED_APPROVE": "OK",
             "CREATED": "Channel created successfully",
             "CREATED_APPROVE": "OK"
+        },
+        "GRID_ITEM": {
+            "VIEWS": "total views"
         }
     },
     "SHARED": {
