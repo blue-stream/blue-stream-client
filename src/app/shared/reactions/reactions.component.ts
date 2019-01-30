@@ -20,7 +20,7 @@ export class ReactionsComponent implements OnChanges {
   @Input() showAmounts: boolean = true;
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
-  @Input() reactions: { [id: string]: number };
+  @Input() reactions: { [id in ReactionType]: number };
   @Input() userReaction: ReactionType | null;
 
   likesAmount: number;
