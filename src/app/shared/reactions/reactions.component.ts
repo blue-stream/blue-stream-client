@@ -21,7 +21,7 @@ export class ReactionsComponent implements OnChanges {
   @Input() showBar: boolean = true;
   @Input() smallIcons: boolean = false;
   @Input() reactions: { [id: string]: number };
-  @Input() reaction: string;
+  @Input() userReaction: ReactionType | null;
 
   likesAmount: number;
   dislikesAmount: number;
@@ -37,10 +37,10 @@ export class ReactionsComponent implements OnChanges {
     this.dislikesAmount = 0;
     this.chosenReactionType = undefined;
 
-    if (!this.reaction) {
+    if (!this.userReaction) {
       this.loadReaction();
     } else {
-      this.chosenReactionType = this.reaction as ReactionType;
+      this.chosenReactionType = this.userReaction;
     }
 
     if (!this.reactions) {
