@@ -26,6 +26,11 @@ export class FileUploaderService {
     this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
   }
 
+  public markVideoAsPublished(id: string) {
+    const videoIndex = this.files.findIndex((videoUpload) => videoUpload.id === id);
+    this.files[videoIndex].published = true;
+  }
+
   public areVideosPublished(): boolean {
     let areVideosPublished: boolean = true;
 
