@@ -7,16 +7,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class CanDeactivateGuard implements CanDeactivate<ComponentCanDeactivate> {
     constructor(private translateService: TranslateService) { }
 
+    // Translation service was not added here because of problems caused by it's async features (Can't get translation sync way)
     canDeactivate(component: ComponentCanDeactivate): boolean {
         if (!component.canDeactivate()) {
-            this.translateService.get('CORE.CAN_DEACTIVATE_GUARD.CONFIRM_MESSAGE')
-                .subscribe(translation => {
-                    if (confirm(translation)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
+            if (confirm('You have unsaved changes, are you sure you want to leave?')) {
+                return true;
+            } else {
+                return false;
+            }
         }
         return true;
     }
