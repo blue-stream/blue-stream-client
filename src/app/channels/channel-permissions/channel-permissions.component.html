@@ -1,0 +1,10 @@
+<h3>Permissions</h3>
+<mat-list>
+  <mat-list-item class="user-permissions" *ngFor="let userPermissions of permittedUsers">
+    <p class="flex-item">{{userPermissions.user.name}} </p>
+    <mat-chip-list class="flex-item">
+      <mat-chip *ngFor="let permission of userPermissions.permissions">{{permission}}</mat-chip>
+    </mat-chip-list>
+    <p *ngIf="channel.user === userPermissions.user.id">Owner</p>
+  </mat-list-item>
+</mat-list>
