@@ -10,6 +10,8 @@ export const environment = {
   reactionServiceUrl: 'http://localhost:7003/',
   streamerServiceUrl: 'http://localhost:5005/',
   channelServiceUrl: 'http://localhost:7001/',
+  authenticationServiceUrl: 'http://localhost:5010/',
+  authenticationToken: 'bs-token',
   titleMinLength: 3,
   titleMaxLength: 256,
   commentMaxLength: 1000,
