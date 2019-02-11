@@ -19,6 +19,7 @@ import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { ChannelVideosComponent } from './channel-videos/channel-videos.component';
 import { ChannelSearchComponent } from './channel-search/channel-search.component';
 import { ChannelPermissionsComponent } from './channel-permissions/channel-permissions.component';
+import { ChannelPermissionsFormComponent } from './channel-permissions-form/channel-permissions-form.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ChannelPermissionsComponent } from './channel-permissions/channel-permi
     ChannelAddComponent,
     ChannelVideosComponent,
     ChannelSearchComponent,
-    ChannelPermissionsComponent
+    ChannelPermissionsComponent,
+    ChannelPermissionsFormComponent
   ],
   providers: [ChannelService],
 })
