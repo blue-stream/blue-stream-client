@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,10 +14,24 @@ import { CoreModule } from './core/core.module';
 import { FullscreenOverlayContainer, OverlayContainer } from '@angular/cdk/overlay';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { CanDeactivateGuard } from './core/can-deactivate/can-deactivate.guard';
+import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from './shared/user.service';
 
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function authenticateUser(userService: UserService) {
+  return () => {
+    if (userService.isAuthenticated) {
+      return Promise.resolve(true);
+    }
+
+    document.location.href = `${environment.authenticationServiceUrl}login`;
+    return Promise.reject(false);
+  };
 }
 
 @NgModule({
@@ -41,9 +55,11 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     MediaMatcher,
+    CookieService,
     CanDeactivateGuard,
     { provide: OverlayContainer, useClass: FullscreenOverlayContainer },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: APP_INITIALIZER, useFactory: authenticateUser, multi: true, deps: [UserService] }
   ],
   bootstrap: [AppComponent]
 })
