@@ -150,6 +150,12 @@
         },
         "GRID_ITEM": {
             "VIEWS": "total views"
+        },
+        "PERMISSIONS_FORM": {
+            "ADMIN": "Admin",
+            "EDIT": "Edit",
+            "UPLOAD": "Upload",
+            "REMOVE": "Remove"
         }
     },
     "SHARED": {

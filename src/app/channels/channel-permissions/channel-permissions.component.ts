@@ -12,6 +12,8 @@ export class ChannelPermissionsComponent implements OnInit {
 
   @Input() channel: Channel;
 
+  showForm: boolean = false;
+  showEditForm: boolean = false;
   permittedUsers: UserPermissions[] = [];
 
   constructor(private userPermissionsService: ChannelPermissionsService) { }
@@ -24,6 +26,14 @@ export class ChannelPermissionsComponent implements OnInit {
     this.userPermissionsService.getChannelPermittedUsers(this.channel.id, 0, 10).subscribe((usersPermissions) => {
       this.permittedUsers = usersPermissions;
     });
+  }
+
+  onOpenEditForm() {
+    this.showEditForm = !this.showEditForm;
+  }
+
+  onOpenForm() {
+    this.showForm = !this.showForm;
   }
 
 }

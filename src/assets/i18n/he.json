@@ -150,6 +150,12 @@
         },
         "GRID_ITEM": {
             "VIEWS": "כמות צפיות"
+        },
+        "PERMISSIONS_FORM": {
+            "ADMIN": "מנהל",
+            "EDIT": "עריכה",
+            "UPLOAD": "העלאה",
+            "REMOVE": "מחיקה"
         }
     },
     "SHARED": {
