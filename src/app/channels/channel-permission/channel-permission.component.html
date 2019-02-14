@@ -1,0 +1,24 @@
+<div id="container">
+  <div class="line">
+    <div class="info">
+      <p>{{userPermissions.user.name}} </p>
+      <p id="owner" *ngIf="isOwner">Owner</p>
+    </div>
+    <mat-chip-list *ngIf="!showEditForm;else editFormTemplate" class="chip-list">
+      <mat-chip class="chip" *ngFor="let permission of userPermissions.permissions">{{permission}}</mat-chip>
+    </mat-chip-list>
+    <ng-template #editFormTemplate>
+      <div id="edit-form">
+        <bs-channel-permissions-form (closeForm)="onClose($event)" [userPermissions]="userPermissions"
+          [channel]="channel">
+        </bs-channel-permissions-form>
+      </div>
+    </ng-template>
+    <button id="edit-button" *ngIf="!showEditForm" mat-icon-button (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button *ngIf="!showEditForm" mat-icon-button (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

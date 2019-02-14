@@ -1,0 +1,20 @@
+#input-container {
+    display: flex;
+    #name-input {
+        margin: 0px 10px;
+    }
+    .checkbox-list {
+        margin: 10px;
+        flex: 1 1 0;
+    }
+    #buttons-container {
+        flex: 1 1 0;
+        display: flex;
+        #submit-button {
+            flex: 1 1 0;
+        }
+        #cancel-button {
+            flex: 1 1 0;
+        }
+    }
+}

@@ -38,6 +38,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TranslateModule,
     RouterModule,
     EllipsisModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ],
   exports: [
     MatToolbarModule,
@@ -102,7 +104,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SafeUrlPipe,
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ],
   declarations: [
     ConfirmDialogComponent,

@@ -1,25 +1,25 @@
 <form [formGroup]="userPermissionsForm" (ngSubmit)="onSubmit()">
   <div id="input-container">
-    <div formArrayName="permissions" *ngFor="let permission of userPermissionsForm.controls.permissions.controls; let i = index">
-      <mat-checkbox [formControlName]="i">{{permissionsTypesArray[i].name | translate}}</mat-checkbox>
-    </div>
-    <mat-form-field appearance="outline" id="name-input">
-      <input type="text" matInput formControlName="user" [matAutocomplete]="auto">
+    <mat-form-field appearance="outline" id="name-input" *ngIf="!isEditForm">
+      <input placeholder="Chose a user" type="text" matInput formControlName="user" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+      </mat-autocomplete>
     </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
-    </mat-autocomplete>
+
+    <div class="checkbox-list" formArrayName="permissions"
+      *ngFor="let permission of userPermissionsForm.controls.permissions.controls; let i = index">
+      <mat-checkbox class="checkbox" [formControlName]="i">{{permissionsTypesArray[i].name | translate}}</mat-checkbox>
+    </div>
+    <div id="buttons-container">
+      <button mat-icon-button id="submit-button" type="submit" [disabled]="!userPermissionsForm.valid">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button id="cancel-button" mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <div id="buttons-container">
-    <button id="submit-button" type="submit" [disabled]="!userPermissionsForm.valid" mat-raised-button color="primary">
-      <span *ngIf="isEditForm;else createButtonTemplate">
-        {{'CHANNEL.FORM.UPDATE'| translate}}
-      </span>
-      <ng-template #createButtonTemplate>
-        {{'CHANNEL.FORM.CREATE'| translate}}
-      </ng-template>
-    </button>
-    <button id="cancel-button" (click)="cancel()" mat-button>{{'CHANNEL.FORM.CANCEL' | translate}}</button>
-  </div>
+
 </form>

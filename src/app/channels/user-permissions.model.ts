@@ -1,3 +1,5 @@
+import { User } from '../shared/models/user.model';
+
 export enum PermissionTypes {
     Upload = 'UPLOAD',
     Edit = 'EDIT',
@@ -6,7 +8,7 @@ export enum PermissionTypes {
 }
 
 export interface UserPermissions {
-    user: string;
+    user: Partial<User>;
     channel: string;
     permissions: PermissionTypes[];
 }

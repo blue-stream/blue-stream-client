@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, FormArray
 import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { ChannelPermissionsService } from '../channel-permissions.service';
 
 @Component({
   selector: 'bs-channel-permissions-form',
@@ -14,10 +15,15 @@ import { environment } from 'src/environments/environment';
 export class ChannelPermissionsFormComponent implements OnInit {
   @Input() channel: Channel;
   @Input() userPermissions: UserPermissions;
-  @Output() closeForm: EventEmitter<void> = new EventEmitter();
+  @Output() closeForm: EventEmitter<void | UserPermissions> = new EventEmitter();
 
   userPermissionsForm: FormGroup;
   isEditForm: boolean = false;
+  users: { id: string, name: string }[] = [
+    { id: 'user@domain', name: 'Ron Bossivoski' },
+    { id: 'almogvc@gmail', name: 'Almog Vagman' },
+    { id: 'user@do', name: 'Almog Vagman Ciprut' },
+  ];
 
   permissionsTypesArray: { name: string, type: PermissionTypes, value: boolean }[];
 
@@ -25,6 +31,7 @@ export class ChannelPermissionsFormComponent implements OnInit {
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
+    private channelPermissionsService: ChannelPermissionsService
   ) { }
 
   initUserPermissions() {
@@ -58,10 +65,16 @@ export class ChannelPermissionsFormComponent implements OnInit {
   createForm() {
     const checkBoxControls = this.permissionsTypesArray.map(control => new FormControl(control.value));
 
-    this.userPermissionsForm = this.fb.group({
-      permissions: this.fb.array(checkBoxControls, this.minSelectedCheckboxes(1)),
-      user: this.fb.control('', [Validators.required, Validators.pattern(/\w@\w/)]),
-    });
+    if (this.isEditForm) {
+      this.userPermissionsForm = this.fb.group({
+        permissions: this.fb.array(checkBoxControls, this.minSelectedCheckboxes(1)),
+      });
+    } else {
+      this.userPermissionsForm = this.fb.group({
+        permissions: this.fb.array(checkBoxControls, this.minSelectedCheckboxes(1)),
+        user: this.fb.control('', [Validators.required, Validators.pattern(/\w@\w/)]),
+      });
+    }
   }
 
   onSubmit(event: Event) {
@@ -71,16 +84,15 @@ export class ChannelPermissionsFormComponent implements OnInit {
 
     const userPermissions: UserPermissions = {
       channel: this.channel.id,
-      user: this.userPermissionsForm.get('user').value.trim(),
+      user: { id: this.isEditForm ? this.userPermissions.user.id : this.userPermissionsForm.get('user').value.trim() },
       permissions,
     };
 
     if (this.isEditForm) {
-      // this.updateUserPermissions(userPermissions);
+      this.updateUserPermissions(userPermissions);
     } else {
-      // this.createUserPermissions(userPermissions);
+      this.createUserPermissions(userPermissions);
     }
-    console.log(userPermissions);
   }
 
   minSelectedCheckboxes(min = 1) {
@@ -93,5 +105,43 @@ export class ChannelPermissionsFormComponent implements OnInit {
     };
 
     return validator;
+  }
+
+  updateUserPermissions(userPermissions: UserPermissions) {
+    this.channelPermissionsService.update(userPermissions.user.id, this.channel.id, userPermissions.permissions)
+      .subscribe(retUserPermissions => {
+
+        this.translateService.get([
+          'CHANNEL.FORM.UPDATED',
+          'CHANNEL.FORM.UPDATED_APPROVE']).subscribe(translations => {
+            this.snackBar.open(
+              translations['CHANNEL.FORM.UPDATED'],
+              translations['CHANNEL.FORM.UPDATED_APPROVE'],
+              { duration: 2000 });
+          });
+
+        this.close(retUserPermissions);
+      });
+  }
+
+  createUserPermissions(userPermissions: UserPermissions) {
+    this.channelPermissionsService.create(userPermissions.user.id, userPermissions.channel, userPermissions.permissions)
+      .subscribe(retUserPermissions => {
+        this.channelPermissionsService.userPermissionCreated.next();
+
+        this.translateService.get([
+          'CHANNEL.FORM.CREATED',
+          'CHANNEL.FORM.CREATED_APPROVE']).subscribe(translations => {
+            this.snackBar.open(
+              translations['CHANNEL.FORM.CREATED'],
+              translations['CHANNEL.FORM.CREATED_APPROVE'],
+              { duration: 2000 });
+          });
+        this.closeForm.emit();
+      });
+  }
+
+  close(userPermissions?: UserPermissions) {
+    this.closeForm.emit(userPermissions);
   }
 }

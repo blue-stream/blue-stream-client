@@ -20,13 +20,20 @@ const httpOptions = {
 })
 export class ChannelPermissionsService {
 
-  constructor(private httpClient: HttpClient) { }
+  public userPermissionCreated: Subject<void>;
+  public userPermissionDeleted: Subject<void>;
+
+  constructor(private httpClient: HttpClient) {
+    this.userPermissionCreated = new Subject<void>();
+    this.userPermissionDeleted = new Subject<void>();
+
+  }
 
   private serviceUrl: string = environment.channelServiceUrl;
   private apiUrl: string = 'api/userPermissions';
 
-  create(userPermissions: Partial<UserPermissions>): Observable<UserPermissions> {
-    return this.httpClient.post<UserPermissions>(`${this.serviceUrl}${this.apiUrl}`, userPermissions, httpOptions);
+  create(user: string, channel: string, permissions: PermissionTypes[]): Observable<UserPermissions> {
+    return this.httpClient.post<UserPermissions>(`${this.serviceUrl}${this.apiUrl}`, { user, channel, permissions }, httpOptions);
   }
 
   update(user: string, channel: string, permissions: PermissionTypes[]): Observable<UserPermissions> {

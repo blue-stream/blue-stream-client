@@ -15,8 +15,17 @@ export class ChannelPermissionsComponent implements OnInit {
   showForm: boolean = false;
   showEditForm: boolean = false;
   permittedUsers: UserPermissions[] = [];
+  editedUser: string;
 
-  constructor(private userPermissionsService: ChannelPermissionsService) { }
+  constructor(private userPermissionsService: ChannelPermissionsService) {
+    this.userPermissionsService.userPermissionCreated.subscribe((userPermissions) => {
+      this.loadPermittedUsers();
+    });
+
+    this.userPermissionsService.userPermissionDeleted.subscribe((userPermissions) => {
+      this.loadPermittedUsers();
+    });
+  }
 
   ngOnInit() {
     this.loadPermittedUsers();
@@ -28,7 +37,8 @@ export class ChannelPermissionsComponent implements OnInit {
     });
   }
 
-  onOpenEditForm() {
+  onOpenEditForm(user: string) {
+    this.editedUser = user;
     this.showEditForm = !this.showEditForm;
   }
 
