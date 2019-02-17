@@ -2,7 +2,7 @@
   <div class="line">
     <div class="info">
       <p>{{userPermissions.user.name}} </p>
-      <p id="owner" *ngIf="isOwner">Owner</p>
+      <p id="owner" *ngIf="isOwner">{{'CHANNEL.CHANNEL_PERMISSION.OWNER' | translate}}</p>
     </div>
     <mat-chip-list *ngIf="!showEditForm;else editFormTemplate" class="chip-list">
       <mat-chip class="chip" *ngFor="let permission of userPermissions.permissions">{{permission}}</mat-chip>

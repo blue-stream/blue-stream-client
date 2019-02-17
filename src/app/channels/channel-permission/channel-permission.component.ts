@@ -41,11 +41,11 @@ export class ChannelPermissionComponent implements OnInit {
     this.userPermisssionsService.delete(this.userPermissions.user.id, this.channel.id).subscribe(deletedUserPermissions => {
       this.userPermisssionsService.userPermissionDeleted.next();
       this.translateService.get([
-        'CHANNEL.FORM.CREATED',
-        'CHANNEL.FORM.CREATED_APPROVE']).subscribe(translations => {
+        'CHANNEL.CHANNEL_PERMISSIONS.DELETED',
+        'CHANNEL.CHANNEL_PERMISSIONS.DELETED_APPROVE']).subscribe(translations => {
           this.snackBar.open(
-            translations['CHANNEL.FORM.CREATED'],
-            translations['CHANNEL.FORM.CREATED_APPROVE'],
+            translations['CHANNEL.CHANNEL_PERMISSIONS.DELETED'],
+            translations['CHANNEL.CHANNEL_PERMISSIONS.DELETED_APPROVE'],
             { duration: 2000 });
         });
 

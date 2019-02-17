@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { ChannelPermissionsService } from '../channel-permissions.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bs-channel-permissions-form',
@@ -112,11 +113,11 @@ export class ChannelPermissionsFormComponent implements OnInit {
       .subscribe(retUserPermissions => {
 
         this.translateService.get([
-          'CHANNEL.FORM.UPDATED',
-          'CHANNEL.FORM.UPDATED_APPROVE']).subscribe(translations => {
+          'CHANNEL.PERMISSIONS_FORM.UPDATED',
+          'CHANNEL.PERMISSIONS_FORM.UPDATED_APPROVE']).subscribe(translations => {
             this.snackBar.open(
-              translations['CHANNEL.FORM.UPDATED'],
-              translations['CHANNEL.FORM.UPDATED_APPROVE'],
+              translations['CHANNEL.PERMISSIONS_FORM.UPDATED'],
+              translations['CHANNEL.PERMISSIONS_FORM.UPDATED_APPROVE'],
               { duration: 2000 });
           });
 
@@ -126,15 +127,26 @@ export class ChannelPermissionsFormComponent implements OnInit {
 
   createUserPermissions(userPermissions: UserPermissions) {
     this.channelPermissionsService.create(userPermissions.user.id, userPermissions.channel, userPermissions.permissions)
+      .catch((err, caught) => {
+        this.translateService.get([
+          'CHANNEL.PERMISSIONS_FORM.USER_ALREADY_EXISTS_ERROR',
+          'CHANNEL.PERMISSIONS_FORM.CREATION_FAILED']).subscribe(translations => {
+            this.snackBar.open(
+              translations['CHANNEL.PERMISSIONS_FORM.USER_ALREADY_EXISTS_ERROR'],
+              translations['CHANNEL.PERMISSIONS_FORM.CREATION_FAILED'],
+              { duration: 2000 });
+          });
+        return new Observable(null);
+      })
       .subscribe(retUserPermissions => {
         this.channelPermissionsService.userPermissionCreated.next();
 
         this.translateService.get([
-          'CHANNEL.FORM.CREATED',
-          'CHANNEL.FORM.CREATED_APPROVE']).subscribe(translations => {
+          'CHANNEL.PERMISSIONS_FORM.CREATED',
+          'CHANNEL.PERMISSIONS_FORM.CREATED_APPROVE']).subscribe(translations => {
             this.snackBar.open(
-              translations['CHANNEL.FORM.CREATED'],
-              translations['CHANNEL.FORM.CREATED_APPROVE'],
+              translations['CHANNEL.PERMISSIONS_FORM.CREATED'],
+              translations['CHANNEL.PERMISSIONS_FORM.CREATED_APPROVE'],
               { duration: 2000 });
           });
         this.closeForm.emit();

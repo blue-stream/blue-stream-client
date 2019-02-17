@@ -44,10 +44,10 @@
             "SAVE_SUCCESS_APPROVAL": "OK"
         },
         "UPLOAD_PROGRESS": {
-            "ERROR":"An error occurred",
+            "ERROR": "An error occurred",
             "SUCCESS": "Click \"Publish\" to make your video live.",
             "PROGRESS": "Your video is still uploading. Please keep this page open until it's done.",
-            "PENDING":"Upload is pending",
+            "PENDING": "Upload is pending",
             "UNKNOWN": "Unknown status",
             "PUBLISHED": "Video was published successfully",
             "FILE_SIZE": "{{size}} MB",
@@ -155,7 +155,20 @@
             "ADMIN": "Admin",
             "EDIT": "Edit",
             "UPLOAD": "Upload",
-            "REMOVE": "Remove"
+            "REMOVE": "Remove",
+            "CREATED": "Permission added to user successfully",
+            "CREATED_APPROVE": "OK",
+            "UPDATED": "User's permission updated successfully",
+            "UPDATED_APPROVE": "OK",
+            "USER_ALREADY_EXISTS_ERROR": "User already has permissions to this channel",
+            "CREATION_FAILED": "OK"
+        },
+        "CHANNEL_PERMISSIONS": {
+            "DELETED": "Permission removed from user successfully",
+            "DELETED_APPROVE": "OK"
+        },
+        "CHANNEL_PERMISSION": {
+            "OWNER": "Owner"
         }
     },
     "SHARED": {

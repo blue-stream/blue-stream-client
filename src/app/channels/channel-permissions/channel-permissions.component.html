@@ -12,6 +12,6 @@
 <button mat-icon-button (click)="onOpenForm()">
   <mat-icon>add</mat-icon>
 </button>
-<div id="create-form">
-    <bs-channel-permissions-form *ngIf="showForm" [channel]="channel"></bs-channel-permissions-form>
+<div id="create-form" *ngIf="showForm">
+    <bs-channel-permissions-form (closeForm)="showForm = false" [channel]="channel"></bs-channel-permissions-form>
 </div>

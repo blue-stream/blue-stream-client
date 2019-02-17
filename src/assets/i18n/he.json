@@ -155,7 +155,20 @@
             "ADMIN": "מנהל",
             "EDIT": "עריכה",
             "UPLOAD": "העלאה",
-            "REMOVE": "מחיקה"
+            "REMOVE": "מחיקה",
+            "CREATED": "הרשאה נוספה למשתמש בהצלחה",
+            "CREATED_APPROVE": "אשר",
+            "UPDATED": "ההרשאה עודכנה בהצלחה",
+            "UPDATED_APPROVE": "אשר",
+            "USER_ALREADY_EXISTS_ERROR": "למשתמש כבר יש הרשאות לערוץ",
+            "CREATION_FAILED": "אשר"
+        },
+        "CHANNEL_PERMISSIONS": {
+            "DELETED": "הרשאה נמחקה בהצלחה",
+            "DELETED_APPROVE": "אשר"
+        },
+        "CHANNEL_PERMISSION": {
+            "OWNER": "בעלים"
         }
     },
     "SHARED": {
