@@ -1,15 +1,18 @@
 <div id="container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="150" (scrolled)="onScroll()"
   [fromRoot]="true" [infiniteScrollContainer]="'#side-nav-container'">
   <h3>{{'CHANNEL.CHANNEL_PERMISSIONS.TITLE' | translate}}</h3>
+  <div id="add-new-container" *ngIf="!showForm">
+    <p>{{'CHANNEL.CHANNEL_PERMISSIONS.ADD_NEW' | translate}}</p>
+    <button id="add-button" mat-icon-button (click)="onOpenForm()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div id="create-form" *ngIf="showForm">
+    <bs-channel-permissions-form (closeForm)="showForm = false" [channel]="channel"></bs-channel-permissions-form>
+  </div>
   <mat-list>
     <bs-channel-permission [channel]="channel" [isOwner]="channel.user === userPermissions.user.id"
       [userPermissions]="userPermissions" class="user-permissions" *ngFor="let userPermissions of permittedUsers">
     </bs-channel-permission>
   </mat-list>
-  <button *ngIf="!showForm" id="add-button" mat-icon-button (click)="onOpenForm()">
-    <mat-icon>add</mat-icon>
-  </button>
-  <div id="create-form" *ngIf="showForm">
-    <bs-channel-permissions-form (closeForm)="showForm = false" [channel]="channel"></bs-channel-permissions-form>
-  </div>
 </div>

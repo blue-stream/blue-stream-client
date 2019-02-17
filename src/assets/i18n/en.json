@@ -169,7 +169,8 @@
         "CHANNEL_PERMISSIONS": {
             "TITLE": "Permissions",
             "DELETED": "Permission removed from user successfully",
-            "DELETED_APPROVE": "OK"
+            "DELETED_APPROVE": "OK",
+            "ADD_NEW": "Add permissions to a user"
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "Owner"

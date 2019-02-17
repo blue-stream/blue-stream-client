@@ -169,7 +169,8 @@
         "CHANNEL_PERMISSIONS": {
             "TITLE": "הרשאות",
             "DELETED": "הרשאה נמחקה בהצלחה",
-            "DELETED_APPROVE": "אשר"
+            "DELETED_APPROVE": "אשר",
+            "ADD_NEW": "הוסף הרשאות למשתמש"
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "בעלים"

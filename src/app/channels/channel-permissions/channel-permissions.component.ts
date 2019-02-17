@@ -17,7 +17,7 @@ export class ChannelPermissionsComponent implements OnInit {
   permittedUsers: UserPermissions[] = [];
   totalPremittedUsersAmount: number = 0;
   editedUser: string;
-  premittedUseresAmountToLoad: number = 1;
+  premittedUseresAmountToLoad: number = 10;
 
   constructor(private userPermissionsService: ChannelPermissionsService) {
     this.userPermissionsService.userPermissionCreated.subscribe((userPermissions) => {
