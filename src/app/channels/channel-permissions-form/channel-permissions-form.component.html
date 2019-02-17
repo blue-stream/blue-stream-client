@@ -1,7 +1,7 @@
 <form [formGroup]="userPermissionsForm" (ngSubmit)="onSubmit()">
   <div id="input-container">
     <mat-form-field appearance="outline" id="name-input" *ngIf="!isEditForm">
-      <input placeholder="Chose a user" type="text" matInput formControlName="user" [matAutocomplete]="auto">
+      <input placeholder="{{'CHANNEL.PERMISSIONS_FORM.NAME_INPUT' | translate}}" type="text" matInput formControlName="user" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
       </mat-autocomplete>

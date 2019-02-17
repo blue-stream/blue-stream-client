@@ -161,9 +161,13 @@
             "UPDATED": "User's permission updated successfully",
             "UPDATED_APPROVE": "OK",
             "USER_ALREADY_EXISTS_ERROR": "User already has permissions to this channel",
-            "CREATION_FAILED": "OK"
+            "CREATION_FAILED": "OK",
+            "NAME_INPUT": "Choose user",
+            "CAN_NOT_REMOVE_OWNER_ERROR": "Can not remove owner's permissions",
+            "DELETE_FAILED": "OK"
         },
         "CHANNEL_PERMISSIONS": {
+            "TITLE": "Permissions",
             "DELETED": "Permission removed from user successfully",
             "DELETED_APPROVE": "OK"
         },

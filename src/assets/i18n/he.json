@@ -161,9 +161,13 @@
             "UPDATED": "ההרשאה עודכנה בהצלחה",
             "UPDATED_APPROVE": "אשר",
             "USER_ALREADY_EXISTS_ERROR": "למשתמש כבר יש הרשאות לערוץ",
-            "CREATION_FAILED": "אשר"
+            "CREATION_FAILED": "אשר",
+            "NAME_INPUT": "בחר משתמש",
+            "CAN_NOT_REMOVE_OWNER_ERROR": "לא ניתן למחוק את ההרשאות של הבעלים",
+            "DELETE_FAILED": "אשר"
         },
         "CHANNEL_PERMISSIONS": {
+            "TITLE": "הרשאות",
             "DELETED": "הרשאה נמחקה בהצלחה",
             "DELETED_APPROVE": "אשר"
         },

@@ -15,26 +15,53 @@ export class ChannelPermissionsComponent implements OnInit {
   showForm: boolean = false;
   showEditForm: boolean = false;
   permittedUsers: UserPermissions[] = [];
+  totalPremittedUsersAmount: number = 0;
   editedUser: string;
+  premittedUseresAmountToLoad: number = 1;
 
   constructor(private userPermissionsService: ChannelPermissionsService) {
     this.userPermissionsService.userPermissionCreated.subscribe((userPermissions) => {
-      this.loadPermittedUsers();
+      this.loadPermittedUsersAmount();
+      this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
     });
 
     this.userPermissionsService.userPermissionDeleted.subscribe((userPermissions) => {
-      this.loadPermittedUsers();
+      this.loadPermittedUsersAmount();
+      this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
     });
   }
 
   ngOnInit() {
-    this.loadPermittedUsers();
+    this.loadPermittedUsersAmount();
+    this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
   }
 
-  loadPermittedUsers() {
-    this.userPermissionsService.getChannelPermittedUsers(this.channel.id, 0, 10).subscribe((usersPermissions) => {
-      this.permittedUsers = usersPermissions;
+  loadPermittedUsers(startIndex: number, premittedUsersToLoad: number) {
+    const endIndex: number = startIndex + this.premittedUseresAmountToLoad;
+
+    this.userPermissionsService.getChannelPermittedUsers(this.channel.id, startIndex, endIndex).subscribe((usersPermissions) => {
+      if (startIndex === 0) {
+        this.permittedUsers = usersPermissions;
+      } else {
+        this.permittedUsers = this.permittedUsers.concat(usersPermissions);
+      }
     });
+  }
+
+  loadPermittedUsersAmount() {
+    this.userPermissionsService.getChannelPermittedUsersAmount(this.channel.id).subscribe(amount => {
+      this.totalPremittedUsersAmount = amount;
+    });
+  }
+
+  onScroll() {
+    this.loadNextPremittedUsers();
+  }
+
+  loadNextPremittedUsers() {
+    this.loadPermittedUsers(
+      this.permittedUsers.length,
+      this.premittedUseresAmountToLoad);
   }
 
   onOpenEditForm(user: string) {
