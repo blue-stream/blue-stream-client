@@ -204,5 +204,14 @@
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "ישנם שינויים שלא שמרת בעמוד, אתה בטוח שברצונך לצאת?"
         }
+    },
+    "SNACK_BARS": {
+        "ERRORS": {
+            "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
+            "UNKNOWN": "תקלה לא ידועה"
+        },
+        "BUTTONS": {
+            "OK": "אשר"
+        }
     }
 }

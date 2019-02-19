@@ -204,5 +204,14 @@
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "You have unsaved changes, are you sure you want to leave this page?"
         }
+    },
+    "SNACK_BARS": {
+        "ERRORS": {
+            "UNPREMITTED_USER": "You do not have permissions to perform this action",
+            "UNKNOWN": "Unknown Error"
+        },
+        "BUTTONS": {
+            "OK": "ok"
+        }
     }
 }
