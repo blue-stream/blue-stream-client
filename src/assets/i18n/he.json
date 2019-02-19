@@ -214,7 +214,7 @@
             "VIDEO_DELETE": "Video was deleted succesfully"
         },
         "CONFIRM": {
-            "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?",
+            "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?"
         },
         "BUTTONS": {
             "OK": "אשר",
