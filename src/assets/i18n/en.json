@@ -97,13 +97,7 @@
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
             "ADD_PLAYLIST": "Add to playlist",
-            "EDIT": "Edit",
-            "DELETE": {
-                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
-                "ACTION": "Delete",
-                "DELETE_SUCCESS": "Video was deleted succesfully",
-                "DELETE_SUCCESS_APPROVAL": "OK"
-            }
+            "EDIT": "Edit"
         }
     },
     "CHANNEL": {
@@ -210,8 +204,15 @@
             "UNPREMITTED_USER": "You do not have permissions to perform this action",
             "UNKNOWN": "Unknown Error"
         },
+        "SUCCESSFUL": {
+            "VIDEO_DELETE": "Video was deleted succesfully"
+        },
+        "CONFIRM": {
+            "VIDEO_DELETE": "Are you sure you want to delete the video?",
+        },
         "BUTTONS": {
-            "OK": "ok"
+            "OK": "ok",
+            "DELETE": "Delete"
         }
     }
 }

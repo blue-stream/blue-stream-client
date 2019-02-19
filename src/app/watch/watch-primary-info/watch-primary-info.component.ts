@@ -36,7 +36,7 @@ export class WatchPrimaryInfoComponent implements OnInit {
   }
 
   onDeleteVideo() {
-    this.translateService.get('WATCH.WATCH_PRIMARY_INFO.DELETE.CONFIRM_MESSAGE')
+    this.translateService.get('SNACK_BARS.CONFIRM.VIDEO_DELETE')
       .subscribe(translation => {
         if (confirm(translation)) {
           return this.deleteVideo();
@@ -68,15 +68,12 @@ export class WatchPrimaryInfoComponent implements OnInit {
 
       })
       .subscribe(video => {
-        this.translateService.get([
-          'WATCH.WATCH_PRIMARY_INFO.DELETE.DELETE_SUCCESS',
-          'WATCH.WATCH_PRIMARY_INFO.DELETE.DELETE_SUCCESS_APPROVAL']).subscribe(translations => {
-            this.snackBar.open(
-              translations['WATCH.WATCH_PRIMARY_INFO.DELETE.DELETE_SUCCESS'],
-              translations['WATCH.WATCH_PRIMARY_INFO.DELETE.DELETE_SUCCESS_APPROVAL'],
-              { duration: 2000 });
-            this.router.navigate(['/']);
-          });
+        const message: string = 'SNACK_BARS.SUCCESSFUL.VIDEO_DELETE';
+        const action: string = 'SNACK_BARS.CONFIRM.VIDEO_DELETE';
+        this.translateService.get([message, action]).subscribe(translations => {
+          this.snackBar.open(translations[message], translations[action], { duration: 2000 });
+          this.router.navigate(['/']);
+        });
       });
   }
 }

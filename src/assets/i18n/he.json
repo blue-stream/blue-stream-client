@@ -210,8 +210,15 @@
             "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
             "UNKNOWN": "תקלה לא ידועה"
         },
+        "SUCCESSFUL": {
+            "VIDEO_DELETE": "Video was deleted succesfully"
+        },
+        "CONFIRM": {
+            "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?",
+        },
         "BUTTONS": {
-            "OK": "אשר"
+            "OK": "אשר",
+            "DELETE": "מחק"
         }
     }
 }
