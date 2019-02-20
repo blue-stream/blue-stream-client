@@ -89,14 +89,18 @@ export class ChannelPermissionsService {
     return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/${channelId}/users/amount`, httpOptions);
   }
 
-  getUserPermittedChannels(channelId: string,
+  getUserPermittedChannels(
+    permissions: PermissionTypes | PermissionTypes[],
+    searchFilter: string,
     startIndex: number,
     endIndex: number,
     sortOrder: '' | '-' = '',
-    sortBy: 'channel' | 'user' = 'channel'): Observable<UserPermissions> {
+    sortBy: 'channel' | 'user' = 'channel') {
     const options = {
       httpHeaders,
       params: {
+        permissions,
+        searchFilter,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
         sortOrder,
@@ -106,8 +110,16 @@ export class ChannelPermissionsService {
     return this.httpClient.get<UserPermissions>(`${this.serviceUrl}${this.apiUrl}/channels`, options);
   }
 
-  getUserPermittedChannelsAmount(channelId: string): Observable<number> {
-    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/channels/amount`, httpOptions);
+  getUserPermittedChannelsAmount(permissions: PermissionTypes | PermissionTypes[], searchFilter: string): Observable<number> {
+    const options = {
+      httpHeaders,
+      params: {
+        permissions,
+        searchFilter,
+      },
+    };
+
+    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/channels/amount`, options);
   }
 
 }

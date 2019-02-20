@@ -4,6 +4,8 @@ import { Channel } from './channel.model';
 import { UserService } from '../shared/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../shared/search/search.service';
+import { ChannelPermissionsService } from './channel-permissions.service';
+import { PermissionTypes } from './user-permissions.model';
 
 @Component({
   selector: 'bs-channels',
@@ -20,7 +22,7 @@ export class ChannelsComponent implements OnInit {
   isSelectForUpload: boolean = false;
   channels: Channel[] = [];
   channelFilter: Partial<Channel> = {};
-  searchFilter: string;
+  searchFilter: string = '';
 
   urlSubscription: any;
   totalChannelsAmount: number;
@@ -29,7 +31,8 @@ export class ChannelsComponent implements OnInit {
     private channelService: ChannelService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private searchService: SearchService) { }
+    private searchService: SearchService,
+    private channelPermissions: ChannelPermissionsService) { }
 
   ngOnInit() {
     if (this.isSearch) {
@@ -47,8 +50,11 @@ export class ChannelsComponent implements OnInit {
         } else {
           this.changeFilter('');
         }
-
-        this.loadChannelsAmount();
+        if (this.isSelectForUpload) {
+          this.loadPremittedChannelsAmount();
+        } else {
+          this.loadChannelsAmount();
+        }
         this.loadNextChannels();
       });
     }
@@ -85,6 +91,29 @@ export class ChannelsComponent implements OnInit {
     }
   }
 
+  loadPremittedChannels(startIndex: number, channelsToLoad: number) {
+    const endIndex: number = startIndex + channelsToLoad;
+
+    this.channelPermissions
+      .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
+      .subscribe((channelPermissions: any) => {
+        const channels = channelPermissions.map(channelPermission => channelPermission.channel);
+
+        if (startIndex === 0) {
+          this.channels = channels;
+        } else {
+          this.channels = this.channels.concat(channels);
+        }
+      });
+  }
+
+  loadPremittedChannelsAmount() {
+    this.channelPermissions.getUserPermittedChannelsAmount([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter)
+      .subscribe(amount => {
+        this.totalChannelsAmount = amount;
+      });
+  }
+
   onScroll() {
     if (this.isPaginated) {
       this.loadNextChannels();
@@ -92,14 +121,20 @@ export class ChannelsComponent implements OnInit {
   }
 
   loadNextChannels() {
-    if (this.isSearch) {
-      this.loadSearchedChannels(
+    if (this.isSelectForUpload) {
+      this.loadPremittedChannels(
         this.channels.length,
         this.channelsAmountToLoad);
     } else {
-      this.loadChannels(
-        this.channels.length,
-        this.channelsAmountToLoad);
+      if (this.isSearch) {
+        this.loadSearchedChannels(
+          this.channels.length,
+          this.channelsAmountToLoad);
+      } else {
+        this.loadChannels(
+          this.channels.length,
+          this.channelsAmountToLoad);
+      }
     }
   }
 
