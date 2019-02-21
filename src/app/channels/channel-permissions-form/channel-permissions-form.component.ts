@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { ChannelPermissionsService } from '../channel-permissions.service';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'bs-channel-permissions-form',
@@ -20,19 +22,15 @@ export class ChannelPermissionsFormComponent implements OnInit {
 
   userPermissionsForm: FormGroup;
   isEditForm: boolean = false;
-  users: { id: string, name: string }[] = [
-    { id: 'user@domain', name: 'Ron Bossivoski' },
-    { id: 'almogvc@gmail', name: 'Almog Vagman' },
-    { id: 'user@do', name: 'Almog Vagman Ciprut' },
-  ];
-
+  users: User[] = [];
   permissionsTypesArray: { name: string, type: PermissionTypes, value: boolean }[];
 
   constructor(
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
-    private channelPermissionsService: ChannelPermissionsService
+    private channelPermissionsService: ChannelPermissionsService,
+    private userService: UserService,
   ) { }
 
   initUserPermissions() {
@@ -52,6 +50,20 @@ export class ChannelPermissionsFormComponent implements OnInit {
         return permission;
       });
     }
+  }
+
+  displayFn(userId?: string) {
+    return userId ? this.users.find(user => user.id === userId).name : undefined;
+  }
+
+  onType(searchFilter: string) {
+    this.loadSearchedUsers(searchFilter);
+  }
+
+  loadSearchedUsers(searchFilter: string) {
+    this.userService.getSearched(searchFilter, 0, 10).subscribe(users => {
+      this.users = users;
+    });
   }
 
   ngOnInit() {
@@ -95,6 +107,8 @@ export class ChannelPermissionsFormComponent implements OnInit {
       this.createUserPermissions(userPermissions);
     }
   }
+
+
 
   minSelectedCheckboxes(min = 1) {
     const validator: ValidatorFn = (formArray: FormArray) => {
