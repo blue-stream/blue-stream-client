@@ -52,7 +52,7 @@ export class ChannelPermissionsFormComponent implements OnInit {
     }
   }
 
-  displayFn(userId?: string) {
+  userNameDisplay(userId?: string) {
     return userId ? this.users.find(user => user.id === userId).name : undefined;
   }
 
@@ -73,6 +73,7 @@ export class ChannelPermissionsFormComponent implements OnInit {
 
     this.initUserPermissions();
     this.createForm();
+    this.loadSearchedUsers('');
   }
 
   createForm() {

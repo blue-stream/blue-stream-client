@@ -2,7 +2,7 @@
   <div id="input-container">
     <mat-form-field appearance="outline" id="name-input" *ngIf="!isEditForm">
       <input #searchBox (keyup)="onType(searchBox.value)" placeholder="{{'CHANNEL.PERMISSIONS_FORM.NAME_INPUT' | translate}}" type="text" matInput formControlName="user" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="userNameDisplay.bind(this)">
         <mat-option  *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
       </mat-autocomplete>
     </mat-form-field>
