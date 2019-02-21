@@ -26,8 +26,4 @@ export class UserService {
 
     return null;
   }
-
-  getUser() {
-    return 'user@domain';
-  }
 }

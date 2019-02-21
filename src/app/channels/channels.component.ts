@@ -40,7 +40,7 @@ export class ChannelsComponent implements OnInit {
       this.loadSearchedChannelsAmount();
     } else {
       if (this.isUserChannels) {
-        this.channelFilter.user = this.userService.getUser();
+        this.channelFilter.user = this.userService.currentUser.id;
       }
 
       this.urlSubscription = this.route.url.subscribe(url => {
@@ -82,7 +82,7 @@ export class ChannelsComponent implements OnInit {
 
   changeFilter(url: string) {
     if (url === 'user') {
-      this.channelFilter = { user: this.userService.getUser() };
+      this.channelFilter = { user: this.userService.currentUser.id };
     } else if (url === 'upload') {
       this.channelFilter = {};
       this.isSelectForUpload = true;

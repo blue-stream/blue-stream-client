@@ -29,7 +29,7 @@ export class ReactionsComponent implements OnChanges {
   user: string;
 
   constructor(private reactionService: ReactionService, userService: UserService) {
-    this.user = userService.getUser();
+    this.user = userService.currentUser.id;
   }
 
   ngOnChanges() {

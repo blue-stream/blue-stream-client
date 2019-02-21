@@ -34,7 +34,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-      this.isUserOwner = this.channel.user === this.userService.getUser();
+      this.isUserOwner = this.channel.user === this.userService.currentUser.id;
   }
 
   loadHeaderImage() {
@@ -46,7 +46,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
       this.channel = channel;
       this.loadHeaderImage();
 
-      if (this.channel.user === this.userService.getUser()) {
+      if (this.channel.user === this.userService.currentUser.id) {
         this.isUserOwner = true;
       }
     });
