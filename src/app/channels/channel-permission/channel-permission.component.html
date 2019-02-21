@@ -14,10 +14,10 @@
         </bs-channel-permissions-form>
       </div>
     </ng-template>
-    <button id="edit-button" *ngIf="!showEditForm" mat-icon-button (click)="onEdit()">
+    <button id="edit-button" *ngIf="!showEditForm && !isOwner" mat-icon-button (click)="onEdit()">
       <mat-icon>edit</mat-icon>
     </button>
-    <button *ngIf="!showEditForm" mat-icon-button (click)="onDelete()">
+    <button *ngIf="!showEditForm && !isOwner" mat-icon-button (click)="onDelete()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
