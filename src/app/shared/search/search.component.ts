@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchService } from './search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-search',
@@ -9,7 +10,7 @@ import { SearchService } from './search.service';
 export class SearchComponent {
   searchString: string;
 
-  constructor( private searchService: SearchService) { }
+  constructor( private searchService: SearchService, private router: Router) { }
 
   onType(searchString: string) {
     this.searchString = searchString;
@@ -17,7 +18,7 @@ export class SearchComponent {
   }
 
   onSubmit() {
-    this.searchService.searchSubmitted.next(this.searchString);
+    this.router.navigate(['/results'], { queryParams: {search_query: this.searchString } });
   }
 
 }
