@@ -105,4 +105,25 @@ export class VideoService {
       return [popularSection];
     }) );
   }
+
+  search(
+    searchFilter: string = '',
+    startIndex: number,
+    endIndex: number,
+    // sortOrder: '' | '-' = '',
+    sortBy: 'title' | 'views' | 'owner' | 'createdAt' = 'views'): Observable<Video[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        // sortOrder,
+        sortBy,
+      },
+    };
+
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}/search`, options);
+  }
+
 }

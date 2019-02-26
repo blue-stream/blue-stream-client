@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'results',
-    loadChildren: './results/results.module#SearchResultsModule'
+    loadChildren: './search-results/search-results.module#SearchResultsModule'
   },
   {
     path: 'popular',
