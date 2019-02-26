@@ -46,7 +46,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
 
     this.videosSub = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
-      console.log(this.videos)
+      console.log('videos',JSON.stringify(videos))
     });
   }
 
@@ -56,6 +56,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     const endIndex = startIndex + channelsToLoad;
 
     this.channelsSub = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
+        console.log('channels',JSON.stringify(channels))
         this.channels = channels;
     });
   }
