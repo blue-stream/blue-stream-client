@@ -25,7 +25,6 @@ export class ChannelsComponent implements OnInit {
   searchFilter: string = '';
 
   urlSubscription: any;
-  totalChannelsAmount: number;
 
   constructor(
     private channelService: ChannelService,
@@ -37,7 +36,6 @@ export class ChannelsComponent implements OnInit {
   ngOnInit() {
     if (this.isSearch) {
       this.subscribeToSearch();
-      this.loadSearchedChannelsAmount();
     } else {
       if (this.isUserChannels) {
         this.channelFilter.user = this.userService.currentUser.id;
@@ -50,11 +48,7 @@ export class ChannelsComponent implements OnInit {
         } else {
           this.changeFilter('');
         }
-        if (this.isSelectForUpload) {
-          this.loadPremittedChannelsAmount();
-        } else {
-          this.loadChannelsAmount();
-        }
+
         this.loadNextChannels();
       });
     }
@@ -64,19 +58,6 @@ export class ChannelsComponent implements OnInit {
     this.searchService.searchTyped.subscribe((searchFilter) => {
       this.searchFilter = searchFilter;
       this.loadSearchedChannels(0, this.channelsAmountToLoad);
-      this.loadSearchedChannelsAmount();
-    });
-  }
-
-  loadSearchedChannelsAmount() {
-    this.channelService.searchAmount(this.searchFilter).subscribe(amount => {
-      this.totalChannelsAmount = amount;
-    });
-  }
-
-  loadChannelsAmount() {
-    this.channelService.getAmount(this.channelFilter).subscribe(amount => {
-      this.totalChannelsAmount = amount;
     });
   }
 
@@ -104,13 +85,6 @@ export class ChannelsComponent implements OnInit {
         } else {
           this.channels = this.channels.concat(channels);
         }
-      });
-  }
-
-  loadPremittedChannelsAmount() {
-    this.channelPermissions.getUserPermittedChannelsAmount([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter)
-      .subscribe(amount => {
-        this.totalChannelsAmount = amount;
       });
   }
 
