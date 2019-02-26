@@ -1,0 +1,32 @@
+#container {
+    overflow: hidden;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    max-width: 482px;
+    @media screen and (min-width: 662px) {
+        max-width: 642px;
+    }
+    @media screen and (min-width: 876px) {
+        max-width: 856px;
+    }
+    @media screen and (min-width: 1090px) {
+        max-width: 1070px;
+    }
+    @media screen and (min-width: 1304px) {
+        max-width: 1284px;
+    }
+    #title-container {
+        margin-bottom: 10px;
+        max-height: 2rem;
+        overflow: hidden;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 2rem;
+    }
+    #popular-videos {
+        margin: 0 20px;
+        margin-top: 20px;
+    }
+}

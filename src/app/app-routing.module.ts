@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'results',
+    loadChildren: './results/results.module#SearchResultsModule'
+  },
+  {
     path: 'popular',
     loadChildren: './popular/popular.module#PopularModule'
   },
