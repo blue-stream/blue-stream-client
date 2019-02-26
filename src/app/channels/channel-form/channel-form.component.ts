@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Channel } from '../channel.model';
-import { ChannelService } from '../channel.service';
+import { Channel } from '../../shared/models/channel.model';
+import { ChannelService } from '../../core/services/channel.service';
 import { MatSnackBar } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/shared/user.service';

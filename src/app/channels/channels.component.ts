@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ChannelService } from './channel.service';
-import { Channel } from './channel.model';
+import { ChannelService } from '../core/services/channel.service';
+import { Channel } from '../shared/models/channel.model';
 import { UserService } from '../shared/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../shared/search/search.service';
