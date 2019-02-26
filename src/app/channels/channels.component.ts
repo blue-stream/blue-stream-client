@@ -16,7 +16,6 @@ export class ChannelsComponent implements OnInit {
 
   @Input() channelsAmountToLoad: number = 40;
   @Input() isPaginated: boolean = true;
-  @Input() isUserChannels: boolean;
   @Input() isSearch: boolean = false;
 
   isSelectForUpload: boolean = false;
@@ -37,10 +36,6 @@ export class ChannelsComponent implements OnInit {
     if (this.isSearch) {
       this.subscribeToSearch();
     } else {
-      if (this.isUserChannels) {
-        this.channelFilter.user = this.userService.currentUser.id;
-      }
-
       this.urlSubscription = this.route.url.subscribe(url => {
         const urlString = url.pop();
         if (urlString) {
