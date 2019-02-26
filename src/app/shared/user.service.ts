@@ -2,13 +2,28 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { User } from './models/user.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+
+const httpHeaders: HttpHeaders = new HttpHeaders({
+  'Content-Type': 'application/json',
+});
+
+const httpOptions = {
+  headers: httpHeaders,
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private cookieService: CookieService) {
+  private serviceUrl: string = environment.userServiceUrl;
+  private apiUrl: string = 'api/user';
+
+  constructor(private cookieService: CookieService, private httpClient: HttpClient) {
   }
 
   public get isAuthenticated(): boolean {
@@ -27,7 +42,23 @@ export class UserService {
     return null;
   }
 
-  getUser() {
-    return 'user@domain';
+  getSearched(
+    searchFilter: string,
+    startIndex: number,
+    endIndex: number,
+    sortOrder: '' | '-' = '',
+    sortBy: 'firstName' | 'lastName' | 'mail' | '_id' = 'firstName') {
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      },
+    };
+    return this.httpClient.get<User[]>(`${this.serviceUrl}${this.apiUrl}/search`, options);
   }
+
 }

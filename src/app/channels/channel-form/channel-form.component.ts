@@ -66,7 +66,7 @@ export class ChannelFormComponent implements OnInit {
     const channel: Partial<Channel> = {
       name: this.channelForm.get('name').value.trim(),
       description: this.channelForm.get('description').value.trim(),
-      user: this.userService.getUser(),
+      user: this.userService.currentUser.id,
     };
 
     if (this.isEditForm) {

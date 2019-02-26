@@ -1,0 +1,21 @@
+#container {
+    padding: 5px;
+    width: 100%;
+    .line {
+        display: flex;
+        .chip-list {
+            margin: auto;
+        }
+        .info {
+            flex: 1 1 0;
+            p {
+                padding: 0px 5px;
+                display: inline-block;
+            }
+        }
+        #owner {
+            color: rgba(219, 142, 26, 1);
+            font-weight: 500;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 <h3 id="title">
   {{video.title}}
-  <mat-icon id="lock" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate" *ngIf="!video.published">lock</mat-icon>
+  <mat-icon id="lock" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate" *ngIf="!video.published">lock
+  </mat-icon>
 </h3>
 <div id="info-container">
   <p id="views" translate [translateParams]="{views: video.views}">
@@ -8,11 +9,7 @@
   </p>
   <span fxFlex></span>
   <div id="actions-container">
-    <bs-reactions
-      [resource]="video.id"
-      [resourceType]="resourceType"
-      [showAmounts]="true"
-      [showBar]=true>
+    <bs-reactions [resource]="video.id" [resourceType]="resourceType" [showAmounts]="true" [showBar]=true>
     </bs-reactions>
     <div class="action-button-container">
       <button [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.SHARE' | translate" mat-icon-button>
@@ -25,22 +22,22 @@
         <mat-icon>playlist_add</mat-icon>
       </button>
     </div>
-    <div class="action-button-container" *ngIf="video.owner === currentUser">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_horiz</mat-icon>
+    <div class="action-button-container" *ngIf="video.owner.id === currentUser.id">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a [routerLink]="['/video',video.id,'edit']">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span translate>WATCH.WATCH_PRIMARY_INFO.EDIT</span>
           </button>
-          <mat-menu #menu="matMenu">
-            <a [routerLink]="['/video',video.id,'edit']">
-              <button mat-menu-item>
-                <mat-icon>edit</mat-icon>
-                <span translate>WATCH.WATCH_PRIMARY_INFO.EDIT</span>
-              </button>
-            </a>
-            <button mat-menu-item (click)="onDeleteVideo()">
-              <mat-icon>delete</mat-icon>
-              <span translate>WATCH.WATCH_PRIMARY_INFO.DELETE.ACTION</span>
-            </button>
-          </mat-menu>
+        </a>
+        <button mat-menu-item (click)="onDeleteVideo()">
+          <mat-icon>delete</mat-icon>
+          <span translate>WATCH.WATCH_PRIMARY_INFO.DELETE.ACTION</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 </div>

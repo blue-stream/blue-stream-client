@@ -33,9 +33,12 @@ import { ReactionComponent } from './reactions/reaction/reaction.component';
 import { EllipsisModule } from 'ngx-ellipsis';
 import { SearchComponent } from './search/search.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -59,10 +62,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSliderModule,
     MatMenuModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
     TranslateModule,
     RouterModule,
     EllipsisModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ],
   exports: [
     MatToolbarModule,
@@ -83,6 +89,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
     FlexLayoutModule,
     RouterModule,
     AvatarComponent,
@@ -96,7 +104,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SafeUrlPipe,
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ],
   declarations: [
     ConfirmDialogComponent,

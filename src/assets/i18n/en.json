@@ -44,10 +44,10 @@
             "SAVE_SUCCESS_APPROVAL": "OK"
         },
         "UPLOAD_PROGRESS": {
-            "ERROR":"An error occurred",
+            "ERROR": "An error occurred",
             "SUCCESS": "Click \"Publish\" to make your video live.",
             "PROGRESS": "Your video is still uploading. Please keep this page open until it's done.",
-            "PENDING":"Upload is pending",
+            "PENDING": "Upload is pending",
             "UNKNOWN": "Unknown status",
             "PUBLISHED": "Video was published successfully",
             "FILE_SIZE": "{{size}} MB",
@@ -97,13 +97,7 @@
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
             "ADD_PLAYLIST": "Add to playlist",
-            "EDIT": "Edit",
-            "DELETE": {
-                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
-                "ACTION": "Delete",
-                "DELETE_SUCCESS": "Video was deleted succesfully",
-                "DELETE_SUCCESS_APPROVAL": "OK"
-            }
+            "EDIT": "Edit"
         }
     },
     "CHANNEL": {
@@ -150,6 +144,30 @@
         },
         "GRID_ITEM": {
             "VIEWS": "total views"
+        },
+        "PERMISSIONS_FORM": {
+            "ADMIN": "Admin",
+            "EDIT": "Edit",
+            "UPLOAD": "Upload",
+            "REMOVE": "Remove",
+            "CREATED": "Permission added to user successfully",
+            "CREATED_APPROVE": "OK",
+            "UPDATED": "User's permission updated successfully",
+            "UPDATED_APPROVE": "OK",
+            "USER_ALREADY_EXISTS_ERROR": "User already has permissions to this channel",
+            "CREATION_FAILED": "OK",
+            "NAME_INPUT": "Choose user",
+            "CAN_NOT_REMOVE_OWNER_ERROR": "Can not remove owner's permissions",
+            "DELETE_FAILED": "OK"
+        },
+        "CHANNEL_PERMISSIONS": {
+            "TITLE": "Permissions",
+            "DELETED": "Permission removed from user successfully",
+            "DELETED_APPROVE": "OK",
+            "ADD_NEW": "Add permissions to a user"
+        },
+        "CHANNEL_PERMISSION": {
+            "OWNER": "Owner"
         }
     },
     "SHARED": {
@@ -179,6 +197,22 @@
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "You have unsaved changes, are you sure you want to leave this page?"
+        }
+    },
+    "SNACK_BARS": {
+        "ERRORS": {
+            "UNPREMITTED_USER": "You do not have permissions to perform this action",
+            "UNKNOWN": "Unknown Error"
+        },
+        "SUCCESSFUL": {
+            "VIDEO_DELETE": "Video was deleted succesfully"
+        },
+        "CONFIRM": {
+            "VIDEO_DELETE": "Are you sure you want to delete the video?"
+        },
+        "BUTTONS": {
+            "OK": "ok",
+            "DELETE": "Delete"
         }
     }
 }

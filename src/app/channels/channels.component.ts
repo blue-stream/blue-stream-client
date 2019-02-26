@@ -4,6 +4,8 @@ import { Channel } from './channel.model';
 import { UserService } from '../shared/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../shared/search/search.service';
+import { ChannelPermissionsService } from './channel-permissions.service';
+import { PermissionTypes } from './user-permissions.model';
 
 @Component({
   selector: 'bs-channels',
@@ -14,32 +16,26 @@ export class ChannelsComponent implements OnInit {
 
   @Input() channelsAmountToLoad: number = 40;
   @Input() isPaginated: boolean = true;
-  @Input() isUserChannels: boolean;
   @Input() isSearch: boolean = false;
 
   isSelectForUpload: boolean = false;
   channels: Channel[] = [];
   channelFilter: Partial<Channel> = {};
-  searchFilter: string;
+  searchFilter: string = '';
 
   urlSubscription: any;
-  totalChannelsAmount: number;
 
   constructor(
     private channelService: ChannelService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private searchService: SearchService) { }
+    private searchService: SearchService,
+    private channelPermissions: ChannelPermissionsService) { }
 
   ngOnInit() {
     if (this.isSearch) {
       this.subscribeToSearch();
-      this.loadSearchedChannelsAmount();
     } else {
-      if (this.isUserChannels) {
-        this.channelFilter.user = this.userService.getUser();
-      }
-
       this.urlSubscription = this.route.url.subscribe(url => {
         const urlString = url.pop();
         if (urlString) {
@@ -48,7 +44,6 @@ export class ChannelsComponent implements OnInit {
           this.changeFilter('');
         }
 
-        this.loadChannelsAmount();
         this.loadNextChannels();
       });
     }
@@ -58,31 +53,34 @@ export class ChannelsComponent implements OnInit {
     this.searchService.searchTyped.subscribe((searchFilter) => {
       this.searchFilter = searchFilter;
       this.loadSearchedChannels(0, this.channelsAmountToLoad);
-      this.loadSearchedChannelsAmount();
-    });
-  }
-
-  loadSearchedChannelsAmount() {
-    this.channelService.searchAmount(this.searchFilter).subscribe(amount => {
-      this.totalChannelsAmount = amount;
-    });
-  }
-
-  loadChannelsAmount() {
-    this.channelService.getAmount(this.channelFilter).subscribe(amount => {
-      this.totalChannelsAmount = amount;
     });
   }
 
   changeFilter(url: string) {
     if (url === 'user') {
-      this.channelFilter = { user: this.userService.getUser() };
+      this.channelFilter = { user: this.userService.currentUser.id };
     } else if (url === 'upload') {
       this.channelFilter = {};
       this.isSelectForUpload = true;
     } else if (url === '') {
       this.channelFilter = {};
     }
+  }
+
+  loadPremittedChannels(startIndex: number, channelsToLoad: number) {
+    const endIndex: number = startIndex + channelsToLoad;
+
+    this.channelPermissions
+      .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
+      .subscribe((channelPermissions: any) => {
+        const channels = channelPermissions.map(channelPermission => channelPermission.channel);
+
+        if (startIndex === 0) {
+          this.channels = channels;
+        } else {
+          this.channels = this.channels.concat(channels);
+        }
+      });
   }
 
   onScroll() {
@@ -92,14 +90,20 @@ export class ChannelsComponent implements OnInit {
   }
 
   loadNextChannels() {
-    if (this.isSearch) {
-      this.loadSearchedChannels(
+    if (this.isSelectForUpload) {
+      this.loadPremittedChannels(
         this.channels.length,
         this.channelsAmountToLoad);
     } else {
-      this.loadChannels(
-        this.channels.length,
-        this.channelsAmountToLoad);
+      if (this.isSearch) {
+        this.loadSearchedChannels(
+          this.channels.length,
+          this.channelsAmountToLoad);
+      } else {
+        this.loadChannels(
+          this.channels.length,
+          this.channelsAmountToLoad);
+      }
     }
   }
 

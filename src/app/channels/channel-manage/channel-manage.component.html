@@ -14,3 +14,7 @@
 <ng-template #editChannelInfo>
     <bs-channel-form (closeForm)="isEditActive = false" [channel]="channel"></bs-channel-form>
 </ng-template>
+<mat-divider></mat-divider>
+<div id="permissions-container">
+    <bs-channel-permissions [channel]="channel"></bs-channel-permissions>
+</div>

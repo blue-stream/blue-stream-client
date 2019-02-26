@@ -150,6 +150,30 @@
         },
         "GRID_ITEM": {
             "VIEWS": "כמות צפיות"
+        },
+        "PERMISSIONS_FORM": {
+            "ADMIN": "מנהל",
+            "EDIT": "עריכה",
+            "UPLOAD": "העלאה",
+            "REMOVE": "מחיקה",
+            "CREATED": "הרשאה נוספה למשתמש בהצלחה",
+            "CREATED_APPROVE": "אשר",
+            "UPDATED": "ההרשאה עודכנה בהצלחה",
+            "UPDATED_APPROVE": "אשר",
+            "USER_ALREADY_EXISTS_ERROR": "למשתמש כבר יש הרשאות לערוץ",
+            "CREATION_FAILED": "אשר",
+            "NAME_INPUT": "בחר משתמש",
+            "CAN_NOT_REMOVE_OWNER_ERROR": "לא ניתן למחוק את ההרשאות של הבעלים",
+            "DELETE_FAILED": "אשר"
+        },
+        "CHANNEL_PERMISSIONS": {
+            "TITLE": "הרשאות",
+            "DELETED": "הרשאה נמחקה בהצלחה",
+            "DELETED_APPROVE": "אשר",
+            "ADD_NEW": "הוסף הרשאות למשתמש"
+        },
+        "CHANNEL_PERMISSION": {
+            "OWNER": "בעלים"
         }
     },
     "SHARED": {
@@ -179,6 +203,22 @@
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "ישנם שינויים שלא שמרת בעמוד, אתה בטוח שברצונך לצאת?"
+        }
+    },
+    "SNACK_BARS": {
+        "ERRORS": {
+            "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
+            "UNKNOWN": "תקלה לא ידועה"
+        },
+        "SUCCESSFUL": {
+            "VIDEO_DELETE": "Video was deleted succesfully"
+        },
+        "CONFIRM": {
+            "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?"
+        },
+        "BUTTONS": {
+            "OK": "אשר",
+            "DELETE": "מחק"
         }
     }
 }

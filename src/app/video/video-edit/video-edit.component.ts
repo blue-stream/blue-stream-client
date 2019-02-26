@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bs-video-edit',
@@ -22,8 +23,8 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private translateService: TranslateService) {
-      super();
-     }
+    super();
+  }
 
   video: Video;
   routeIdSubscription: any;
@@ -89,17 +90,37 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
 
   saveVideo() {
     const video: Video = { ...this.videoForm.value, id: this.video.id };
-    this.videoService.update(video).subscribe(updatedVideo => {
-      this.videoSaved = true;
-      this.translateService.get([
-        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS',
-        'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL']).subscribe(translations => {
+    this.videoService.update(video)
+      .catch((err, caught) => {
+        let message: string = 'SNACK_BARS.ERRORS.UNPREMITTED_USER';
+        let action: string = 'SNACK_BARS.BUTTONS.OK';
+
+        if (err.error.type !== 'UnPremittedUserError') {
+          message = 'SNACK_BARS.ERRORS.UNKNOWN';
+          action = 'SNACK_BARS.BUTTONS.OK';
+        }
+
+        this.translateService.get([message, action]).subscribe(translations => {
           this.snackBar.open(
-            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS'],
-            translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL'],
+            translations[message],
+            translations[action],
             { duration: 2000 });
         });
-    });
+
+        return new Observable(null);
+
+      })
+      .subscribe(updatedVideo => {
+        this.videoSaved = true;
+        this.translateService.get([
+          'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS',
+          'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL']).subscribe(translations => {
+            this.snackBar.open(
+              translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS'],
+              translations['UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL'],
+              { duration: 2000 });
+          });
+      });
   }
 
   canDeactivate(): boolean {
