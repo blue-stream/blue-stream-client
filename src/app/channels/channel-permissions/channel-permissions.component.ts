@@ -15,24 +15,20 @@ export class ChannelPermissionsComponent implements OnInit {
   showForm: boolean = false;
   showEditForm: boolean = false;
   permittedUsers: UserPermissions[] = [];
-  totalPremittedUsersAmount: number = 0;
   editedUser: string;
   premittedUseresAmountToLoad: number = 10;
 
   constructor(private userPermissionsService: ChannelPermissionsService) {
     this.userPermissionsService.userPermissionCreated.subscribe((userPermissions) => {
-      this.loadPermittedUsersAmount();
       this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
     });
 
     this.userPermissionsService.userPermissionDeleted.subscribe((userPermissions) => {
-      this.loadPermittedUsersAmount();
       this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
     });
   }
 
   ngOnInit() {
-    this.loadPermittedUsersAmount();
     this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
   }
 
@@ -45,12 +41,6 @@ export class ChannelPermissionsComponent implements OnInit {
       } else {
         this.permittedUsers = this.permittedUsers.concat(usersPermissions);
       }
-    });
-  }
-
-  loadPermittedUsersAmount() {
-    this.userPermissionsService.getChannelPermittedUsersAmount(this.channel.id).subscribe(amount => {
-      this.totalPremittedUsersAmount = amount;
     });
   }
 
