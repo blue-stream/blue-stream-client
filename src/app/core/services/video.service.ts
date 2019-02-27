@@ -110,7 +110,6 @@ export class VideoService {
     searchFilter: string = '',
     startIndex: number,
     endIndex: number,
-    // sortOrder: '' | '-' = '',
     sortBy: 'title' | 'views' | 'owner' | 'createdAt' = 'views'): Observable<Video[]> {
     const options = {
       httpHeaders,
@@ -118,7 +117,6 @@ export class VideoService {
         searchFilter,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
-        // sortOrder,
         sortBy,
       },
     };
