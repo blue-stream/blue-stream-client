@@ -2,6 +2,7 @@
     [fromRoot]="true" [infiniteScrollContainer]="'#side-nav-container'">
     <div id="title-container" translate>DASHBOARD.SEARCH_RESULTS</div>
     <div id="videos-container">
+        <bs-channel-list mode="vertical" description="true" [channels]="channels"></bs-channel-list>
         <bs-video-list mode="vertical" description="true" [videos]="videos"></bs-video-list>
     </div>
 </div>

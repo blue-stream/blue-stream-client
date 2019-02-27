@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from '../shared/models/channel.model';
 import { Video } from '../shared/models/video.model';
@@ -21,14 +21,16 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   routeQuerySub: any;
   videosSub: any;
   channelsSub: any;
-  channels: Channel[] = [];
-  videos: Video[] = [];
+  channels: Channel[];
+  videos: Video[];
   search: string;
   amountToLoad = 40;
 
   ngOnInit() {
     this.routeQuerySub = this.route.queryParams
     .subscribe( params => {
+      this.channels = [];
+      this.videos = [];
       this.search = params.search_query;
       this.loadSearchedVideos();
       this.loadSearchedChannels();
@@ -46,7 +48,6 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
 
     this.videosSub = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
-      console.log('videos',JSON.stringify(videos))
     });
   }
 
@@ -56,8 +57,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     const endIndex = startIndex + channelsToLoad;
 
     this.channelsSub = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
-        console.log('channels',JSON.stringify(channels))
-        this.channels = channels;
+        this.channels = this.channels.concat(channels);
     });
   }
 

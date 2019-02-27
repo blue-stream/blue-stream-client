@@ -10,6 +10,8 @@ export class ChannelListComponent implements OnInit {
 
   constructor() { }
   @Input() channels: Channel[];
+  @Input() description = true;
+  @Input() mode: 'grid' | 'horizontal' | 'vertical' = 'vertical';
   ngOnInit() {
   }
 

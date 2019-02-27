@@ -144,7 +144,8 @@
             "CREATED_APPROVE": "OK"
         },
         "GRID_ITEM": {
-            "VIEWS": "total views"
+            "VIEWS": "total views",
+            "VIDEOS": "videos"
         },
         "PERMISSIONS_FORM": {
             "ADMIN": "Admin",
@@ -177,6 +178,9 @@
             "UNSUBSCRIBE": "UNSUBSCRIBE"
         },
         "VIDEO_TILE": {
+            "VIEWS": "{{views}} views"
+        },
+        "CHANNEL_TILE": {
             "VIEWS": "{{views}} views"
         },
         "VIDEO_PLAYER": {

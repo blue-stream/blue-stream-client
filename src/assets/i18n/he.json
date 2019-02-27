@@ -150,7 +150,8 @@
             "CREATED_APPROVE": "אשר"
         },
         "GRID_ITEM": {
-            "VIEWS": "כמות צפיות"
+            "VIEWS": "כמות צפיות",
+            "VIDEOS": "סרטונים"
         },
         "PERMISSIONS_FORM": {
             "ADMIN": "מנהל",

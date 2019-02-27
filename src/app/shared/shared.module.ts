@@ -107,7 +107,9 @@ import { ChannelTileComponent } from './channel-tile/channel-tile.component';
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ChannelListComponent,
+    ChannelTileComponent
   ],
   declarations: [
     ConfirmDialogComponent,
