@@ -10,7 +10,6 @@
       <div [fxLayout]="description ? 'row wrap' : 'column'">
           <div id="video-statistics">
             <span>{{'CHANNEL.GRID_ITEM.VIEWS' | translate}}: {{channel.views || 0}}</span>
-            <span>{{'CHANNEL.GRID_ITEM.VIDEOS' | translate}}: {{channel.videos || 0}}</span>
           </div>
       </div>
       <div id="video-description" *ngIf="description" ellipsis>{{channel.description}}</div>
