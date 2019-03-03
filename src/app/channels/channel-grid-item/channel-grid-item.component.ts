@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
-import { Channel } from '../channel.model';
+import { Channel } from '../../shared/models/channel.model';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,5 +1,17 @@
 <div id="search-container">
-  <input #searchBox (keyup)="onType(searchBox.value)" id="search-bar" type="search" [placeholder]="'SHARED.SEARCH.PLACEHOLDER' | translate">
+  <div id="search-bar">
+      <input #searchBox (keyup)="onType(searchBox.value)" (keyup.enter)="onSubmit()" type="search"
+      [placeholder]="'SHARED.SEARCH.PLACEHOLDER' | translate"
+      [matAutocomplete]="auto"
+      matInput>
+
+      <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let channel of channels | async" [value]="channel.name">
+            {{channel.name}}
+          </mat-option>
+      </mat-autocomplete>
+  </div>
+
   <button id="submit-button" mat-icon-button (click)="onSubmit()">
     <mat-icon>search</mat-icon>
   </button>

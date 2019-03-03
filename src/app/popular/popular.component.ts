@@ -9,13 +9,13 @@ import { VideoService } from '../core/services/video.service';
 export class PopularComponent implements OnInit {
 
   constructor(private videoService: VideoService) { }
-  popularVideos: any = [];
+  videos: any = [];
 
   ngOnInit() {
     this.loadPopularVideos();
   }
 
   loadPopularVideos() {
-    this.popularVideos = this.videoService.getVideos();
+    this.videos = this.videoService.getVideos();
   }
 }

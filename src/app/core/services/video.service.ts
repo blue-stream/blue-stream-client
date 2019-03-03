@@ -81,17 +81,17 @@ export class VideoService {
       }
     });
 
-    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, options).
-    pipe(
-      map(videos => videos.map(concatStreamerUrl)),
-      map(videos => videos.filter(checkReadyStatus)),
-      map(videos => videos.filter(checkPublished))
-    );
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, options)
+      .pipe(
+        map(videos => videos.map(concatStreamerUrl)),
+        map(videos => videos.filter(checkReadyStatus)),
+        map(videos => videos.filter(checkPublished))
+      );
   }
 
   getVideo(id: string): Observable<Video> {
     return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions).
-    pipe( map(concatStreamerUrl) );
+      pipe(map(concatStreamerUrl));
   }
 
   getSections(): Observable<VideoSection[]> {
@@ -100,9 +100,33 @@ export class VideoService {
       title: 'סרטונים פופולארים',
     };
 
-    return this.getVideos().pipe( map( (videos: Video[]) => {
+    return this.getVideos().pipe(map((videos: Video[]) => {
       popularSection.videos = videos;
       return [popularSection];
-    }) );
+    }));
   }
+
+  search(
+    searchFilter: string = '',
+    startIndex: number,
+    endIndex: number,
+    sortBy: 'title' | 'views' | 'owner' | 'createdAt' = 'views'): Observable<Video[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortBy,
+      },
+    };
+
+    return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}/search`, options)
+      .pipe(
+        map(videos => videos.map(concatStreamerUrl)),
+        map(videos => videos.filter(checkReadyStatus)),
+        map(videos => videos.filter(checkPublished))
+      );
+  }
+
 }

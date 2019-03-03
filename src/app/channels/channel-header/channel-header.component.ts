@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Channel } from '../channel.model';
+import { Channel } from '../../shared/models/channel.model';
 
 @Component({
   selector: 'bs-channel-header',

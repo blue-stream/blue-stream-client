@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChannelComponent } from './channel/channel.component';
-import { ChannelService } from './channel.service';
+import { ChannelService } from '../core/services/channel.service';
 import { ChannelsRoutingModule } from './channels-routing.module';
 import { ChannelHeaderComponent } from './channel-header/channel-header.component';
 import { SharedModule } from '../shared/shared.module';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChannelPermissionsService } from '../channel-permissions.service';
 import { UserPermissions } from '../user-permissions.model';
-import { Channel } from '../channel.model';
+import { Channel } from '../../shared/models/channel.model';
 
 @Component({
   selector: 'bs-channel-permissions',

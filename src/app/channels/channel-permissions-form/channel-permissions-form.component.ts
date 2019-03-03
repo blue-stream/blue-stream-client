@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Channel } from '../channel.model';
+import { Channel } from '../../shared/models/channel.model';
 import { UserPermissions, PermissionTypes } from '../user-permissions.model';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';

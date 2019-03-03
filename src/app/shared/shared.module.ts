@@ -39,6 +39,8 @@ import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.co
 import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ChannelListComponent } from './channel-list/channel-list.component';
+import { ChannelTileComponent } from './channel-tile/channel-tile.component';
 
 @NgModule({
   imports: [
@@ -105,7 +107,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ChannelListComponent,
+    ChannelTileComponent
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -120,7 +124,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ReactionComponent,
     SearchComponent,
     SubscribeButtonComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    ChannelListComponent,
+    ChannelTileComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
