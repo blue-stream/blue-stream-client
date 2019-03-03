@@ -18,9 +18,9 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     private videoService: VideoService
     ) { }
 
-  routeQuerySub: any;
-  videosSub: any;
-  channelsSub: any;
+  routeQuerySubscription: any;
+  videosSubscription: any;
+  channelsSubscription: any;
   channels: Channel[];
   videos: Video[];
   search: string;
@@ -28,10 +28,10 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   channelsToLoad = 40;
 
   ngOnInit() {
-    this.routeQuerySub = this.route.queryParams
+    this.routeQuerySubscription = this.route.queryParams
     .subscribe( params => {
-      this.channels = [];
-      this.videos = [];
+      // this.channels = [];
+      // this.videos = [];
       this.search = params.search_query;
       this.loadSearchedVideos();
       this.loadSearchedChannels();
@@ -39,15 +39,15 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.routeQuerySub.unsubscribe();
-    this.channelsSub.unsubscribe();
-    this.videosSub.unsubscribe();
+    this.routeQuerySubscription.unsubscribe();
+    this.channelsSubscription.unsubscribe();
+    this.videosSubscription.unsubscribe();
   }
 
   loadSearchedVideos(startIndex = 0) {
     const endIndex = startIndex + this.videosToLoad;
 
-    this.videosSub = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
+    this.videosSubscription = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
     });
   }
@@ -56,7 +56,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     const startIndex = 0;
     const endIndex = startIndex + this.channelsToLoad;
 
-    this.channelsSub = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
+    this.channelsSubscription = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
         this.channels = this.channels.concat(channels);
     });
   }
