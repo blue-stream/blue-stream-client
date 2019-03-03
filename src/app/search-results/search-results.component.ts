@@ -30,8 +30,8 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.routeQuerySubscription = this.route.queryParams
     .subscribe( params => {
-      // this.channels = [];
-      // this.videos = [];
+      this.channels = [];
+      this.videos = [];
       this.search = params.search_query;
       this.loadSearchedVideos();
       this.loadSearchedChannels();
