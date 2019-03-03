@@ -3,9 +3,9 @@ import { ChannelService } from '../core/services/channel.service';
 import { Channel } from '../shared/models/channel.model';
 import { UserService } from '../shared/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { SearchService } from '../shared/search/search.service';
 import { ChannelPermissionsService } from './channel-permissions.service';
 import { PermissionTypes } from './user-permissions.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'bs-channels',
@@ -17,6 +17,7 @@ export class ChannelsComponent implements OnInit {
   @Input() channelsAmountToLoad: number = 40;
   @Input() isPaginated: boolean = true;
   @Input() isSearch: boolean = false;
+  searchTyped = new Subject<string>();
 
   isSelectForUpload: boolean = false;
   channels: Channel[] = [];
@@ -29,7 +30,6 @@ export class ChannelsComponent implements OnInit {
     private channelService: ChannelService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private searchService: SearchService,
     private channelPermissions: ChannelPermissionsService) { }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class ChannelsComponent implements OnInit {
   }
 
   subscribeToSearch() {
-    this.searchService.searchTyped.subscribe((searchFilter) => {
+    this.searchTyped.subscribe((searchFilter) => {
       this.searchFilter = searchFilter;
       this.loadSearchedChannels(0, this.channelsAmountToLoad);
     });

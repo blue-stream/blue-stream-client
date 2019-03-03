@@ -26,8 +26,7 @@ export class SearchComponent {
     this.searchTyped.next(this.searchString);
   }
 
-  onSubmit(term?:string) {
-    if(term) return this.router.navigate(['/results'], { queryParams: {search_query: term } });
+  onSubmit() {
     this.router.navigate(['/results'], { queryParams: {search_query: this.searchString } });
   }
 
