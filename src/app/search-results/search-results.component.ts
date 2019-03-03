@@ -24,7 +24,8 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   channels: Channel[];
   videos: Video[];
   search: string;
-  amountToLoad = 40;
+  videosToLoad = 40;
+  channelsToLoad = 40;
 
   ngOnInit() {
     this.routeQuerySub = this.route.queryParams
@@ -44,7 +45,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   }
 
   loadSearchedVideos(startIndex = 0) {
-    const endIndex = startIndex + this.amountToLoad;
+    const endIndex = startIndex + this.videosToLoad;
 
     this.videosSub = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
@@ -53,8 +54,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
 
   loadSearchedChannels() {
     const startIndex = 0;
-    const channelsToLoad = 4;
-    const endIndex = startIndex + channelsToLoad;
+    const endIndex = startIndex + this.channelsToLoad;
 
     this.channelsSub = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
         this.channels = this.channels.concat(channels);
