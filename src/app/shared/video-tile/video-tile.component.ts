@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Video } from '../models/video.model';
+import { Video, VideoStatus } from '../models/video.model';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,6 +13,7 @@ export class VideoTileComponent implements OnInit {
   @Input() description = false;
   @Input() video: Video;
   image: string;
+  videoStatus = VideoStatus;
 
   constructor() {}
 
