@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Channel } from 'src/app/shared/models/channel.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'bs-watch-owner',
@@ -7,11 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WatchOwnerComponent implements OnInit {
 
-  @Input() owner: string;
+  @Input() owner: User;
+  @Input() channel: Channel;
   @Input() publishDate: string;
+
+  channelLink: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.channelLink = `/channels/${this.channel.id}`;
   }
 }

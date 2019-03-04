@@ -7,10 +7,6 @@ import { ChannelSearchComponent } from './channel-search/channel-search.componen
 
 const routes: Routes = [
   {
-    path: 'user',
-    component: ChannelsComponent,
-  },
-  {
     path: 'upload',
     component: ChannelsComponent,
   },
@@ -21,6 +17,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: ChannelSearchComponent,
+  },
+  {
+    path: 'profile/:userId',
+    component: ChannelComponent,
   },
   {
     path: '',
