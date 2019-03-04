@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Video, VideoStatus } from '../../shared/models/video.model';
-import { VIDEOS1, SECTIONS } from '../../shared/models/mock-videos';
 import { VideoSection } from '../../shared/models/video-section.model';
 
 import { environment } from '../../../environments/environment';
@@ -27,14 +26,6 @@ const concatStreamerUrl = video => {
   video.thumbnailPath = thumbnailApiUrl.concat(video.thumbnailPath);
   video.previewPath = previewApiUrl.concat(video.previewPath);
   return video;
-};
-
-const checkReadyStatus = video => {
-  return video.status === VideoStatus.READY;
-};
-
-const checkPublished = video => {
-  return video.published === true;
 };
 
 
@@ -83,9 +74,7 @@ export class VideoService {
 
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, options)
       .pipe(
-        map(videos => videos.map(concatStreamerUrl)),
-        map(videos => videos.filter(checkReadyStatus)),
-        map(videos => videos.filter(checkPublished))
+        map(videos => videos.map(concatStreamerUrl))
       );
   }
 
@@ -123,9 +112,7 @@ export class VideoService {
 
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}/search`, options)
       .pipe(
-        map(videos => videos.map(concatStreamerUrl)),
-        map(videos => videos.filter(checkReadyStatus)),
-        map(videos => videos.filter(checkPublished))
+        map(videos => videos.map(concatStreamerUrl))
       );
   }
 
