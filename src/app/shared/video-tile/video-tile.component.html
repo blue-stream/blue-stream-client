@@ -10,7 +10,15 @@
           <div id="seperator" *ngIf="description"><span></span></div>
           <div id="video-statistics">
             <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
-            <span>{{video.publishDate | date: 'dd MMM'}}</span>
+            <span *ngIf="video.publishDate">{{video.publishDate | date: 'dd MMM'}}</span>
+          </div>
+          <div fxLayout="row" fxLayoutGap="4px">
+            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate" *ngIf="!video.published">lock
+            </mat-icon>
+            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.PROCESSING' | translate" *ngIf="video.status === videoStatus.PENDING">sync
+            </mat-icon>
+            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.FAILED' | translate" *ngIf="video.status === videoStatus.FAILED">error
+            </mat-icon>
           </div>
       </div>
       <div id="video-description" *ngIf="description" ellipsis>{{video.description}}</div>

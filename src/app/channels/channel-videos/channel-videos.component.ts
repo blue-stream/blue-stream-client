@@ -9,7 +9,7 @@ import { Channel } from '../../shared/models/channel.model';
   styleUrls: ['./channel-videos.component.scss']
 })
 export class ChannelVideosComponent implements OnInit {
-  @Input() channelFilter: Channel;
+  @Input() videoFilter: Partial<Video>;
   videos: Video[];
 
   constructor(private videoService: VideoService) { }
@@ -19,7 +19,7 @@ export class ChannelVideosComponent implements OnInit {
   }
 
   loadChannelVideos() {
-    this.videoService.getVideos(this.channelFilter).subscribe(videos => {
+    this.videoService.getVideos(this.videoFilter).subscribe(videos => {
       this.videos = videos;
     });
   }
