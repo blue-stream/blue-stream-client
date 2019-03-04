@@ -4,7 +4,7 @@
       <bs-avatar *ngIf="section.avatarUrl" [source]="section.avatarUrl" [alt]="section.title" size="small"></bs-avatar>
       <h3 id="title">{{section.title}}</h3>
       <span fxFlex></span>
-      <bs-subscribe-button *ngIf="section.isDismissable" [subscribersAmount]="5" fxHide.lt-md></bs-subscribe-button>
+      <!-- <bs-subscribe-button *ngIf="section.isDismissable" [subscribersAmount]="5" fxHide.lt-md></bs-subscribe-button> -->
       <button mat-icon-button *ngIf="section.isDismissable">
         <mat-icon>clear</mat-icon>
       </button>
