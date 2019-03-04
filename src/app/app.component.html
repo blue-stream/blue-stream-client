@@ -16,29 +16,42 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sideNav [mode]="getSideNavMode()" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="isSideNavOpen">
+    <mat-sidenav #sideNav [mode]="getSideNavMode()" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+      [opened]="isSideNavOpen">
       <mat-nav-list>
         <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
-        <mat-list-item>
-          <mat-icon matListIcon>home</mat-icon>
-          <a matLine routerLink="" translate>DASHBOARD.HOME</a>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListIcon>whatshot</mat-icon>
-          <a matLine routerLink="/popular" translate>DASHBOARD.POPULAR</a>
-        </mat-list-item>
-        <!-- <mat-list-item>
-          <mat-icon matListIcon>subscriptions</mat-icon>
-          <a matLine routerLink="/subscriptions" translate>DASHBOARD.SUBSCRIPTIONS</a>
-        </mat-list-item> -->
-        <mat-list-item>
-          <mat-icon matListIcon>video_library</mat-icon>
-          <a matLine routerLink="/channels" translate>DASHBOARD.ALL_CHANNELS</a>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListIcon>video_library</mat-icon>
-          <a matLine routerLink="/channels/user" translate>DASHBOARD.USER_CHANNELS</a>
-        </mat-list-item>
+        <a routerLink="">
+          <mat-list-item>
+            <mat-icon matListIcon>home</mat-icon>
+            <span matLine translate>DASHBOARD.HOME</span>
+          </mat-list-item>
+        </a>
+        <a routerLink="/popular">
+          <mat-list-item>
+            <mat-icon matListIcon>whatshot</mat-icon>
+            <span matLine translate>DASHBOARD.POPULAR</span>
+          </mat-list-item>
+        </a>
+        <!-- 
+        <a matLine routerLink="/subscriptions">
+          <mat-list-item>
+            <mat-icon matListIcon>subscriptions</mat-icon>
+            <span matLine translate>DASHBOARD.SUBSCRIPTIONS</span>
+          </mat-list-item>
+        </a> 
+        -->
+        <a routerLink="/channels">
+          <mat-list-item>
+            <mat-icon matListIcon>video_library</mat-icon>
+            <span matLine translate>DASHBOARD.ALL_CHANNELS</span>
+          </mat-list-item>
+        </a>
+        <a routerLink="/channels/user">
+          <mat-list-item>
+            <mat-icon matListIcon>video_library</mat-icon>
+            <span matLine translate>DASHBOARD.USER_CHANNELS</span>
+          </mat-list-item>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
 
