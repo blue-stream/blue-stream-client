@@ -2,6 +2,6 @@
     <bs-avatar id="creator-profile-image"></bs-avatar>
     <div id="video-info">
         <a id="channel-link" href="">{{owner}}</a>
-        <span id="publish-date" translate [translateParams]="{date: (publishDate | date)}">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
+        <span id="publish-date" translate [translateParams]="{date: (publishDate | date)}" *ngIf="publishDate">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
     </div>
 </div>
