@@ -18,6 +18,6 @@ export class WatchOwnerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.channelLink = `\\channels\\${this.channel.id}`;
+    this.channelLink = `/channels/${this.channel.id}`;
   }
 }
