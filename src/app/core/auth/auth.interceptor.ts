@@ -11,6 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         req = req.clone({
+            withCredentials: true,
             setHeaders: {
                 'Authorization':
                     `Bearer ${this.cookieService.get(environment.authenticationToken)}`,
