@@ -4,7 +4,7 @@ export const environment = {
   uploadServiceUrl: 'http://localhost:5002/',
   commentServiceUrl: 'http://localhost:7002/',
   reactionServiceUrl: 'http://localhost:7003/',
-  streamerServiceUrl: 'http://localhost:5005/',
+  streamerServiceUrl: 'http://localhost/api/streamer/',
   channelServiceUrl: 'http://localhost:7001/',
   userServiceUrl: 'http://localhost:7001/',
   authenticationServiceUrl: 'http://localhost:5010/',
