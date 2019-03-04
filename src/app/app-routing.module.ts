@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: './channels/channels.module#ChannelsModule',
   },
   {
+    path: 'user',
+    loadChildren: './channels/channels.module#ChannelsModule',
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
   },
