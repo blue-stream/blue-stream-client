@@ -47,12 +47,12 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.volume = this.videoPlayer.nativeElement.volume;
-    if (this.video && this.video.contentPath) {
-      this.video.contentPath += `?video-token=${this.video.token}`;
-    }
   }
 
   ngOnChanges() {
+    if (this.video && this.video.contentPath) {
+      this.video.contentPath += `?video-token=${this.video.token}`;
+    }
     this.progress = 0;
     this.buffer = 0;
     this.previousVideoState = null;
