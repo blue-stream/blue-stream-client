@@ -55,7 +55,7 @@ export class VideoService {
 
   getVideos(videoFilter?: Partial<Video>): Observable<Video[]> {
     const options = {
-      httpHeaders,
+      headers: httpHeaders,
       params: {
         id: videoFilter ? videoFilter.id : undefined,
         title: videoFilter ? videoFilter.title : undefined,
@@ -63,7 +63,7 @@ export class VideoService {
         owner: videoFilter ? videoFilter.owner : undefined,
         status: videoFilter ? videoFilter.status : undefined,
         channel: videoFilter ? videoFilter.channel : undefined,
-      },
+      } as { [param: string]: string | string[] },
     };
 
     Object.keys(options.params).forEach(key => {
@@ -74,7 +74,7 @@ export class VideoService {
 
     return this.httpClient.get<Video[]>(`${this.serviceUrl}${this.apiUrl}`, options)
       .pipe(
-        map(videos => videos.map(concatStreamerUrl))
+        map((videos: Video[]) => videos.map(concatStreamerUrl))
       );
   }
 
