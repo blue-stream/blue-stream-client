@@ -18,7 +18,7 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
 
   private static readonly timeToHideActions = 3 * 1000;
 
-  @Input() video: Video;
+  @Input() video: Video & { token: string };
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
   @Output() toggleWideScreen: EventEmitter<boolean>;
   private playPromise: Promise<void>;
@@ -47,6 +47,9 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.volume = this.videoPlayer.nativeElement.volume;
+    if (this.video && this.video.contentPath) {
+      this.video.contentPath += `?video-token=${this.video.token}`;
+    }
   }
 
   ngOnChanges() {

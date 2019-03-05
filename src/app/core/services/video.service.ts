@@ -78,7 +78,7 @@ export class VideoService {
       );
   }
 
-  getVideo(id: string): Observable<Video> {
+  getVideo(id: string): Observable<Video & { token: string }> {
     return this.httpClient.get<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions).
       pipe(map(concatStreamerUrl));
   }

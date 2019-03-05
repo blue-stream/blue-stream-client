@@ -19,7 +19,7 @@ export class WatchComponent implements OnInit, OnDestroy {
     private viewService: ViewsService,
   ) { }
 
-  video: Video;
+  video: Video & { token: string };
   videoSubscription: any;
   routeIdSubscription: any;
   recommendedVideos: Observable<Video[]>;
