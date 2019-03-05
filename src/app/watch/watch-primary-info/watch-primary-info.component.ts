@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Video } from '../../shared/models/video.model';
 import { ReactionService } from 'src/app/core/services/reaction.service';
 import { Reaction, ResourceType, ReactionType } from 'src/app/shared/models/reaction.model';
@@ -9,22 +9,28 @@ import { MatSnackBar } from '@angular/material';
 import { UserService } from 'src/app/shared/user.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Observable } from 'rxjs';
+import { ChannelPermissionsService } from 'src/app/channels/channel-permissions.service';
+import { UserPermissions, PermissionTypes } from 'src/app/channels/user-permissions.model';
+import { Channel } from 'src/app/shared/models/channel.model';
 
 @Component({
   selector: 'bs-watch-primary-info',
   templateUrl: './watch-primary-info.component.html',
   styleUrls: ['./watch-primary-info.component.scss']
 })
-export class WatchPrimaryInfoComponent implements OnInit {
+export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
 
   @Input() video: Video;
   currentReactionType: ReactionType;
   resourceType: ResourceType = ResourceType.Video;
   currentUser: User;
+  canEdit: boolean = false;
+  canRemove: boolean = false;
 
   constructor(
     private reactionService: ReactionService,
     private videoService: VideoService,
+    private permissionsService: ChannelPermissionsService,
     private translateService: TranslateService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -33,6 +39,30 @@ export class WatchPrimaryInfoComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.userService.currentUser;
+  }
+
+  ngOnChanges() {
+    this.loadUserPermissions();
+  }
+
+  loadUserPermissions () {
+    const channelId: string = (this.video.channel as Channel).id || (this.video.channel as string);
+
+    this.permissionsService.getOne(channelId).subscribe(channelPermissions => {
+      if (!channelPermissions) {
+        this.canEdit = false;
+        this.canRemove = false;
+      } else {
+        const permissions = channelPermissions.permissions;
+        const hasEditPermissions: boolean = permissions.includes(PermissionTypes.Edit);
+        const hasRemovePermissions: boolean = permissions.includes(PermissionTypes.Remove);
+        const isAdmin: boolean = permissions.includes(PermissionTypes.Admin);
+        const isVideoOwner: boolean = ((this.video.owner as User).id || this.video.owner) === this.currentUser.id;
+
+        this.canEdit = hasEditPermissions || isAdmin || isVideoOwner;
+        this.canRemove = hasRemovePermissions || isAdmin || isVideoOwner;
+      }
+    });
   }
 
   onDeleteVideo() {
