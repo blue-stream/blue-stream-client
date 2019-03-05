@@ -13,7 +13,6 @@ export class Video {
     tags?: string[];
     published?: boolean;
     publishDate: Date;
-    token?: string;
 }
 
 export enum VideoStatus {

@@ -18,7 +18,7 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
 
   private static readonly timeToHideActions = 3 * 1000;
 
-  @Input() video: Video;
+  @Input() video: Video & { token: string };
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
   @Output() toggleWideScreen: EventEmitter<boolean>;
   private playPromise: Promise<void>;
