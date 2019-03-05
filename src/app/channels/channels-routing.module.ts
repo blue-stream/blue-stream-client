@@ -19,6 +19,10 @@ const routes: Routes = [
     component: ChannelSearchComponent,
   },
   {
+    path: 'user',
+    component: ChannelsComponent,
+  },
+  {
     path: 'profile/:userId',
     component: ChannelComponent,
   },
