@@ -4,7 +4,7 @@ import { VideoService } from '../core/services/video.service';
 import { Video, VideoStatus } from '../shared/models/video.model';
 import { Observable } from 'rxjs/Observable';
 import { ViewsService } from '../core/services/views.service';
-import { flatMap } from 'rxjs/operators';
+import { flatMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'bs-watch',
@@ -39,7 +39,10 @@ export class WatchComponent implements OnInit, OnDestroy {
   }
 
   loadRecommendedVideos(id: string) {
-    this.recommendedVideos = this.videoService.getVideos({});
+    this.recommendedVideos = this.videoService.getVideos({})
+    .pipe(
+      map(videos => videos.filter( video => video.id !== this.video.id ))
+    );
   }
 
   loadVideoInfo(id: string) {
