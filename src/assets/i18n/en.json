@@ -120,8 +120,8 @@
         "STATS": {
             "TITLE": "Stats",
             "JOIN_DATE": "Joined ",
-            "TOTAL_VIEWS": "{{views}} views",
-            "VIDEOS_AMOUNT": "{{amount}} videos"
+            "TOTAL_VIEWS": "views",
+            "VIDEOS_AMOUNT": "videos"
         },
         "ABOUT": {
             "TAB_LABEL": "ABOUT",

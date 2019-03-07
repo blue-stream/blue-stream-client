@@ -126,8 +126,8 @@
         "STATS": {
             "TITLE": "סטטיסטיקות",
             "JOIN_DATE": " הצטרף ב",
-            "TOTAL_VIEWS": "{{views}} צפיות",
-            "VIDEOS_AMOUNT": "{{amount}} סרטונים"
+            "TOTAL_VIEWS": "צפיות",
+            "VIDEOS_AMOUNT": "סרטונים"
         },
         "ABOUT": {
             "TAB_LABEL": "אודות",
