@@ -1,7 +1,8 @@
 <mat-card fxLayout="column">
   <bs-video-upload-progress [videoUpload]="videoUpload"></bs-video-upload-progress>
 
-  <form fxLayout="column" *ngIf="!this.videoSaved && !this.videoUpload.published" [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <form fxLayout="column" *ngIf="!this.videoSaved && !this.videoUpload.published" [formGroup]="uploadForm"
+    (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
       <input matInput formControlName="title">
@@ -12,37 +13,47 @@
       <textarea rows="4" matInput id="description" formControlName="description"></textarea>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" >
+    <mat-form-field appearance="outline">
       <mat-chip-list #tagList>
         <mat-chip *ngFor="let tag of uploadForm.get('tags').controls; let index = index;" [selectable]="true"
-                 [removable]="true" (removed)="removeTag(index)">
+          [removable]="true" (removed)="removeTag(index)">
           {{tag.value}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
-        <input FormArrayName="tags"
-               placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}"
-               [matChipInputFor]="tagList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="true"
-               (matChipInputTokenEnd)="addTag($event)">
+        <input FormArrayName="tags" placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}"
+          [matChipInputFor]="tagList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)">
       </mat-chip-list>
     </mat-form-field>
 
-    <div fxLayout="row" fxLayout.s="column" fxLayoutGap="15px" >
+    <div fxLayout="row" fxLayout.s="column" fxLayoutGap="15px">
       <mat-form-field appearance="outline" class="classification">
         <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
-        <input matInput formControlName="classificationSource">
+        <input matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource">
+        <mat-autocomplete #sourceAuto="matAutocomplete">
+          <mat-option *ngFor="let source of sources | async" [value]="source.id">
+            {{source.name}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <mat-form-field appearance="outline" class="classification">
         <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
-        <input matInput formControlName="pp" [errorStateMatcher]="errorMatcher">
-        <mat-error *ngIf="uploadForm.hasError('sourceMissed')" translate>UPLOADER.UPLOAD_FORM.ERRORS.SOURCE_MISSED</mat-error>
+        <input matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput>
+        <mat-autocomplete #ppAuto="matAutocomplete">
+          <mat-option *ngFor="let pp of pps | async" [value]="pp.id">
+            {{pp.name}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="uploadForm.hasError('sourceMissed')" translate>UPLOADER.UPLOAD_FORM.ERRORS.SOURCE_MISSED
+        </mat-error>
       </mat-form-field>
     </div>
     <mat-card-actions align="end">
-      <button type="button" [disabled]="!isPublishReady || !uploadForm.valid" (click)="publishVideo()" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
-      <button type="submit" [disabled]="!isPublishReady || !uploadForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
+      <button type="button" [disabled]="!isPublishReady || !uploadForm.valid" (click)="publishVideo()" mat-button
+        color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+      <button type="submit" [disabled]="!isPublishReady || !uploadForm.valid" mat-button
+        color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
     </mat-card-actions>
   </form>
-  
+
 </mat-card>

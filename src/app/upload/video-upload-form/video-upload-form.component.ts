@@ -10,6 +10,11 @@ import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
+import { Observable, Subject } from 'rxjs';
+import { Classification } from 'src/app/shared/models/classification.model';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 const classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const classificationSource = control.get('classificationSource').value;
@@ -39,6 +44,10 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   separatorKeysCodes = [ENTER];
   videoSaved = false;
   errorMatcher = new CrossFieldErrorMatcher();
+  sourceTyped: Subject<string> = new Subject<string>();
+  ppTyped: Subject<string> = new Subject<string>();
+  sources: Observable<Classification[]>;
+  pps: Observable<Classification[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -125,6 +134,26 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
   ngOnInit() {
     this.createForm();
+    this.sources = this.sourceTyped.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap( (term: string) => this.loadSources(term) ),
+    );
+    this.pps = this.ppTyped.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap( (term: string) => this.loadPps(term) ),
+    );
+  }
+
+  loadSources(term) {
+    return [{name: 'hi', id: 'bye'} as Classification];
+    // return this.channelService.search(term, 0, this.channelsToLoad);
+  }
+
+  loadPps(term) {
+    return [{name: 'hi', id: 'bye'} as Classification];
+    // return this.channelService.search(term, 0, this.channelsToLoad);
   }
 
   canDeactivate(): boolean {
