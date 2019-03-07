@@ -8,7 +8,8 @@
     grid-template-areas: 
     "video-player other-videos"
     "video-info other-videos"
-    "comments other-videos";
+    "comments other-videos"
+    ". other-videos";
     @media screen and (min-width: 1280px) and (max-width: 1919px) {
         grid-template-columns: 854px minmax(300px, 402px);
     }
@@ -27,7 +28,8 @@
         grid-template-areas: 
         "video-player video-player video-player video-player"
         ". video-info other-videos ."
-        ". comments other-videos .";
+        ". comments other-videos ."
+        ". . other-videos .";
 
         #video-info {
             padding: 0 32px;
