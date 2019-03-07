@@ -1,13 +1,28 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
+import {ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
+import {ErrorStateMatcher} from '@angular/material';
 import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
+
+const classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const classificationSource = control.get('classificationSource').value;
+  const pp = control.get('pp').value;
+  const condition = pp ? classificationSource : true;
+  return condition ? null : {'sourceMissed': true};
+};
+
+class CrossFieldErrorMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return control.dirty && form.invalid;
+  }
+}
 
 @Component({
   selector: 'bs-video-upload-form',
@@ -23,6 +38,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   uploadForm: FormGroup;
   separatorKeysCodes = [ENTER];
   videoSaved = false;
+  errorMatcher = new CrossFieldErrorMatcher();
 
   constructor(
     private fb: FormBuilder,
@@ -42,7 +58,11 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
       description: this.fb.control('',
         Validators.maxLength(environment.descriptionMaxLength)),
       tags: this.fb.array([]),
-    });
+      classificationSource: this.fb.control('',
+        Validators.maxLength(environment.classificationMaxLength)),
+      pp: this.fb.control('',
+        Validators.maxLength(environment.classificationMaxLength)),
+    }, { validator: classificationValidator });
   }
 
   removeTag(index: number): void {

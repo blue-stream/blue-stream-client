@@ -32,10 +32,15 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish",
             "SAVE": "Save",
+            "CLASSIFICATION_SOURCE": "Source",
+            "PP": "Audience",
             "VISIBILITY": {
                 "FIELD": "Visibility",
                 "PUBLIC": "Public",
                 "PRIVATE": "Private"
+            },
+            "ERRORS": {
+                "SOURCE_MISSED": "You must attach source!"
             }
         },
         "VIDEO_UPLOADER": {

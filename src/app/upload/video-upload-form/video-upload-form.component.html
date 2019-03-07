@@ -28,6 +28,17 @@
       </mat-chip-list>
     </mat-form-field>
 
+    <div fxLayout="row" fxLayout.s="column" fxLayoutGap="15px" >
+      <mat-form-field appearance="outline" class="classification">
+        <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
+        <input matInput formControlName="classificationSource">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="classification">
+        <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
+        <input matInput formControlName="pp" [errorStateMatcher]="errorMatcher">
+        <mat-error *ngIf="uploadForm.hasError('sourceMissed')" translate>UPLOADER.UPLOAD_FORM.ERRORS.SOURCE_MISSED</mat-error>
+      </mat-form-field>
+    </div>
     <mat-card-actions align="end">
       <button type="button" [disabled]="!isPublishReady || !uploadForm.valid" (click)="publishVideo()" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
       <button type="submit" [disabled]="!isPublishReady || !uploadForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
