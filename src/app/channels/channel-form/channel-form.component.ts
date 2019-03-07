@@ -57,7 +57,6 @@ export class ChannelFormComponent implements OnInit {
       description: this.fb.control(this.channel ? this.channel.description : '', [
         Validators.minLength(environment.channelDescriptionMinLength),
         Validators.maxLength(environment.channelDescriptionMaxLength),
-        Validators.required,
       ]),
     });
   }
