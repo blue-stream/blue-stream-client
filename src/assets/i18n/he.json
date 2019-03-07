@@ -52,7 +52,8 @@
             "UNKNOWN": "לא ידוע",
             "PUBLISHED": "הסרטון פורסם בהצלחה",
             "FILE_SIZE": "{{size}} MB",
-            "CANCEL": "בטל"
+            "CANCEL": "בטל",
+            "LINK": "לינק לסרטון"
         }
     },
     "COMMENTS": {

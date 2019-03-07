@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 import { ConfirmDialogData } from '../../shared/confirm-dialog/confirm-dialog-data';
 import { FileUploaderService } from '../file-uploader.service';
 import { VideoUpload } from '../video-upload.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-video-upload-progress',
@@ -23,12 +24,17 @@ export class VideoUploadProgressComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer,
     private fileUploaderService: FileUploaderService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.videoPlayer.nativeElement.muted = 'muted';
     this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.videoUpload.fileUpload.file));
+  }
+
+  onLinkPress() {
+    this.router.navigate(['/watch/', this.videoUpload.id]);
   }
 
   cancelUpload() {
