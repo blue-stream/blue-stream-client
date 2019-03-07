@@ -99,7 +99,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
       })
       .subscribe(video => {
         const message: string = 'SNACK_BARS.SUCCESSFUL.VIDEO_DELETE';
-        const action: string = 'SNACK_BARS.CONFIRM.VIDEO_DELETE';
+        const action: string = 'SNACK_BARS.CONFIRM.OK';
         this.translateService.get([message, action]).subscribe(translations => {
           this.snackBar.open(translations[message], translations[action], { duration: 2000 });
           this.router.navigate(['/']);
