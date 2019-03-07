@@ -1,10 +1,10 @@
 <p id="title" translate>CHANNEL.STATS.TITLE</p>
-<p class="info">
+<div class="info">
   {{'CHANNEL.STATS.JOIN_DATE' | translate}} {{creationDate | date}}
-</p>
-<p class="info" translate [translateParams]="{views: totalViews}">
-  CHANNEL.STATS.TOTAL_VIEWS
-</p>
-<p class="info" translate [translateParams]="{amount: videosAmount}">
-  CHANNEL.STATS.VIDEOS_AMOUNT
-</p>
+</div>
+<div class="info">
+  {{ totalViews }} {{'CHANNEL.STATS.TOTAL_VIEWS' | translate}}
+</div>
+<div class="info">
+  {{ videosAmount }} {{'CHANNEL.STATS.VIDEOS_AMOUNT' | translate}} 
+</div>
