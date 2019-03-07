@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { ChannelService } from '../core/services/channel.service';
 import { Channel } from '../shared/models/channel.model';
 import { UserService } from '../shared/user.service';
@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   templateUrl: './channels.component.html',
   styleUrls: ['./channels.component.scss']
 })
-export class ChannelsComponent implements OnInit {
+export class ChannelsComponent implements OnChanges {
 
   @Input() channelsAmountToLoad: number = 40;
   @Input() isPaginated: boolean = true;
@@ -32,7 +32,7 @@ export class ChannelsComponent implements OnInit {
     private route: ActivatedRoute,
     private channelPermissions: ChannelPermissionsService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.isSearch) {
       this.subscribeToSearch();
     } else {

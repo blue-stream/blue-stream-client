@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './channel-add.component.html',
   styleUrls: ['./channel-add.component.scss']
 })
-export class ChannelAddComponent implements OnInit {
+export class ChannelAddComponent {
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   onClose(channelId: string) {
     this.router.navigate(['/channels/', channelId]);

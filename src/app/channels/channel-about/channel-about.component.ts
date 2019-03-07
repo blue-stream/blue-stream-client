@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Channel } from '../../shared/models/channel.model';
 import { ViewsService } from 'src/app/core/services/views.service';
 import { VideoService } from 'src/app/core/services/video.service';

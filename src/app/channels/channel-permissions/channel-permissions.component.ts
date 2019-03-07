@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { ChannelPermissionsService } from '../channel-permissions.service';
 import { UserPermissions } from '../user-permissions.model';
 import { Channel } from '../../shared/models/channel.model';
@@ -8,7 +8,7 @@ import { Channel } from '../../shared/models/channel.model';
   templateUrl: './channel-permissions.component.html',
   styleUrls: ['./channel-permissions.component.scss']
 })
-export class ChannelPermissionsComponent implements OnInit {
+export class ChannelPermissionsComponent implements OnChanges {
 
   @Input() channel: Channel;
 
@@ -28,7 +28,7 @@ export class ChannelPermissionsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
   }
 
