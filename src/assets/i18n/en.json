@@ -115,7 +115,8 @@
             "TAB_LABEL": "MY UPLOADED VIDEOS"
         },
         "CHANNELS": {
-            "TAB_LABEL": "MY CHANNELS"
+            "TAB_LABEL": "MY CHANNELS",
+            "UPLOAD_TITLE": "To which channel do you want to upload?"
         },
         "STATS": {
             "TITLE": "Stats",
