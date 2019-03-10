@@ -5,10 +5,10 @@ import { ValidatorFn, FormGroupDirective, NgForm, AbstractControl } from '@angul
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar, ErrorStateMatcher } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
-import { environment } from '../../../environments/environment';
-import { VideoService } from '../../core/services/video.service';
+import { environment } from '../../environments/environment';
+import { VideoService } from '../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
+import { ComponentCanDeactivate } from '../core/can-deactivate/component-can-deactivate';
 import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
 import {
@@ -91,7 +91,6 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
 
   onPpType(search: string) {
     this.ppTyped.next(search);
-    console.log(this.videoForm.controls);
   }
 
   loadVideoInfo(id: string) {

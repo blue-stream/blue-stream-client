@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VideoSectionListComponent } from './video-section-list/video-section-list.component';
+import { VideoEditComponent } from './video-edit.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: VideoSectionListComponent
+    path: ':id',
+    component: VideoEditComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VideoRoutingModule { }
+export class VideoEditRoutingModule { }

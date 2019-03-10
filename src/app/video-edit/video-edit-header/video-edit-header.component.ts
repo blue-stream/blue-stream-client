@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Video } from '../../../shared/models/video.model';
+import { Video } from '../../shared/models/video.model';
 
 @Component({
   selector: 'bs-video-edit-header',

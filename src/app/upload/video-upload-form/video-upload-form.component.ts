@@ -205,7 +205,6 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
   onPpType(search: string) {
     this.ppTyped.next(search);
-    console.log(this.uploadForm.controls);
   }
 
 }
