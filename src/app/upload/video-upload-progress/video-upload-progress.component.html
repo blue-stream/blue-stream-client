@@ -32,7 +32,7 @@
       <span>
         <div id="published-text-container">
           <p>{{'UPLOADER.UPLOAD_PROGRESS.PUBLISHED' | translate}}:</p>
-          <p id="video-link" (click)="onLinkPress()">{{'UPLOADER.UPLOAD_PROGRESS.LINK' | translate}}</p>
+          <p id="video-link" [routerLink]="videoWatchLink">{{'UPLOADER.UPLOAD_PROGRESS.LINK' | translate}}</p>
         </div>
       </span>
     </ng-template>
