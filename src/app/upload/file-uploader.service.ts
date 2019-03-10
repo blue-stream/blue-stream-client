@@ -35,7 +35,7 @@ export class FileUploaderService {
     const videoIndex = this.files.findIndex((videoUpload) => videoUpload.id === id);
     this.files[videoIndex].saved = true;
   }
-  
+
 
   public areVideosPublished(): boolean {
     let areVideosPublished: boolean = true;
@@ -65,9 +65,9 @@ export class FileUploaderService {
     return this.queue.asObservable();
   }
 
-  public addToQueue(file: File, videoId: string) {
+  public addToQueue(file: File, videoId: string, videoToken: string) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false, saved: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false, saved: false };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }
@@ -80,7 +80,7 @@ export class FileUploaderService {
   public uploadAll() {
     this.files.forEach((video: VideoUpload) => {
       if (video.fileUpload.isUploadable()) {
-        this.upload(video.fileUpload, video.id);
+        this.upload(video.fileUpload, video.token);
       }
     });
   }
@@ -93,9 +93,9 @@ export class FileUploaderService {
     this.queue.next(this.files);
   }
 
-  private upload(fileUpload: FileUpload, videoId: string) {
+  private upload(fileUpload: FileUpload, videoToken: string) {
     const formData: FormData = new FormData();
-    formData.append('videoId', videoId);
+    formData.append('videoToken', videoToken);
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
     const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
       reportProgress: true
