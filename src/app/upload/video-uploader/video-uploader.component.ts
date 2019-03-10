@@ -46,9 +46,9 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
       videosToUpload.push(this.videoService.create(video));
     });
 
-    forkJoin(videosToUpload).subscribe(videoIds => {
-      videoIds.forEach((video, index) => {
-        this.fileUploaderService.addToQueue(files[index], video.id);
+    forkJoin(videosToUpload).subscribe(videos => {
+      videos.forEach((video, index) => {
+        this.fileUploaderService.addToQueue(files[index], video.id, video.token);
       });
 
       this.fileUploaderService.uploadAll();
