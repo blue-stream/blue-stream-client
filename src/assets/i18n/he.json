@@ -215,9 +215,10 @@
             "UNKNOWN": "תקלה לא ידועה"
         },
         "SUCCESSFUL": {
-            "VIDEO_DELETE": "Video was deleted succesfully"
+            "VIDEO_DELETE": "סרטון נמחק בהצלחה"
         },
         "CONFIRM": {
+            "OK": "אשר",
             "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?"
         },
         "BUTTONS": {
