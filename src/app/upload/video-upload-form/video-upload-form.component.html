@@ -26,7 +26,7 @@
       </mat-chip-list>
     </mat-form-field>
 
-    <div fxLayout="row" fxLayout.s="column" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="15px">
       <mat-form-field appearance="outline" class="classification">
         <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
         <input #source matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(source.value)">

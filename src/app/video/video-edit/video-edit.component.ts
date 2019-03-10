@@ -1,14 +1,33 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
+import { ValidatorFn, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent, MatSnackBar } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar, ErrorStateMatcher } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
-import { Observable } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
+import { Classification } from 'src/app/shared/models/classification.model';
+import {
+  debounceTime, distinctUntilChanged, switchMap, map, first
+} from 'rxjs/operators';
+
+
+const classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const classificationSource = control.get('classificationSource').value;
+  const pp = control.get('pp').value;
+  const condition = pp ? classificationSource : true;
+  return condition ? null : { 'sourceMissed': true };
+};
+
+class CrossFieldErrorMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return control.dirty && form.invalid;
+  }
+}
 
 @Component({
   selector: 'bs-video-edit',
@@ -32,11 +51,47 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
   videoSaved = false;
   videoForm: FormGroup;
   separatorKeysCodes = [ENTER];
+  errorMatcher = new CrossFieldErrorMatcher();
+  sourceTyped: Subject<string> = new Subject<string>();
+  ppTyped: Subject<string> = new Subject<string>();
+  sources: Observable<Classification[]>;
+  pps: Observable<Classification[]>;
+  selectedPp: string;
+  selectedSource: string;
+
 
   ngOnInit() {
     this.routeIdSubscription = this.route.params.subscribe(params => {
       this.loadVideoInfo(params.id);
     });
+
+    this.sources = this.sourceTyped.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.loadSources(term)),
+    );
+    this.pps = this.ppTyped.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) => this.loadPps(term)),
+    );
+  }
+
+  loadSources(term): Observable<Classification[]> {
+    return this.videoService.searchUserSources(term);
+  }
+
+  loadPps(term): Observable<Classification[]> {
+    return this.videoService.searchUserPps(term);
+  }
+
+  onSourceType(search: string) {
+    this.sourceTyped.next(search);
+  }
+
+  onPpType(search: string) {
+    this.ppTyped.next(search);
+    console.log(this.videoForm.controls);
   }
 
   loadVideoInfo(id: string) {
@@ -59,7 +114,39 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
       published: this.fb.control(this.video.published, [
         Validators.required
       ]),
-    });
+      classificationSource: this.fb.control(this.video.classificationSource,
+        Validators.maxLength(environment.classificationMaxLength),
+        this.sourceValidator
+      ),
+      pp: this.fb.control(this.video.pp,
+        Validators.maxLength(environment.classificationMaxLength),
+        this.ppValidator,
+      ),
+    }, { validator: classificationValidator });
+  }
+
+  sourceValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const name = control.value;
+    if (!name) { return of(null); }
+    return this.sources.pipe(map(sources => {
+      // tslint:disable-next-line: no-shadowed-variable
+      const source = sources.find(source => source.name === name);
+      this.selectedSource = source && source.id;
+
+      return !!source ? null : { 'forbiddenSource': true };
+    }), first());
+  }
+
+  ppValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const name = control.value;
+    if (!name) { return of(null); }
+    return this.pps.pipe(map(pps => {
+      // tslint:disable-next-line: no-shadowed-variable
+      const pp = pps.find(pp => pp.name === name);
+      this.selectedPp = pp && pp.id;
+
+      return !!pp ? null : { 'forbiddenPp': true };
+    }), first());
   }
 
   removeTag(index: number): void {
@@ -88,8 +175,16 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
     this.saveVideo();
   }
 
-  saveVideo() {
+  normalizeVideo(): Video {
     const video: Video = { ...this.videoForm.value, id: this.video.id };
+    if (!video.pp) { delete video.pp; } else { video.pp = this.selectedPp; }
+    if (!video.classificationSource) { delete video.classificationSource; } else { video.classificationSource = this.selectedSource; }
+
+    return video;
+  }
+
+  saveVideo() {
+    const video = this.normalizeVideo();
     this.videoService.update(video)
       .catch((err, caught) => {
         let message: string = 'SNACK_BARS.ERRORS.UNPREMITTED_USER';

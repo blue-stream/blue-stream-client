@@ -132,10 +132,8 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
   normalizeVideo(): Video {
     const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
-    if (!video.pp) delete video.pp;
-    else { video.pp = this.selectedPp; }
-    if (!video.classificationSource) delete video.classificationSource;
-    else { video.classificationSource = this.selectedSource }
+    if (!video.pp) { delete video.pp; } else { video.pp = this.selectedPp; }
+    if (!video.classificationSource) { delete video.classificationSource; } else { video.classificationSource = this.selectedSource; }
 
     return video;
   }

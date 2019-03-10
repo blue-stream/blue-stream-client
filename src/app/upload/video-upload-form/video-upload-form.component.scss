@@ -11,8 +11,8 @@ mat-card {
     margin: 0 30px;
 }
 
-form {
-    .classification {
-        width: 20%;
-    }
+.classification {
+    max-width: 250px;
+    box-sizing: border-box;
+    width:100%;
 }

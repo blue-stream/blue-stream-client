@@ -6,8 +6,8 @@ input {
     margin: 16px 150px;
 }
 
-form {
-    #visibility {
-        width: 15%;
-    }
+.classification, #visibility {
+    max-width: 250px;
+    box-sizing: border-box;
+    width:100%;
 }
