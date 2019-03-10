@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserPermissions } from '../user-permissions.model';
 import { Channel } from '../../shared/models/channel.model';
 import { ChannelPermissionsService } from '../channel-permissions.service';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './channel-permission.component.html',
   styleUrls: ['./channel-permission.component.scss']
 })
-export class ChannelPermissionComponent implements OnInit {
+export class ChannelPermissionComponent {
   @Input() userPermissions: UserPermissions;
   @Input() isOwner: boolean = false;
   @Input() channel: Channel;
@@ -23,9 +23,6 @@ export class ChannelPermissionComponent implements OnInit {
     public snackBar: MatSnackBar,
     private translateService: TranslateService,
   ) { }
-
-  ngOnInit() {
-  }
 
   onEdit() {
     this.showEditForm = !this.showEditForm;
@@ -61,7 +58,6 @@ export class ChannelPermissionComponent implements OnInit {
             translations['CHANNEL.CHANNEL_PERMISSIONS.DELETED_APPROVE'],
             { duration: 2000 });
         });
-
     });
   }
 }

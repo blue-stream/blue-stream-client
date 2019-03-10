@@ -16,7 +16,6 @@ export class ChannelsComponent implements OnInit {
 
   @Input() channelsAmountToLoad: number = 40;
   @Input() isPaginated: boolean = true;
-  @Input() isSearch: boolean = false;
   searchTyped = new Subject<string>();
 
   isSelectForUpload: boolean = false;
@@ -33,26 +32,15 @@ export class ChannelsComponent implements OnInit {
     private channelPermissions: ChannelPermissionsService) { }
 
   ngOnInit() {
-    if (this.isSearch) {
-      this.subscribeToSearch();
-    } else {
-      this.urlSubscription = this.route.url.subscribe(url => {
-        const urlString = url.pop();
-        if (urlString) {
-          this.changeFilter(urlString.toString());
-        } else {
-          this.changeFilter('');
-        }
+    this.urlSubscription = this.route.url.subscribe(url => {
+      const urlString = url.pop();
+      if (urlString) {
+        this.changeFilter(urlString.toString());
+      } else {
+        this.changeFilter('');
+      }
 
-        this.loadNextChannels();
-      });
-    }
-  }
-
-  subscribeToSearch() {
-    this.searchTyped.subscribe((searchFilter) => {
-      this.searchFilter = searchFilter;
-      this.loadSearchedChannels(0, this.channelsAmountToLoad);
+      this.loadNextChannels();
     });
   }
 
@@ -95,28 +83,10 @@ export class ChannelsComponent implements OnInit {
         this.channels.length,
         this.channelsAmountToLoad);
     } else {
-      if (this.isSearch) {
-        this.loadSearchedChannels(
-          this.channels.length,
-          this.channelsAmountToLoad);
-      } else {
-        this.loadChannels(
-          this.channels.length,
-          this.channelsAmountToLoad);
-      }
+      this.loadChannels(
+        this.channels.length,
+        this.channelsAmountToLoad);
     }
-  }
-
-  loadSearchedChannels(startIndex: number, channelsToLoad: number) {
-    const endIndex: number = startIndex + channelsToLoad;
-
-    this.channelService.search(this.searchFilter, startIndex, endIndex).subscribe(channels => {
-      if (startIndex === 0) {
-        this.channels = channels;
-      } else {
-        this.channels = this.channels.concat(channels);
-      }
-    });
   }
 
   loadChannels(startIndex: number, channelsToLoad: number) {

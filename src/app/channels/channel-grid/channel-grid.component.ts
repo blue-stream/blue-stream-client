@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Channel } from '../../shared/models/channel.model';
 
 @Component({
@@ -6,13 +6,9 @@ import { Channel } from '../../shared/models/channel.model';
   templateUrl: './channel-grid.component.html',
   styleUrls: ['./channel-grid.component.scss']
 })
-export class ChannelGridComponent implements OnInit {
+export class ChannelGridComponent {
   @Input() channels: Channel[] = [];
   @Input() isSelectForUpload: boolean = false;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

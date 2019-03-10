@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChannelComponent } from './channel/channel.component';
 import { ChannelsComponent } from './channels.component';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
-import { ChannelSearchComponent } from './channel-search/channel-search.component';
 
 const routes: Routes = [
   {
@@ -13,10 +12,6 @@ const routes: Routes = [
   {
     path: 'create',
     component: ChannelAddComponent,
-  },
-  {
-    path: 'search',
-    component: ChannelSearchComponent,
   },
   {
     path: 'user',
