@@ -1,3 +1,13 @@
-<p id="description">
-  {{text}}
-</p>
+<div id="description">
+  <div>{{ text }}</div>
+  <div id="classification" *ngIf="source || pp">
+    <div class="classification" fxLayout="row" *ngIf="source">
+      <span class="name" translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</span>
+      <span class="value">{{ source }}</span>
+    </div>
+    <div class="classification" fxLayout="row" *ngIf="pp">
+      <span class="name" translate>UPLOADER.UPLOAD_FORM.PP</span>
+      <span class="value">{{ pp }}</span>
+    </div>
+  </div>
+</div>

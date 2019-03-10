@@ -143,7 +143,7 @@ export class VideoService {
       },
     };
     return of([{name: 'apple', id: '1'}, {name: 'cheese', id: '2'}, {name: 'xyz', id: '3'}, {name: 'humus', id: '4'}]);
-    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pp`, options);
+    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pps`, options);
   }
 
 }
