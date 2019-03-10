@@ -1,4 +1,7 @@
 {
+    "APP": {
+        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 57 or higher"
+    },
     "DASHBOARD": {
         "HOME": "Home",
         "POPULAR": "Popular",

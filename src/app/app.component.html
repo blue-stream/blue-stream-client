@@ -1,4 +1,4 @@
-<div class="container" [class.is-mobile]="mobileQuery.matches">
+<div *ngIf="isBrowserSupported; else browser_not_supported" class="container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button (click)="sideNav.toggle()">
       <mat-icon>menu</mat-icon>
@@ -63,3 +63,6 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+<ng-template #browser_not_supported>
+  <h1 translate>APP.BROWSER_NOT_SUPPORTED</h1>
+</ng-template>
