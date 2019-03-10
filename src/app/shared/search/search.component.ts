@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { ChannelService } from '../../core/services/channel.service';
- 
+
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { Channel } from '../models/channel.model';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   searchString: string;
   searchTyped: Subject<string> = new Subject<string>();
   channels: Observable<Channel[]>;
@@ -34,10 +34,8 @@ export class SearchComponent {
     this.channels = this.searchTyped.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
- 
       // ignore new term if same as previous term
       distinctUntilChanged(),
- 
       // switch to new search observable each time the term changes
       switchMap( (term: string) => this.loadSearchedChannels(term) ),
     );

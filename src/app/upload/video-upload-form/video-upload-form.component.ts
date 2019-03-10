@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
 import {
   debounceTime, distinctUntilChanged, switchMap
@@ -146,18 +146,26 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
     );
   }
 
-  loadSources(term) {
-    return [{name: 'hi', id: 'bye'} as Classification];
+  loadSources(term): Observable<Classification[]> {
+    return of([{name: 'hi', id: 'bye'} as Classification,{name: 'hilo', id: 'bye'} as Classification]);
     // return this.channelService.search(term, 0, this.channelsToLoad);
   }
 
-  loadPps(term) {
-    return [{name: 'hi', id: 'bye'} as Classification];
+  loadPps(term): Observable<Classification[]> {
+    return of([{name: 'hi', id: 'bye'} as Classification, {name: 'hilo', id: 'bye'} as Classification]);
     // return this.channelService.search(term, 0, this.channelsToLoad);
   }
 
   canDeactivate(): boolean {
     return this.videoSaved;
+  }
+
+  onSourceType(search: string) {
+    this.sourceTyped.next(search);
+  }
+
+  onPpType(search: string) {
+    this.ppTyped.next(search);
   }
 
 }
