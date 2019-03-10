@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
-import {ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
-import {ErrorStateMatcher} from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material';
 import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
@@ -13,14 +13,14 @@ import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-
 import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
 import {
-  debounceTime, distinctUntilChanged, switchMap
+  debounceTime, distinctUntilChanged, switchMap,map,first
 } from 'rxjs/operators';
 
 const classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
   const classificationSource = control.get('classificationSource').value;
   const pp = control.get('pp').value;
   const condition = pp ? classificationSource : true;
-  return condition ? null : {'sourceMissed': true};
+  return condition ? null : { 'sourceMissed': true };
 };
 
 class CrossFieldErrorMatcher implements ErrorStateMatcher {
@@ -48,6 +48,8 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   ppTyped: Subject<string> = new Subject<string>();
   sources: Observable<Classification[]>;
   pps: Observable<Classification[]>;
+  selectedPp: string;
+  selectedSource: string;
 
   constructor(
     private fb: FormBuilder,
@@ -67,12 +69,40 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
       description: this.fb.control('',
         Validators.maxLength(environment.descriptionMaxLength)),
       tags: this.fb.array([]),
-      classificationSource: this.fb.control('',
-        Validators.maxLength(environment.classificationMaxLength)),
+      classificationSource: this.fb.control('', 
+        Validators.maxLength(environment.classificationMaxLength),
+        this.sourceValidator
+      ),
       pp: this.fb.control('',
-        Validators.maxLength(environment.classificationMaxLength)),
+        Validators.maxLength(environment.classificationMaxLength),
+        this.ppValidator,
+      ),
     }, { validator: classificationValidator });
   }
+
+  sourceValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const name = control.value;
+    if(!name) return of(null);
+    return this.sources.pipe( map( sources => {
+      const source = sources.find(source => source.name === name);
+      this.selectedSource = source && source.id;
+
+      return !!source ? null : { 'forbiddenSource': true };
+    }),first() );
+  };
+
+  ppValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const name = control.value;
+    if(!name) return of(null);
+    return this.pps.pipe( map( pps => {
+      const pp = pps.find(pp => pp.name === name);
+      this.selectedPp = pp && pp.id;
+
+      return !!pp ? null : { 'forbiddenPp': true };
+    }),first() );
+  };
+
+
 
   removeTag(index: number): void {
     const tags = this.uploadForm.get('tags') as FormArray;
@@ -100,8 +130,20 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
     this.saveVideo();
   }
 
-  saveVideo() {
+  normalizeVideo(): Video {
     const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
+    if (!video.pp) delete video.pp;
+    else { video.pp = this.selectedPp; }
+    if (!video.classificationSource) delete video.classificationSource;
+    else { video.classificationSource = this.selectedSource }
+
+    return video;
+  }
+
+  saveVideo() {
+    const video = this.normalizeVideo();
+
+
     this.videoService.update(video).subscribe(updatedVideo => {
       this.videoSaved = true;
       this.translateService.get([
@@ -116,7 +158,8 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   }
 
   publishVideo() {
-    const video: Video = { ...this.uploadForm.value, id: this.videoUpload.id };
+    const video = this.normalizeVideo();
+
     video.published = true;
     this.videoService.update(video).subscribe(updatedVideo => {
       this.videoPublished.emit(video.id);
@@ -137,23 +180,21 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
     this.sources = this.sourceTyped.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap( (term: string) => this.loadSources(term) ),
+      switchMap((term: string) => this.loadSources(term)),
     );
     this.pps = this.ppTyped.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap( (term: string) => this.loadPps(term) ),
+      switchMap((term: string) => this.loadPps(term)),
     );
   }
 
   loadSources(term): Observable<Classification[]> {
-    return of([{name: 'hi', id: 'bye'} as Classification,{name: 'hilo', id: 'bye'} as Classification]);
-    // return this.channelService.search(term, 0, this.channelsToLoad);
+    return this.videoService.searchUserSources(term);
   }
 
   loadPps(term): Observable<Classification[]> {
-    return of([{name: 'hi', id: 'bye'} as Classification, {name: 'hilo', id: 'bye'} as Classification]);
-    // return this.channelService.search(term, 0, this.channelsToLoad);
+    return this.videoService.searchUserPps(term);
   }
 
   canDeactivate(): boolean {
@@ -166,6 +207,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
   onPpType(search: string) {
     this.ppTyped.next(search);
+    console.log(this.uploadForm.controls);
   }
 
 }

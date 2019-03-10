@@ -31,7 +31,7 @@
         <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
         <input #source matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(source.value)">
         <mat-autocomplete #sourceAuto="matAutocomplete">
-          <mat-option *ngFor="let source of sources | async" [value]="source.id">
+          <mat-option *ngFor="let source of sources | async" [value]="source.name">
             {{source.name}}
           </mat-option>
         </mat-autocomplete>
@@ -40,7 +40,7 @@
         <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
         <input #pp matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput (input)="onPpType(pp.value)">
         <mat-autocomplete #ppAuto="matAutocomplete">
-          <mat-option *ngFor="let pp of pps | async" [value]="pp.id">
+          <mat-option *ngFor="let pp of pps | async" [value]="pp.name">
             {{pp.name}}
           </mat-option>
         </mat-autocomplete>

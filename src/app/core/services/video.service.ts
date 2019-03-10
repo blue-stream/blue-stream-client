@@ -7,6 +7,7 @@ import { Video, VideoStatus } from '../../shared/models/video.model';
 import { VideoSection } from '../../shared/models/video-section.model';
 
 import { environment } from '../../../environments/environment';
+import { Classification } from 'src/app/shared/models/classification.model';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -100,6 +101,7 @@ export class VideoService {
     startIndex: number,
     endIndex: number,
     sortBy: 'title' | 'views' | 'owner' | 'createdAt' = 'views'): Observable<Video[]> {
+    if (!searchFilter.trim()) { return of([]); }
     const options = {
       httpHeaders,
       params: {
@@ -114,6 +116,34 @@ export class VideoService {
       .pipe(
         map(videos => videos.map(concatStreamerUrl))
       );
+  }
+
+  searchUserSources(
+    searchFilter: string = ''
+    ): Observable<Classification[]> {
+    if (!searchFilter.trim()) { return of([]); }
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+      },
+    };
+    return of([{name: 'apple', id: '1'}, {name: 'cheese', id: '2'}, {name: 'xyz', id: '3'}, {name: 'humus', id: '4'}]);
+    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/sources`, options);
+  }
+
+  searchUserPps(
+    searchFilter: string = ''
+    ): Observable<Classification[]> {
+    if (!searchFilter.trim()) { return of([]); }
+    const options = {
+      httpHeaders,
+      params: {
+        searchFilter,
+      },
+    };
+    return of([{name: 'apple', id: '1'}, {name: 'cheese', id: '2'}, {name: 'xyz', id: '3'}, {name: 'humus', id: '4'}]);
+    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pp`, options);
   }
 
 }
