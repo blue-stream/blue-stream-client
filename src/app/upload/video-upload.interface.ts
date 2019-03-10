@@ -5,4 +5,5 @@ export interface VideoUpload {
   published: boolean;
   saved: boolean;
   id: string;
+  token: string;
 }
