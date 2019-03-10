@@ -31,6 +31,12 @@ export class FileUploaderService {
     this.files[videoIndex].published = true;
   }
 
+  public markVideoAsSaved(id: string) {
+    const videoIndex = this.files.findIndex((videoUpload) => videoUpload.id === id);
+    this.files[videoIndex].saved = true;
+  }
+  
+
   public areVideosPublished(): boolean {
     let areVideosPublished: boolean = true;
 
@@ -43,13 +49,25 @@ export class FileUploaderService {
     return areVideosPublished;
   }
 
+  public areVideosSaved(): boolean {
+    let areVideosSaved: boolean = true;
+
+    this.files.forEach((file) => {
+      if (!file.saved) {
+        areVideosSaved = false;
+      }
+    });
+
+    return areVideosSaved;
+  }
+
   public getQueue() {
     return this.queue.asObservable();
   }
 
   public addToQueue(file: File, videoId: string) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false, saved: false };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }

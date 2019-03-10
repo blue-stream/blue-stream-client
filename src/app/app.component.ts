@@ -15,6 +15,8 @@ import { UserService } from './shared/user.service';
 export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   isSideNavOpen: boolean = true;
+  isBrowserSupported: boolean;
+
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -30,6 +32,7 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.isBrowserSupported = CSS.supports('display', 'grid');
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,7 @@
 {
+    "APP": {
+        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 57 or higher"
+    },
     "DASHBOARD": {
         "HOME": "Home",
         "POPULAR": "Popular",
@@ -57,7 +60,8 @@
             "UNKNOWN": "Unknown status",
             "PUBLISHED": "Video was published successfully",
             "FILE_SIZE": "{{size}} MB",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "LINK": "video link"
         }
     },
     "COMMENTS": {
@@ -120,13 +124,14 @@
             "TAB_LABEL": "MY UPLOADED VIDEOS"
         },
         "CHANNELS": {
-            "TAB_LABEL": "MY CHANNELS"
+            "TAB_LABEL": "MY CHANNELS",
+            "UPLOAD_TITLE": "To which channel do you want to upload?"
         },
         "STATS": {
             "TITLE": "Stats",
             "JOIN_DATE": "Joined ",
-            "TOTAL_VIEWS": "{{views}} views",
-            "VIDEOS_AMOUNT": "{{amount}} videos"
+            "TOTAL_VIEWS": "views",
+            "VIDEOS_AMOUNT": "videos"
         },
         "ABOUT": {
             "TAB_LABEL": "ABOUT",
@@ -218,6 +223,7 @@
             "VIDEO_DELETE": "Video was deleted succesfully"
         },
         "CONFIRM": {
+            "OK": "OK",
             "VIDEO_DELETE": "Are you sure you want to delete the video?"
         },
         "BUTTONS": {

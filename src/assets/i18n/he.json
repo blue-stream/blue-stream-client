@@ -1,4 +1,7 @@
 {
+    "APP": {
+        "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 57 ומעלה"
+    },
     "DASHBOARD": {
         "HOME": "דף הבית",
         "POPULAR": "סרטונים פופולארים",
@@ -57,7 +60,8 @@
             "UNKNOWN": "לא ידוע",
             "PUBLISHED": "הסרטון פורסם בהצלחה",
             "FILE_SIZE": "{{size}} MB",
-            "CANCEL": "בטל"
+            "CANCEL": "בטל",
+            "LINK": "לינק לסרטון"
         }
     },
     "COMMENTS": {
@@ -126,13 +130,14 @@
             "TAB_LABEL": "הסרטונים שהעלתי"
         },
         "CHANNELS": {
-            "TAB_LABEL": "הערוצים שלי"
+            "TAB_LABEL": "הערוצים שלי",
+            "UPLOAD_TITLE": "לאיזה ערוץ תרצה לעלות?"
         },
         "STATS": {
             "TITLE": "סטטיסטיקות",
             "JOIN_DATE": " הצטרף ב",
-            "TOTAL_VIEWS": "{{views}} צפיות",
-            "VIDEOS_AMOUNT": "{{amount}} סרטונים"
+            "TOTAL_VIEWS": "צפיות",
+            "VIDEOS_AMOUNT": "סרטונים"
         },
         "ABOUT": {
             "TAB_LABEL": "אודות",
@@ -218,9 +223,10 @@
             "UNKNOWN": "תקלה לא ידועה"
         },
         "SUCCESSFUL": {
-            "VIDEO_DELETE": "Video was deleted succesfully"
+            "VIDEO_DELETE": "סרטון נמחק בהצלחה"
         },
         "CONFIRM": {
+            "OK": "אשר",
             "VIDEO_DELETE": "האם אתה בטוח שאתה רוצה למחוק את הסרטון?"
         },
         "BUTTONS": {

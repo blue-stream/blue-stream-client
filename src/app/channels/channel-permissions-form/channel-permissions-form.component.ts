@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Channel } from '../../shared/models/channel.model';
 import { UserPermissions, PermissionTypes } from '../user-permissions.model';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, FormArray } from '@angular/forms';
@@ -15,7 +15,7 @@ import { UserService } from 'src/app/shared/user.service';
   templateUrl: './channel-permissions-form.component.html',
   styleUrls: ['./channel-permissions-form.component.scss']
 })
-export class ChannelPermissionsFormComponent implements OnInit {
+export class ChannelPermissionsFormComponent implements OnChanges {
   @Input() channel: Channel;
   @Input() userPermissions: UserPermissions;
   @Output() closeForm: EventEmitter<void | UserPermissions> = new EventEmitter();
@@ -66,7 +66,7 @@ export class ChannelPermissionsFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.userPermissions) {
       this.isEditForm = true;
     }

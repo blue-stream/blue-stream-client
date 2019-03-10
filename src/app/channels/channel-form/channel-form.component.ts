@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Channel } from '../../shared/models/channel.model';
 import { ChannelService } from '../../core/services/channel.service';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './channel-form.component.html',
   styleUrls: ['./channel-form.component.scss']
 })
-export class ChannelFormComponent implements OnInit {
+export class ChannelFormComponent implements OnChanges {
   @Input() channel: Channel;
   @Output() closeForm: EventEmitter<string | void> = new EventEmitter();
 
@@ -29,7 +29,7 @@ export class ChannelFormComponent implements OnInit {
     private translateService: TranslateService,
     public snackBar: MatSnackBar) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.channel) {
       this.isEditForm = true;
     }
@@ -57,7 +57,6 @@ export class ChannelFormComponent implements OnInit {
       description: this.fb.control(this.channel ? this.channel.description : '', [
         Validators.minLength(environment.channelDescriptionMinLength),
         Validators.maxLength(environment.channelDescriptionMaxLength),
-        Validators.required,
       ]),
     });
   }

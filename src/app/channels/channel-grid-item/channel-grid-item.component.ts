@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges , Input } from '@angular/core';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
 import { Channel } from '../../shared/models/channel.model';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './channel-grid-item.component.html',
   styleUrls: ['./channel-grid-item.component.scss']
 })
-export class ChannelGridItemComponent implements OnInit {
+export class ChannelGridItemComponent implements OnChanges {
   @Input() channel: Channel;
   @Input() isUploadLink: boolean = false;
 
@@ -19,7 +19,7 @@ export class ChannelGridItemComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.getImage();
   }
 

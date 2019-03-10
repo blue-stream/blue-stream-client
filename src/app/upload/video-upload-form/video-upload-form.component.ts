@@ -39,6 +39,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
   @Input() isPublishReady: boolean;
   @Input() videoUpload: VideoUpload;
   @Output() videoPublished: EventEmitter<string> = new EventEmitter();
+  @Output() videoSavedEvent: EventEmitter<string> = new EventEmitter();
 
   uploadForm: FormGroup;
   separatorKeysCodes = [ENTER];
@@ -144,6 +145,7 @@ export class VideoUploadFormComponent extends ComponentCanDeactivate implements 
 
     this.videoService.update(video).subscribe(updatedVideo => {
       this.videoSaved = true;
+      this.videoSavedEvent.emit(this.videoUpload.id);
       this.translateService.get([
         'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS',
         'UPLOADER.VIDEO_UPLOADER.SAVE_SUCCESS_APPROVAL']).subscribe(translations => {

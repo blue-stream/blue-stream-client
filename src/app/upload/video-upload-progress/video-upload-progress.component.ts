@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { FileUpload } from '../file-upload';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FileUploadStatus } from '../file-upload-status.enum';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,18 +16,19 @@ export class VideoUploadProgressComponent implements OnInit {
 
   videoUrl: SafeUrl;
   uploadStatus = FileUploadStatus;
+  videoWatchLink: string;
   @Input() videoUpload: VideoUpload;
 
   @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
   constructor(private sanitizer: DomSanitizer,
-    private fileUploaderService: FileUploaderService,
-    private dialog: MatDialog
-  ) { }
+              private fileUploaderService: FileUploaderService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.videoPlayer.nativeElement.muted = 'muted';
     this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.videoUpload.fileUpload.file));
+    this.videoWatchLink = `/watch/${this.videoUpload.id}`;
   }
 
   cancelUpload() {
@@ -47,7 +47,5 @@ export class VideoUploadProgressComponent implements OnInit {
         this.fileUploaderService.cancel(this.videoUpload);
       }
     });
-
   }
-
 }

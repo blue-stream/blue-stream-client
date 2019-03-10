@@ -54,6 +54,28 @@ export class VideoService {
     return this.httpClient.delete<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
 
+  getVideosAmount(videoFilter?: Partial<Video>): Observable<number> {
+    const options = {
+      headers: httpHeaders,
+      params: {
+        id: videoFilter ? videoFilter.id : undefined,
+        title: videoFilter ? videoFilter.title : undefined,
+        description: videoFilter ? videoFilter.description : undefined,
+        owner: videoFilter ? videoFilter.owner : undefined,
+        status: videoFilter ? videoFilter.status : undefined,
+        channel: videoFilter ? videoFilter.channel : undefined,
+      } as { [param: string]: string | string[] },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
+  }
+
   getVideos(videoFilter?: Partial<Video>): Observable<Video[]> {
     const options = {
       headers: httpHeaders,

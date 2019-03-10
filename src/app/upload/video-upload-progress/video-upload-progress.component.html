@@ -16,7 +16,7 @@
         UPLOADER.UPLOAD_PROGRESS.ERROR
       </p>
       <p *ngSwitchCase="uploadStatus.Success" translate>
-        UPLOADER.UPLOAD_PROGRESS.SUCCESS
+        UPLOADER.UPLOAD_PROGRESS.SUCCESS 
       </p>
       <p *ngSwitchCase="uploadStatus.Progress" translate>
         UPLOADER.UPLOAD_PROGRESS.PROGRESS
@@ -30,9 +30,10 @@
     </span>
     <ng-template #publishedText>
       <span>
-        <p translate>
-          UPLOADER.UPLOAD_PROGRESS.PUBLISHED
-        </p>
+        <div id="published-text-container">
+          <p>{{'UPLOADER.UPLOAD_PROGRESS.PUBLISHED' | translate}}:</p>
+          <p id="video-link" [routerLink]="videoWatchLink">{{'UPLOADER.UPLOAD_PROGRESS.LINK' | translate}}</p>
+        </div>
       </span>
     </ng-template>
     <bs-upload-progress-bar (uploadCancelled)="cancelUpload()" fxFlex [file]="this.videoUpload.fileUpload"></bs-upload-progress-bar>
