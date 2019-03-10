@@ -21,3 +21,17 @@
         align-items: center;
     }
 }
+
+#published-text-container {
+    padding: 15px 0px;
+
+    p {
+        display: inline;
+        margin: 0px 2px;
+    }
+    #video-link {
+        cursor: pointer;
+        font-weight: 600;
+        color: #515151;
+    }
+}

@@ -52,7 +52,8 @@
             "UNKNOWN": "Unknown status",
             "PUBLISHED": "Video was published successfully",
             "FILE_SIZE": "{{size}} MB",
-            "CANCEL": "Cancel"
+            "CANCEL": "Cancel",
+            "LINK": "video link"
         }
     },
     "COMMENTS": {
