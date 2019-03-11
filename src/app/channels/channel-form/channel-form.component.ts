@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Channel } from '../../shared/models/channel.model';
 import { ChannelService } from '../../core/services/channel.service';
@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './channel-form.component.html',
   styleUrls: ['./channel-form.component.scss']
 })
-export class ChannelFormComponent implements OnChanges {
+export class ChannelFormComponent implements OnChanges, OnInit {
   @Input() channel: Channel;
   @Output() closeForm: EventEmitter<string | void> = new EventEmitter();
 
@@ -27,15 +27,23 @@ export class ChannelFormComponent implements OnChanges {
     private fb: FormBuilder,
     private channelService: ChannelService,
     private translateService: TranslateService,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar) {}
 
-  ngOnChanges() {
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
     if (this.channel) {
       this.isEditForm = true;
     }
 
     this.createForm();
     this.changeImage();
+  }
+
+  ngOnChanges() {
+    this.initForm();
   }
 
   onKeyupEvent() {
