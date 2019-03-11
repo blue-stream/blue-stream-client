@@ -2,9 +2,6 @@
     <div id="header-image" [ngStyle]="{'background-image': headerImage}"></div>
     <bs-channel-header [channel]="channel"></bs-channel-header>
     <mat-tab-group>
-        <mat-tab label="{{'CHANNEL.HOME.TAB_LABEL' | translate}}">
-            <bs-channel-home></bs-channel-home>
-        </mat-tab>
         <mat-tab label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}">
             <bs-channel-videos [videoFilter]="{channel: channel.id}"></bs-channel-videos>
         </mat-tab>
