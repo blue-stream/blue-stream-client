@@ -1,16 +1,22 @@
-import * as _ from 'lodash';
-
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpResponse, HttpEvent, HttpProgressEvent } from '@angular/common/http';
-import { Injectable, Output } from '@angular/core';
-
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpParams,
+  HttpProgressEvent,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { HttpEventType } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
+import { environment } from '../../environments/environment';
 import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
 import { VideoUpload } from './video-upload.interface';
 
-import { environment } from '../../environments/environment';
+
+
 
 @Injectable()
 export class FileUploaderService {
@@ -95,12 +101,11 @@ export class FileUploaderService {
 
   private upload(fileUpload: FileUpload, videoToken: string) {
     const formData: FormData = new FormData();
-    formData.append('videoToken', videoToken);
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
     const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
-      reportProgress: true
+      reportProgress: true,
+      params: new HttpParams().set('videoToken', videoToken)
     });
-
 
     fileUpload.loadedBytes = 0;
     fileUpload.uploadTimestamp = Date.now();
