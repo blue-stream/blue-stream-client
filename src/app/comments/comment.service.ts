@@ -48,7 +48,7 @@ export class CommentService {
       params: {
         parent: commentFilter.parent,
         text: commentFilter.text,
-        user: commentFilter.user,
+        user: commentFilter.user as string,
         resource: commentFilter.resource,
       },
     };
@@ -87,7 +87,7 @@ export class CommentService {
       params: {
         parent: commentFilter.parent,
         text: commentFilter.text,
-        user: commentFilter.user,
+        user: commentFilter.user as string,
         resource: commentFilter.resource,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
