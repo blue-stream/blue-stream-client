@@ -1,16 +1,22 @@
-import * as _ from 'lodash';
-
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpResponse, HttpEvent, HttpProgressEvent } from '@angular/common/http';
-import { Injectable, Output } from '@angular/core';
-
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpParams,
+  HttpProgressEvent,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { HttpEventType } from '@angular/common/http';
-import { Subscription } from 'rxjs/Subscription';
+import { environment } from '../../environments/environment';
 import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
 import { VideoUpload } from './video-upload.interface';
 
-import { environment } from '../../environments/environment';
+
+
 
 @Injectable()
 export class FileUploaderService {
@@ -64,9 +70,9 @@ export class FileUploaderService {
     return this.queue.asObservable();
   }
 
-  public addToQueue(file: File, videoId: string) {
+  public addToQueue(file: File, videoId: string, videoToken: string) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, published: false, saved: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false, saved: false };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }
@@ -79,7 +85,7 @@ export class FileUploaderService {
   public uploadAll() {
     this.files.forEach((video: VideoUpload) => {
       if (video.fileUpload.isUploadable()) {
-        this.upload(video.fileUpload, video.id);
+        this.upload(video.fileUpload, video.token);
       }
     });
   }
@@ -92,14 +98,13 @@ export class FileUploaderService {
     this.queue.next(this.files);
   }
 
-  private upload(fileUpload: FileUpload, videoId: string) {
+  private upload(fileUpload: FileUpload, videoToken: string) {
     const formData: FormData = new FormData();
-    formData.append('videoId', videoId);
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
     const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
-      reportProgress: true
+      reportProgress: true,
+      params: new HttpParams().set('videoToken', videoToken)
     });
-
 
     fileUpload.loadedBytes = 0;
     fileUpload.uploadTimestamp = Date.now();
