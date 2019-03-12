@@ -26,6 +26,8 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   search: string;
   videosToLoad = 40;
   channelsToLoad = 40;
+  isLoadingChannels: boolean = false;
+  isLoadingVideos: boolean = false;
 
   ngOnInit() {
     this.routeQuerySubscription = this.route.queryParams
@@ -47,7 +49,9 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   loadSearchedVideos(startIndex = 0) {
     const endIndex = startIndex + this.videosToLoad;
 
+    this.isLoadingVideos = true;
     this.videosSubscription = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
+      this.isLoadingVideos = false;
       this.videos = this.videos.concat(videos);
     });
   }
@@ -56,8 +60,10 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     const startIndex = 0;
     const endIndex = startIndex + this.channelsToLoad;
 
+    this.isLoadingChannels = true;
     this.channelsSubscription = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
-        this.channels = this.channels.concat(channels);
+      this.isLoadingChannels = false;
+      this.channels = this.channels.concat(channels);
     });
   }
 
