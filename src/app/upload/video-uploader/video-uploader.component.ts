@@ -59,10 +59,6 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
     this.fileUploaderService.markVideoAsPublished(videoId);
   }
 
-  onVideoSaved(videoId: string) {
-    this.fileUploaderService.markVideoAsSaved(videoId);
-  }
-
   canDeactivate() {
     return this.fileUploaderService.areVideosPublished() || this.fileUploaderService.areVideosSaved();
   }

@@ -41,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
+import { VideoFormComponent } from './video-form/video-form.component';
 
 @NgModule({
   imports: [
@@ -109,7 +110,8 @@ import { ChannelTileComponent } from './channel-tile/channel-tile.component';
     ReactiveFormsModule,
     MatExpansionModule,
     ChannelListComponent,
-    ChannelTileComponent
+    ChannelTileComponent,
+    VideoFormComponent
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -126,7 +128,8 @@ import { ChannelTileComponent } from './channel-tile/channel-tile.component';
     SubscribeButtonComponent,
     LanguageSwitcherComponent,
     ChannelListComponent,
-    ChannelTileComponent
+    ChannelTileComponent,
+    VideoFormComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

@@ -1,68 +1,6 @@
 <div id="video-edit">
   <mat-card fxLayout="column" *ngIf="video">
     <bs-video-edit-header [video]="video"></bs-video-edit-header>
-    <form fxLayout="column" [formGroup]="videoForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline">
-        <mat-label translate>UPLOADER.UPLOAD_FORM.TITLE</mat-label>
-        <input matInput formControlName="title">
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline">
-        <mat-label translate>UPLOADER.UPLOAD_FORM.DESCRIPTION</mat-label>
-        <textarea rows="4" matInput id="description" formControlName="description"></textarea>
-      </mat-form-field>
-    
-      <mat-form-field appearance="outline" >
-        <mat-chip-list #tagList>
-          <mat-chip *ngFor="let tag of videoForm.get('tags').controls; let index = index;" [selectable]="true"
-                   [removable]="true" (removed)="removeTag(index)">
-            {{tag.value}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
-          <input FormArrayName="tags"
-                 placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}"
-                 [matChipInputFor]="tagList"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 [matChipInputAddOnBlur]="true"
-                 (matChipInputTokenEnd)="addTag($event)">
-        </mat-chip-list>
-      </mat-form-field>
-      
-      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="15px">
-        <mat-form-field appearance="outline" id="visibility">
-            <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
-            <mat-select formControlName="published">
-              <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
-              <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="classification">
-          <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
-          <input #source matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(source.value)">
-          <mat-autocomplete #sourceAuto="matAutocomplete">
-            <mat-option *ngFor="let source of sources | async" [value]="source.name">
-              {{source.name}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="classification">
-          <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
-          <input #pp matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput (input)="onPpType(pp.value)">
-          <mat-autocomplete #ppAuto="matAutocomplete">
-            <mat-option *ngFor="let pp of pps | async" [value]="pp.name">
-              {{pp.name}}
-            </mat-option>
-          </mat-autocomplete>
-          <mat-error *ngIf="videoForm.hasError('sourceMissed')" translate>UPLOADER.UPLOAD_FORM.ERRORS.SOURCE_MISSED
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-
-    
-      <mat-card-actions align="end">
-        <button type="submit" [disabled]="!videoForm.valid" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.SAVE' | translate}}</button>
-      </mat-card-actions>
-    </form>
+    <bs-video-form [video]="video"></bs-video-form>
   </mat-card>
 </div>

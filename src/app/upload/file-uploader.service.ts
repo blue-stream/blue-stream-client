@@ -35,7 +35,6 @@ export class FileUploaderService {
     const videoIndex = this.files.findIndex((videoUpload) => videoUpload.id === id);
     this.files[videoIndex].saved = true;
   }
-  
 
   public areVideosPublished(): boolean {
     let areVideosPublished: boolean = true;
