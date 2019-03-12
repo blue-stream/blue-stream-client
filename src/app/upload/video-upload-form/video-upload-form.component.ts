@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VideoUpload } from '../video-upload.interface';
+import { Video } from 'src/app/shared/models/video.model';
 
 @Component({
   selector: 'bs-video-upload-form',

@@ -45,7 +45,7 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
     super();
   }
 
-  @Input() video: Video;
+  @Input() video: Partial<Video>;
   @Input() disabled: boolean = false;
   @Output() videoSavedEvent: EventEmitter<string> = new EventEmitter();
 
@@ -93,22 +93,22 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
 
   createForm() {
     this.videoForm = this.fb.group({
-      title: this.fb.control(this.video.title, [
+      title: this.fb.control(this.video.title || '', [
         Validators.required,
         Validators.minLength(environment.titleMinLength),
         Validators.maxLength(environment.titleMaxLength)
       ]),
-      description: this.fb.control(this.video.description,
+      description: this.fb.control(this.video.description || '',
         Validators.maxLength(environment.descriptionMaxLength)),
-      tags: this.fb.array(this.video.tags),
-      published: this.fb.control(this.video.published, [
+      tags: this.fb.array(this.video.tags || []),
+      published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
-      classificationSource: this.fb.control(this.video.classificationSource,
+      classificationSource: this.fb.control(this.video.classificationSource || '',
         Validators.maxLength(environment.classificationMaxLength),
         this.sourceValidator
       ),
-      pp: this.fb.control(this.video.pp,
+      pp: this.fb.control(this.video.pp || '',
         Validators.maxLength(environment.classificationMaxLength),
         this.ppValidator,
       ),
