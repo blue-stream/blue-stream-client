@@ -118,10 +118,12 @@
             "TITLE": "Add a new channel"
         },
         "VIDEOS": {
-            "TAB_LABEL": "VIDEOS"
+            "TAB_LABEL": "VIDEOS",
+            "NO_VIDEOS": "This channel has no videos."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "MY UPLOADED VIDEOS"
+            "TAB_LABEL": "MY UPLOADED VIDEOS",
+            "NO_VIDEOS": "This user haven't upload any videos yet."
         },
         "CHANNELS": {
             "TAB_LABEL": "MY CHANNELS",
@@ -201,12 +203,17 @@
                 "NORMAL": "Normal"
             }
         },
+        "VIDEO_LIST": {
+            "NO_VIDEOS": "No videos exist for your classifications."
+        },
         "REACTIONS": {
             "LIKE": "Like",
             "DISLIKE": "Dislike"
         },
         "SEARCH": {
-            "PLACEHOLDER": "Search"
+            "PLACEHOLDER": "Search",
+            "NO_RESULTS_FOUND": "No results found",
+            "TRY_DIFFERENT_KEYWORDS": "Try different keywords or remove search filters"
         }
     },
     "CORE": {

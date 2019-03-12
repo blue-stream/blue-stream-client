@@ -22,11 +22,11 @@ export class VideoListComponent implements OnInit, DoCheck {
   constructor(private dir: Directionality) { }
 
   ngOnInit(): void {
-    if (this.mode === 'horizontal') { this.endIndex = this.getVideosPerRow(); }
+    if (this.videoList && this.mode === 'horizontal') { this.endIndex = this.getVideosPerRow(); }
   }
 
   ngDoCheck() {
-    if (this.mode === 'horizontal') {
+    if (this.videoList && this.mode === 'horizontal') {
       const videosPerRow = this.getVideosPerRow();
       if (this.startIndex + videosPerRow > this.videos.length) {
         this.startIndex = this.videos.length - videosPerRow;
