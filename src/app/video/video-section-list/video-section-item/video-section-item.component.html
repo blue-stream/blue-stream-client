@@ -2,7 +2,7 @@
   <div id="section" *ngFor="let section of sections">
     <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="12px">
       <bs-avatar *ngIf="section.avatarUrl" [source]="section.avatarUrl" [alt]="section.title" size="small"></bs-avatar>
-      <h3 id="title">{{section.title}}</h3>
+      <h3 id="title">{{ section.title | translate }}</h3>
       <span fxFlex></span>
       <!-- <bs-subscribe-button *ngIf="section.isDismissable" [subscribersAmount]="5" fxHide.lt-md></bs-subscribe-button> -->
       <button mat-icon-button *ngIf="section.isDismissable">

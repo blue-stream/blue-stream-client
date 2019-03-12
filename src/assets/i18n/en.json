@@ -10,6 +10,11 @@
         "ALL_CHANNELS": "All Channels",
         "USER_CHANNELS": "My Channels"
     },
+    "VIDEO": {
+        "VIDEO_SECTION_ITEM": {
+            "MOST_VIEWED": "Most viewed",
+            "NEWEST": "Added recently"        }
+    },
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "Select files to upload",
