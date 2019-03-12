@@ -10,6 +10,11 @@
         "ALL_CHANNELS": "כל הערוצים",
         "USER_CHANNELS": "הערוצים שלי"
     },
+    "VIDEO": {
+        "VIDEO_SECTION_ITEM": {
+            "MOST_VIEWED": "הנצפים ביותר",
+            "NEWEST": "חדשים"        }
+    },
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "בחר קבצים להעלאה",
