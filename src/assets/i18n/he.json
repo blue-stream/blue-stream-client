@@ -119,10 +119,12 @@
             "TITLE": "הוספת ערוץ חדש"
         },
         "VIDEOS": {
-            "TAB_LABEL": "סרטונים"
+            "TAB_LABEL": "סרטונים",
+            "NO_VIDEOS": "אין סרטונים בערוץ זה."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "הסרטונים שהעלתי"
+            "TAB_LABEL": "הסרטונים שהעלתי",
+            "NO_VIDEOS": "משתמש זה טרם העלה סרטונים."
         },
         "CHANNELS": {
             "TAB_LABEL": "הערוצים שלי",
@@ -199,12 +201,17 @@
                 "NORMAL": "רגיל"
             }
         },
+        "VIDEO_LIST": {
+            "NO_VIDEOS": "לא קיימים סרטונים אליהם הינך ממודר\\ת."
+        },
         "REACTIONS": {
             "LIKE": "אהבתי",
             "DISLIKE": "לא אהבתי"
         },
         "SEARCH": {
-            "PLACEHOLDER": "חפש"
+            "PLACEHOLDER": "חפש",
+            "NO_RESULTS_FOUND": "לא נמצאו תוצאות",
+            "TRY_DIFFERENT_KEYWORDS": "כדאי לנסות מילות מפתח אחרות או להסיר מסנני חיפוש"
         }
     },
     "CORE": {
