@@ -47,7 +47,6 @@ export class VideoFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.createForm();
     this.sources = this.sourceTyped.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -58,6 +57,7 @@ export class VideoFormComponent implements OnInit {
       distinctUntilChanged(),
       switchMap((term: string) => this.loadPps(term)),
     );
+    this.createForm();
   }
 
   loadSources(term: string): Observable<Classification[]> {
