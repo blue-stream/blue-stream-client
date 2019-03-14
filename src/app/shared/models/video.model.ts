@@ -16,6 +16,8 @@ export class Video {
   tags?: string[];
   published?: boolean;
   publishDate: Date;
+  pp?: string;
+  classificationSource?: string;
 }
 
 export enum VideoStatus {

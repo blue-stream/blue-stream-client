@@ -29,12 +29,4 @@ export class ChannelTileComponent implements OnInit {
     this.image = this.patternGenerator.getPatternAsUrl(source);
   }
 
-  onClick() {
-    this.openChannel();
-  }
-
-  openChannel() {
-    this.router.navigate(['/channels/', this.channel.id]);
-  }
-
 }

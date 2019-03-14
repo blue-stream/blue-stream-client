@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WatchDescriptionComponent implements OnInit {
 
   @Input() text: string;
-
+  @Input() pp: string;
+  @Input() source: string;
   constructor() { }
 
   ngOnInit() {

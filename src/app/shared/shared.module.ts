@@ -12,7 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
@@ -42,6 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
+import { VideoFormComponent } from './video-form/video-form.component';
 import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.component';
 
 @NgModule({
@@ -113,6 +114,8 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     MatExpansionModule,
     ChannelListComponent,
     ChannelTileComponent,
+    VideoFormComponent,
+    NoVideosFoundComponent,
     NoVideosFoundComponent,
     MatProgressSpinnerModule
   ],
@@ -132,6 +135,7 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     LanguageSwitcherComponent,
     ChannelListComponent,
     ChannelTileComponent,
+    VideoFormComponent,
     NoVideosFoundComponent
   ],
   entryComponents: [

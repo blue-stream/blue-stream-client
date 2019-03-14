@@ -4,6 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'edit',
+    loadChildren: './video-edit/video-edit.module#VideoEditModule'
+  },
+  {
     path: 'results',
     loadChildren: './search-results/search-results.module#SearchResultsModule'
   },

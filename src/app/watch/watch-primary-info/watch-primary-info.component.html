@@ -27,7 +27,7 @@
         <mat-icon>more_horiz</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <a *ngIf="canEdit" [routerLink]="['/video',video.id,'edit']">
+        <a *ngIf="canEdit" [routerLink]="['/edit',video.id]">
           <button mat-menu-item>
             <mat-icon>edit</mat-icon>
             <span translate>WATCH.WATCH_PRIMARY_INFO.EDIT</span>

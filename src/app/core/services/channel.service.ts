@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Channel } from '../../shared/models/channel.model';
@@ -65,6 +65,7 @@ export class ChannelService {
     endIndex: number,
     sortOrder: '' | '-' = '',
     sortBy: 'name' | 'description' | 'user' = 'name'): Observable<Channel[]> {
+    if (!searchFilter.trim()) { return of([]); }
     const options = {
       httpHeaders,
       params: {

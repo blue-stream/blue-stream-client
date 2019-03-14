@@ -22,6 +22,7 @@ export const environment = {
   channelDescriptionMinLength: 2,
   channelDescriptionMaxLength: 128,
   descriptionMaxLength: 5000,
+  classificationMaxLength: 256,
 };
 
 /*
