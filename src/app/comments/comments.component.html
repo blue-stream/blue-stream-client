@@ -8,3 +8,4 @@ infiniteScroll
     <bs-comments-header [commentsAmount]="totalCommentsAmount" [resource]="videoId"></bs-comments-header>
     <bs-comment-list (deleteComment)="onDelete($event)" [comments]="comments"></bs-comment-list>
 </div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

@@ -17,6 +17,7 @@ export class CommentsComponent implements OnChanges {
   comments: Comment[];
   totalCommentsAmount: number;
   commentsToLoad: number = 20;
+  isLoading: boolean = false;
 
   constructor(
     private commentService: CommentService,
@@ -115,10 +116,15 @@ export class CommentsComponent implements OnChanges {
 
   loadRootComments(startIndex: number, commentsToLoad: number) {
     const endIndex: number = startIndex + commentsToLoad;
+    this.isLoading = true;
 
     this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
         this.comments = this.comments.concat(comments);
+      },
+      (error) => {},
+      () => {
+        this.isLoading = false;
       });
   }
 }
