@@ -1,29 +1,24 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
-import { ValidatorFn, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
-import { ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent, MatSnackBar } from '@angular/material';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Video } from 'src/app/shared/models/video.model';
 import { VideoService } from '../core/services/video.service';
-import { TranslateService } from '@ngx-translate/core';
+import { ComponentCanDeactivate } from '../core/can-deactivate/component-can-deactivate';
 
 @Component({
   selector: 'bs-video-edit',
   templateUrl: './video-edit.component.html',
   styleUrls: ['./video-edit.component.scss']
 })
-export class VideoEditComponent implements OnInit, OnDestroy {
+export class VideoEditComponent extends ComponentCanDeactivate implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private videoService: VideoService,
-    private fb: FormBuilder,
-    public snackBar: MatSnackBar,
-    private translateService: TranslateService) {
+    private videoService: VideoService) {
+      super();
   }
 
   video: Video;
+  videoSaved = false;
   routeIdSubscription: any;
   videoSubscription: any;
 
@@ -42,5 +37,13 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
     this.videoSubscription.unsubscribe();
+  }
+
+  canDeactivate(): boolean {
+    return this.videoSaved;
+  }
+
+  onVideoPublish() {
+    this.videoSaved = true;
   }
 }

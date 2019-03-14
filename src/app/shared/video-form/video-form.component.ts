@@ -1,32 +1,26 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
-import { ValidatorFn, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent, MatSnackBar, ErrorStateMatcher } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ComponentCanDeactivate } from '../../core/can-deactivate/component-can-deactivate';
 import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
 import {
   debounceTime, distinctUntilChanged, switchMap, map, first
 } from 'rxjs/operators';
-
-class CrossFieldErrorMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    return control.dirty && form.invalid;
-  }
-}
+import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
 
 @Component({
   selector: 'bs-video-form',
   templateUrl: './video-form.component.html',
   styleUrls: ['./video-form.component.scss']
 })
-export class VideoFormComponent extends ComponentCanDeactivate implements OnInit {
+export class VideoFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +28,6 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private translateService: TranslateService) {
-    super();
   }
 
   @Input() video: Partial<Video>;
@@ -199,10 +192,6 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
               { duration: 2000 });
           });
       });
-  }
-
-  canDeactivate(): boolean {
-    return this.videoSaved;
   }
 
   classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {

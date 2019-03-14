@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VideoUpload } from '../video-upload.interface';
 import { Video } from 'src/app/shared/models/video.model';
+import { FileUploaderService } from '../file-uploader.service';
 
 @Component({
   selector: 'bs-video-upload-form',
@@ -14,8 +15,10 @@ export class VideoUploadFormComponent {
   @Output() videoPublished: EventEmitter<string> = new EventEmitter();
   videoSaved = false;
 
+  constructor(private fileUploaderService: FileUploaderService) {}
+
   onVideoSavedEvent() {
-    this.videoPublished.emit(this.videoUpload.id);
+    this.fileUploaderService.markVideoAsPublished(this.videoUpload.id);
     this.videoSaved = true;
   }
 

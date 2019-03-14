@@ -15,9 +15,6 @@ import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
 import { VideoUpload } from './video-upload.interface';
 
-
-
-
 @Injectable()
 export class FileUploaderService {
 
@@ -37,11 +34,6 @@ export class FileUploaderService {
     this.files[videoIndex].published = true;
   }
 
-  public markVideoAsSaved(id: string) {
-    const videoIndex = this.files.findIndex((videoUpload) => videoUpload.id === id);
-    this.files[videoIndex].saved = true;
-  }
-
   public areVideosPublished(): boolean {
     let areVideosPublished: boolean = true;
 
@@ -54,25 +46,13 @@ export class FileUploaderService {
     return areVideosPublished;
   }
 
-  public areVideosSaved(): boolean {
-    let areVideosSaved: boolean = true;
-
-    this.files.forEach((file) => {
-      if (!file.saved) {
-        areVideosSaved = false;
-      }
-    });
-
-    return areVideosSaved;
-  }
-
   public getQueue() {
     return this.queue.asObservable();
   }
 
   public addToQueue(file: File, videoId: string, videoToken: string) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false, saved: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }
