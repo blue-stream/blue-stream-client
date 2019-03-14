@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { VideoConstants } from '../shared/constants';
 import { VideoSection } from '../../shared/models/video-section.model';
 import { VideoService } from '../../core/services/video.service';
-import { Video } from 'src/app/shared/models/video.model';
 
 @Component({
   selector: 'bs-video-section-list',
@@ -26,26 +24,32 @@ export class VideoSectionListComponent implements OnInit {
   }
 
   loadPopularVideos() {
-    this.videoService.getVideos({}, 0, 10, 'views', -1 ).subscribe(videos => {
-      const section: VideoSection = {
-        videos,
-        title: 'VIDEO.VIDEO_SECTION_ITEM.MOST_VIEWED',
-        isDismissable: false
-      };
+    const section: VideoSection = {
+      title: 'VIDEO.VIDEO_SECTION_ITEM.MOST_VIEWED',
+      isDismissable: false,
+      isLoading: true,
+    };
 
-      this.sections.push(section);
+    this.sections.push(section);
+
+    this.videoService.getVideos({}, 0, 10, 'views', -1 ).subscribe(videos => {
+      section.videos = videos;
+      section.isLoading = false;
     });
   }
 
   loadNewVideos() {
-    this.videoService.getVideos({}, 0, 10, 'publishDate', -1 ).subscribe(videos => {
-      const section: VideoSection = {
-        videos,
-        title: 'VIDEO.VIDEO_SECTION_ITEM.NEWEST',
-        isDismissable: false
-      };
+    const section: VideoSection = {
+      title: 'VIDEO.VIDEO_SECTION_ITEM.NEWEST',
+      isDismissable: false,
+      isLoading: true,
+    };
 
-      this.sections.push(section);
+    this.sections.push(section);
+
+    this.videoService.getVideos({}, 0, 10, 'publishDate', -1 ).subscribe(videos => {
+      section.videos = videos;
+      section.isLoading = false;
     });
   }
 

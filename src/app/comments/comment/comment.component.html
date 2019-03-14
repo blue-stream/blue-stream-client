@@ -24,7 +24,12 @@
       <mat-icon *ngSwitchCase="false">keyboard_arrow_down</mat-icon>
     </button>
     <div id="replies" *ngIf="showReplies">
-      <bs-comment-list [isReplyList]="true" [comments]="replies"></bs-comment-list>
+      <div *ngIf="!isLoadingReplies; else loadingReplies">
+          <bs-comment-list [isReplyList]="true" [comments]="replies"></bs-comment-list>
+      </div>
+      <ng-template #loadingReplies>
+        <mat-spinner></mat-spinner>
+      </ng-template>
     </div>
   </div>
 </div>

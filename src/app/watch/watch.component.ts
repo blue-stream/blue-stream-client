@@ -22,9 +22,10 @@ export class WatchComponent implements OnInit, OnDestroy {
   video: Video & { token: string };
   videoSubscription: any;
   routeIdSubscription: any;
-  recommendedVideos: Observable<Video[]>;
+  recommendedVideos: Video[];
   isVideoWide: boolean = false;
   videoReady = VideoStatus.READY;
+  isLoadingRecommended: boolean = false;
 
   ngOnInit() {
     this.routeIdSubscription = this.route.params.pipe(
@@ -39,10 +40,16 @@ export class WatchComponent implements OnInit, OnDestroy {
   }
 
   loadRecommendedVideos(id: string) {
-    this.recommendedVideos = this.videoService.getVideos({})
-    .pipe(
-      map(videos => videos.filter( video => video.id !== this.video.id ))
-    );
+    this.isLoadingRecommended = true;
+
+    this.videoService.getVideos({})
+    .subscribe(videos => {
+      this.recommendedVideos = videos.filter( video => video.id !== this.video.id );
+    },
+    (error) => {},
+    () => {
+      this.isLoadingRecommended = false;
+    });
   }
 
   loadVideoInfo(id: string) {

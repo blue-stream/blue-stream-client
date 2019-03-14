@@ -22,7 +22,7 @@ export class ChannelsComponent implements OnInit {
   channels: Channel[] = [];
   channelFilter: Partial<Channel> = {};
   searchFilter: string = '';
-
+  isLoading: boolean = false;
   urlSubscription: any;
 
   constructor(
@@ -92,8 +92,13 @@ export class ChannelsComponent implements OnInit {
   loadChannels(startIndex: number, channelsToLoad: number) {
     const endIndex: number = startIndex + channelsToLoad;
 
+    this.isLoading = true;
     this.channelService.getMany(this.channelFilter, startIndex, endIndex).subscribe(channels => {
       this.channels = this.channels.concat(channels);
+    },
+    (error) => {},
+    () => {
+      this.isLoading = false;
     });
   }
 }
