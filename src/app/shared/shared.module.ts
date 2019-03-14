@@ -42,6 +42,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
 import { VideoFormComponent } from './video-form/video-form.component';
+import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.component';
 
 @NgModule({
   imports: [
@@ -111,7 +112,8 @@ import { VideoFormComponent } from './video-form/video-form.component';
     MatExpansionModule,
     ChannelListComponent,
     ChannelTileComponent,
-    VideoFormComponent
+    VideoFormComponent,
+    NoVideosFoundComponent
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -129,7 +131,8 @@ import { VideoFormComponent } from './video-form/video-form.component';
     LanguageSwitcherComponent,
     ChannelListComponent,
     ChannelTileComponent,
-    VideoFormComponent
+    VideoFormComponent,
+    NoVideosFoundComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

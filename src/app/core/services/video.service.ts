@@ -76,10 +76,19 @@ export class VideoService {
     return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
   }
 
-  getVideos(videoFilter?: Partial<Video>): Observable<Video[]> {
+  getVideos(
+    videoFilter?: Partial<Video>,
+    startIndex?: number,
+    endIndex?: number,
+    sortBy?: keyof Video,
+    sortOrder?: -1 | 1): Observable<Video[]> {
     const options = {
       headers: httpHeaders,
       params: {
+        sortBy: sortBy ? sortBy.toString() : undefined,
+        sortOrder: sortOrder ? sortOrder.toString() : undefined,
+        startIndex: Number.isInteger(startIndex) ? startIndex.toString() : 0,
+        endIndex: Number.isInteger(endIndex) ? endIndex.toString() : 10,
         id: videoFilter ? videoFilter.id : undefined,
         title: videoFilter ? videoFilter.title : undefined,
         description: videoFilter ? videoFilter.description : undefined,
