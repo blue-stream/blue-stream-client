@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  loadSearchedChannels(term) {
+  loadSearchedChannels(term: string) {
     return this.channelService.search(term, 0, this.channelsToLoad);
   }
 

@@ -15,14 +15,6 @@ import {
   debounceTime, distinctUntilChanged, switchMap, map, first
 } from 'rxjs/operators';
 
-
-const classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const classificationSource = control.get('classificationSource').value;
-  const pp = control.get('pp').value;
-  const condition = pp ? classificationSource : true;
-  return condition ? null : { 'sourceMissed': true };
-};
-
 class CrossFieldErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return control.dirty && form.invalid;
@@ -75,11 +67,11 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
     );
   }
 
-  loadSources(term): Observable<Classification[]> {
+  loadSources(term: string): Observable<Classification[]> {
     return this.videoService.searchUserSources(term);
   }
 
-  loadPps(term): Observable<Classification[]> {
+  loadPps(term: string): Observable<Classification[]> {
     return this.videoService.searchUserPps(term);
   }
 
@@ -112,7 +104,7 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
         Validators.maxLength(environment.classificationMaxLength),
         this.ppValidator,
       ),
-    }, { validator: classificationValidator });
+    }, { validator: this.classificationValidator });
   }
 
   sourceValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
@@ -211,6 +203,13 @@ export class VideoFormComponent extends ComponentCanDeactivate implements OnInit
 
   canDeactivate(): boolean {
     return this.videoSaved;
+  }
+
+  classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    const classificationSource = control.get('classificationSource').value;
+    const pp = control.get('pp').value;
+    const condition = pp ? classificationSource : true;
+    return condition ? null : { 'sourceMissed': true };
   }
 
 }
