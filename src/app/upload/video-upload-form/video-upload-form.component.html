@@ -1,7 +1,7 @@
 <mat-card fxLayout="column">
   <bs-video-upload-progress [videoUpload]="videoUpload"></bs-video-upload-progress>
   <div *ngIf="!this.videoSaved && !this.videoUpload.published">
-    <bs-video-form [video]="{ title: this.videoUpload.fileUpload.file.name, id: this.videoUpload.id }" [disabled]="!isPublishReady" (videoSavedEvent)="onVideoSavedEvent($event)"></bs-video-form>
+    <bs-video-form [video]="initVideo" [disabled]="!isPublishReady" (videoSavedEvent)="onVideoSavedEvent($event)"></bs-video-form>
   </div>
 
 </mat-card>

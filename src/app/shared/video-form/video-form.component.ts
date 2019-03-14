@@ -104,8 +104,8 @@ export class VideoFormComponent implements OnInit {
     const name = control.value;
     if (!name) { return of(null); }
     return this.sources.pipe(map(sources => {
-      // tslint:disable-next-line: no-shadowed-variable
-      const source = sources.find(source => source.name === name);
+
+      const source = sources.find(s => s.name === name);
       this.selectedSource = source && source.id;
 
       return !!source ? null : { 'forbiddenSource': true };
@@ -116,8 +116,7 @@ export class VideoFormComponent implements OnInit {
     const name = control.value;
     if (!name) { return of(null); }
     return this.pps.pipe(map(pps => {
-      // tslint:disable-next-line: no-shadowed-variable
-      const pp = pps.find(pp => pp.name === name);
+      const pp = pps.find(p => p.name === name);
       this.selectedPp = pp && pp.id;
 
       return !!pp ? null : { 'forbiddenPp': true };

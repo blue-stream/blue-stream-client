@@ -8,14 +8,19 @@ import { FileUploaderService } from '../file-uploader.service';
   templateUrl: './video-upload-form.component.html',
   styleUrls: ['./video-upload-form.component.scss']
 })
-export class VideoUploadFormComponent {
+export class VideoUploadFormComponent implements OnInit {
 
   @Input() isPublishReady: boolean;
   @Input() videoUpload: VideoUpload;
   @Output() videoPublished: EventEmitter<string> = new EventEmitter();
   videoSaved = false;
+  initVideo: Partial<Video>;
 
   constructor(private fileUploaderService: FileUploaderService) {}
+
+  ngOnInit() {
+    this.initVideo = { title: this.videoUpload.fileUpload.file.name, id: this.videoUpload.id };
+  }
 
   onVideoSavedEvent() {
     this.fileUploaderService.markVideoAsPublished(this.videoUpload.id);
