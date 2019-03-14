@@ -151,7 +151,7 @@ export class VideoService {
 
   searchUserSources(
     searchFilter: string = ''
-    ): Observable<Classification[]> {
+  ): Observable<Classification[]> {
     if (!searchFilter.trim()) { return of([]); }
     const options = {
       httpHeaders,
@@ -159,13 +159,12 @@ export class VideoService {
         searchFilter,
       },
     };
-    return of([{name: 'apple', id: '1'}, {name: 'cheese', id: '2'}, {name: 'xyz', id: '3'}, {name: 'humus', id: '4'}]);
-    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/sources`, options);
+    return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/sources`, options);
   }
 
   searchUserPps(
     searchFilter: string = ''
-    ): Observable<Classification[]> {
+  ): Observable<Classification[]> {
     if (!searchFilter.trim()) { return of([]); }
     const options = {
       httpHeaders,
@@ -173,8 +172,7 @@ export class VideoService {
         searchFilter,
       },
     };
-    return of([{name: 'apple', id: '1'}, {name: 'cheese', id: '2'}, {name: 'xyz', id: '3'}, {name: 'humus', id: '4'}]);
-    // return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pps`, options);
+    return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pps`, options);
   }
 
 }
