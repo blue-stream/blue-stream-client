@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./channel-tile.component.scss']
 })
 export class ChannelTileComponent implements OnInit {
-  
-  constructor(    
+
+  constructor(
     private patternGenerator: PatternGeneratorService,
     private router: Router
   ) { }
 
   @Input() horizontal = true;
   @Input() description = true;
-  @Input() channel: Channel
+  @Input() channel: Channel;
   image: string;
 
   ngOnInit() {
@@ -26,14 +26,6 @@ export class ChannelTileComponent implements OnInit {
 
   getImage() {
     this.image = this.patternGenerator.getPatternAsUrl(this.channel.name);
-  }
-
-  onClick() {
-    this.openChannel();
-  }
-
-  openChannel() {
-    this.router.navigate(['/channels/', this.channel.id]);
   }
 
 }
