@@ -1,6 +1,7 @@
 <div id="container">
     <div id="title-container" translate>DASHBOARD.POPULAR</div>
     <div id="videos-container">
-        <bs-video-list mode="vertical" description="true" [videos]="videos | async"></bs-video-list>
+        <bs-video-list *ngIf="!isLoading" mode="vertical" description="true" [videos]="videos"></bs-video-list>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
 </div>
