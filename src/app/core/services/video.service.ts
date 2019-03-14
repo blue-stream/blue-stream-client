@@ -159,7 +159,7 @@ export class VideoService {
         searchFilter,
       },
     };
-    return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/sources`, options);
+    return this.httpClient.get<Classification[]>(`${this.serviceUrl}api/classification/sources`, options);
   }
 
   searchUserPps(
@@ -172,7 +172,7 @@ export class VideoService {
         searchFilter,
       },
     };
-    return this.httpClient.get<Classification[]>(`${this.serviceUrl}${this.apiUrl}/classification/pps`, options);
+    return this.httpClient.get<Classification[]>(`${this.serviceUrl}api/classification/pps`, options);
   }
 
 }
