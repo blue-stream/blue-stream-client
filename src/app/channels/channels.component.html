@@ -10,3 +10,4 @@
     [infiniteScrollContainer]="'#side-nav-container'">
     <bs-channel-grid [isSelectForUpload]="isSelectForUpload" [channels]="channels"></bs-channel-grid>
 </div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
