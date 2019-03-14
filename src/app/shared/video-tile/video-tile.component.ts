@@ -22,7 +22,7 @@ export class VideoTileComponent implements OnInit {
   }
 
   mouseEnter() {
-    this.image = this.image = this.video.previewPath;
+    this.image = this.video.previewPath;
   }
 
   mouseLeave() {
