@@ -29,7 +29,7 @@ export class VideoListComponent implements OnInit, DoCheck {
     if (this.videoList && this.mode === 'horizontal') {
       const videosPerRow = this.getVideosPerRow();
       if (this.startIndex + videosPerRow > this.videos.length) {
-        this.startIndex = this.videos.length - videosPerRow;
+        this.startIndex = Math.max(this.videos.length - videosPerRow, 0);
       }
       this.endIndex = this.startIndex + videosPerRow;
     }
