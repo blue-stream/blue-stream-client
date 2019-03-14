@@ -1,9 +1,12 @@
 <div id="container">
-    <bs-video-list *ngIf="videos && videos.length > 0; else noVideos" [videos]="videos" [mode]="'grid'"></bs-video-list>
+    <bs-video-list *ngIf="videos && videos.length > 0 && !isLoading; else noVideos" [videos]="videos" [mode]="'grid'"></bs-video-list>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <ng-template #noVideos>
-        <bs-no-videos-found *ngIf="videoFilter && videoFilter.channel"
-            [message]="'CHANNEL.VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
-        <bs-no-videos-found *ngIf="videoFilter && videoFilter.owner"
-            [message]="'CHANNEL.USER_VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
+        <div *ngIf="!isLoading"> 
+            <bs-no-videos-found *ngIf="videoFilter && videoFilter.channel"
+                [message]="'CHANNEL.VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
+            <bs-no-videos-found *ngIf="videoFilter && videoFilter.owner"
+                [message]="'CHANNEL.USER_VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
+        </div>
     </ng-template>
 </div>

@@ -10,6 +10,7 @@ import { Video } from 'src/app/shared/models/video.model';
 export class ChannelVideosComponent implements OnChanges {
   @Input() videoFilter: Partial<Video>;
   videos: Video[];
+  isLoading: boolean = false;
 
   constructor(private videoService: VideoService) { }
 
@@ -18,8 +19,14 @@ export class ChannelVideosComponent implements OnChanges {
   }
 
   loadChannelVideos() {
+    this.isLoading = true;
+
     this.videoService.getVideos(this.videoFilter).subscribe(videos => {
       this.videos = videos;
+    },
+    (error) => {},
+    () => {
+      this.isLoading = false;
     });
   }
 
