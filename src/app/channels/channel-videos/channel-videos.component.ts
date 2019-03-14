@@ -1,7 +1,6 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { VideoService } from 'src/app/core/services/video.service';
 import { Video } from 'src/app/shared/models/video.model';
-import { Channel } from '../../shared/models/channel.model';
 
 @Component({
   selector: 'bs-channel-videos',
@@ -11,6 +10,7 @@ import { Channel } from '../../shared/models/channel.model';
 export class ChannelVideosComponent implements OnChanges {
   @Input() videoFilter: Partial<Video>;
   videos: Video[];
+  isLoading: boolean = false;
 
   constructor(private videoService: VideoService) { }
 
@@ -19,8 +19,14 @@ export class ChannelVideosComponent implements OnChanges {
   }
 
   loadChannelVideos() {
+    this.isLoading = true;
+
     this.videoService.getVideos(this.videoFilter).subscribe(videos => {
       this.videos = videos;
+    },
+    (error) => {},
+    () => {
+      this.isLoading = false;
     });
   }
 

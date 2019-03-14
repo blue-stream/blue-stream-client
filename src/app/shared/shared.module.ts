@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
@@ -71,7 +72,8 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     RouterModule,
     EllipsisModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,
@@ -112,6 +114,7 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     ChannelListComponent,
     ChannelTileComponent,
     NoVideosFoundComponent,
+    MatProgressSpinnerModule
   ],
   declarations: [
     ConfirmDialogComponent,

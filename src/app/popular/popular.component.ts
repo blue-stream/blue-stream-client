@@ -9,6 +9,7 @@ import { VideoService } from '../core/services/video.service';
 export class PopularComponent implements OnInit {
 
   constructor(private videoService: VideoService) { }
+  isLoading: boolean = false;
   videos: any = [];
 
   ngOnInit() {
@@ -16,6 +17,14 @@ export class PopularComponent implements OnInit {
   }
 
   loadPopularVideos() {
-    this.videos = this.videoService.getVideos();
+    this.isLoading = true;
+
+    this.videoService.getVideos().subscribe(videos => {
+      this.videos = videos;
+    },
+    (error) => {},
+    () => {
+      this.isLoading = false;
+    });
   }
 }

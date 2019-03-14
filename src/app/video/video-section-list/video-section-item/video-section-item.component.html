@@ -1,6 +1,6 @@
 <div id="video-section-item">
   <div id="section" *ngFor="let section of sections">
-    <div fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="12px">
+    <div *ngIf="!section.isLoading; else loading" fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="12px">
       <bs-avatar *ngIf="section.avatarUrl" [source]="section.avatarUrl" [alt]="section.title" size="small"></bs-avatar>
       <h3 id="title">{{ section.title | translate }}</h3>
       <span fxFlex></span>
@@ -9,6 +9,9 @@
         <mat-icon>clear</mat-icon>
       </button>
     </div>
-    <bs-video-list [videos]="section.videos" mode="horizontal"></bs-video-list>
+    <ng-template #loading>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+    <bs-video-list *ngIf="!section.isLoading" [videos]="section.videos" mode="horizontal"></bs-video-list>
   </div>
 </div>
