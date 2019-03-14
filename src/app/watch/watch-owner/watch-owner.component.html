@@ -1,5 +1,5 @@
 <div id="container">
-    <bs-avatar [channelId]="channel.id" id="creator-profile-image"></bs-avatar>
+    <bs-avatar [channelId]="channel.id" [source]="channel.isProfile ? channel.user : channel.name" id="creator-profile-image"></bs-avatar>
     <div id="video-info">
         <a class="channel-link" [href]="channelLink">{{channel.name}}</a>
         <span id="publish-date" *ngIf="publishDate" translate [translateParams]="{date: (publishDate | date), user: owner.name}">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
