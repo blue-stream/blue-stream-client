@@ -7,12 +7,16 @@
         <ng-template #loadingChannels>
             <mat-spinner></mat-spinner>
          </ng-template>
-        <bs-video-list *ngIf="!isLoadingVideos;else loadingVideos" mode="vertical" description="true" [videos]="videos"></bs-video-list>
+         
+         <div *ngIf="!isLoadingVideos;else loadingVideos">
+            <bs-video-list *ngIf="videos && videos.length" mode="vertical" description="true" [videos]="videos"></bs-video-list>
+            
+         </div>
         <ng-template #loadingVideos>
             <mat-spinner></mat-spinner>
          </ng-template>
     </div>
     <ng-template #noResultsFound>
-       <bs-no-results-found></bs-no-results-found>
+            <bs-no-results-found></bs-no-results-found>
     </ng-template>
 </div>

@@ -1,25 +1,33 @@
 <div id="video-tile" [ngClass]="{'horizontal':horizontal}">
   <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
     <a [routerLink]="['/watch',video.id]">
-      <img [src]="image" (mouseenter)='mouseEnter()' (mouseleave)='mouseLeave()' [ngClass]="{'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
+      <img *ngIf="image; else notReady" [src]="image" (mouseenter)='mouseEnter()' (mouseleave)='mouseLeave()'
+        [ngClass]="{'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
+      <ng-template #notReady>
+        <div id="video-not-ready" [ngClass]="{'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
+        </div>
+      </ng-template>
     </a>
     <div id="video-details" [ngClass]="{'horizontal':horizontal}">
       <a id="video-title" [routerLink]="['/watch', video.id]" ellipsis>{{video.title}}</a>
       <div [fxLayout]="description ? 'row wrap' : 'column'">
-          <a id="video-channel" [routerLink]="['/watch', video.id]" *ngIf="video.channel.name">{{video.channel.name}}</a>
-          <div id="seperator" *ngIf="description"><span></span></div>
-          <div id="video-statistics">
-            <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
-            <span *ngIf="video.publishDate">{{video.publishDate | date: 'dd MMM'}}</span>
-          </div>
-          <div fxLayout="row" fxLayoutGap="4px">
-            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate" *ngIf="!video.published">lock
-            </mat-icon>
-            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.PROCESSING' | translate" *ngIf="video.status === videoStatus.PENDING">sync
-            </mat-icon>
-            <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.FAILED' | translate" *ngIf="video.status === videoStatus.FAILED">error
-            </mat-icon>
-          </div>
+        <a id="video-channel" [routerLink]="['/watch', video.id]" *ngIf="video.channel.name">{{video.channel.name}}</a>
+        <div id="seperator" *ngIf="description"><span></span></div>
+        <div id="video-statistics">
+          <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
+          <span *ngIf="video.publishDate">{{video.publishDate | date: 'dd MMM'}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="4px">
+          <mat-icon class="status" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate"
+            *ngIf="!video.published">lock
+          </mat-icon>
+          <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.PROCESSING' | translate"
+            *ngIf="video.status !== videoStatus.READY && video.status !== videoStatus.FAILED">sync
+          </mat-icon>
+          <mat-icon class="status" [matTooltip]="'WATCH.WATCH_ALERT_MESSAGE.FAILED' | translate"
+            *ngIf="video.status === videoStatus.FAILED">error
+          </mat-icon>
+        </div>
       </div>
       <div id="video-description" *ngIf="description" ellipsis>{{video.description}}</div>
     </div>

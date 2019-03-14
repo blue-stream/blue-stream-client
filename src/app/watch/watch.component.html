@@ -6,7 +6,7 @@
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
   <div id="other-videos-container" *ngIf="!isLoadingRecommended; else loadingRecommended">
-    <bs-video-list mode="vertical" [videos]="recommendedVideos"></bs-video-list>
+    <bs-video-list *ngIf="recommendedVideos.length > 0" mode="vertical" [videos]="recommendedVideos"></bs-video-list>
   </div>
   <ng-template #loadingRecommended>
       <mat-spinner></mat-spinner>
