@@ -71,6 +71,10 @@
         margin-top: 20px;
         grid-area: other-videos;
     }
+    mat-spinner {
+        margin: auto;
+        padding: 20px;
+    }
     bs-comments {
         grid-area: comments;
     }

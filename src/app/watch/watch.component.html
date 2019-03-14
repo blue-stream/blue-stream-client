@@ -5,8 +5,11 @@
     <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
-  <div id="other-videos-container">
-    <bs-video-list mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
+  <div id="other-videos-container" *ngIf="!isLoadingRecommended; else loadingRecommended">
+    <bs-video-list mode="vertical" [videos]="recommendedVideos"></bs-video-list>
   </div>
+  <ng-template #loadingRecommended>
+      <mat-spinner></mat-spinner>
+   </ng-template>
   <bs-comments [videoId]="video.id"></bs-comments>
 </div>
