@@ -4,9 +4,10 @@
     <div id="videos-container"
         *ngIf="(channels && channels.length > 0) || (videos && videos.length > 0); else noResultsFound">
         <bs-channel-list mode="vertical" description="true" [channels]="channels"></bs-channel-list>
-        <bs-video-list mode="vertical" description="true" [videos]="videos"></bs-video-list>
+        <bs-video-list *ngIf="videos && videos.length" mode="vertical" description="true" [videos]="videos">
+        </bs-video-list>
     </div>
     <ng-template #noResultsFound>
-       <bs-no-results-found></bs-no-results-found>
+        <bs-no-results-found></bs-no-results-found>
     </ng-template>
 </div>

@@ -6,7 +6,7 @@
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
   <div id="other-videos-container">
-    <bs-video-list mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
+    <bs-video-list *ngIf="(recommendedVideos | async)?.length > 0" mode="vertical" [videos]="recommendedVideos | async"></bs-video-list>
   </div>
   <bs-comments [videoId]="video.id"></bs-comments>
 </div>

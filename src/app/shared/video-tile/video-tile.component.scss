@@ -21,9 +21,12 @@ a {
         width: 100%;
         box-sizing: border-box;
     }
-    img {
+    img, #video-not-ready {
         width: $vertical-video-width;
         height: $vertical-video-height;
+    }
+    #video-not-ready {
+        background: #303030;
     }
     .img-horizontal {
         width: $horizontal-video-width;
