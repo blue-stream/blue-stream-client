@@ -34,6 +34,8 @@ export class VideoSectionListComponent implements OnInit {
 
     this.videoService.getVideos({}, 0, 10, 'views', -1 ).subscribe(videos => {
       section.videos = videos;
+    }, (error) => {},
+    () => {
       section.isLoading = false;
     });
   }
@@ -49,6 +51,8 @@ export class VideoSectionListComponent implements OnInit {
 
     this.videoService.getVideos({}, 0, 10, 'publishDate', -1 ).subscribe(videos => {
       section.videos = videos;
+    }, (error) => {},
+    () => {
       section.isLoading = false;
     });
   }
