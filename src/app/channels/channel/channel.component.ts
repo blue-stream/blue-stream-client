@@ -45,7 +45,8 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   loadHeaderImage() {
-    this.headerImage = this.patternGenerator.getPatternAsUrl(this.channel.name);
+    const source = this.channel.isProfile ? this.channel.user : this.channel.name;
+    this.headerImage = this.patternGenerator.getPatternAsUrl(source);
   }
 
   loadChannel(id: string) {

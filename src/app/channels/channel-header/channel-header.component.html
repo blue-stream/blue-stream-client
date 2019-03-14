@@ -1,5 +1,5 @@
 <div id="container">
-    <bs-avatar size="large" id="user-profile-image"></bs-avatar>
+    <bs-avatar size="large" [source]="channel.isProfile ? channel.user : channel.name" id="user-profile-image"></bs-avatar>
     <div class="spacer"></div>
     <div id="info-container" *ngIf="channel">
         <p id="title">{{channel.name}}</p>

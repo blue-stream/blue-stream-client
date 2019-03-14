@@ -15,18 +15,26 @@ export class VideoTileComponent implements OnInit {
   image: string;
   videoStatus = VideoStatus;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
-    this.image = this.video.thumbnailPath;
+    this.setImage(this.video.thumbnailPath);
   }
 
   mouseEnter() {
-    this.image = this.image = this.video.previewPath;
+    this.setImage(this.video.previewPath);
   }
 
   mouseLeave() {
-    this.image = this.video.thumbnailPath;
+    this.setImage(this.video.thumbnailPath);
+  }
+
+  setImage(source: string) {
+    if (this.video.status !== VideoStatus.READY || source.endsWith('undefined')) {
+      this.image = null;
+    } else {
+      this.image = source;
+    }
   }
 
 }

@@ -24,7 +24,8 @@ export class ChannelGridItemComponent implements OnChanges {
   }
 
   getImage() {
-    this.image = this.patternGenerator.getPatternAsUrl(this.channel.name);
+    const source = this.channel.isProfile ? this.channel.user : this.channel.name;
+    this.image = this.patternGenerator.getPatternAsUrl(source);
   }
 
   onClick() {

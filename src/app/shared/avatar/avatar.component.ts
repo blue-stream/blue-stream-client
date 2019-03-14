@@ -25,6 +25,8 @@ export class AvatarComponent implements OnInit {
   ngOnInit() {
     if (!this.source) {
       this.source = this.patternGenerator.getPatternAsUri(this.userService.currentUser.id);
+    } else {
+      this.source = this.patternGenerator.getPatternAsUri(this.source);
     }
   }
 
