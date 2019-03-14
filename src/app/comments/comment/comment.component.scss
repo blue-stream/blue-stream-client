@@ -32,5 +32,9 @@
     }
     #replies-container {
         margin: 0 50px;
+        mat-spinner {
+            margin: auto;
+            padding: 20px;
+        }
     }
 }

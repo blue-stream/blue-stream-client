@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit {
   showReplies: boolean = false;
   showReplyForm: boolean = false;
   timeAgo: string;
+  isLoadingReplies: boolean = false;
 
   constructor(private commentService: CommentService) { }
 
@@ -53,8 +54,13 @@ export class CommentComponent implements OnInit {
   }
 
   loadReplies() {
+    this.isLoadingReplies = true;
     this.commentService.getReplies(this.comment.id).subscribe(replies => {
       this.replies = replies;
+    },
+    (error) => {},
+    () => {
+      this.isLoadingReplies = false;
     });
   }
 }
