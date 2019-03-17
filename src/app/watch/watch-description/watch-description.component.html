@@ -3,11 +3,11 @@
   <div id="classification" *ngIf="source || pp">
     <div class="classification" fxLayout="row" *ngIf="source">
       <span class="name" translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</span>
-      <span class="value">{{ source }}</span>
+      <span class="value">{{ source.name }}</span>
     </div>
     <div class="classification" fxLayout="row" *ngIf="pp">
       <span class="name" translate>UPLOADER.UPLOAD_FORM.PP</span>
-      <span class="value">{{ pp }}</span>
+      <span class="value">{{ pp.name }}</span>
     </div>
   </div>
 </div>

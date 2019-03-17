@@ -35,18 +35,18 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="classification">
       <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
-      <input #source matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(source.value)">
-      <mat-autocomplete #sourceAuto="matAutocomplete">
-        <mat-option *ngFor="let source of sources | async" [value]="source.name" (click)="onSourceType(source.name)">
+      <input #sourceField matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(sourceField.value)">
+      <mat-autocomplete #sourceAuto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let source of sources | async" [value]="source">
           {{source.name}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
     <mat-form-field appearance="outline" class="classification">
       <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
-      <input #pp matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput (input)="onPpType(pp.value)">
-      <mat-autocomplete #ppAuto="matAutocomplete">
-        <mat-option *ngFor="let pp of pps | async" [value]="pp.name" (click)="onPpType(pp.name)">
+      <input #ppField matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput (input)="onPpType(ppField.value)">
+      <mat-autocomplete #ppAuto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let pp of pps | async" [value]="pp">
           {{pp.name}}
         </mat-option>
       </mat-autocomplete>

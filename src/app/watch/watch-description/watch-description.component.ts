@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Classification } from 'src/app/shared/models/classification.model';
 
 @Component({
   selector: 'bs-watch-description',
@@ -8,8 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WatchDescriptionComponent implements OnInit {
 
   @Input() text: string;
-  @Input() pp: string;
-  @Input() source: string;
+  @Input() pp: Classification;
+  @Input() source: Classification;
   constructor() { }
 
   ngOnInit() {

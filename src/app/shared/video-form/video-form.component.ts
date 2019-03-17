@@ -6,7 +6,7 @@ import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
-import { VideoService } from '../../core/services/video.service';
+import { ClassificationService } from '../../core/services/classification.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
@@ -14,6 +14,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap, map, first
 } from 'rxjs/operators';
 import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
+import { VideoService } from 'src/app/core/services/video.service';
 
 @Component({
   selector: 'bs-video-form',
@@ -23,7 +24,7 @@ import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
 export class VideoFormComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
+    private classificationService: ClassificationService,
     private videoService: VideoService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
@@ -42,18 +43,15 @@ export class VideoFormComponent implements OnInit {
   ppTyped: Subject<string> = new Subject<string>();
   sources: Observable<Classification[]>;
   pps: Observable<Classification[]>;
-  selectedPp: string;
-  selectedSource: string;
-
 
   ngOnInit() {
     this.sources = this.sourceTyped.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((term: string) => this.loadSources(term)),
     );
     this.pps = this.ppTyped.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((term: string) => this.loadPps(term)),
     );
@@ -61,11 +59,11 @@ export class VideoFormComponent implements OnInit {
   }
 
   loadSources(term: string): Observable<Classification[]> {
-    return this.videoService.searchUserSources(term);
+    return this.classificationService.searchUserSources(term);
   }
 
   loadPps(term: string): Observable<Classification[]> {
-    return this.videoService.searchUserPps(term);
+    return this.classificationService.searchUserPps(term);
   }
 
   onSourceType(search: string) {
@@ -77,6 +75,16 @@ export class VideoFormComponent implements OnInit {
   }
 
   createForm() {
+    const classificationSource = this.video.classificationSource &&
+      {
+        id: (this.video.classificationSource as Classification).classificationId,
+        name: (this.video.classificationSource as Classification).name
+      };
+    const pp = this.video.pp && {
+      id: (this.video.pp as Classification)._id,
+      name: (this.video.pp as Classification).name
+    };
+
     this.videoForm = this.fb.group({
       title: this.fb.control(this.video.title || '', [
         Validators.required,
@@ -89,38 +97,31 @@ export class VideoFormComponent implements OnInit {
       published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
-      classificationSource: this.fb.control(this.video.classificationSource || '',
-        Validators.maxLength(environment.classificationMaxLength),
-        this.sourceValidator
+      classificationSource: this.fb.control(classificationSource || '',
+        [Validators.maxLength(environment.classificationMaxLength),
+        this.sourceValidator]
       ),
-      pp: this.fb.control(this.video.pp || '',
-        Validators.maxLength(environment.classificationMaxLength),
-        this.ppValidator,
+      pp: this.fb.control(pp || '',
+        [Validators.maxLength(environment.classificationMaxLength),
+        this.ppValidator]
       ),
     }, { validator: this.classificationValidator });
   }
 
-  sourceValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-    const name = control.value;
-    if (!name) { return of(null); }
-    return this.sources.pipe(map(sources => {
-
-      const source = sources.find(s => s.name === name);
-      this.selectedSource = source && source.id;
-
-      return !!source ? null : { 'forbiddenSource': true };
-    }), first());
+  sourceValidator = (control: AbstractControl): ValidationErrors | null => {
+    const source = control.value;
+    if (!source) { return null; }
+    return source.id ? null : { 'forbiddenSource': true };
   }
 
-  ppValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-    const name = control.value;
-    if (!name) { return of(null); }
-    return this.pps.pipe(map(pps => {
-      const pp = pps.find(p => p.name === name);
-      this.selectedPp = pp && pp.id;
+  ppValidator = (control: AbstractControl): ValidationErrors | null => {
+    const pp = control.value;
+    if (!pp) { return null; }
+    return pp.id ? null : { 'forbiddenPp': true };
+  }
 
-      return !!pp ? null : { 'forbiddenPp': true };
-    }), first());
+  displayFn = (classification?: Classification) => {
+    return classification ? classification.name : undefined;
   }
 
   removeTag(index: number): void {
@@ -151,8 +152,13 @@ export class VideoFormComponent implements OnInit {
 
   normalizeVideo(): Video {
     const video: Video = { ...this.videoForm.value, id: this.video.id };
-    if (!video.pp) { delete video.pp; } else { video.pp = this.selectedPp; }
-    if (!video.classificationSource) { delete video.classificationSource; } else { video.classificationSource = this.selectedSource; }
+    if (!video.pp) { video.pp = null; } else {
+      video.pp = (video.pp as Classification).id;
+    }
+    if (!video.classificationSource) { video.classificationSource = null; } else {
+      video.classificationSource = (
+        video.classificationSource as Classification).id;
+    }
 
     return video;
   }
@@ -196,7 +202,7 @@ export class VideoFormComponent implements OnInit {
   classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const classificationSource = control.get('classificationSource').value;
     const pp = control.get('pp').value;
-    const condition = pp ? classificationSource : true;
+    const condition = pp ? classificationSource.id : true;
     return condition ? null : { 'sourceMissed': true };
   }
 
