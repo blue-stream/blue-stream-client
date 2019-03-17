@@ -43,9 +43,6 @@ export class VideoFormComponent implements OnInit {
   ppTyped: Subject<string> = new Subject<string>();
   sources: Observable<Classification[]>;
   pps: Observable<Classification[]>;
-  selectedPp: string;
-  selectedSource: string;
-
 
   ngOnInit() {
     this.sources = this.sourceTyped.pipe(
@@ -78,8 +75,15 @@ export class VideoFormComponent implements OnInit {
   }
 
   createForm() {
-    const classificationSource = this.video.classificationSource && (this.video.classificationSource as Classification).name;
-    const pp = this.video.pp && (this.video.pp as Classification).name;
+    const classificationSource = this.video.classificationSource &&
+      {
+        id: (this.video.classificationSource as Classification).classificationId,
+        name: (this.video.classificationSource as Classification).name
+      };
+    const pp = this.video.pp && {
+      id: (this.video.pp as Classification)._id,
+      name: (this.video.pp as Classification).name
+    };
 
     this.videoForm = this.fb.group({
       title: this.fb.control(this.video.title || '', [
@@ -94,37 +98,30 @@ export class VideoFormComponent implements OnInit {
         Validators.required
       ]),
       classificationSource: this.fb.control(classificationSource || '',
-        Validators.maxLength(environment.classificationMaxLength),
-        this.sourceValidator
+        [Validators.maxLength(environment.classificationMaxLength),
+        this.sourceValidator]
       ),
       pp: this.fb.control(pp || '',
-        Validators.maxLength(environment.classificationMaxLength),
-        this.ppValidator,
+        [Validators.maxLength(environment.classificationMaxLength),
+        this.ppValidator]
       ),
     }, { validator: this.classificationValidator });
   }
 
-  sourceValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-    const name = control.value;
-    if (!name) { return of(null); }
-    return this.sources.pipe(map(sources => {
-
-      const source = sources.find(s => s.name === name);
-      this.selectedSource = source && source.id;
-
-      return !!source ? null : { 'forbiddenSource': true };
-    }), first());
+  sourceValidator = (control: AbstractControl): ValidationErrors | null => {
+    const source = control.value;
+    if (!source) { return null; }
+    return source.id ? null : { 'forbiddenSource': true };
   }
 
-  ppValidator = (control: AbstractControl): Observable<ValidationErrors | null> => {
-    const name = control.value;
-    if (!name) { return of(null); }
-    return this.pps.pipe(map(pps => {
-      const pp = pps.find(p => p.name === name);
-      this.selectedPp = pp && pp.id;
+  ppValidator = (control: AbstractControl): ValidationErrors | null => {
+    const pp = control.value;
+    if (!pp) { return null; }
+    return pp.id ? null : { 'forbiddenPp': true };
+  }
 
-      return !!pp ? null : { 'forbiddenPp': true };
-    }), first());
+  displayFn = (classification?: Classification) => {
+    return classification ? classification.name : undefined;
   }
 
   removeTag(index: number): void {
@@ -155,8 +152,13 @@ export class VideoFormComponent implements OnInit {
 
   normalizeVideo(): Video {
     const video: Video = { ...this.videoForm.value, id: this.video.id };
-    if (!video.pp) { delete video.pp; } else { video.pp = this.selectedPp; }
-    if (!video.classificationSource) { delete video.classificationSource; } else { video.classificationSource = this.selectedSource; }
+    if (!video.pp) { video.pp = null; } else {
+      video.pp = (video.pp as Classification).id;
+    }
+    if (!video.classificationSource) { video.classificationSource = null; } else {
+      video.classificationSource = (
+        video.classificationSource as Classification).id;
+    }
 
     return video;
   }
@@ -200,7 +202,7 @@ export class VideoFormComponent implements OnInit {
   classificationValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
     const classificationSource = control.get('classificationSource').value;
     const pp = control.get('pp').value;
-    const condition = pp ? classificationSource : true;
+    const condition = pp ? classificationSource.id : true;
     return condition ? null : { 'sourceMissed': true };
   }
 
