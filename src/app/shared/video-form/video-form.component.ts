@@ -49,12 +49,12 @@ export class VideoFormComponent implements OnInit {
 
   ngOnInit() {
     this.sources = this.sourceTyped.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((term: string) => this.loadSources(term)),
     );
     this.pps = this.ppTyped.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((term: string) => this.loadPps(term)),
     );
