@@ -15,12 +15,13 @@ export class AvatarComponent implements OnChanges, OnInit {
   @Input() alt?: string;
   @Input() userId?: string;
   @Input() channelId?: string;
+  imageSvg: string;
 
   constructor(
     private userService: UserService,
     private patternGenerator: PatternGeneratorService,
     private router: Router,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.loadImage();
@@ -31,10 +32,10 @@ export class AvatarComponent implements OnChanges, OnInit {
   }
 
   loadImage() {
-    if (!this.source) {
-      this.source = this.patternGenerator.getPatternAsUri(this.userService.currentUser.id);
-    } else {
-      this.source = this.patternGenerator.getPatternAsUri(this.source);
+    if (!this.imageSvg && !this.source) {
+      this.imageSvg = this.patternGenerator.getPatternAsUri(this.userService.currentUser.id);
+    } else if (!this.imageSvg) {
+      this.imageSvg = this.patternGenerator.getPatternAsUri(this.source);
     }
   }
 
