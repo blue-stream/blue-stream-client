@@ -19,7 +19,7 @@ export class PopularComponent implements OnInit {
   loadPopularVideos() {
     this.isLoading = true;
 
-    this.videoService.getVideos().subscribe(videos => {
+    this.videoService.getVideos({}, 0, 40).subscribe(videos => {
       this.videos = videos;
       this.isLoading = false;
     },
