@@ -121,9 +121,9 @@ export class CommentsComponent implements OnChanges {
     this.commentService.getRootComments(this.videoId, startIndex, endIndex)
       .subscribe(comments => {
         this.comments = this.comments.concat(comments);
+        this.isLoading = false;
       },
-      (error) => {},
-      () => {
+      (error) => {
         this.isLoading = false;
       });
   }

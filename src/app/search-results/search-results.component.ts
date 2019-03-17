@@ -52,9 +52,9 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     this.isLoadingVideos = true;
     this.videosSubscription = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
+      this.isLoadingVideos = false;
     },
-    (error) => {},
-    () => {
+    (error) => {
       this.isLoadingVideos = false;
     });
   }
@@ -66,9 +66,9 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     this.isLoadingChannels = true;
     this.channelsSubscription = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
       this.channels = this.channels.concat(channels);
+      this.isLoadingChannels = false;
     },
-    (error) => {},
-    () => {
+    (error) => {
       this.isLoadingChannels = false;
     });
   }
