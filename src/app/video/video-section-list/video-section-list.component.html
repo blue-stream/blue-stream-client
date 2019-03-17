@@ -1,5 +1,10 @@
-<div class="container" bsVideoResponsiveView (layoutChanged)="layoutChanged($event)">
-    <div  id="video-section-list" [style.width.px]="width">
+<div *ngIf="!noVideosInSections || isLoading; else noVideos" class="container" bsVideoResponsiveView (layoutChanged)="layoutChanged($event)">
+    <div id="video-section-list" [style.width.px]="width">
         <bs-video-section-item [sections]="sections"></bs-video-section-item>
     </div>
 </div>
+<ng-template #noVideos>
+    <div id="no-videos-container">
+        <bs-no-videos-found [message]="'SHARED.VIDEO_LIST.NO_VIDEOS' | translate" showImage=true></bs-no-videos-found>
+    </div>
+</ng-template>

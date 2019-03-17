@@ -12,6 +12,9 @@ export class VideoSectionListComponent implements OnInit {
 
   width: number;
   sections: VideoSection[] = [];
+  noVideosInSections: boolean = true;
+  isLoading: boolean = true;
+
   constructor(private videoService: VideoService) { }
 
   ngOnInit() {
@@ -35,6 +38,12 @@ export class VideoSectionListComponent implements OnInit {
     this.videoService.getVideos({}, 0, 10, 'views', -1 ).subscribe(videos => {
       section.videos = videos;
       section.isLoading = false;
+      this.isLoading = false;
+
+      if (section.videos && section.videos.length > 0) {
+        this.noVideosInSections = false;
+        this.isLoading = false;
+      }
     },
     (error) => {
       section.isLoading = false;
@@ -53,9 +62,15 @@ export class VideoSectionListComponent implements OnInit {
     this.videoService.getVideos({}, 0, 10, 'publishDate', -1 ).subscribe(videos => {
       section.videos = videos;
       section.isLoading = false;
+      this.isLoading = false;
+
+      if (section.videos && section.videos.length > 0) {
+        this.noVideosInSections = false;
+      }
     },
     (error) => {
       section.isLoading = false;
+      this.isLoading = false;
     });
   }
 
