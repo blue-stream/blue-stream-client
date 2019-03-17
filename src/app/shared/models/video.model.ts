@@ -1,5 +1,6 @@
 import { User } from './user.model';
 import { Channel } from './channel.model';
+import { Classification } from './classification.model';
 
 export class Video {
   id?: string;
@@ -16,8 +17,8 @@ export class Video {
   tags?: string[];
   published?: boolean;
   publishDate: Date;
-  pp?: string;
-  classificationSource?: string;
+  pp?: string | Classification;
+  classificationSource?: string | Classification;
 }
 
 export enum VideoStatus {
