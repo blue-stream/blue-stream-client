@@ -77,7 +77,7 @@ export class VideoFormComponent implements OnInit {
   createForm() {
     const classificationSource = this.video.classificationSource &&
       {
-        id: (this.video.classificationSource as Classification).classificationId,
+        id: (this.video.classificationSource as Classification)._id,
         name: (this.video.classificationSource as Classification).name
       };
     const pp = this.video.pp && {
