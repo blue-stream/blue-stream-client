@@ -6,7 +6,7 @@ import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
-import { VideoService } from '../../core/services/video.service';
+import { ClassificationService } from '../../core/services/classification.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subject, of } from 'rxjs';
 import { Classification } from 'src/app/shared/models/classification.model';
@@ -14,6 +14,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap, map, first
 } from 'rxjs/operators';
 import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
+import { VideoService } from 'src/app/core/services/video.service';
 
 @Component({
   selector: 'bs-video-form',
@@ -23,7 +24,7 @@ import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
 export class VideoFormComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
+    private classificationService: ClassificationService,
     private videoService: VideoService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
@@ -61,11 +62,11 @@ export class VideoFormComponent implements OnInit {
   }
 
   loadSources(term: string): Observable<Classification[]> {
-    return this.videoService.searchUserSources(term);
+    return this.classificationService.searchUserSources(term);
   }
 
   loadPps(term: string): Observable<Classification[]> {
-    return this.videoService.searchUserPps(term);
+    return this.classificationService.searchUserPps(term);
   }
 
   onSourceType(search: string) {
