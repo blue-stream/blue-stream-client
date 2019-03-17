@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnChanges, OnInit, Input } from '@angular/core';
 import { PatternGeneratorService } from '../pattern-generator.service';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss']
 })
-export class AvatarComponent implements OnInit {
+export class AvatarComponent implements OnChanges, OnInit {
 
   @Input() source: string;
   @Input() size: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' = 'medium';
@@ -23,6 +23,14 @@ export class AvatarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.loadImage();
+  }
+
+  ngOnChanges() {
+    this.loadImage();
+  }
+
+  loadImage() {
     if (!this.source) {
       this.source = this.patternGenerator.getPatternAsUri(this.userService.currentUser.id);
     } else {
