@@ -78,6 +78,9 @@ export class VideoFormComponent implements OnInit {
   }
 
   createForm() {
+    const classificationSource = this.video.classificationSource && (this.video.classificationSource as Classification).name;
+    const pp = this.video.pp && (this.video.pp as Classification).name;
+
     this.videoForm = this.fb.group({
       title: this.fb.control(this.video.title || '', [
         Validators.required,
@@ -90,11 +93,11 @@ export class VideoFormComponent implements OnInit {
       published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
-      classificationSource: this.fb.control(this.video.classificationSource || '',
+      classificationSource: this.fb.control(classificationSource || '',
         Validators.maxLength(environment.classificationMaxLength),
         this.sourceValidator
       ),
-      pp: this.fb.control(this.video.pp || '',
+      pp: this.fb.control(pp || '',
         Validators.maxLength(environment.classificationMaxLength),
         this.ppValidator,
       ),
