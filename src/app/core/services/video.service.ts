@@ -7,7 +7,6 @@ import { Video, VideoStatus } from '../../shared/models/video.model';
 import { VideoSection } from '../../shared/models/video-section.model';
 
 import { environment } from '../../../environments/environment';
-import { Classification } from 'src/app/shared/models/classification.model';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -147,32 +146,6 @@ export class VideoService {
       .pipe(
         map(videos => videos.map(concatStreamerUrl))
       );
-  }
-
-  searchUserSources(
-    searchFilter: string = ''
-  ): Observable<Classification[]> {
-    if (!searchFilter.trim()) { return of([]); }
-    const options = {
-      httpHeaders,
-      params: {
-        searchFilter,
-      },
-    };
-    return this.httpClient.get<Classification[]>(`${this.serviceUrl}api/classification/sources`, options);
-  }
-
-  searchUserPps(
-    searchFilter: string = ''
-  ): Observable<Classification[]> {
-    if (!searchFilter.trim()) { return of([]); }
-    const options = {
-      httpHeaders,
-      params: {
-        searchFilter,
-      },
-    };
-    return this.httpClient.get<Classification[]>(`${this.serviceUrl}api/classification/pps`, options);
   }
 
 }

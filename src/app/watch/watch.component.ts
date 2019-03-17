@@ -44,7 +44,7 @@ export class WatchComponent implements OnInit, OnDestroy {
 
     this.videoService.getVideos({})
     .subscribe(videos => {
-      this.recommendedVideos = videos.filter( video => video.id !== this.video.id );
+      this.recommendedVideos = videos.filter( video => video.id !== id );
     },
     (error) => {},
     () => {
