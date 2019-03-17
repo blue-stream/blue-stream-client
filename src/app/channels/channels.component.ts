@@ -95,9 +95,9 @@ export class ChannelsComponent implements OnInit {
     this.isLoading = true;
     this.channelService.getMany(this.channelFilter, startIndex, endIndex).subscribe(channels => {
       this.channels = this.channels.concat(channels);
+      this.isLoading = false;
     },
-    (error) => {},
-    () => {
+    (error) => {
       this.isLoading = false;
     });
   }

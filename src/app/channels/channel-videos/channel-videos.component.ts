@@ -23,9 +23,9 @@ export class ChannelVideosComponent implements OnChanges {
 
     this.videoService.getVideos(this.videoFilter).subscribe(videos => {
       this.videos = videos;
+      this.isLoading = false;
     },
-    (error) => {},
-    () => {
+    (error) => {
       this.isLoading = false;
     });
   }

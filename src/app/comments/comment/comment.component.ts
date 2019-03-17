@@ -57,9 +57,9 @@ export class CommentComponent implements OnInit {
     this.isLoadingReplies = true;
     this.commentService.getReplies(this.comment.id).subscribe(replies => {
       this.replies = replies;
+      this.isLoadingReplies = false;
     },
-    (error) => {},
-    () => {
+    (error) => {
       this.isLoadingReplies = false;
     });
   }
