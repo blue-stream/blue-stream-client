@@ -29,7 +29,7 @@ export function authenticateUser(userService: UserService) {
       return Promise.resolve(true);
     }
 
-    document.location.href = `${environment.authenticationServiceUrl}login`;
+    document.location.href = `${environment.authenticationServiceUrl}auth/login`;
     return Promise.reject(false);
   };
 }
