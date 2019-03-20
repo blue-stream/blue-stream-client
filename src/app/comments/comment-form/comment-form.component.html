@@ -2,7 +2,7 @@
   <bs-avatar id="user-profile-image"></bs-avatar>
   <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <mat-form-field id="comment-input">
-      <input autocomplete="off" (blur)="onBlur()" (focus)="onFocus()" matInput formControlName="text" placeholder="{{'COMMENTS.COMMENTS_FORM.TEXT_INPUT' | translate}}">
+      <textarea autocomplete="off" (blur)="onBlur()" (focus)="onFocus()" matInput formControlName="text" placeholder="{{'COMMENTS.COMMENTS_FORM.TEXT_INPUT' | translate}}"></textarea>
     </mat-form-field>
     <div *ngIf="showButtons" id="buttons-container">
       <button *ngIf="!parent; else replyButton" id="submit-button" type="submit" [disabled]="!commentForm.valid || commentForm.get('text').value === ''" mat-raised-button color="primary">{{'COMMENTS.COMMENTS_FORM.POST' | translate}}</button>
