@@ -91,7 +91,7 @@ export class ChannelPermissionsFormComponent implements OnChanges {
     }
   }
 
-  onSubmit(event: Event) {
+  onSubmit() {
     const permissions = this.userPermissionsForm.value.permissions
       .map((value, index) => value ? this.permissionsTypesArray[index].type : null)
       .filter(value => value !== null);

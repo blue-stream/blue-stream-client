@@ -19,6 +19,7 @@ export class ChannelTileComponent implements OnInit {
   @Input() description = true;
   @Input() channel: Channel;
   image: string;
+  channelViews: number = 0;
 
   ngOnInit() {
     this.getImage();

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Video, VideoStatus } from '../models/video.model';
+import { Channel } from '../models/channel.model';
 
 @Component({
   selector: 'bs-video-tile',
@@ -13,11 +14,15 @@ export class VideoTileComponent implements OnInit {
   @Input() video: Video;
   image: string;
   videoStatus = VideoStatus;
+  channelName: string;
 
   constructor() { }
 
   ngOnInit() {
     this.setImage(this.video.thumbnailPath);
+    if (this.video && this.video.channel && (this.video.channel as Channel).name) {
+      this.channelName = (this.video.channel as Channel).name;
+    }
   }
 
   mouseEnter() {

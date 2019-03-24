@@ -8,7 +8,7 @@
     </mat-form-field>
     <div id="spacer"></div>
     <div class="checkbox-list" formArrayName="permissions"
-      *ngFor="let permission of userPermissionsForm.controls.permissions.controls; let i = index">
+      *ngFor="let permission of userPermissionsForm.controls.permissions['controls']; let i = index">
       <mat-checkbox class="checkbox" [formControlName]="i">{{permissionsTypesArray[i].name | translate}}</mat-checkbox>
     </div>
     <div id="buttons-container">

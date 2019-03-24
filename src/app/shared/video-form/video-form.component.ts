@@ -146,7 +146,7 @@ export class VideoFormComponent implements OnInit {
     }
   }
 
-  onSubmit(event: Event) {
+  onSubmit() {
     this.saveVideo();
   }
 

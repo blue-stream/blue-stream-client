@@ -6,4 +6,5 @@ export interface Channel {
     createdAt: Date;
     updatedAt: Date;
     isProfile: boolean;
+    views?: number;
 }
