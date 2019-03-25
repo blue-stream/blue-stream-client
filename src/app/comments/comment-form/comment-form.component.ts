@@ -47,7 +47,7 @@ export class CommentFormComponent implements OnInit {
     this.commentForm.get('text').markAsUntouched();
   }
 
-  onSubmit(event: Event) {
+  onSubmit() {
     const text: string = this.commentForm.get('text').value.trim();
 
     const comment: Partial<Comment> = {

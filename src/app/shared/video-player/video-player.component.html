@@ -1,4 +1,4 @@
-<div id="video-container" (mousemove)="mouseMove.next()" dir="ltr">
+<div id="video-container" (mousemove)="mouseMove.next(undefined)" dir="ltr">
   <span id="video-title" *ngIf="fullscreen && !hideActions">{{video.title}}</span>
   <video #videoPlayer crossorigin="anonymous" autoplay [volume]="volume" (click)="toggleVideo()" (dblclick)="toggleFullscreen()"
     (timeupdate)="updateProgress()">

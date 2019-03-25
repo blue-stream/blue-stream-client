@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../models/comment.model';
 import { CommentService } from '../comment.service';
 import * as moment from 'moment';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'bs-comment',
@@ -19,11 +20,21 @@ export class CommentComponent implements OnInit {
   showReplyForm: boolean = false;
   timeAgo: string;
   isLoadingReplies: boolean = false;
+  userId: string;
+  userFirstName: string;
 
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
     this.timeAgo = this.getTimeAgo();
+
+    if ((this.comment.user as User).id) {
+      this.userId = (this.comment.user as User).id;
+      this.userFirstName = (this.comment.user as User).firstName ?
+        (this.comment.user as User).firstName : this.userId;
+    } else {
+      this.userId = this.comment.user as string;
+    }
   }
 
   getTimeAgo(): string {

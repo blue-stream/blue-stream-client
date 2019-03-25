@@ -3,7 +3,7 @@
   <div id="input-container">
     <mat-form-field appearance="outline" id="name-input">
       <mat-label>{{'CHANNEL.FORM.NAME_INPUT' | translate}}</mat-label>
-      <input (keyup)=onKeyupEvent($event) autocomplete="off" matInput formControlName="name" placeholder="{{'CHANNEL.FORM.NAME_INPUT' | translate}}">
+      <input (keyup)=onKeyupEvent() autocomplete="off" matInput formControlName="name" placeholder="{{'CHANNEL.FORM.NAME_INPUT' | translate}}">
     </mat-form-field>
     <mat-form-field appearance="outline" id="description-input">
       <mat-label>{{'CHANNEL.FORM.DESCRIPTION_INPUT' | translate}}</mat-label>

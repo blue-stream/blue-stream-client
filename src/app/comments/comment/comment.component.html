@@ -1,8 +1,8 @@
 <div id="container">
   <div id="info-container">
-    <bs-avatar [userId]="comment.user.id" id="user-profile-image" [source]="comment.user.id || comment.user"></bs-avatar>
+    <bs-avatar [userId]="userId" id="user-profile-image" [source]="userId"></bs-avatar>
     <div id="comment-info">
-      <a id="user-link" href="">{{comment.user.firstName || comment.user}}</a>
+      <a id="user-link" href="">{{userFirstName}}</a>
       <span id="date">{{timeAgo}}</span>
       <p id="comment-text">{{comment.text}}</p>
     </div>

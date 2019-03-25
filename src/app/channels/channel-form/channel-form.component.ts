@@ -69,7 +69,7 @@ export class ChannelFormComponent implements OnChanges, OnInit {
     });
   }
 
-  onSubmit(event: Event) {
+  onSubmit() {
     const channel: Partial<Channel> = {
       name: this.channelForm.get('name').value.trim(),
       description: this.channelForm.get('description').value.trim(),

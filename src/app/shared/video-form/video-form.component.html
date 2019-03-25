@@ -11,7 +11,7 @@
 
   <mat-form-field appearance="outline" >
     <mat-chip-list #tagList>
-      <mat-chip *ngFor="let tag of videoForm.get('tags').controls; let index = index;" [selectable]="true"
+      <mat-chip *ngFor="let tag of videoForm.get('tags')['controls']; let index = index;" [selectable]="true"
                [removable]="true" (removed)="removeTag(index)">
         {{tag.value}}
         <mat-icon matChipRemove>cancel</mat-icon>
