@@ -48,7 +48,7 @@ export class ChannelService {
         endIndex: endIndex.toString(),
         sortOrder,
         sortBy,
-      },
+      } as { [key: string]: any },
     };
 
     Object.keys(options.params).forEach(key => {
