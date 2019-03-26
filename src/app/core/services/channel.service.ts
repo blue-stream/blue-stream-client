@@ -43,6 +43,7 @@ export class ChannelService {
         name: channelFilter.name,
         description: channelFilter.description,
         user: channelFilter.user,
+        isProfile: channelFilter.isProfile,
         startIndex: startIndex.toString(),
         endIndex: endIndex.toString(),
         sortOrder,
