@@ -11,6 +11,8 @@ import { CommentFormComponent } from './comment-form/comment-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-delete-dialog.component';
+import { CommentRepliesComponent } from './comment-replies/comment-replies.component';
+import { CommentReplyComponent } from './comment-reply/comment-reply.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-de
     CommentActionButtonsComponent,
     CommentsHeaderComponent,
     CommentFormComponent,
-    CommentDeleteDialogComponent
+    CommentDeleteDialogComponent,
+    CommentRepliesComponent,
+    CommentReplyComponent
   ],
   entryComponents: [
     CommentDeleteDialogComponent,
