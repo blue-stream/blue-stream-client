@@ -9,6 +9,8 @@ import { ChannelPermissionsService } from '../channel-permissions.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/user.service';
+import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'bs-channel-permissions-form',

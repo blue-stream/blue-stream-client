@@ -5,6 +5,7 @@ import { ChannelPermissionsService } from '../channel-permissions.service';
 import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-channel-permission',

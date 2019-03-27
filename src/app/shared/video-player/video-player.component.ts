@@ -150,7 +150,7 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
       asArray[i] = data.charCodeAt(i);
     }
 
-    const blob = new Blob([asArray.buffer], { type: 'image/jpeg' });
+    const blob = new Blob([asArray.buffer as any], { type: 'image/jpeg' });
     const imageUrl = window.URL.createObjectURL(blob);
     saveAs(blob, `${this.video.title}-${this.videoPlayer.nativeElement.currentTime}.jpeg`);
 
