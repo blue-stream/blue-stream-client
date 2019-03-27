@@ -9,7 +9,4 @@
   </div>
   <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="true"
     [comment]="comment"></bs-comment-action-buttons>
-  <div id="reply-form-container" *ngIf="showReplyForm">
-    <bs-comment-form (commentSubmitted)="onCommentSubmitted()" [parent]="comment.id" [resource]="comment.resource"></bs-comment-form>
-  </div>
 </div>
