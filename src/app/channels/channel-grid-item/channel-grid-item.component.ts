@@ -12,7 +12,7 @@ export class ChannelGridItemComponent implements OnChanges {
   @Input() channel: Channel;
   @Input() isUploadLink: boolean = false;
 
-  image: string;
+  image: any;
 
   constructor(
     private patternGenerator: PatternGeneratorService,
@@ -25,7 +25,7 @@ export class ChannelGridItemComponent implements OnChanges {
 
   getImage() {
     const source = this.channel.isProfile ? this.channel.user : this.channel.name;
-    this.image = this.patternGenerator.getPatternAsUrl(source);
+    this.image = this.patternGenerator.getPatternAsSafeStyle(source);
   }
 
   onClick() {

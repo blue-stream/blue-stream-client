@@ -11,14 +11,13 @@ import { Router } from '@angular/router';
 export class ChannelTileComponent implements OnInit {
 
   constructor(
-    private patternGenerator: PatternGeneratorService,
-    private router: Router
+    private patternGenerator: PatternGeneratorService
   ) { }
 
   @Input() horizontal = true;
   @Input() description = true;
   @Input() channel: Channel;
-  image: string;
+  image: any;
   channelViews: number = 0;
 
   ngOnInit() {
@@ -27,7 +26,7 @@ export class ChannelTileComponent implements OnInit {
 
   getImage() {
     const source = this.channel.isProfile ? this.channel.user : this.channel.name;
-    this.image = this.patternGenerator.getPatternAsUrl(source);
+    this.image = this.patternGenerator.getPatternAsSafeStyle(source);
   }
 
 }

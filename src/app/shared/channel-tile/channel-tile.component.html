@@ -2,7 +2,7 @@
   <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
     <a [routerLink]="['/channels',channel.id]">
       <div [ngClass]="{'img':true, 'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
-          <div id="image" [ngStyle]="{'background-image': image}" ></div>
+          <div id="image" [style.background-image]="image" ></div>
       </div> 
     </a>
     <div id="video-details" [ngClass]="{'horizontal':horizontal}">
