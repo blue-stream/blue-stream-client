@@ -15,6 +15,7 @@ import {
 } from 'rxjs/operators';
 import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
 import { VideoService } from 'src/app/core/services/video.service';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-video-form',

@@ -5,20 +5,16 @@ import * as moment from 'moment';
 import { User } from 'src/app/shared/models/user.model';
 
 @Component({
-  selector: 'bs-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.scss']
+  selector: 'bs-comment-reply',
+  templateUrl: './comment-reply.component.html',
+  styleUrls: ['./comment-reply.component.scss']
 })
-export class CommentComponent implements OnInit {
+export class CommentReplyComponent implements OnInit {
 
   @Input() comment: Comment;
   @Output() deleteComment: EventEmitter<string> = new EventEmitter();
 
-  replies: Comment[] = [];
-  showReplies: boolean = false;
-  showReplyForm: boolean = false;
   timeAgo: string;
-  isLoadingReplies: boolean = false;
   userId: string;
   userFirstName: string;
 
@@ -40,33 +36,9 @@ export class CommentComponent implements OnInit {
     return moment(this.comment.createdAt).fromNow();
   }
 
-  onCommentSubmitted() {
-    this.comment.repliesAmount++;
-    this.showReplyForm = false;
-    this.loadReplies();
-    this.showReplies = true;
-  }
-
-  onShowReplies() {
-    this.showReplies = !this.showReplies;
-
-    if (this.showReplies && this.replies.length === 0) {
-      this.loadReplies();
-    }
-  }
 
   onDelete() {
-    this.deleteComment.emit(this.comment.id);
+    this.commentService.commentRemoved.next(this.comment.id);
   }
 
-  loadReplies() {
-    this.isLoadingReplies = true;
-    this.commentService.getReplies(this.comment.id).subscribe(replies => {
-      this.replies = replies;
-      this.isLoadingReplies = false;
-    },
-      (error) => {
-        this.isLoadingReplies = false;
-      });
-  }
 }

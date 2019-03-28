@@ -1,4 +1,4 @@
-<div id="channel-image-display" [ngStyle]="{'background-image': channelImage}"></div>
+<div id="channel-image-display" [style.background-image]="channelImage"></div>
 <form [formGroup]="channelForm" (ngSubmit)="onSubmit()">
   <div id="input-container">
     <mat-form-field appearance="outline" id="name-input">

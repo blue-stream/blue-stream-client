@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { ChannelPermissionsService } from 'src/app/channels/channel-permissions.service';
 import { UserPermissions, PermissionTypes } from 'src/app/channels/user-permissions.model';
 import { Channel } from 'src/app/shared/models/channel.model';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-watch-primary-info',

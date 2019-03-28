@@ -1,0 +1,3 @@
+<div class="comment-container" *ngFor="let comment of comments">
+  <bs-comment-reply (deleteComment)="onDelete($event)" [comment]="comment"></bs-comment-reply>
+</div>
