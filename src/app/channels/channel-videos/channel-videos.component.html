@@ -1,6 +1,16 @@
 <div id="container">
-    <div *ngIf="!isLoading; else loading">
-        <bs-video-list *ngIf="videos && videos.length > 0; else noVideos" [videos]="videos" [mode]="'grid'"></bs-video-list>
+    <div>
+        <bs-video-list 
+            *ngIf="videos && videos.length > 0; else noVideos" 
+            [videos]="videos" 
+            [mode]="'grid'"
+            infiniteScroll 
+            [infiniteScrollDistance]="2" 
+            [infiniteScrollThrottle]="150" 
+            (scrolled)="onScroll()"
+            [fromRoot]="true" 
+            [infiniteScrollContainer]="'#side-nav-container'">
+        </bs-video-list>
         <ng-template #noVideos>
             <bs-no-videos-found *ngIf="videoFilter && videoFilter.channel"
                 [message]="'CHANNEL.VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
@@ -8,7 +18,5 @@
                 [message]="'CHANNEL.USER_VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
         </ng-template>
     </div>
-    <ng-template #loading>
-        <mat-spinner></mat-spinner>
-    </ng-template>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
 </div>

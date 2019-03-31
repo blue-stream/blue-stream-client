@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/core/services/video.service';
 import { Video } from 'src/app/shared/models/video.model';
 
@@ -7,27 +7,50 @@ import { Video } from 'src/app/shared/models/video.model';
   templateUrl: './channel-videos.component.html',
   styleUrls: ['./channel-videos.component.scss']
 })
-export class ChannelVideosComponent implements OnChanges {
+export class ChannelVideosComponent implements OnInit, OnChanges {
   @Input() videoFilter: Partial<Video>;
-  videos: Video[];
+  videos: Video[] = [];
   isLoading: boolean = false;
+  videosAmountToLoad: number = 20;
 
   constructor(private videoService: VideoService) { }
 
   ngOnChanges() {
-    this.loadChannelVideos();
+    this.videos = [];
+    this.loadNextVideos();
   }
 
-  loadChannelVideos() {
+  ngOnInit() {
+    this.videos = [];
+    this.loadNextVideos();
+  }
+
+  onScroll() {
+    this.loadNextVideos();
+  }
+
+  loadNextVideos() {
+    this.loadChannelVideos(
+      this.videos.length,
+      this.videosAmountToLoad);
+  }
+
+  loadChannelVideos(startIndex: number, videosToLoad: number) {
+    const endIndex: number = startIndex + videosToLoad;
+
     this.isLoading = true;
 
-    this.videoService.getVideos(this.videoFilter).subscribe(videos => {
-      this.videos = videos;
+    this.videoService.getVideos(this.videoFilter, startIndex, endIndex).subscribe(videos => {
       this.isLoading = false;
-    },
-    (error) => {
-      this.isLoading = false;
-    });
-  }
 
+      if (startIndex === 0) {
+        this.videos = videos;
+      } else {
+        this.videos = this.videos.concat(videos);
+      }
+    },
+      (error) => {
+        this.isLoading = false;
+      });
+  }
 }
