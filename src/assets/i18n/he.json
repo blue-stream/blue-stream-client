@@ -233,7 +233,8 @@
         "ERRORS": {
             "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
             "UNKNOWN": "תקלה לא ידועה",
-            "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין"
+            "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין",
+            "VIDEO_NOT_FOUND": "הסרטון לא נמצא"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "סרטון נמחק בהצלחה"

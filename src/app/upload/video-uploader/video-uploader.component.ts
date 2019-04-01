@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
+import { FileUploadStatus } from '../file-upload-status.enum';
 
 @Component({
   selector: 'bs-video-uploader',
@@ -20,6 +21,7 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   videoUploadQueue: Observable<VideoUpload[]>;
   routeIdSubscription: any;
   channelId: string;
+  uploadSuccessStatus: FileUploadStatus = FileUploadStatus.Success;
 
   constructor(
     private fileUploaderService: FileUploaderService,
@@ -28,6 +30,7 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
     private translateService: TranslateService,
     public snackBar: MatSnackBar) {
     super();
+
   }
 
   ngOnInit() {

@@ -103,7 +103,7 @@ export class FileUploaderService {
         }
       },
       (err: HttpErrorResponse) => {
-        this.videoService.delete(videoUpload.id);
+        this.videoService.delete(videoUpload.id).subscribe(res => {});
         if (err.error instanceof Error) {
           // TODO : Client-side or network error occured.
         } else {
