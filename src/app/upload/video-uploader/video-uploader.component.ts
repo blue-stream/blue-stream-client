@@ -7,6 +7,9 @@ import { VideoUpload } from '../video-upload.interface';
 import { forkJoin } from 'rxjs';
 import { ComponentCanDeactivate } from 'src/app/core/can-deactivate/component-can-deactivate';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bs-video-uploader',
@@ -21,7 +24,9 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   constructor(
     private fileUploaderService: FileUploaderService,
     private route: ActivatedRoute,
-    private videoService: VideoService) {
+    private videoService: VideoService,
+    private translateService: TranslateService,
+    public snackBar: MatSnackBar) {
     super();
   }
 
@@ -36,8 +41,31 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
 
   filesSelected(files: FileList) {
     const videosToUpload = [];
+    const fileTypeRegex: RegExp = new RegExp(/(video)\/(.*)/);
+    const fileTypeRegexGorupIndex: number = 1;
+    const fileExtensionRegexGroupIndex: number = 2;
 
     Array.from(files).forEach(file => {
+      const executedRegex = fileTypeRegex.exec(file.type);
+
+      if (!executedRegex ||
+          executedRegex[fileTypeRegexGorupIndex] !== 'video' ||
+          environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex]) === -1) {
+        const errorMessageTranslation: string = 'SNACK_BARS.ERRORS.UNKNOWN_FILE_TYPE';
+        const okTranslation: string = 'SNACK_BARS.CONFIRM.OK';
+
+        this.translateService.get([
+          errorMessageTranslation,
+          okTranslation]).subscribe(translations => {
+            this.snackBar.open(
+              translations[errorMessageTranslation],
+              translations[okTranslation],
+              { duration: 2000 });
+          });
+
+        throw new Error('Unsupported file format');
+      }
+
       const video: Partial<Video> = {
         title: file.name,
         channel: this.channelId,
