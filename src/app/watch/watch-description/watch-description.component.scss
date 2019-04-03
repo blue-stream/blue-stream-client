@@ -4,6 +4,16 @@
     font-size: 0.85rem;
     white-space: pre-line;
     
+    button#show-more {
+        color: rgba(0,0,0,0.54);
+        margin-top: 8px;
+    }
+
+    #tags-container {
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
     #classification {
         margin-top: 30px;
     }

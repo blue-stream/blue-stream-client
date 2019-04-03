@@ -108,6 +108,10 @@
         "WATCH_OWNER": {
             "PUBLISH_DATE": "Published at {{date}} by {{user}}"
         },
+        "WATCH_DESCRIPTION": {
+            "SHOW_MORE": "Show more",
+            "SHOW_LESS": "Show less"
+        },
         "WATCH_PRIMARY_INFO": {
             "PRIVATE_VIDEO": "Private video",
             "VIEWS": "{{views}} views",
