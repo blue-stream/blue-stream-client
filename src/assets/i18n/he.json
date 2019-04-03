@@ -105,7 +105,7 @@
             "PROCESSING": "הסרטון עדיין בתהליך העיבוד."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "פורסם ב{{date}} על יד {{user}}"
+            "PUBLISH_DATE": "פורסם ב{{date}} בשעה {{time}} על יד {{user}}"
         },
         "WATCH_DESCRIPTION": {
             "SHOW_MORE": "מידע נוסף",
