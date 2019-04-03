@@ -60,7 +60,7 @@
         "UPLOAD_PROGRESS": {
             "ERROR": "אירעה שגיאה",
             "SUCCESS": "לחץ על \"פרסם\" כדי להפוך את הסרטון שלך לפעיל.",
-            "PROGRESS": "הסרטון עדיין נטען. אשאר את הדף פתוח עד לסיום הטעינה.",
+            "PROGRESS": "הסרטון עדיין נטען. השאר את הדף פתוח עד לסיום הטעינה.",
             "PENDING": "העלאה ממתינה",
             "UNKNOWN": "לא ידוע",
             "PUBLISHED": "הסרטון פורסם בהצלחה",
@@ -107,6 +107,10 @@
         "WATCH_OWNER": {
             "PUBLISH_DATE": "פורסם ב{{date}} על יד {{user}}"
         },
+        "WATCH_DESCRIPTION": {
+            "SHOW_MORE": "מידע נוסף",
+            "SHOW_LESS": "הצג פחות"
+        },
         "WATCH_PRIMARY_INFO": {
             "PRIVATE_VIDEO": "סרטון פרטי",
             "VIEWS": "{{views}} צפיות",
@@ -138,7 +142,7 @@
         },
         "CHANNELS": {
             "TAB_LABEL": "הערוצים שלי",
-            "UPLOAD_TITLE": "לאיזה ערוץ תרצה לעלות?"
+            "UPLOAD_TITLE": "לאיזה ערוץ תרצה להעלות?"
         },
         "STATS": {
             "TITLE": "סטטיסטיקות",
