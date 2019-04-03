@@ -13,7 +13,8 @@
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
-            "NEWEST": "Added recently"        }
+            "NEWEST": "Added recently"        
+        }
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
@@ -229,7 +230,9 @@
     "SNACK_BARS": {
         "ERRORS": {
             "UNPREMITTED_USER": "You do not have permissions to perform this action",
-            "UNKNOWN": "Unknown Error"
+            "UNKNOWN": "Unknown Error",
+            "UNKNOWN_FILE_TYPE": "Unknown file type",
+            "VIDEO_NOT_FOUND": "Video was not found"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "Video was deleted succesfully"

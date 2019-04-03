@@ -171,7 +171,10 @@ export class VideoFormComponent implements OnInit {
         let message: string = 'SNACK_BARS.ERRORS.UNPREMITTED_USER';
         let action: string = 'SNACK_BARS.BUTTONS.OK';
 
-        if (err.error.type !== 'UnPremittedUserError') {
+        if (err.status === 404) {
+          message = 'SNACK_BARS.ERRORS.VIDEO_NOT_FOUND';
+          action = 'SNACK_BARS.BUTTONS.OK';
+        } else if (!err.error || err.error.type !== 'UnPremittedUserError') {
           message = 'SNACK_BARS.ERRORS.UNKNOWN';
           action = 'SNACK_BARS.BUTTONS.OK';
         }
