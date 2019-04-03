@@ -9,11 +9,19 @@
     #info-container {
         flex: 1 1 0;
         margin: 0px 10px;
-        #title {
-            font-size: 1.4rem;
-            font-weight: 400;
-            line-height: 1rem;
-            margin-bottom: 10px;
+        #title-container {
+            display: flex;
+            mat-chip-list {
+                margin: 10px;
+                margin-top: 14px;
+                margin-bottom: 0px;
+            }
+            #title {
+                font-size: 1.4rem;
+                font-weight: 400;
+                line-height: 1rem;
+                margin-bottom: 10px;
+            }
         }
         #description {
             margin-top: 0px;

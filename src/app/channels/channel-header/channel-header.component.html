@@ -1,8 +1,16 @@
 <div id="container">
-    <bs-avatar size="large" [source]="channel.isProfile ? channel.user : channel.name" id="user-profile-image"></bs-avatar>
+    <bs-avatar size="large" [source]="channel.isProfile ? channel.user : channel.name" id="user-profile-image">
+    </bs-avatar>
     <div class="spacer"></div>
     <div id="info-container" *ngIf="channel">
-        <p id="title">{{channel.name}}</p>
+        <div id="title-container">
+            <p id="title">
+                {{channel.name}}
+            </p>
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip color="primary" selected>פרופיל</mat-chip>
+            </mat-chip-list>
+        </div>
         <p id="description">{{channel.description}}</p>
     </div>
     <!-- <bs-subscribe-button id="subscribe-button" color="hsl(0, 0%, 93.3%)" textColor="hsla(0, 0%, 6.7%, .6)" [channelId]="channel.id" [subscribersAmount]="20"></bs-subscribe-button> -->
