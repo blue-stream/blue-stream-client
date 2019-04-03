@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
 import { Video, VideoStatus } from '../models/video.model';
 import { Channel } from '../models/channel.model';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'bs-video-tile',
   templateUrl: './video-tile.component.html',
@@ -15,14 +16,16 @@ export class VideoTileComponent implements OnInit {
   image: string;
   videoStatus = VideoStatus;
   channelName: string;
+  videoPublishTime: string;
 
-  constructor() { }
+  constructor(private translateService: TranslateService) { }
 
   ngOnInit() {
     this.setImage(this.video.thumbnailPath);
     if (this.video && this.video.channel && (this.video.channel as Channel).name) {
       this.channelName = (this.video.channel as Channel).name;
     }
+    this.videoPublishTime = moment(this.video.publishDate).locale(this.translateService.currentLang).fromNow();
   }
 
   mouseEnter() {
