@@ -188,6 +188,9 @@
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "Owner"
+        },
+        "CHANNEL_HEADER": {
+            "PROFILE_CHIP": "User Profile"
         }
     },
     "SHARED": {

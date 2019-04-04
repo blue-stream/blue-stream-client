@@ -193,6 +193,9 @@
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "בעלים"
+        },
+        "CHANNEL_HEADER": {
+            "PROFILE_CHIP": "פרופיל משתמש"
         }
     },
     "SHARED": {
