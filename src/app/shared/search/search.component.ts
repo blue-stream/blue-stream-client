@@ -4,8 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { ChannelService } from '../../core/services/channel.service';
 
 import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 import { Channel } from '../models/channel.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   channels: Observable<Channel[]>;
   channelsToLoad = 10;
 
-  constructor( private router: Router, private channelService: ChannelService ) {}
+  constructor(private router: Router, private channelService: ChannelService) { }
 
   onType(searchString: string) {
     this.searchString = searchString;
@@ -27,7 +27,9 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/results'], { queryParams: {search_query: this.searchString } });
+    if (this.searchString && this.searchString.trim()) {
+      this.router.navigate(['/results'], { queryParams: { search_query: this.searchString } });
+    }
   }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class SearchComponent implements OnInit {
       // ignore new term if same as previous term
       distinctUntilChanged(),
       // switch to new search observable each time the term changes
-      switchMap( (term: string) => this.loadSearchedChannels(term) ),
+      switchMap((term: string) => this.loadSearchedChannels(term)),
     );
   }
 

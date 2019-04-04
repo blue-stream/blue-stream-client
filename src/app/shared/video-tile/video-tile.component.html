@@ -15,7 +15,7 @@
         <div id="seperator" *ngIf="description"><span></span></div>
         <div id="video-statistics">
           <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
-          <span *ngIf="video.publishDate">{{video.publishDate | date: 'dd MMM'}}</span>
+          <span *ngIf="video.publishDate">{{videoPublishTime}}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="4px">
           <mat-icon class="status" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate"

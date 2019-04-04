@@ -40,7 +40,7 @@ export class ChannelVideosComponent implements OnInit, OnChanges {
 
     this.isLoading = true;
 
-    this.videoService.getVideos(this.videoFilter, startIndex, endIndex).subscribe(videos => {
+    this.videoService.getVideos(this.videoFilter, startIndex, endIndex, 'publishDate', -1).subscribe(videos => {
       this.isLoading = false;
 
       if (startIndex === 0) {
