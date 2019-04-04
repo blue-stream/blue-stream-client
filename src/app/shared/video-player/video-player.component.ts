@@ -1,171 +1,95 @@
-import { Component, OnInit, OnChanges, Input, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import fscreen from 'fscreen';
-import { saveAs } from 'file-saver';
-import { BehaviorSubject } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/map';
 import { Video } from '../models/video.model';
+import { playerConfig } from './video-player.config';
+import { VgAPI } from 'videogular2/core';
 
 @Component({
   selector: 'bs-video-player',
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.scss']
 })
-export class VideoPlayerComponent implements OnInit, OnChanges {
+export class VideoPlayerComponent implements OnChanges, AfterViewChecked {
 
-  private static readonly timeToHideActions = 3 * 1000;
+  private videoApi: VgAPI;
 
   @Input() video: Video & { token: string };
-  @ViewChild('videoPlayer') videoPlayer: ElementRef;
   @Output() toggleWideScreen: EventEmitter<boolean>;
-  private playPromise: Promise<void>;
-  private pausePromise: Promise<void>;
-  mouseMove: BehaviorSubject<void>;
-  previousVideoState: boolean | null = null;
-  hideActions: boolean = false;
-  isMenuOpened: boolean = false;
-  fullscreen: boolean = false;
-  volume: number;
-  progress;
-  buffer;
+  @ViewChild('videoPlayer') videoPlayer: ElementRef;
 
-  constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient) {
+  constructor(private cdRef: ChangeDetectorRef) {
     this.toggleWideScreen = new EventEmitter<boolean>();
-    this.mouseMove = new BehaviorSubject<void>(null);
-    this.mouseMove
-      .map(() => {
-        this.hideActions = false;
-      })
-      .debounceTime(VideoPlayerComponent.timeToHideActions)
-      .subscribe(() => {
-        this.hideActions = true;
-      });
   }
 
-  ngOnInit() {
-    this.volume = this.videoPlayer.nativeElement.volume;
-  }
-
-  ngOnChanges() {
-    if (this.video && this.video.contentPath) {
-      this.video.contentPath += `?video-token=${this.video.token}`;
-    }
-    this.progress = 0;
-    this.buffer = 0;
-    this.previousVideoState = null;
-    this.videoPlayer.nativeElement.load();
-    this.videoPlayer.nativeElement.play();
+  onPlayerReady(api: VgAPI) {
+    this.videoApi = api;
+    this.videoApi.play();
   }
 
   toggleFullscreen() {
-    if (!fscreen.fullscreenElement) {
-      fscreen.requestFullscreen(this.videoPlayer.nativeElement.parentElement);
-      this.fullscreen = true;
+    this.videoApi.fsAPI.toggleFullscreen();
+  }
+
+  toggleVideoState() {
+    if (this.videoApi.state === 'playing') {
+      this.videoApi.pause();
     } else {
-      fscreen.exitFullscreen();
-      this.fullscreen = false;
+      this.videoApi.play();
     }
   }
 
-  toggleVideo() {
-    const video = this.videoPlayer.nativeElement;
-    if (video.paused) {
-      this.playVideo();
-    } else {
-      this.pauseVideo();
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+  }
+
+  ngOnChanges() {
+    if (this.videoPlayer) {
+      this.videoPlayer.nativeElement.load();
+      this.videoPlayer.nativeElement.play();
+    }
+    if (this.video && this.video.contentPath) {
+      this.video.contentPath += `?video-token=${this.video.token}`;
     }
   }
 
-  pauseVideo() {
-    Promise.all([this.playPromise, this.pausePromise]).then(() => {
-      this.pausePromise = this.videoPlayer.nativeElement.pause();
-    });
-  }
+  // onCaptureImage() {
+  //   const videoPaused = this.videoPlayer.nativeElement.paused;
 
-  playVideo() {
-    Promise.all([this.playPromise, this.pausePromise]).then(() => {
-      this.playPromise = this.videoPlayer.nativeElement.play();
-    });
-  }
+  //   if (!videoPaused) {
+  //     this.pauseVideo();
+  //   }
 
-  volumeChange(volume: number) {
-    this.videoPlayer.nativeElement.volume = volume;
-  }
+  //   const canvas = document.createElement('canvas');
+  //   canvas.width = this.videoPlayer.nativeElement.videoWidth;
+  //   canvas.height = this.videoPlayer.nativeElement.videoHeight;
+  //   const context = canvas.getContext('2d');
+  //   context.drawImage(this.videoPlayer.nativeElement, 0, 0, canvas.width, canvas.height);
 
-  speedChange(speed: number) {
-    this.videoPlayer.nativeElement.playbackRate = speed;
-  }
+  //   const image = canvas.toDataURL('image/jpeg');
+  //   const data = atob(image.substring('data:image/jpeg;base64,'.length));
+  //   const asArray = new Uint8Array(data.length);
 
-  updateProgress() {
-    const { currentTime, duration } = this.videoPlayer.nativeElement;
-    this.progress = ((100 / duration) * currentTime);
-    const videoPlayer = this.videoPlayer.nativeElement;
-    if (videoPlayer.buffered.length) {
-      this.buffer = (videoPlayer.buffered.end(videoPlayer.buffered.length - 1) / videoPlayer.duration) * 100;
-    }
-  }
+  //   for (let i = 0; i < data.length; ++i) {
+  //     asArray[i] = data.charCodeAt(i);
+  //   }
 
-  onProgressChangeStart() {
-    const video = this.videoPlayer.nativeElement as HTMLVideoElement;
-    if (this.previousVideoState === null) {
-      this.previousVideoState = !video.paused;
-    }
-    this.pauseVideo();
-  }
+  //   const blob = new Blob([asArray.buffer as any], { type: 'image/jpeg' });
+  //   const imageUrl = window.URL.createObjectURL(blob);
+  //   saveAs(blob, `${this.video.title}-${this.videoPlayer.nativeElement.currentTime}.jpeg`);
 
-  onProgressChangeEnd() {
-    if (this.previousVideoState !== null) {
-      this.previousVideoState ? this.playVideo() : this.pauseVideo();
-      this.previousVideoState = null;
-    }
-  }
+  //   if (!videoPaused) {
+  //     this.playVideo();
+  //   }
+  // }
 
-  onProgressChanged(progress: number) {
-    const video = this.videoPlayer.nativeElement;
-    this.progress = progress;
-    video.currentTime = video.duration * progress / 100;
-  }
+  // onDownloadVideo() {
+  //   this.httpClient
+  //     .get(this.video.contentPath, { responseType: 'blob' })
+  //     .subscribe(data => saveAs(data, `${this.video.title}.mp4`));
+  // }
 
-  onCaptureImage() {
-    const videoPaused = this.videoPlayer.nativeElement.paused;
-
-    if (!videoPaused) {
-      this.pauseVideo();
-    }
-
-    const canvas = document.createElement('canvas');
-    canvas.width = this.videoPlayer.nativeElement.videoWidth;
-    canvas.height = this.videoPlayer.nativeElement.videoHeight;
-    const context = canvas.getContext('2d');
-    context.drawImage(this.videoPlayer.nativeElement, 0, 0, canvas.width, canvas.height);
-
-    const image = canvas.toDataURL('image/jpeg');
-    const data = atob(image.substring('data:image/jpeg;base64,'.length));
-    const asArray = new Uint8Array(data.length);
-
-    for (let i = 0; i < data.length; ++i) {
-      asArray[i] = data.charCodeAt(i);
-    }
-
-    const blob = new Blob([asArray.buffer as any], { type: 'image/jpeg' });
-    const imageUrl = window.URL.createObjectURL(blob);
-    saveAs(blob, `${this.video.title}-${this.videoPlayer.nativeElement.currentTime}.jpeg`);
-
-    if (!videoPaused) {
-      this.playVideo();
-    }
-  }
-
-  onDownloadVideo() {
-    this.httpClient
-      .get(this.video.contentPath, { responseType: 'blob' })
-      .subscribe(data => saveAs(data, `${this.video.title}.mp4`));
-  }
-
-  onToggleMenu(isOpened: boolean) {
-    this.isMenuOpened = isOpened;
-  }
 }

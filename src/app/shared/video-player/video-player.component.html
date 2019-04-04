@@ -1,17 +1,30 @@
-<div id="video-container" (mousemove)="mouseMove.next(undefined)" dir="ltr">
-  <span id="video-title" *ngIf="fullscreen && !hideActions">{{video.title}}</span>
-  <video #videoPlayer crossorigin="anonymous" autoplay [volume]="volume" (click)="toggleVideo()" (dblclick)="toggleFullscreen()"
-    (timeupdate)="updateProgress()">
-    <source [src]="video.contentPath | safeUrl">
+<vg-player tabindex="0" (onPlayerReady)="onPlayerReady($event)" (keydown.space)="toggleVideoState()"
+  (dblclick)="toggleFullscreen()">
+  <vg-overlay-play></vg-overlay-play>
+  <vg-buffering></vg-buffering>
+  <vg-scrub-bar [vgSlider]="true">
+    <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
+    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+  </vg-scrub-bar>
+
+  <vg-controls>
+    <vg-play-pause></vg-play-pause>
+    <vg-playback-button [playbackValues]="['0.25', '0.5', '1.0', '1.5', '1.75', '2.0', '4.0']"></vg-playback-button>
+
+    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+    <p class="time-seperator">/</p>
+    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+    <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+    <vg-mute></vg-mute>
+    <vg-volume></vg-volume>
+
+    <!-- Add menu here -->
+
+    <vg-fullscreen></vg-fullscreen>
+  </vg-controls>
+  <video [vgMedia]="media" #media id="singleVideo" preload="auto" crossorigin="anonymous" #videoPlayer>
+    <source [src]="video.contentPath | safeUrl" type="video/mp4">
   </video>
-  <div id="gradient-bottom">
-    <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions && !isMenuOpened">
-      <bs-video-progress [value]="progress" [buffer]="buffer" [duration]="videoPlayer.duration" (progressChanged)="onProgressChanged($event)"
-        (progressChangeStart)="onProgressChangeStart()" (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
-      <bs-video-actions [playing]="!videoPlayer.paused" [fullscreen]="fullscreen" [currentTime]="videoPlayer.currentTime" [duration]="videoPlayer.duration"
-        [volume]="videoPlayer.volume" [playbackRate]="videoPlayer.playbackRate" (volumeChange)="volumeChange($event)" (speedChange)="speedChange($event)"
-        (toggleWideScreen)="toggleWideScreen.next($event)" (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"
-        (toggleMenu)="onToggleMenu($event)" (captureImage)="onCaptureImage()" (downloadVideo)="onDownloadVideo()"></bs-video-actions>
-    </div>
-  </div>
-</div>
+</vg-player>
