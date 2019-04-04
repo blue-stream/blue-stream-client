@@ -7,7 +7,7 @@
             <p id="title">
                 {{channel.name}}
             </p>
-            <mat-chip-list aria-label="Fish selection">
+            <mat-chip-list *ngIf="channel.isProfile">
                 <mat-chip color="primary" selected>{{'CHANNEL.CHANNEL_HEADER.PROFILE_CHIP' | translate}}</mat-chip>
             </mat-chip-list>
         </div>
