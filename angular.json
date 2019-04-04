@@ -46,6 +46,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/videogular2/fonts/videogular.css",
               "src/theme.scss",
               "src/styles.scss"
             ],

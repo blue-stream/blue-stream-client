@@ -44,7 +44,10 @@ import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
 import { VideoFormComponent } from './video-form/video-form.component';
 import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.component';
-
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
 @NgModule({
   imports: [
     CommonModule,
@@ -74,7 +77,11 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     EllipsisModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   exports: [
     MatToolbarModule,
@@ -117,7 +124,11 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     VideoFormComponent,
     NoVideosFoundComponent,
     NoVideosFoundComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   declarations: [
     ConfirmDialogComponent,
