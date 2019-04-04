@@ -42,6 +42,10 @@ export class UserService {
     return null;
   }
 
+  public get(id: string) {
+    return this.httpClient.get<User>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
+  }
+
   getSearched(
     searchFilter: string,
     startIndex: number,

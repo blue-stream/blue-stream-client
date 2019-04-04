@@ -11,7 +11,15 @@
                 <mat-chip color="primary" selected>{{'CHANNEL.CHANNEL_HEADER.PROFILE_CHIP' | translate}}</mat-chip>
             </mat-chip-list>
         </div>
-        <p id="description">{{channel.description}}</p>
+        <p class="description" *ngIf="!channel.isProfile">
+            {{channel.description}}
+        </p>
+        <div class="description" *ngIf="channel.isProfile">
+            <a [href]="'mailto:' + user.mail" mat-button>
+                {{user.mail}}
+                <mat-icon>mail_outline</mat-icon>
+            </a>
+        </div>
     </div>
     <!-- <bs-subscribe-button id="subscribe-button" color="hsl(0, 0%, 93.3%)" textColor="hsla(0, 0%, 6.7%, .6)" [channelId]="channel.id" [subscribersAmount]="20"></bs-subscribe-button> -->
 </div>

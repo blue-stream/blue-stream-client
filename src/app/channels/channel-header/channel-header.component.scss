@@ -23,10 +23,17 @@
                 margin-bottom: 10px;
             }
         }
-        #description {
+        .description {
             margin-top: 0px;
             text-overflow: ellipsis;
             line-height: 22px;
+            a {
+                padding-right: 0px;
+                mat-icon {
+                    font-size: 19px;
+                    margin-bottom: 0px;
+                }
+            }
         }
     }
     #subscribe-button {
