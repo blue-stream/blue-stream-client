@@ -68,6 +68,23 @@ export class ChannelPermissionsService {
     return this.httpClient.get<UserPermissions>(`${this.serviceUrl}${this.apiUrl}/one`, options);
   }
 
+  getChannelAdmins(channelId: string,
+    startIndex: number,
+    endIndex: number,
+    sortOrder: '' | '-' = '',
+    sortBy: 'channel' | 'user' = 'user'): Observable<UserPermissions[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      },
+    };
+    return this.httpClient.get<UserPermissions[]>(`${this.serviceUrl}${this.apiUrl}/${channelId}/admins`, options);
+  }
+
   getChannelPermittedUsers(channelId: string,
     startIndex: number,
     endIndex: number,
