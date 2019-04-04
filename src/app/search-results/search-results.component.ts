@@ -16,7 +16,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     private route: ActivatedRoute,
     private channelService: ChannelService,
     private videoService: VideoService
-    ) { }
+  ) { }
 
   routeQuerySubscription: any;
   videosSubscription: any;
@@ -24,20 +24,19 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
   channels: Channel[];
   videos: Video[];
   search: string;
-  videosToLoad = 40;
-  channelsToLoad = 40;
+  videosToLoad = 10;
+  channelsToLoad = 10;
   isLoadingChannels: boolean = false;
   isLoadingVideos: boolean = false;
 
   ngOnInit() {
     this.routeQuerySubscription = this.route.queryParams
-    .subscribe( params => {
-      this.channels = [];
-      this.videos = [];
-      this.search = params.search_query;
-      this.loadSearchedVideos();
-      this.loadSearchedChannels();
-    });
+      .subscribe(params => {
+        this.channels = [];
+        this.videos = [];
+        this.search = params.search_query;
+        this.loadNext();
+      });
   }
 
   ngOnDestroy() {
@@ -46,35 +45,43 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     this.videosSubscription.unsubscribe();
   }
 
-  loadSearchedVideos(startIndex = 0) {
-    const endIndex = startIndex + this.videosToLoad;
+  loadNext() {
+    this.loadSearchedVideos(
+      this.videos.length,
+      this.videosToLoad);
+    this.loadSearchedChannels(
+      this.channels.length,
+      this.channelsToLoad);
+  }
+
+  loadSearchedVideos(startIndex = 0, amountToLoad) {
+    const endIndex = startIndex + amountToLoad;
 
     this.isLoadingVideos = true;
     this.videosSubscription = this.videoService.search(this.search, startIndex, endIndex).subscribe(videos => {
       this.videos = this.videos.concat(videos);
       this.isLoadingVideos = false;
     },
-    (error) => {
-      this.isLoadingVideos = false;
-    });
+      (error) => {
+        this.isLoadingVideos = false;
+      });
   }
 
-  loadSearchedChannels() {
-    const startIndex = 0;
-    const endIndex = startIndex + this.channelsToLoad;
+  loadSearchedChannels(startIndex = 0, amountToLoad) {
+    const endIndex = startIndex + amountToLoad;
 
     this.isLoadingChannels = true;
     this.channelsSubscription = this.channelService.search(this.search, startIndex, endIndex).subscribe(channels => {
       this.channels = this.channels.concat(channels);
       this.isLoadingChannels = false;
     },
-    (error) => {
-      this.isLoadingChannels = false;
-    });
+      (error) => {
+        this.isLoadingChannels = false;
+      });
   }
 
   onScroll() {
-    this.loadSearchedVideos(this.videos.length);
+    this.loadNext();
   }
 
 }

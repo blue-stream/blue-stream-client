@@ -3,20 +3,12 @@
     <div id="title-container" translate>DASHBOARD.SEARCH_RESULTS</div>
     <div id="videos-container"
         *ngIf="(channels && channels.length > 0) || (videos && videos.length > 0) || isLoadingVideos || isLoadingChannels; else noResultsFound">
-        <bs-channel-list *ngIf="!isLoadingChannels; else loadingChannels" mode="vertical" description="true" [channels]="channels"></bs-channel-list>
-        <ng-template #loadingChannels>
-            <mat-spinner></mat-spinner>
-         </ng-template>
-         
-         <div *ngIf="!isLoadingVideos;else loadingVideos">
-            <bs-video-list *ngIf="videos && videos.length" mode="vertical" description="true" [videos]="videos"></bs-video-list>
-            
-         </div>
-        <ng-template #loadingVideos>
-            <mat-spinner></mat-spinner>
-         </ng-template>
+        <bs-channel-list mode="vertical" description="true" [channels]="channels"></bs-channel-list>
+        <mat-spinner *ngIf="isLoadingChannels"></mat-spinner>
+        <bs-video-list mode="vertical" description="true" [videos]="videos"></bs-video-list>
+        <mat-spinner *ngIf="isLoadingVideos"></mat-spinner>
     </div>
     <ng-template #noResultsFound>
-            <bs-no-results-found></bs-no-results-found>
+        <bs-no-results-found></bs-no-results-found>
     </ng-template>
 </div>
