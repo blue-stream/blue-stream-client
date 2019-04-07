@@ -35,6 +35,7 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
         this.channels = [];
         this.videos = [];
         this.search = params.search_query;
+        this.loadSearchedChannels(0, this.channelsToLoad);
         this.loadNext();
       });
   }
@@ -49,9 +50,6 @@ export class SearchResultsComponent implements OnDestroy, OnInit {
     this.loadSearchedVideos(
       this.videos.length,
       this.videosToLoad);
-    this.loadSearchedChannels(
-      this.channels.length,
-      this.channelsToLoad);
   }
 
   loadSearchedVideos(startIndex = 0, amountToLoad) {
