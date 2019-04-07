@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, OnChanges } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { ChannelService } from "../../core/services/channel.service";
 import { Channel } from "../../shared/models/channel.model";
 import { PatternGeneratorService } from "../../shared/pattern-generator.service";
 import { UserService } from "../../shared/user.service";
 import { Location } from "@angular/common";
+import { User } from "src/app/shared/models/user.model";
 
 @Component({
   selector: "bs-channel",
@@ -18,6 +19,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   headerImage: any;
   isUserOwner: boolean = false;
   selectedTabIndex: number = 0;
+  user?: User;
 
   constructor(
     private userService: UserService,
@@ -60,6 +62,10 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   loadUserProfile(user: string) {
+    this.userService.get(user).subscribe(returnedUser => {
+      this.user = returnedUser;
+    });
+
     this.channelService
       .getMany({ user, isProfile: true }, 0, 1)
       .subscribe(userProfile => {

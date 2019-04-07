@@ -1,6 +1,6 @@
 <div id="container" *ngIf="channel">
     <div id="header-image" [style.background-image]="headerImage"></div>
-    <bs-channel-header [channel]="channel"></bs-channel-header>
+    <bs-channel-header [channel]="channel" [user]="user"></bs-channel-header>
     <mat-tab-group [selectedIndex]="selectedTabIndex">
         <mat-tab *ngIf="!channel.isProfile;else profileVideos" label="{{'CHANNEL.VIDEOS.TAB_LABEL' | translate}}">
             <bs-channel-videos [videoFilter]="{channel: channel.id}"></bs-channel-videos>
