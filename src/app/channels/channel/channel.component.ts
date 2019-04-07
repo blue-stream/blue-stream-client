@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { ChannelService } from "../../core/services/channel.service";
 import { Channel } from "../../shared/models/channel.model";
@@ -17,12 +17,13 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   channel: Partial<Channel>;
   headerImage: any;
   isUserOwner: boolean = false;
+  selectedTabIndex: number = 0;
 
   constructor(
     private userService: UserService,
     private patternGenerator: PatternGeneratorService,
     private route: ActivatedRoute,
-    private channelService: ChannelService
+    private channelService: ChannelService,
   ) {
     this.channelService.channelUpdated.subscribe(channel => {
       this.channel = channel;
@@ -34,6 +35,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
     this.routeIdSubscription = this.route.params.subscribe(params => {
       if (params.userId) {
         this.loadUserProfile(params.userId);
+        this.selectedTabIndex = Number(this.route.snapshot.queryParams['tabIndex']) || 0;
       } else {
         this.loadChannel(params.id);
       }

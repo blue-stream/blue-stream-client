@@ -8,7 +8,8 @@
         "SEARCH_RESULTS": "תוצאות חיפוש",
         "SUBSCRIPTIONS": "מינויים",
         "ALL_CHANNELS": "כל הערוצים",
-        "USER_CHANNELS": "הערוצים שלי"
+        "USER_CHANNELS": "הערוצים שלי",
+        "USER_UPLOADS": "העלאות שלי"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {

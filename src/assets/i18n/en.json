@@ -8,7 +8,8 @@
         "SEARCH_RESULTS": "Search Results",
         "SUBSCRIPTIONS": "Subscriptions",
         "ALL_CHANNELS": "All Channels",
-        "USER_CHANNELS": "My Channels"
+        "USER_CHANNELS": "My Channels",
+        "USER_UPLOADS": "My Uploads"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
