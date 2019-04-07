@@ -15,8 +15,8 @@
             {{channel.description}}
         </p>
         <div class="description" *ngIf="channel.isProfile">
-            <a [href]="'mailto:' + user.mail" mat-button>
-                {{user.mail}}
+            <a [href]="'mailto:' + (user ? user.mail : '')" mat-button>
+                {{user ? user.mail : ''}}
                 <mat-icon>mail_outline</mat-icon>
             </a>
         </div>

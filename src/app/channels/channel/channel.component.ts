@@ -69,13 +69,21 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
       this.channel = channel;
       this.loadHeaderImage();
       this.isUserOwner = this.channel.user === this.userService.currentUser.id;
+
+      if (this.channel.isProfile) {
+        this.loadUser(channel.user);
+      }
+    });
+  }
+
+  loadUser(user: string) {
+    this.userService.get(user).subscribe(returnedUser => {
+      this.user = returnedUser;
     });
   }
 
   loadUserProfile(user: string) {
-    this.userService.get(user).subscribe(returnedUser => {
-      this.user = returnedUser;
-    });
+    this.loadUser(user);
 
     this.channelService
       .getMany({ user, isProfile: true }, 0, 1)
