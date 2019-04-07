@@ -130,10 +130,11 @@
         },
         "VIDEOS": {
             "TAB_LABEL": "סרטונים",
+            "TAB_LABEL_PROFILE": "הועלו לפרופיל",
             "NO_VIDEOS": "אין סרטונים בערוץ זה."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "הסרטונים שהעלתי",
+            "TAB_LABEL": "העלאות משתמש",
             "NO_VIDEOS": "משתמש זה טרם העלה סרטונים."
         },
         "CHANNELS": {

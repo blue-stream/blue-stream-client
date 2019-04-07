@@ -125,10 +125,11 @@
         },
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS",
+            "TAB_LABEL_PROFILE": "CHANNEL VIDEOS",
             "NO_VIDEOS": "This channel has no videos."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "MY UPLOADED VIDEOS",
+            "TAB_LABEL": "USER UPLOADS",
             "NO_VIDEOS": "This user haven't upload any videos yet."
         },
         "CHANNELS": {
