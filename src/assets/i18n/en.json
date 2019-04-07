@@ -236,7 +236,8 @@
             "UNPREMITTED_USER": "You do not have permissions to perform this action",
             "UNKNOWN": "Unknown Error",
             "UNKNOWN_FILE_TYPE": "Unknown file type",
-            "VIDEO_NOT_FOUND": "Video was not found"
+            "VIDEO_NOT_FOUND": "Video was not found",
+            "DUPLICATE_CHANNEL": "A channel with this name already exist"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "Video was deleted succesfully"

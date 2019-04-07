@@ -238,7 +238,8 @@
             "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
             "UNKNOWN": "תקלה לא ידועה",
             "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין",
-            "VIDEO_NOT_FOUND": "הסרטון לא נמצא"
+            "VIDEO_NOT_FOUND": "הסרטון לא נמצא",
+            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "סרטון נמחק בהצלחה"

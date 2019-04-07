@@ -100,6 +100,11 @@ export class ChannelFormComponent implements OnChanges, OnInit {
         });
 
       this.closeForm.emit();
+    },
+    (error) => {
+      if (error.error.type === 'DuplicateNameError') {
+        this.displayDuplicateChannelMessage();
+      }
     });
   }
 
@@ -114,7 +119,24 @@ export class ChannelFormComponent implements OnChanges, OnInit {
             { duration: 2000 });
         });
       this.closeForm.emit(retChannel.id);
-    });
+    },
+      (error) => {
+        if (error.error.type === 'DuplicateNameError') {
+          this.displayDuplicateChannelMessage();
+        }
+      }
+    );
+  }
+
+  displayDuplicateChannelMessage() {
+    this.translateService.get([
+      'SNACK_BARS.ERRORS.DUPLICATE_CHANNEL',
+      'SNACK_BARS.CONFIRM.OK']).subscribe(translations => {
+        this.snackBar.open(
+          translations['SNACK_BARS.ERRORS.DUPLICATE_CHANNEL'],
+          translations['SNACK_BARS.CONFIRM.OK'],
+          { duration: 2000 });
+      });
   }
 
   cancel() {
