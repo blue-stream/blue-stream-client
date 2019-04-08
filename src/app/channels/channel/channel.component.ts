@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, OnChanges } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { ChannelService } from "../../core/services/channel.service";
 import { Channel } from "../../shared/models/channel.model";
 import { PatternGeneratorService } from "../../shared/pattern-generator.service";
 import { UserService } from "../../shared/user.service";
-import { Location } from "@angular/common";
+import { User } from "src/app/shared/models/user.model";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "bs-channel",
@@ -13,16 +14,21 @@ import { Location } from "@angular/common";
   styleUrls: ["./channel.component.scss"]
 })
 export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
-  routeIdSubscription: any;
+  routeIdSubscription: Subscription;
+  routeQuerySubscription: Subscription;
+
   channel: Partial<Channel>;
   headerImage: any;
   isUserOwner: boolean = false;
+  selectedTabIndex: number = 0;
+  user?: User;
 
   constructor(
     private userService: UserService,
     private patternGenerator: PatternGeneratorService,
     private route: ActivatedRoute,
-    private channelService: ChannelService
+    private channelService: ChannelService,
+    private router: Router,
   ) {
     this.channelService.channelUpdated.subscribe(channel => {
       this.channel = channel;
@@ -38,6 +44,15 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
         this.loadChannel(params.id);
       }
     });
+
+    this.routeQuerySubscription = this.route.queryParams.subscribe(query => {
+      this.selectedTabIndex = Number(query.tabIndex) || 0;
+    });
+  }
+
+  onTabIndexChange(event) {
+    const index: number = event.index;
+    this.router.navigate([], { queryParams: { tabIndex: index } });
   }
 
   ngOnChanges() {
@@ -54,10 +69,22 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
       this.channel = channel;
       this.loadHeaderImage();
       this.isUserOwner = this.channel.user === this.userService.currentUser.id;
+
+      if (this.channel.isProfile) {
+        this.loadUser(channel.user);
+      }
+    });
+  }
+
+  loadUser(user: string) {
+    this.userService.get(user).subscribe(returnedUser => {
+      this.user = returnedUser;
     });
   }
 
   loadUserProfile(user: string) {
+    this.loadUser(user);
+
     this.channelService
       .getMany({ user, isProfile: true }, 0, 1)
       .subscribe(userProfile => {
@@ -70,5 +97,6 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
+    this.routeQuerySubscription.unsubscribe();
   }
 }

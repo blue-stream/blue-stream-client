@@ -55,6 +55,12 @@
             <span matLine translate>DASHBOARD.USER_CHANNELS</span>
           </mat-list-item>
         </a>
+        <a [routerLink]="['/channels/profile', userService.currentUser.id ]" [queryParams]="{tabIndex: 1}">
+          <mat-list-item>
+            <mat-icon matListIcon>arrow_upward</mat-icon>
+            <span matLine translate>DASHBOARD.USER_UPLOADS</span>
+          </mat-list-item>
+        </a>
       </mat-nav-list>
     </mat-sidenav>
 

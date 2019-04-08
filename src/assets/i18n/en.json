@@ -8,7 +8,8 @@
         "SEARCH_RESULTS": "Search Results",
         "SUBSCRIPTIONS": "Subscriptions",
         "ALL_CHANNELS": "All Channels",
-        "USER_CHANNELS": "My Channels"
+        "USER_CHANNELS": "My Channels",
+        "USER_UPLOADS": "My Uploads"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -129,10 +130,11 @@
         },
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS",
+            "TAB_LABEL_PROFILE": "CHANNEL VIDEOS",
             "NO_VIDEOS": "This channel has no videos."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "MY UPLOADED VIDEOS",
+            "TAB_LABEL": "USER UPLOADS",
             "NO_VIDEOS": "This user haven't upload any videos yet."
         },
         "CHANNELS": {
@@ -192,6 +194,9 @@
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "Owner"
+        },
+        "CHANNEL_HEADER": {
+            "PROFILE_CHIP": "User Profile"
         }
     },
     "SHARED": {
@@ -236,7 +241,8 @@
             "UNPREMITTED_USER": "You do not have permissions to perform this action",
             "UNKNOWN": "Unknown Error",
             "UNKNOWN_FILE_TYPE": "Unknown file type",
-            "VIDEO_NOT_FOUND": "Video was not found"
+            "VIDEO_NOT_FOUND": "Video was not found",
+            "DUPLICATE_CHANNEL": "A channel with this name already exist"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "Video was deleted succesfully"

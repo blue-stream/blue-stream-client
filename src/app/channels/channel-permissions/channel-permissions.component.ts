@@ -32,8 +32,8 @@ export class ChannelPermissionsComponent implements OnChanges {
     this.loadPermittedUsers(0, this.premittedUseresAmountToLoad);
   }
 
-  loadPermittedUsers(startIndex: number, premittedUsersToLoad: number) {
-    const endIndex: number = startIndex + this.premittedUseresAmountToLoad;
+  loadPermittedUsers(startIndex: number, premittedUsersAmountToLoad: number) {
+    const endIndex: number = startIndex + premittedUsersAmountToLoad;
 
     this.userPermissionsService.getChannelPermittedUsers(this.channel.id, startIndex, endIndex).subscribe((usersPermissions) => {
       if (startIndex === 0) {
