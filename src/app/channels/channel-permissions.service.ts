@@ -85,6 +85,10 @@ export class ChannelPermissionsService {
     return this.httpClient.get<UserPermissions[]>(`${this.serviceUrl}${this.apiUrl}/${channelId}/admins`, options);
   }
 
+  getIsAdmin(channelId: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.serviceUrl}${this.apiUrl}/${channelId}/admin`, httpOptions);
+  }
+
   getChannelPermittedUsers(channelId: string,
     startIndex: number,
     endIndex: number,
