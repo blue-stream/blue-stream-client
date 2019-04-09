@@ -22,18 +22,18 @@
         <mat-icon>playlist_add</mat-icon>
       </button>
     </div> -->
-    <div class="action-button-container" *ngIf="canRemove || canEdit">
+    <div class="action-button-container" *ngIf="canRemove || canEdit || isSysAdmin">
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_horiz</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <a *ngIf="canEdit" [routerLink]="['/edit',video.id]">
+        <a *ngIf="canEdit || isSysAdmin" [routerLink]="['/edit',video.id]">
           <button mat-menu-item>
             <mat-icon>edit</mat-icon>
             <span translate>WATCH.WATCH_PRIMARY_INFO.EDIT</span>
           </button>
         </a>
-        <button *ngIf="canRemove" mat-menu-item (click)="onDeleteVideo()">
+        <button *ngIf="canRemove || isSysAdmin" mat-menu-item (click)="onDeleteVideo()">
           <mat-icon>delete</mat-icon>
           <span translate>WATCH.WATCH_PRIMARY_INFO.DELETE.ACTION</span>
         </button>

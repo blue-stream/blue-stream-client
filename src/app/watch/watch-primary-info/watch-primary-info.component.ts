@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Video } from '../../shared/models/video.model';
-import { ReactionService } from 'src/app/core/services/reaction.service';
-import { Reaction, ResourceType, ReactionType } from 'src/app/shared/models/reaction.model';
+import { ResourceType, ReactionType } from 'src/app/shared/models/reaction.model';
 import { Router } from '@angular/router';
 import { VideoService } from '../../core/services/video.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +9,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Observable } from 'rxjs';
 import { ChannelPermissionsService } from 'src/app/channels/channel-permissions.service';
-import { UserPermissions, PermissionTypes } from 'src/app/channels/user-permissions.model';
+import { PermissionTypes } from 'src/app/channels/user-permissions.model';
 import { Channel } from 'src/app/shared/models/channel.model';
 import 'rxjs/add/operator/catch';
 
@@ -27,9 +26,9 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
   currentUser: User;
   canEdit: boolean = false;
   canRemove: boolean = false;
+  isSysAdmin: boolean;
 
   constructor(
-    private reactionService: ReactionService,
     private videoService: VideoService,
     private permissionsService: ChannelPermissionsService,
     private translateService: TranslateService,
@@ -40,6 +39,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.currentUser = this.userService.currentUser;
+    this.isSysAdmin = this.userService.currentUser.isSysAdmin;
   }
 
   ngOnChanges() {
