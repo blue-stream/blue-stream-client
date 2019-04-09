@@ -94,7 +94,7 @@ export class VideoFormComponent implements OnInit {
       ]),
       description: this.fb.control(this.video.description || '',
         Validators.maxLength(environment.descriptionMaxLength)),
-      tags: this.fb.array(this.video.tags || []),
+      tags: this.fb.array(this.video.tags || [], this.tagsValidator),
       published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
@@ -107,6 +107,14 @@ export class VideoFormComponent implements OnInit {
         this.ppValidator]
       ),
     }, { validator: this.classificationValidator });
+  }
+
+  tagsValidator = (control: AbstractControl): ValidationErrors | null => {
+    const tagsLimit = 30;
+    const tagStringLimit = 30;
+    const tags: Array<string> = control.value;
+    if (tags.length > tagsLimit) { return { 'tooManyTags': true }; }
+    if (tags.toString().length <= tagStringLimit * tagsLimit) { return null; } else { return { 'tooManyTags': true }; }
   }
 
   sourceValidator = (control: AbstractControl): ValidationErrors | null => {
