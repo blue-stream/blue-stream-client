@@ -75,6 +75,25 @@ export class VideoService {
     return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
   }
 
+  getTags(startIndex?: number,
+    endIndex?: number): Observable<string[]> {
+      const options = {
+        headers: httpHeaders,
+        params: {
+          startIndex: Number.isInteger(startIndex) ? startIndex.toString() : 0,
+          endIndex: Number.isInteger(endIndex) ? endIndex.toString() : 20,
+        } as { [param: string]: string | string[] },
+      };
+
+      Object.keys(options.params).forEach(key => {
+        if (options.params[key] === undefined) {
+          delete options.params[key];
+        }
+      });
+
+      return this.httpClient.get<string[]>(`${this.serviceUrl}${this.apiUrl}/tags`, options);
+  }
+
   getVideos(
     videoFilter?: Partial<Video>,
     startIndex?: number,
