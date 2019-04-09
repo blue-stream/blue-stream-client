@@ -44,7 +44,6 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   getIsUserAdmin() {
     this.channelPermissionsService.getIsAdmin(this.channel.id).subscribe(isAdmin => {
       this.isUserAdmin = isAdmin;
-      console.log(this.isUserAdmin);
     });
   }
 
