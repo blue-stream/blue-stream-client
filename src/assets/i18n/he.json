@@ -109,7 +109,7 @@
             "PUBLISH_DATE": "פורסם ב{{date}} בשעה {{time}} על יד {{user}}"
         },
         "WATCH_DESCRIPTION": {
-            "SHOW_MORE": "מידע נוסף",
+            "SHOW_MORE": "הצג יותר",
             "SHOW_LESS": "הצג פחות"
         },
         "WATCH_PRIMARY_INFO": {
