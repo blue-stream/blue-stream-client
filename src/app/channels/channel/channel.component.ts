@@ -7,6 +7,7 @@ import { PatternGeneratorService } from "../../shared/pattern-generator.service"
 import { UserService } from "../../shared/user.service";
 import { User } from "src/app/shared/models/user.model";
 import { Subscription } from "rxjs";
+import { ChannelPermissionsService } from "../channel-permissions.service";
 
 @Component({
   selector: "bs-channel",
@@ -20,19 +21,29 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
   channel: Partial<Channel>;
   headerImage: any;
   isUserOwner: boolean = false;
+  isUserAdmin: boolean = false;
   selectedTabIndex: number = 0;
+  isSysAdmin: boolean;
   user?: User;
 
   constructor(
     private userService: UserService,
+    private channelPermissionsService: ChannelPermissionsService,
     private patternGenerator: PatternGeneratorService,
     private route: ActivatedRoute,
     private channelService: ChannelService,
     private router: Router,
   ) {
+    this.isSysAdmin = this.userService.currentUser.isSysAdmin;
     this.channelService.channelUpdated.subscribe(channel => {
       this.channel = channel;
       this.loadHeaderImage();
+    });
+  }
+
+  getIsUserAdmin() {
+    this.channelPermissionsService.getIsAdmin(this.channel.id).subscribe(isAdmin => {
+      this.isUserAdmin = isAdmin;
     });
   }
 
@@ -57,6 +68,7 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     this.isUserOwner = this.channel.user === this.userService.currentUser.id;
+    this.getIsUserAdmin();
   }
 
   loadHeaderImage() {
@@ -72,6 +84,8 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
 
       if (this.channel.isProfile) {
         this.loadUser(channel.user);
+      } else {
+        this.getIsUserAdmin();
       }
     });
   }

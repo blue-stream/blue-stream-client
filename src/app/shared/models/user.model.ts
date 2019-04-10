@@ -4,4 +4,5 @@ export interface User {
     name: string;
     mail: string;
     id: string;
+    isSysAdmin?: boolean;
 }
