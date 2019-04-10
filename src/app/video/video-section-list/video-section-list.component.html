@@ -1,6 +1,13 @@
 <div *ngIf="!noVideosInSections || isLoading; else noVideos" class="container" bsVideoResponsiveView (layoutChanged)="layoutChanged($event)">
     <div id="video-section-list" [style.width.px]="width">
         <bs-video-section-item [sections]="sections"></bs-video-section-item>
+
+        <div id="popular-tags" fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="12px">
+            <h3 id="title">{{ 'SHARED.USEFUL_TAGS' | translate }}</h3>
+            <span fxFlex></span>
+            
+        </div>
+        <bs-popular-tags (tagClicked)="onTagClick($event)"></bs-popular-tags>
     </div>
 </div>
 <ng-template #noVideos>
@@ -8,3 +15,5 @@
         <bs-no-videos-found [message]="'SHARED.VIDEO_LIST.NO_VIDEOS' | translate" showImage=true></bs-no-videos-found>
     </div>
 </ng-template>
+
+

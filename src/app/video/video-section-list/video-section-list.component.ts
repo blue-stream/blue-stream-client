@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VideoConstants } from '../shared/constants';
 import { VideoSection } from '../../shared/models/video-section.model';
 import { VideoService } from '../../core/services/video.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-video-section-list',
@@ -15,7 +16,7 @@ export class VideoSectionListComponent implements OnInit {
   noVideosInSections: boolean = true;
   isLoading: boolean = true;
 
-  constructor(private videoService: VideoService) { }
+  constructor(private router: Router, private videoService: VideoService) { }
 
   ngOnInit() {
     this.initSections();
@@ -77,5 +78,9 @@ export class VideoSectionListComponent implements OnInit {
   layoutChanged(maxVideosAllowed: number) {
     this.videoService.maxVideoColumnsAllowed = maxVideosAllowed;
     this.width = maxVideosAllowed * VideoConstants.videoTileWidth;
+  }
+
+  onTagClick(tag: string) {
+    this.router.navigate(['/results'], { queryParams: { search_query: tag } });
   }
 }

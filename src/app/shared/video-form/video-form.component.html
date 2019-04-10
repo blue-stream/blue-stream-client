@@ -24,6 +24,8 @@
              (matChipInputTokenEnd)="addTag($event)">
     </mat-chip-list>
   </mat-form-field>
+
+  <bs-popular-tags (tagClicked)="addPopularTag($event)"></bs-popular-tags>
   
   <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="15px">
     <mat-form-field appearance="outline" id="visibility">

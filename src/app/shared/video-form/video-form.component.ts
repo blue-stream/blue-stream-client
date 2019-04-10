@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { ENTER } from '@angular/cdk/keycodes';
@@ -94,7 +94,7 @@ export class VideoFormComponent implements OnInit {
       ]),
       description: this.fb.control(this.video.description || '',
         Validators.maxLength(environment.descriptionMaxLength)),
-      tags: this.fb.array(this.video.tags || []),
+      tags: this.fb.array(this.video.tags || [], this.tagsValidator),
       published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
@@ -107,6 +107,15 @@ export class VideoFormComponent implements OnInit {
         this.ppValidator]
       ),
     }, { validator: this.classificationValidator });
+  }
+
+  tagsValidator = (control: AbstractControl): ValidationErrors | null => {
+    const tagsLimit = 30;
+    const tagStringLimit = 30;
+    const tags: Array<string> = control.value;
+    if (tags.length > tagsLimit) { return { 'tooManyTags': true }; }
+    if ( (new Set(tags)).size !== tags.length ) { return { 'duplicateTags': true }; }
+    if (tags.toString().length <= tagStringLimit * tagsLimit) { return null; } else { return { 'tooManyTags': true }; }
   }
 
   sourceValidator = (control: AbstractControl): ValidationErrors | null => {
@@ -144,6 +153,13 @@ export class VideoFormComponent implements OnInit {
 
     if (input) {
       input.value = '';
+    }
+  }
+
+  addPopularTag(tag: string): void {
+    if ((tag || '').trim()) {
+      const tags = this.videoForm.get('tags') as FormArray;
+      tags.push(this.fb.control(tag.trim()));
     }
   }
 

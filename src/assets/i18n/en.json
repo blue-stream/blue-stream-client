@@ -118,7 +118,13 @@
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
             "ADD_PLAYLIST": "Add to playlist",
-            "EDIT": "Edit"
+            "EDIT": "Edit",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
+                "ACTION": "Delete",
+                "DELETE_SUCCESS": "Video deleted successfully",
+                "DELETE_SUCCESS_APPROVAL": "OK"
+            }
         }
     },
     "CHANNEL": {
@@ -200,6 +206,7 @@
         }
     },
     "SHARED": {
+        "USEFUL_TAGS": "Useful Tags",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "SUBSCRIBE",
             "UNSUBSCRIBE": "UNSUBSCRIBE"

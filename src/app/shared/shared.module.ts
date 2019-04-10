@@ -44,6 +44,7 @@ import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
 import { VideoFormComponent } from './video-form/video-form.component';
 import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.component';
+import { PopularTagsComponent } from './popular-tags/popular-tags.component';
 
 @NgModule({
   imports: [
@@ -117,7 +118,8 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     VideoFormComponent,
     NoVideosFoundComponent,
     NoVideosFoundComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PopularTagsComponent
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -136,7 +138,8 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     ChannelListComponent,
     ChannelTileComponent,
     VideoFormComponent,
-    NoVideosFoundComponent
+    NoVideosFoundComponent,
+    PopularTagsComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
