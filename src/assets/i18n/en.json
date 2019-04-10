@@ -206,6 +206,7 @@
         }
     },
     "SHARED": {
+        "USEFUL_TAGS": "Useful Tags",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "SUBSCRIBE",
             "UNSUBSCRIBE": "UNSUBSCRIBE"

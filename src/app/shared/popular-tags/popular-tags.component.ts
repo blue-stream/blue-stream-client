@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class PopularTagsComponent implements OnInit, OnDestroy {
 
   tags: string[];
-  amountOfTagsToShowInPage = 150;
-  tagsToLoad = 15;
+  amountOfTagsToShowInPage = 100;
+  tagsToLoad = 30;
   tagsSubscription: any;
   isLoading = false;
   @Output() tagClicked: EventEmitter<string> = new EventEmitter();

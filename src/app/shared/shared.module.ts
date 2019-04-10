@@ -118,7 +118,8 @@ import { PopularTagsComponent } from './popular-tags/popular-tags.component';
     VideoFormComponent,
     NoVideosFoundComponent,
     NoVideosFoundComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PopularTagsComponent
   ],
   declarations: [
     ConfirmDialogComponent,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { delay } from "rxjs/operators";
 import { map } from 'rxjs/operators';
 
 import { Video, VideoStatus } from '../../shared/models/video.model';
@@ -77,6 +78,7 @@ export class VideoService {
 
   getTags(startIndex?: number,
     endIndex?: number): Observable<string[]> {
+      return of(['חצב/סוריה', 'חצב/סוריה','חצב/סוריה', 'חצב/סוריה','חצב/סוריה', 'חצב/סוריה','חצב/סוריה', 'חצב/סוריה','חצב/סוריה', 'חצב/סוריה','חצב/שדגדשג', 'חצב/סוריה','חצב/גשדגדשג', 'חצב/דשגדשגדשג','חצב/גשדגשדג', 'חצב/סוריה','חצב/סוריה']).pipe(delay(5000));
       const options = {
         headers: httpHeaders,
         params: {

@@ -114,6 +114,7 @@ export class VideoFormComponent implements OnInit {
     const tagStringLimit = 30;
     const tags: Array<string> = control.value;
     if (tags.length > tagsLimit) { return { 'tooManyTags': true }; }
+    if ( (new Set(tags)).size !== tags.length ) { return { 'duplicateTags': true }; }
     if (tags.toString().length <= tagStringLimit * tagsLimit) { return null; } else { return { 'tooManyTags': true }; }
   }
 
@@ -152,6 +153,13 @@ export class VideoFormComponent implements OnInit {
 
     if (input) {
       input.value = '';
+    }
+  }
+
+  addPopularTag(tag: string): void {
+    if ((tag || '').trim()) {
+      const tags = this.videoForm.get('tags') as FormArray;
+      tags.push(this.fb.control(tag.trim()));
     }
   }
 
