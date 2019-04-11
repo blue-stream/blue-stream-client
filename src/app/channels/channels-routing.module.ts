@@ -18,6 +18,10 @@ const routes: Routes = [
     component: ChannelsComponent,
   },
   {
+    path: 'profiles',
+    component: ChannelsComponent,
+  },
+  {
     path: 'profile/:userId',
     component: ChannelComponent,
   },
