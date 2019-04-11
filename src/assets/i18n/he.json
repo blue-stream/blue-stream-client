@@ -1,6 +1,6 @@
 {
     "APP": {
-        "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 57 ומעלה"
+        "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 62 ומעלה"
     },
     "TOP_BAR": {
         "CREATE_VIDEO": "העלה סרטון",
@@ -19,7 +19,8 @@
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "הנצפים ביותר",
-            "NEWEST": "נוספו לאחרונה"        }
+            "NEWEST": "נוספו לאחרונה"
+        }
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

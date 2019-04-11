@@ -1,6 +1,6 @@
 {
     "APP": {
-        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 57 or higher"
+        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 62 or higher"
     },
     "TOP_BAR": {
         "CREATE_VIDEO": "Upload a video",
@@ -19,7 +19,7 @@
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
-            "NEWEST": "Added recently"        
+            "NEWEST": "Added recently"
         }
     },
     "UPLOADER": {
