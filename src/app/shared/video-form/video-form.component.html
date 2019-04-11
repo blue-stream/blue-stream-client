@@ -9,36 +9,33 @@
     <textarea rows="4" matInput id="description" formControlName="description"></textarea>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" >
+  <mat-form-field appearance="outline">
     <mat-chip-list #tagList>
       <mat-chip *ngFor="let tag of videoForm.get('tags')['controls']; let index = index;" [selectable]="true"
-               [removable]="true" (removed)="removeTag(index)">
+        [removable]="true" (removed)="removeTag(index)">
         {{tag.value}}
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
-      <input FormArrayName="tags"
-             placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}"
-             [matChipInputFor]="tagList"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="true"
-             (matChipInputTokenEnd)="addTag($event)"
-             >
+      <input FormArrayName="tags" placeholder="{{'UPLOADER.UPLOAD_FORM.TAGS' | translate}}" [matChipInputFor]="tagList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+        (matChipInputTokenEnd)="addTag($event)">
     </mat-chip-list>
   </mat-form-field>
-
+  <p>{{ 'SHARED.RECOMMENDED_TAGS' | translate }}</p>
   <bs-popular-tags (tagClicked)="addPopularTag($event)"></bs-popular-tags>
-  
+
   <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="15px">
     <mat-form-field appearance="outline" id="visibility">
-        <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
-        <mat-select formControlName="published">
-          <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
-          <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
-        </mat-select>
+      <mat-label translate>UPLOADER.UPLOAD_FORM.VISIBILITY.FIELD</mat-label>
+      <mat-select formControlName="published">
+        <mat-option [value]="true">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PUBLIC' | translate}}</mat-option>
+        <mat-option [value]="false">{{ 'UPLOADER.UPLOAD_FORM.VISIBILITY.PRIVATE' | translate}}</mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline" class="classification">
       <mat-label translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</mat-label>
-      <input #sourceField matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource" (input)="onSourceType(sourceField.value)">
+      <input #sourceField matInput [matAutocomplete]="sourceAuto" formControlName="classificationSource"
+        (input)="onSourceType(sourceField.value)">
       <mat-autocomplete #sourceAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let source of sources | async" [value]="source">
           {{source.name}}
@@ -47,7 +44,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="classification">
       <mat-label translate>UPLOADER.UPLOAD_FORM.PP</mat-label>
-      <input #ppField matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto" matInput (input)="onPpType(ppField.value)">
+      <input #ppField matInput formControlName="pp" [errorStateMatcher]="errorMatcher" [matAutocomplete]="ppAuto"
+        matInput (input)="onPpType(ppField.value)">
       <mat-autocomplete #ppAuto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let pp of pps | async" [value]="pp">
           {{pp.name}}
@@ -57,8 +55,9 @@
       </mat-error>
     </mat-form-field>
   </div>
-  
+
   <mat-card-actions align="end">
-    <button type="submit" [disabled]="!videoForm.valid || disabled" mat-button color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
+    <button type="submit" [disabled]="!videoForm.valid || disabled" mat-button
+      color="primary">{{'UPLOADER.UPLOAD_FORM.PUBLISH' | translate}}</button>
   </mat-card-actions>
 </form>

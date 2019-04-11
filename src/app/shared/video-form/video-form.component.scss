@@ -2,6 +2,10 @@ input {
     font-size: 0.8rem;
 }
 
+p {
+    margin-top: 0;
+}
+
 .classification, #visibility {
     max-width: 250px;
     box-sizing: border-box;
