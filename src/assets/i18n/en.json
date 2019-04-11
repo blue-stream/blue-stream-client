@@ -211,7 +211,8 @@
         }
     },
     "SHARED": {
-        "USEFUL_TAGS": "Useful Tags",
+        "USEFUL_TAGS": "Popular tags",
+        "RECOMMENDED_TAGS": "Recommended tags",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "SUBSCRIBE",
             "UNSUBSCRIBE": "UNSUBSCRIBE"

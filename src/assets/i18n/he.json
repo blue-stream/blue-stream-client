@@ -9,7 +9,7 @@
     },
     "DASHBOARD": {
         "HOME": "דף הבית",
-        "POPULAR": "סרטונים פופולארים",
+        "POPULAR": "סרטונים פופולרים",
         "SEARCH_RESULTS": "תוצאות חיפוש",
         "SUBSCRIPTIONS": "מינויים",
         "ALL_CHANNELS": "כל הערוצים",
@@ -211,7 +211,8 @@
         }
     },
     "SHARED": {
-        "USEFUL_TAGS": "תגיות שימושיות",
+        "USEFUL_TAGS": "תגיות פופולריות",
+        "RECOMMENDED_TAGS": "תגיות מומלצות",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "עקוב",
             "UNSUBSCRIBE": "בטל עקיבה"
