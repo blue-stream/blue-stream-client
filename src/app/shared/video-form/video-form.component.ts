@@ -149,7 +149,9 @@ export class VideoFormComponent implements OnInit {
 
     if ((value || '').trim()) {
       const tags = this.videoForm.get('tags') as FormArray;
-      tags.push(this.fb.control(value.trim()));
+      if (tags.value.indexOf(value.trim()) === -1) {
+        tags.push(this.fb.control(value.trim()));
+      }
     }
 
     if (input) {
@@ -160,7 +162,9 @@ export class VideoFormComponent implements OnInit {
   addPopularTag(tag: string): void {
     if ((tag || '').trim()) {
       const tags = this.videoForm.get('tags') as FormArray;
-      tags.push(this.fb.control(tag.trim()));
+      if (tags.value.indexOf(tag.trim()) === -1) {
+        tags.push(this.fb.control(tag.trim()));
+      }
     }
   }
 
