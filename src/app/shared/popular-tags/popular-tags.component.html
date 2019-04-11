@@ -1,7 +1,7 @@
 <div id="tags-container">
   <mat-chip-list>
     <mat-chip *ngFor="let tag of tags" (click)="onTagClick(tag)">{{ tag }}</mat-chip>
-    <button type="button" *ngIf="tags.length < amountOfTagsToShowInPage && !isLoading" id="show-more" mat-button (click)="loadNextTags()">{{'WATCH.WATCH_DESCRIPTION.SHOW_MORE' | translate}}</button>
+    <button type="button" *ngIf="tags.length < amountOfTagsToShowInPage && !isLoading && areTagsAvailable()" id="show-more" mat-button (click)="loadNextTags()">{{'WATCH.WATCH_DESCRIPTION.SHOW_MORE' | translate}}</button>
     <mat-spinner [diameter]="20" *ngIf="isLoading"></mat-spinner>
   </mat-chip-list>
 
