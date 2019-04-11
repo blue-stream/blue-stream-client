@@ -52,4 +52,8 @@ export class PopularTagsComponent implements OnInit, OnDestroy {
     this.tagsSubscription.unsubscribe();
   }
 
+  areTagsAvailable() {
+    return this.tags.length % this.tagsToLoad === 0;
+  }
+
 }
