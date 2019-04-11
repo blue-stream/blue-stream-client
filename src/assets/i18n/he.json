@@ -2,6 +2,11 @@
     "APP": {
         "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 57 ומעלה"
     },
+    "TOP_BAR": {
+        "CREATE_VIDEO": "העלה סרטון",
+        "CREATE_CHANNEL": "צור ערוץ",
+        "PROFILE": "פרופיל"
+    },
     "DASHBOARD": {
         "HOME": "דף הבית",
         "POPULAR": "סרטונים פופולארים",
