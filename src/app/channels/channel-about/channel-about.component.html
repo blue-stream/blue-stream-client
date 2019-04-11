@@ -1,10 +1,10 @@
 <div id="container">
     <div id="basic-info">
         <div id="description">
-            <p id="title" translate>
+            <p class="title" translate>
                 CHANNEL.ABOUT.DESCRIPTION_TITLE
             </p>
-            <p>
+            <p id="description-info">
                 {{channel.description}}
             </p>
         </div>
@@ -15,7 +15,7 @@
             (scrolled)="onScroll()"
             [fromRoot]="true"
             [infiniteScrollContainer]="'#side-nav-container'">
-            <p id="title">
+            <p class="title">
                 מנהלים
             </p>
             <mat-nav-list>

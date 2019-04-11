@@ -9,7 +9,7 @@
     <p class="info-header">
         {{ 'CHANNEL.MANAGE.CHANNEL_DESCRIPTION' | translate}}
     </p>
-    <p class="info">{{channel.description}}</p>
+    <p id="description" class="info">{{channel.description}}</p>
 </div>
 <ng-template #editChannelInfo>
     <bs-channel-form (closeForm)="isEditActive = false" [channel]="channel"></bs-channel-form>
