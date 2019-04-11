@@ -3,7 +3,7 @@
         "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 57 or higher"
     },
     "TOP_BAR": {
-        "CREATE_VIDEO": "Create a video",
+        "CREATE_VIDEO": "Upload a video",
         "CREATE_CHANNEL": "Create a channel",
         "PROFILE": "Profile"
     },
