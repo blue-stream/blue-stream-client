@@ -53,8 +53,10 @@ export class ChannelsComponent implements OnInit {
     } else if (url === 'upload') {
       this.channelFilter = {};
       this.isSelectForUpload = true;
+    } else if (url === 'profiles') {
+      this.channelFilter = { isProfile: true };
     } else if (url === '') {
-      this.channelFilter = {};
+      this.channelFilter = { isProfile: false };
     }
   }
 
@@ -75,16 +77,16 @@ export class ChannelsComponent implements OnInit {
       this.loadAllChannels(startIndex, endIndex);
     } else {
       this.channelPermissions
-      .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
-      .subscribe((channelPermissions: any) => {
-        const channels = channelPermissions.map(channelPermission => channelPermission.channel);
+        .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
+        .subscribe((channelPermissions: any) => {
+          const channels = channelPermissions.map(channelPermission => channelPermission.channel);
 
-        if (startIndex === 0) {
-          this.channels = channels;
-        } else {
-          this.channels = this.channels.concat(channels);
-        }
-      });
+          if (startIndex === 0) {
+            this.channels = channels;
+          } else {
+            this.channels = this.channels.concat(channels);
+          }
+        });
     }
   }
 

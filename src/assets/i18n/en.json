@@ -12,7 +12,8 @@
         "POPULAR": "Popular",
         "SEARCH_RESULTS": "Search Results",
         "SUBSCRIPTIONS": "Subscriptions",
-        "ALL_CHANNELS": "All Channels",
+        "ALL_CHANNELS": "Channels",
+        "ALL_PROFILES": "Profiles",
         "USER_CHANNELS": "My Channels",
         "USER_UPLOADS": "My Uploads"
     },
