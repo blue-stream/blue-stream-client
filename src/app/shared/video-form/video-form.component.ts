@@ -110,12 +110,13 @@ export class VideoFormComponent implements OnInit {
   }
 
   tagsValidator = (control: AbstractControl): ValidationErrors | null => {
-    const tagsLimit = 30;
-    const tagStringLimit = 30;
+    const tagsCountLimit = 20;
+    const tagLimit = 45;
     const tags: Array<string> = control.value;
-    if (tags.length > tagsLimit) { return { 'tooManyTags': true }; }
+    if (tags.length > tagsCountLimit) { return { 'tooManyTags': true }; }
     if ( (new Set(tags)).size !== tags.length ) { return { 'duplicateTags': true }; }
-    if (tags.toString().length <= tagStringLimit * tagsLimit) { return null; } else { return { 'tooManyTags': true }; }
+    if ( tags.length > 0 && tags.filter(t => t.length > tagLimit).length !== 0 ) { return { 'tagTooLong': true }; }
+    return null;
   }
 
   sourceValidator = (control: AbstractControl): ValidationErrors | null => {
