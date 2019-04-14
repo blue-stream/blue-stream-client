@@ -28,7 +28,14 @@
         position: fixed;
     }
     h1.app-name {
-        margin-left: 2px;
+        margin-left: 0.5px;
+        margin-bottom: 1px;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+    }
+    #blue-stream-logo-svg {
+        margin-bottom: 2px;
         cursor: pointer;
         outline: none;
     }
