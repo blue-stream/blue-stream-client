@@ -15,7 +15,8 @@
         "ALL_CHANNELS": "ערוצים",
         "ALL_PROFILES": "פרופילים",
         "USER_CHANNELS": "הערוצים שלי",
-        "USER_UPLOADS": "העלאות שלי"
+        "USER_UPLOADS": "העלאות שלי",
+        "ADMIN_PANEL": "מנהלים"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {

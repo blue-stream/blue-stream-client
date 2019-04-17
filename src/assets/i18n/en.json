@@ -15,7 +15,8 @@
         "ALL_CHANNELS": "Channels",
         "ALL_PROFILES": "Profiles",
         "USER_CHANNELS": "My Channels",
-        "USER_UPLOADS": "My Uploads"
+        "USER_UPLOADS": "My Uploads",
+        "ADMIN_PANEL": "Admin Panel"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {

@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: './channels/channels.module#ChannelsModule',
   },
   {
+    path: 'admin',
+    loadChildren: './admin-panel/admin-panel.module#AdminPanelModule',
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
   },
