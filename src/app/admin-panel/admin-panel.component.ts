@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChannelService } from '../core/services/channel.service';
 import { VideoService } from '../core/services/video.service';
-import { UserService } from '../shared/user.service';
+import { CommentService } from '../comments/comment.service';
 
 @Component({
   selector: 'bs-admin-panel',
@@ -12,17 +12,18 @@ export class AdminPanelComponent implements OnInit {
 
   channelsAmount: number;
   videosAmount: number;
-  usersAmount: number;
+  commentsAmount: number;
 
   constructor(
     private channelService: ChannelService,
     private videoService: VideoService,
-    private userService: UserService,
+    private commentService: CommentService,
     ) { }
 
   ngOnInit() {
     this.loadChannelsAmount();
     this.loadVideosAmount();
+    this.loadCommentsAmount();
 
   }
 
@@ -38,4 +39,9 @@ export class AdminPanelComponent implements OnInit {
     }));
   }
 
+  loadCommentsAmount () {
+    this.commentService.getAmount({}).subscribe((commentsAmount => {
+      this.commentsAmount = commentsAmount;
+    }));
+  }
 }
