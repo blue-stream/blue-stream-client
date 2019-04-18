@@ -53,7 +53,7 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
 
       if (!executedRegex ||
           executedRegex[fileTypeRegexGorupIndex] !== 'video' ||
-          environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex]) === -1) {
+          environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex].toLocaleLowerCase()) === -1) {
         const errorMessageTranslation: string = 'SNACK_BARS.ERRORS.UNKNOWN_FILE_TYPE';
         const okTranslation: string = 'SNACK_BARS.CONFIRM.OK';
 
