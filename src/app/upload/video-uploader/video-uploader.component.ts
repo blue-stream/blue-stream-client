@@ -44,16 +44,14 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
 
   filesSelected(files: FileList) {
     const videosToUpload = [];
-    const fileTypeRegex: RegExp = new RegExp(/(video)\/(.*)/);
-    const fileTypeRegexGorupIndex: number = 1;
+    const fileTypeRegex: RegExp = new RegExp(/(\w*)\.(\w+)/);
     const fileExtensionRegexGroupIndex: number = 2;
 
     Array.from(files).forEach(file => {
-      const executedRegex = fileTypeRegex.exec(file.type);
+      const executedRegex = fileTypeRegex.exec(file.name);
 
       if (!executedRegex ||
-          executedRegex[fileTypeRegexGorupIndex] !== 'video' ||
-          environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex].toLocaleLowerCase()) === -1) {
+        environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex].toLocaleLowerCase()) === -1) {
         const errorMessageTranslation: string = 'SNACK_BARS.ERRORS.UNKNOWN_FILE_TYPE';
         const okTranslation: string = 'SNACK_BARS.CONFIRM.OK';
 
