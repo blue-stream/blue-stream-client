@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
-import { ENTER } from '@angular/cdk/keycodes';
+import { ENTER, SINGLE_QUOTE } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
@@ -38,7 +38,7 @@ export class VideoFormComponent implements OnInit {
 
   videoSaved = false;
   videoForm: FormGroup;
-  separatorKeysCodes = [ENTER];
+  separatorKeysCodes = [ENTER, SINGLE_QUOTE];
   errorMatcher = new CrossFieldErrorMatcher();
   sourceTyped: Subject<string> = new Subject<string>();
   ppTyped: Subject<string> = new Subject<string>();
@@ -114,8 +114,8 @@ export class VideoFormComponent implements OnInit {
     const tagLimit = 45;
     const tags: Array<string> = control.value;
     if (tags.length > tagsCountLimit) { return { 'tooManyTags': true }; }
-    if ( (new Set(tags)).size !== tags.length ) { return { 'duplicateTags': true }; }
-    if ( tags.length > 0 && tags.filter(t => t.length > tagLimit).length !== 0 ) { return { 'tagTooLong': true }; }
+    if ((new Set(tags)).size !== tags.length) { return { 'duplicateTags': true }; }
+    if (tags.length > 0 && tags.filter(t => t.length > tagLimit).length !== 0) { return { 'tagTooLong': true }; }
     return null;
   }
 
