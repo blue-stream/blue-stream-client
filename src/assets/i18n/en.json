@@ -246,6 +246,12 @@
             "TRY_DIFFERENT_KEYWORDS": "Try different keywords or remove search filters"
         }
     },
+    "ADMIN_PANEL": {
+        "CHANNELS_AMOUNT": "Channels amount",
+        "PROFILES_AMOUNT": "Profiles amount",
+        "VIDEOS_AMOUNT": "Videos amount",
+        "COMMENTS_AMOUNT": "Comments amount"
+    },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "You have unsaved changes, are you sure you want to leave this page?"

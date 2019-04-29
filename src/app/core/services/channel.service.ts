@@ -95,9 +95,16 @@ export class ChannelService {
 
   getAmount(
     channelFilter: Partial<Channel>): Observable<number> {
+
+    let isProfile;
+
+    if (channelFilter.isProfile !== undefined && channelFilter.isProfile !== null) {
+      isProfile = channelFilter.isProfile.toString();
+    }
     const options = {
       httpHeaders,
       params: {
+        isProfile,
         name: channelFilter.name,
         description: channelFilter.description,
         user: channelFilter.user,

@@ -1,35 +1,32 @@
-<div id="cards-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Number of channels</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<mat-card>
+  <mat-list>
+    <mat-list-item>
+      <mat-icon matListIcon>ondemand_video</mat-icon>
+      <h3 matLine translate>ADMIN_PANEL.CHANNELS_AMOUNT</h3>
       <p>
-        {{channelsAmount}}
+        <span> {{channelsAmount}} </span>
       </p>
-    </mat-card-content>
-  </mat-card>
-  
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Number of Videos</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>people</mat-icon>
+      <h3 matLine translate>ADMIN_PANEL.PROFILES_AMOUNT</h3>
       <p>
-        {{videosAmount}}
+        <span> {{profileChannelsAmount}} </span>
       </p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Number of Comments</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>video_library</mat-icon>
+      <h3 matLine translate>ADMIN_PANEL.VIDEOS_AMOUNT</h3>
       <p>
-        {{commentsAmount}}
+        <span> {{videosAmount}} </span>
       </p>
-    </mat-card-content>
-  </mat-card>
-</div>
-
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon matListIcon>comment</mat-icon>
+      <h3 matLine translate>ADMIN_PANEL.COMMENTS_AMOUNT</h3>
+      <p>
+        <span> {{commentsAmount}} </span>
+      </p>
+    </mat-list-item>  
+  </mat-list>
+</mat-card>

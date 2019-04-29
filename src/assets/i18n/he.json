@@ -243,6 +243,12 @@
             "TRY_DIFFERENT_KEYWORDS": "כדאי לנסות מילות מפתח אחרות או להסיר מסנני חיפוש"
         }
     },
+    "ADMIN_PANEL": {
+        "CHANNELS_AMOUNT": "כמות ערוצים",
+        "PROFILES_AMOUNT": "כמות פרופילים",
+        "VIDEOS_AMOUNT": "כמות סרטונים",
+        "COMMENTS_AMOUNT": "כמות תגובות"
+    },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "ישנם שינויים שלא שמרת בעמוד, אתה בטוח שברצונך לצאת?"

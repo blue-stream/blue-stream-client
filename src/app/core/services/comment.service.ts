@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-import { Comment } from './models/comment.model';
+import { Comment } from '../../comments/models/comment.model';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json',

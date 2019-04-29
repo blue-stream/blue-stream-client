@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { Comment } from '../models/comment.model';
-import { CommentService } from '../comment.service';
+import { CommentService } from '../../core/services/comment.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'bs-comment-form',
