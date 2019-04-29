@@ -25,7 +25,7 @@
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
-            "TITLE": "Select files to upload",
+            "TITLE": "(Select files to upload (up to 2GB",
             "DESCRIPTION": "Or drag and drop video files"
         },
         "UPLOAD_PROGRESS_BAR": {
