@@ -44,7 +44,7 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
 
   filesSelected(files: FileList) {
     const videosToUpload = [];
-    const fileTypeRegex: RegExp = new RegExp(/(\w*)\.(\w+)/);
+    const fileTypeRegex: RegExp = new RegExp(/(.*)\.(\w+)$/);
     const fileExtensionRegexGroupIndex: number = 2;
 
     Array.from(files).forEach(file => {
