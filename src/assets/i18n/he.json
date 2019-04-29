@@ -25,7 +25,7 @@
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
-            "TITLE": "בחר קבצים להעלאה",
+            "TITLE": "בחר קבצים להעלאה (עד 2GB)",
             "DESCRIPTION": "או גרור ושחרר קבצי וידאו"
         },
         "UPLOAD_PROGRESS_BAR": {
