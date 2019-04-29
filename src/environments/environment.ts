@@ -24,7 +24,7 @@ export const environment = {
   descriptionMaxLength: 5000,
   classificationMaxLength: 256,
   amountOfTagsToShowInWatchPage: 5,
-  supportedFileFormats: ['mp4', 'flv', 'avi', 'mkv', 'mpg', 'mpeg'],
+  supportedFileFormats: ['mkv', 'flv', 'ogg', 'avi', 'mov', 'wmv', 'mp4', 'm4v', 'mpg', 'mpeg'],
 };
 
 /*
