@@ -253,7 +253,8 @@
             "UNKNOWN": "תקלה לא ידועה",
             "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין",
             "VIDEO_NOT_FOUND": "הסרטון לא נמצא",
-            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים"
+            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים",
+            "FILE_SIZE_TOO_BIG": "גודל הקובץ חורג מהגודל המותר"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "סרטון נמחק בהצלחה"
