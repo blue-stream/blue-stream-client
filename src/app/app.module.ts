@@ -31,7 +31,7 @@ export function authenticateUser(userService: UserService) {
 
     const currPath = document.location.pathname + document.location.search;
 
-    if (currPath && currPath !== '/') {
+    if (currPath && currPath !== '/' && typeof (Storage) !== 'undefined') {
       localStorage.setItem('callbackPath', currPath);
     }
 
