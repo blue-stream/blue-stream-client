@@ -29,6 +29,12 @@ export function authenticateUser(userService: UserService) {
       return Promise.resolve(true);
     }
 
+    const currPath = document.location.pathname + document.location.search;
+
+    if (currPath && currPath !== '/') {
+      localStorage.setItem('callbackPath', currPath);
+    }
+
     document.location.href = `${environment.authenticationServiceUrl}auth/login`;
     return Promise.reject(false);
   };
