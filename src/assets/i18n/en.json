@@ -257,7 +257,7 @@
             "UNKNOWN_FILE_TYPE": "Unknown file type",
             "VIDEO_NOT_FOUND": "Video was not found",
             "DUPLICATE_CHANNEL": "A channel with this name already exist",
-            "FILE_SIZE_TOO_BIG": "גודל הקובץ חורג מהגודל המותר"
+            "FILE_SIZE_TOO_BIG": "File's size is bigger than the permitted size"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "Video was deleted succesfully"
