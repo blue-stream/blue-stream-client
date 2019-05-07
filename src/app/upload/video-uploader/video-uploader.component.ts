@@ -67,6 +67,22 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
         throw new Error('Unsupported file format');
       }
 
+      if (file.size > environment.maxFileSize) {
+        const errorMessageTranslation: string = 'SNACK_BARS.ERRORS.FILE_SIZE_TOO_BIG';
+        const okTranslation: string = 'SNACK_BARS.CONFIRM.OK';
+
+        this.translateService.get([
+          errorMessageTranslation,
+          okTranslation]).subscribe(translations => {
+            this.snackBar.open(
+              translations[errorMessageTranslation],
+              translations[okTranslation],
+              { duration: 2000 });
+          });
+
+        throw new Error(`File size is too big - max file size is ${environment.maxFileSize} bytes`);
+      }
+
       const video: Partial<Video> = {
         title: file.name,
         channel: this.channelId,
