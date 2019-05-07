@@ -76,7 +76,7 @@
             <span matLine translate>DASHBOARD.USER_UPLOADS</span>
           </mat-list-item>
         </a>
-        <a routerLink="/admin">
+        <a *ngIf="currentUser.isSysAdmin" routerLink="/admin">
           <mat-list-item>
             <mat-icon matListIcon>work</mat-icon>
             <span matLine translate>DASHBOARD.ADMIN_PANEL</span>

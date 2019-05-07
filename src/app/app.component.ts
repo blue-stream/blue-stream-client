@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { defaultRouteConfig, routeConfig, SideNavMode } from './route-specific.config';
 import { UserService } from './shared/user.service';
+import { User } from './shared/models/user.model';
 
 @Component({
   selector: 'bs-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   isSideNavOpen: boolean = true;
   isBrowserSupported: boolean;
+  currentUser: User;
 
   private _mobileQueryListener: () => void;
 
@@ -33,6 +35,7 @@ export class AppComponent implements OnDestroy {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.isBrowserSupported = CSS.supports('display', 'grid');
+    this.currentUser = userService.currentUser;
   }
 
   ngOnDestroy(): void {

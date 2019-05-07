@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CanSysAdminActivateGuard } from './core/guards/can-sysadmin-activate.guard';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: './admin-panel/admin-panel.module#AdminPanelModule',
+    canActivate: [ CanSysAdminActivateGuard ],
   },
   {
     path: '',
