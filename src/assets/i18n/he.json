@@ -247,7 +247,9 @@
         "CHANNELS_AMOUNT": "כמות ערוצים",
         "PROFILES_AMOUNT": "כמות פרופילים",
         "VIDEOS_AMOUNT": "כמות סרטונים",
-        "COMMENTS_AMOUNT": "כמות תגובות"
+        "COMMENTS_AMOUNT": "כמות תגובות",
+        "SYSADMINS_AMOUNT": "כמות מנהלי מערכת",
+        "USERS_AMOUNT": "כמות משתמשים"
     },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {

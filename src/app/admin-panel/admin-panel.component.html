@@ -1,32 +1,11 @@
 <mat-card>
   <mat-list>
-    <mat-list-item>
-      <mat-icon matListIcon>ondemand_video</mat-icon>
-      <h3 matLine translate>ADMIN_PANEL.CHANNELS_AMOUNT</h3>
+    <mat-list-item *ngFor="let entityAmount of entitiesAmounts">
+      <mat-icon matListIcon>{{entityAmount.icon}}</mat-icon>
+      <h3 matLine translate>{{entityAmount.title}}</h3>
       <p>
-        <span> {{channelsAmount}} </span>
+        <span> {{entityAmount.amount}} </span>
       </p>
     </mat-list-item>
-    <mat-list-item>
-      <mat-icon matListIcon>people</mat-icon>
-      <h3 matLine translate>ADMIN_PANEL.PROFILES_AMOUNT</h3>
-      <p>
-        <span> {{profileChannelsAmount}} </span>
-      </p>
-    </mat-list-item>
-    <mat-list-item>
-      <mat-icon matListIcon>video_library</mat-icon>
-      <h3 matLine translate>ADMIN_PANEL.VIDEOS_AMOUNT</h3>
-      <p>
-        <span> {{videosAmount}} </span>
-      </p>
-    </mat-list-item>
-    <mat-list-item>
-      <mat-icon matListIcon>comment</mat-icon>
-      <h3 matLine translate>ADMIN_PANEL.COMMENTS_AMOUNT</h3>
-      <p>
-        <span> {{commentsAmount}} </span>
-      </p>
-    </mat-list-item>  
   </mat-list>
 </mat-card>

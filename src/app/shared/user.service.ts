@@ -65,4 +65,29 @@ export class UserService {
     return this.httpClient.get<User[]>(`${this.serviceUrl}${this.apiUrl}/search`, options);
   }
 
+  getAmount(userFilter: Partial<User>): Observable<number> {
+    let isSysAdmin;
+
+    if (userFilter.isSysAdmin !== undefined && userFilter.isSysAdmin !== null) {
+      isSysAdmin = userFilter.isSysAdmin.toString();
+    }
+
+    const options = {
+      httpHeaders,
+      params: {
+        isSysAdmin,
+        firstName: userFilter.firstName,
+        lastName: userFilter.lastName,
+        mail: userFilter.mail,
+      },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
+  }
 }
