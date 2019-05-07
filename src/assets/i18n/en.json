@@ -113,7 +113,7 @@
             "PROCESSING": "This video is still being processed."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "Published at {{date}} {{time}} by {{user}}"
+            "PUBLISH_DATE": "Published at {{date}} {{time}} by "
         },
         "WATCH_DESCRIPTION": {
             "SHOW_MORE": "Show more",
