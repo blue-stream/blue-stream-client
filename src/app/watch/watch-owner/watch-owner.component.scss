@@ -22,6 +22,11 @@
         #publish-date {
             font-size: 0.8rem;
             color: rgba(128, 128, 128, 0.8);
+            #owner {
+                font-weight: 600;
+                color:inherit;
+                text-decoration: none;
+            }
         }
     }
 

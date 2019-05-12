@@ -2,6 +2,9 @@
     <bs-avatar [channelId]="channel.id" [source]="channel.isProfile ? channel.user : channel.name" id="creator-profile-image"></bs-avatar>
     <div id="video-info">
         <a class="channel-link" [href]="channelLink">{{channel.name}}</a>
-        <span id="publish-date" *ngIf="publishDate" translate [translateParams]="{date: uploadDate, time: uploadTime, user: owner.name}">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
+        <span id="publish-date">
+            <span *ngIf="publishDate" translate [translateParams]="{date: uploadDate, time: uploadTime}">WATCH.WATCH_OWNER.PUBLISH_DATE</span>
+            <a id="owner" [routerLink]="['/channels/profile', owner.id ]" [queryParams]="{tabIndex: 1}">{{owner.name}}</a>
+        </span>
     </div>
 </div>
