@@ -11,3 +11,16 @@ p {
     box-sizing: border-box;
     width:100%;
 }
+
+.submitAndMidur {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+}
+
+#midurWarn {
+    color: red;
+    font-size: 15px;
+    margin-right: 2px;
+}
