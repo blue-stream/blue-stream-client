@@ -15,7 +15,8 @@
         "ALL_CHANNELS": "ערוצים",
         "ALL_PROFILES": "פרופילים",
         "USER_CHANNELS": "הערוצים שלי",
-        "USER_UPLOADS": "העלאות שלי"
+        "USER_UPLOADS": "העלאות שלי",
+        "ADMIN_PANEL": "מנהלים"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -241,6 +242,14 @@
             "NO_RESULTS_FOUND": "לא נמצאו תוצאות",
             "TRY_DIFFERENT_KEYWORDS": "כדאי לנסות מילות מפתח אחרות או להסיר מסנני חיפוש"
         }
+    },
+    "ADMIN_PANEL": {
+        "CHANNELS_AMOUNT": "כמות ערוצים",
+        "PROFILES_AMOUNT": "כמות פרופילים",
+        "VIDEOS_AMOUNT": "כמות סרטונים",
+        "COMMENTS_AMOUNT": "כמות תגובות",
+        "SYSADMINS_AMOUNT": "כמות מנהלי מערכת",
+        "USERS_AMOUNT": "כמות משתמשים"
     },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {

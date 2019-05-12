@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../models/comment.model';
-import { CommentService } from '../comment.service';
+import { CommentService } from '../../core/services/comment.service';
 import * as moment from 'moment';
 import { User } from 'src/app/shared/models/user.model';
 
