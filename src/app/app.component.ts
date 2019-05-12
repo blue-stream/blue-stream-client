@@ -36,6 +36,12 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.isBrowserSupported = CSS.supports('display', 'grid');
     this.currentUser = userService.currentUser;
+
+    if (typeof (Storage) !== 'undefined' && localStorage.getItem('callbackPath') !== null) {
+      const callbackPath = localStorage.getItem('callbackPath');
+      localStorage.removeItem('callbackPath');
+      this.router.navigate([callbackPath]);
+    }
   }
 
   ngOnDestroy(): void {

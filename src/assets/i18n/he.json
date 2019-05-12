@@ -26,7 +26,7 @@
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
-            "TITLE": "בחר קבצים להעלאה",
+            "TITLE": "בחר קבצים להעלאה (עד 2GB)",
             "DESCRIPTION": "או גרור ושחרר קבצי וידאו"
         },
         "UPLOAD_PROGRESS_BAR": {
@@ -114,7 +114,7 @@
             "PROCESSING": "הסרטון עדיין בתהליך העיבוד."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "פורסם ב{{date}} בשעה {{time}} על יד {{user}}"
+            "PUBLISH_DATE": "פורסם ב{{date}} בשעה {{time}} על ידי {{user}}"
         },
         "WATCH_DESCRIPTION": {
             "SHOW_MORE": "הצג יותר",
@@ -262,7 +262,8 @@
             "UNKNOWN": "תקלה לא ידועה",
             "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין",
             "VIDEO_NOT_FOUND": "הסרטון לא נמצא",
-            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים"
+            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים",
+            "FILE_SIZE_TOO_BIG": "גודל הקובץ חורג מהגודל המותר"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "סרטון נמחק בהצלחה"
