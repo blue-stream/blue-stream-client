@@ -48,6 +48,7 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish",
             "SAVE": "Save",
+            "CLASSIFICATION_WARNING": "Please pay attention to the video's classification!",
             "CLASSIFICATION_SOURCE": "Source",
             "PP": "Audience",
             "VISIBILITY": {
