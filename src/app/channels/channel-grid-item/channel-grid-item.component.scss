@@ -9,6 +9,7 @@
         border-radius: 100px;
         margin: auto;
         transition: 500ms;
+        cursor: pointer;
         &:hover {
             transform: scale(1.05);
         }
