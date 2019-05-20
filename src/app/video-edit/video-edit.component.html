@@ -1,6 +1,6 @@
 <div id="video-edit">
   <mat-card fxLayout="column" *ngIf="video">
-    <bs-video-edit-header [video]="video"></bs-video-edit-header>
+    <bs-video-edit-header [isEdit]="true" [video]="video"></bs-video-edit-header>
     <bs-video-form [video]="video" (videoSavedEvent)="onVideoPublish($event)"></bs-video-form>
   </mat-card>
 </div>

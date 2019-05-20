@@ -22,6 +22,8 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   routeIdSubscription: any;
   channelId: string;
   uploadSuccessStatus: FileUploadStatus = FileUploadStatus.Success;
+  reuploadedVideoId: string;
+  isFilePickerDisabled: boolean;
 
   constructor(
     private fileUploaderService: FileUploaderService,
@@ -34,10 +36,13 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   }
 
   ngOnInit() {
+    this.fileUploaderService.clearQueue();
     this.videoUploadQueue = this.fileUploaderService.getQueue();
     this.routeIdSubscription = this.route.params.subscribe(params => {
       if (params.id) {
         this.channelId = params.id;
+      } else if (params.videoId) {
+        this.reuploadedVideoId = params.videoId;
       }
     });
   }
@@ -52,8 +57,8 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
       const executedRegex = fileTypeRegex.exec(file.type);
 
       if (!executedRegex ||
-          executedRegex[fileTypeRegexGorupIndex] !== 'video' ||
-          environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex]) === -1) {
+        executedRegex[fileTypeRegexGorupIndex] !== 'video' ||
+        environment.supportedFileFormats.indexOf(executedRegex[fileExtensionRegexGroupIndex]) === -1) {
         const errorMessageTranslation: string = 'SNACK_BARS.ERRORS.UNKNOWN_FILE_TYPE';
         const okTranslation: string = 'SNACK_BARS.CONFIRM.OK';
 
@@ -74,7 +79,15 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
         channel: this.channelId,
       };
 
-      videosToUpload.push(this.videoService.create(video));
+      if (this.reuploadedVideoId) {
+        this.videoService.reupload(this.reuploadedVideoId).subscribe(res => {
+          this.fileUploaderService.addToQueue(file, this.reuploadedVideoId, res.token, true);
+          this.fileUploaderService.uploadAll();
+          this.isFilePickerDisabled = true;
+        });
+      } else {
+        videosToUpload.push(this.videoService.create(video));
+      }
     });
 
     forkJoin(videosToUpload).subscribe(videos => {

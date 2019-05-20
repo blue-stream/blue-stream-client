@@ -9,6 +9,11 @@ const routes: Routes = [
     path: ':id',
     component: VideoUploaderComponent,
     canDeactivate: [CanDeactivateGuard],
+  },
+  {
+    path: 'reupload/:videoId',
+    component: VideoUploaderComponent,
+    canDeactivate: [CanDeactivateGuard],
   }
 ];
 

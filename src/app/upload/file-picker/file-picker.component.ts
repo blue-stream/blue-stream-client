@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter, ElementRef, Input } from '@angular/core';
 import { FileUploaderService } from '../file-uploader.service';
 import { Observable } from 'rxjs/Observable';
 import { FileUpload } from '../file-upload';
@@ -11,6 +11,7 @@ import { FileUpload } from '../file-upload';
 })
 export class FilePickerComponent {
 
+  @Input() isMultiFile: boolean = true;
   uploadQueue: Observable<FileUpload[]>;
   @Output() private filesSelected: EventEmitter<FileList>;
   @ViewChild('fileInput') fileInput: ElementRef;

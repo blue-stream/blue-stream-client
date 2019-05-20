@@ -9,6 +9,8 @@ import { Video } from '../../shared/models/video.model';
 export class VideoEditHeaderComponent implements OnInit {
 
   @Input() video: Video;
+  @Input() isEdit: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
