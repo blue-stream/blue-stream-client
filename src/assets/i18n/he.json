@@ -27,7 +27,8 @@
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "בחר קבצים להעלאה (עד 2GB)",
-            "DESCRIPTION": "או גרור ושחרר קבצי וידאו"
+            "DESCRIPTION": "או גרור ושחרר קבצי וידאו",
+            "FORMAT_DESCRIPTION": "בכל פורמט רצוי"
         },
         "UPLOAD_PROGRESS_BAR": {
             "DONE": "בוצע",
@@ -225,6 +226,15 @@
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "הפעל",
+                "PAUSE": "השהה",
+                "MUTE": "השתק",
+                "CANCEL_MUTE": "בטל השתקה",
+                "SETTINGS": "הגדרות",
+                "CINEMA_MODE": "מצב קולנוע",
+                "DEFAULT_MODE": "תצוגת ברירת מחדל",
+                "FULL_SCREEN": "מסך מלא",
+                "EXIT_FULL_SCREEN": "צא ממסך מלא",
                 "CAPTURE": "צלם תמונה",
                 "DOWNLOAD": "הורד סירטון",
                 "SPEED": "מהירות",

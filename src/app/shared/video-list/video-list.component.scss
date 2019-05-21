@@ -16,7 +16,7 @@
         }
         button[mat-mini-fab] {
             position: absolute;
-            top: 25%;
+            top: 18%;
             z-index: 100;
             &#left-button {
                 left: -18px;
@@ -24,6 +24,12 @@
             &#right-button {
                 right: -18px;
             }
+        }
+        #chevron-right-icon {
+            margin-bottom: 3px;
+        }
+        #chevron-left-icon {
+            margin-bottom: 3px;
         }
     }
 }

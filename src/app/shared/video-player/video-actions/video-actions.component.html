@@ -1,14 +1,20 @@
 <div id="video-actions" fxLayout="row" fxLayoutAlign="center center">
   <button mat-icon-button (click)="toggleVideoClick()" [ngSwitch]="playing">
-    <mat-icon *ngSwitchCase="false">play_arrow</mat-icon>
-    <mat-icon *ngSwitchCase="true">pause</mat-icon>
+    <mat-icon *ngSwitchCase="false" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.PLAY' | translate">play_arrow
+    </mat-icon>
+    <mat-icon *ngSwitchCase="true" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.PAUSE' | translate">pause
+    </mat-icon>
   </button>
   <div fxLayout="row" id="volume" fxLayoutAlign="center center">
     <button mat-icon-button (click)="mute()" [ngSwitch]="true">
-      <mat-icon *ngSwitchCase="volume === 0">volume_off</mat-icon>
-      <mat-icon *ngSwitchCase="volume > 0 && volume < 0.2">volume_mute</mat-icon>
-      <mat-icon *ngSwitchCase="volume >= 0.2 && volume < 0.6">volume_down</mat-icon>
-      <mat-icon *ngSwitchCase="volume >= 0.6">volume_up</mat-icon>
+      <mat-icon *ngSwitchCase="volume === 0" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.CANCEL_MUTE' | translate">
+        volume_off</mat-icon>
+      <mat-icon *ngSwitchCase="volume > 0 && volume < 0.2"
+        [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.MUTE' | translate">volume_mute</mat-icon>
+      <mat-icon *ngSwitchCase="volume >= 0.2 && volume < 0.6"
+        [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.MUTE' | translate">volume_down</mat-icon>
+      <mat-icon *ngSwitchCase="volume >= 0.6" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.MUTE' | translate">
+        volume_up</mat-icon>
     </button>
     <mat-slider min="0" max="1" step="0.05" [value]="volume" (input)="volumeSliderChange($event)"></mat-slider>
   </div>
@@ -17,16 +23,21 @@
     <span>{{secondsToTime(duration)}}</span>
   </div>
   <span fxFlex></span>
-  <button mat-icon-button dir="ltr" [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)" (menuClosed)="onMenuToggle(false)">
+  <button mat-icon-button dir="ltr" [matMenuTriggerFor]="videoMenu" (menuOpened)="onMenuToggle(true)"
+    (menuClosed)="onMenuToggle(false)" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.SETTINGS' | translate">
     <mat-icon>settings</mat-icon>
   </button>
   <button mat-icon-button *ngIf="!fullscreen" [ngSwitch]="isWideScreen" (click)="onToggleWideScreen()">
-    <mat-icon *ngSwitchCase="false">crop_landscape</mat-icon>
-    <mat-icon *ngSwitchCase="true">crop_3_2</mat-icon>
+    <mat-icon *ngSwitchCase="false" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.CINEMA_MODE' | translate">
+      crop_landscape</mat-icon>
+    <mat-icon *ngSwitchCase="true" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.DEFAULT_MODE' | translate">crop_3_2
+    </mat-icon>
   </button>
   <button mat-icon-button (click)="toggleFullscreenClick()" [ngSwitch]="fullscreen">
-    <mat-icon *ngSwitchCase="false">fullscreen</mat-icon>
-    <mat-icon *ngSwitchCase="true">fullscreen_exit</mat-icon>
+    <mat-icon *ngSwitchCase="false" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.FULL_SCREEN' | translate">
+      fullscreen</mat-icon>
+    <mat-icon *ngSwitchCase="true" [matTooltip]="'SHARED.VIDEO_PLAYER.VIDEO_ACTIONS.EXIT_FULL_SCREEN' | translate">
+      fullscreen_exit</mat-icon>
   </button>
 </div>
 

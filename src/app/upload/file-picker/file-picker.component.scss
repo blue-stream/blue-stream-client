@@ -30,12 +30,21 @@
         }
     }
     &.highlight {
-        border-radius: 4px;
-        border: 1px dashed mat-color($app-primary);
-        .upload-icon-container {
-            background-color: mat-color($app-primary);
-            transform: scale(1.03);
-        }
+        background: 
+            linear-gradient(90deg,mat-color($app-primary) 50%, transparent 50%),
+            linear-gradient(0deg, mat-color($app-primary) 50%, transparent 50%),
+            linear-gradient(90deg, mat-color($app-primary) 50%, transparent 50%),
+            linear-gradient(0deg, mat-color($app-primary) 50%, transparent 50%);
+        background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+        background-size: 15px 2px, 2px 15px, 15px 2px, 2px 15px;
+        background-position: left top, right top, left bottom, left top;
+        border-radius: 5px;
+        // border: 10px dashed mat-color($app-primary);
+        animation: border 15s infinite linear;
+    }
+    .upload-container:hover > .upload-icon-container{
+        background-color: mat-color($app-primary);
+        transform: scale(1.03);
     }
     #title {
         font-size: 1.3rem;
@@ -44,4 +53,19 @@
     #description {
         font-size: 0.9rem;
     }
+    #format-description {
+        font-size: 0.9rem;
+        margin-top: 3px;
+    }
+}
+@keyframes border 
+{
+  0%
+  {
+    background-position: left top, right top, right bottom, left bottom;
+  }
+  100% 
+  {
+    background-position: right top, right bottom, left bottom, left top;
+  }
 }

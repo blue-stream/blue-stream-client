@@ -27,7 +27,8 @@
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "(Select files to upload (up to 2GB",
-            "DESCRIPTION": "Or drag and drop video files"
+            "DESCRIPTION": "Or drag and drop video files",
+            "FORMAT_DESCRIPTION": "in any format"
         },
         "UPLOAD_PROGRESS_BAR": {
             "DONE": "Done",
@@ -49,7 +50,7 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish",
             "SAVE": "Save",
-            "CLASSIFICATION_WARNING": "Please pay attention to the video's classification!",
+            "CLASSIFICATION_WARNING": "!Please pay attention to the video's classification",
             "CLASSIFICATION_SOURCE": "Source",
             "PP": "Audience",
             "VISIBILITY": {
@@ -228,6 +229,15 @@
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "Play",
+                "PAUSE": "Pause",
+                "MUTE": "Mute",
+                "CANCEL_MUTE": "Cancel mute",
+                "SETTINGS": "Settings",
+                "CINEMA_MODE": "Cinema mode",
+                "DEFAULT_MODE": "Default mode",
+                "FULL_SCREEN": "Full screen",
+                "EXIT_FULL_SCREEN": "Exit full screen",
                 "CAPTURE": "Capture image",
                 "DOWNLOAD": "Download video",
                 "SPEED": "Speed",
