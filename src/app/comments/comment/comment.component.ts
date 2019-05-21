@@ -21,6 +21,7 @@ export class CommentComponent implements OnInit {
   isLoadingReplies: boolean = false;
   userId: string;
   userFirstName: string;
+  userLink: string;
 
   constructor(private commentService: CommentService) { }
 
@@ -34,6 +35,8 @@ export class CommentComponent implements OnInit {
     } else {
       this.userId = this.comment.user as string;
     }
+
+    this.userLink = `/channels/profile/${this.userId}`;
   }
 
   getTimeAgo(): string {

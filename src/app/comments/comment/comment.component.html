@@ -2,15 +2,16 @@
   <div id="info-container">
     <bs-avatar [userId]="userId" id="user-profile-image" [source]="userId"></bs-avatar>
     <div id="comment-info">
-      <a id="user-link" href="">{{userFirstName}}</a>
+      <a id="user-link" [href]="userLink">{{userFirstName}}</a>
       <span id="date">{{timeAgo}}</span>
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
-  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="false" (replyClicked)="showReplyForm = !showReplyForm"
-    [comment]="comment"></bs-comment-action-buttons>
+  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="false"
+    (replyClicked)="showReplyForm = !showReplyForm" [comment]="comment"></bs-comment-action-buttons>
   <div id="reply-form-container" *ngIf="showReplyForm">
-    <bs-comment-form (commentSubmitted)="onCommentSubmitted()" [parent]="comment.id" [resource]="comment.resource"></bs-comment-form>
+    <bs-comment-form (commentSubmitted)="onCommentSubmitted()" [parent]="comment.id" [resource]="comment.resource">
+    </bs-comment-form>
   </div>
   <div id="replies-container" *ngIf="comment.repliesAmount">
     <button mat-button [ngSwitch]="showReplies" (click)="onShowReplies()" id="replies-expander">
@@ -25,7 +26,7 @@
     </button>
     <div id="replies" *ngIf="showReplies">
       <div *ngIf="!isLoadingReplies; else loadingReplies">
-          <bs-comment-replies [comments]="replies"></bs-comment-replies>
+        <bs-comment-replies [comments]="replies"></bs-comment-replies>
       </div>
       <ng-template #loadingReplies>
         <mat-spinner></mat-spinner>
