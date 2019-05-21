@@ -21,6 +21,10 @@ const routes: Routes = [
     loadChildren: './watch/watch.module#WatchModule'
   },
   {
+    path: 'embed',
+    loadChildren: './embed/embed.module#EmbedModule'
+  },
+  {
     path: 'upload',
     loadChildren: './upload/upload.module#UploadModule',
   },
