@@ -226,6 +226,15 @@
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "הפעל",
+                "PAUSE": "השהה",
+                "MUTE": "השתק",
+                "CANCEL_MUTE": "בטל השתקה",
+                "SETTINGS": "הגדרות",
+                "CINEMA_MODE": "מצב קולנוע",
+                "DEFAULT_MODE": "תצוגת ברירת מחדל",
+                "FULL_SCREEN": "מסך מלא",
+                "EXIT_FULL_SCREEN": "צא ממסך מלא",
                 "CAPTURE": "צלם תמונה",
                 "DOWNLOAD": "הורד סירטון",
                 "SPEED": "מהירות",

@@ -229,6 +229,15 @@
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "Play",
+                "PAUSE": "Pause",
+                "MUTE": "Mute",
+                "CANCEL_MUTE": "Cancel mute",
+                "SETTINGS": "Settings",
+                "CINEMA_MODE": "Cinema mode",
+                "DEFAULT_MODE": "Default mode",
+                "FULL_SCREEN": "Full screen",
+                "EXIT_FULL_SCREEN": "Exit full screen",
                 "CAPTURE": "Capture image",
                 "DOWNLOAD": "Download video",
                 "SPEED": "Speed",
