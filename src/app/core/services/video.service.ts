@@ -50,7 +50,7 @@ export class VideoService {
   }
 
   reupload(id: string): Observable<{ token: string }> {
-    return this.httpClient.put<{ token: string }>(`${this.serviceUrl}${this.apiUrl}/${id}/reupload`, httpOptions);
+    return this.httpClient.put<{ token: string }>(`${this.serviceUrl}${this.apiUrl}/reupload/${id}`, httpOptions);
   }
 
   delete(id: string) {
