@@ -20,7 +20,7 @@ export class CommentComponent implements OnInit {
   timeAgo: string;
   isLoadingReplies: boolean = false;
   userId: string;
-  userFirstName: string;
+  userFullName: string;
 
   constructor(private commentService: CommentService) { }
 
@@ -29,10 +29,20 @@ export class CommentComponent implements OnInit {
 
     if ((this.comment.user as User).id) {
       this.userId = (this.comment.user as User).id;
-      this.userFirstName = (this.comment.user as User).firstName ?
-        (this.comment.user as User).firstName : this.userId;
+      this.setUserFullName();
     } else {
       this.userId = this.comment.user as string;
+    }
+  }
+
+  setUserFullName() {
+    const firstName = (this.comment.user as User).firstName;
+    const lastName = (this.comment.user as User).lastName;
+
+    if (firstName && lastName) {
+      this.userFullName = `${firstName} ${lastName}`;
+    } else {
+      this.userFullName = (this.comment.user as User).id;
     }
   }
 
