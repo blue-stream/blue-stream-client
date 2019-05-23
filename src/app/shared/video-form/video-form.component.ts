@@ -35,6 +35,8 @@ export class VideoFormComponent implements OnInit {
   @Input() video: Partial<Video>;
   @Input() disabled: boolean = false;
   @Output() videoSavedEvent: EventEmitter<string> = new EventEmitter();
+  @Output() formChangedEvent: EventEmitter<void> = new EventEmitter();
+
 
   videoSaved = false;
   videoForm: FormGroup;
@@ -57,6 +59,7 @@ export class VideoFormComponent implements OnInit {
       switchMap((term: string) => this.loadPps(term)),
     );
     this.createForm();
+    this.videoForm.valueChanges.subscribe(data => this.formChangedEvent.emit());
   }
 
   loadSources(term: string): Observable<Classification[]> {
