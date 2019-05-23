@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VideoService } from './services/video.service';
 import { ChannelService } from './services/channel.service';
 import { CommentService } from './services/comment.service';
+import { EmbedService } from './services/embed.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { CommentService } from './services/comment.service';
     VideoService,
     ChannelService,
     CommentService,
+    EmbedService,
   ]
 })
 export class CoreModule { }

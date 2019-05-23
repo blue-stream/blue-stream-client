@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { flatMap } from 'rxjs/operators';
 import { ViewsService } from '../core/services/views.service';
 import { Video } from '../shared/models/video.model';
-import fscreen from 'fscreen';
+import { EmbedService } from '../core/services/embed.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'bs-embed',
@@ -21,9 +22,11 @@ export class EmbedComponent implements OnInit {
     private videoService: VideoService,
     private route: ActivatedRoute,
     private viewService: ViewsService,
+    private embedService: EmbedService,
     ) { }
 
   ngOnInit() {
+    this.embedService.embedVideoRequested.next();
     this.routeIdSubscription = this.route.params.pipe(
       flatMap(params => {
         const id = params.id;

@@ -1,5 +1,5 @@
 <div *ngIf="isBrowserSupported; else browser_not_supported" class="container" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar *ngIf="isToolbarDisplayed" color="primary" class="toolbar">
     <button mat-icon-button (click)="sideNav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>

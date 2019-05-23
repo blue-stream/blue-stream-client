@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { defaultRouteConfig, routeConfig, SideNavMode } from './route-specific.config';
 import { UserService } from './shared/user.service';
 import { User } from './shared/models/user.model';
+import { EmbedService } from './core/services/embed.service';
 
 @Component({
   selector: 'bs-root',
@@ -16,6 +17,7 @@ import { User } from './shared/models/user.model';
 export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   isSideNavOpen: boolean = true;
+  isToolbarDisplayed: boolean = true;
   isBrowserSupported: boolean;
   currentUser: User;
 
@@ -26,7 +28,8 @@ export class AppComponent implements OnDestroy {
     media: MediaMatcher,
     translate: TranslateService,
     public userService: UserService,
-    private router: Router
+    private router: Router,
+    private embedService: EmbedService,
   ) {
     translate.setDefaultLang('en');
     translate.use('he');
@@ -42,10 +45,19 @@ export class AppComponent implements OnDestroy {
       localStorage.removeItem('callbackPath');
       this.router.navigate([callbackPath]);
     }
+
+    this.embedService.embedVideoRequested.subscribe(() => {
+      this.hideBars();
+    });
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  hideBars() {
+    this.isSideNavOpen = false;
+    this.isToolbarDisplayed = false;
   }
 
   getSideNavMode(): SideNavMode {
