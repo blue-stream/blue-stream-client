@@ -3,7 +3,7 @@
     <div #videoList id="video-list" *ngIf="videos && videos.length > 0; else noVideos">
       <button mat-mini-fab id="left-button" (click)="clickLeft()"
         *ngIf="mode === 'horizontal' && ((dir.value === 'rtl' && endIndex < videos.length) || (dir.value === 'ltr' && startIndex > 0))">
-        <mat-icon>chevron_left</mat-icon>
+        <mat-icon id="chevron-left-icon">chevron_left</mat-icon>
       </button>
       <div id="scroll-container" [class.vertical]="mode === 'vertical'"
         [style.white-space]="mode === 'horizontal' ? 'nowrap' : 'normal'"
@@ -13,7 +13,7 @@
       </div>
       <button mat-mini-fab id="right-button" (click)="clickRight()"
         *ngIf="mode === 'horizontal' && ((dir.value === 'ltr' && endIndex  < videos.length) || (dir.value === 'rtl' && startIndex > 0))">
-        <mat-icon>chevron_right</mat-icon>
+        <mat-icon id="chevron-right-icon">chevron_right</mat-icon>
       </button>
     </div>
     <ng-template #noVideos>

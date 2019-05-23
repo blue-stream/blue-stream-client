@@ -2,11 +2,11 @@
   <div id="info-container">
     <bs-avatar [userId]="userId" id="user-profile-image" [source]="userId"></bs-avatar>
     <div id="comment-info">
-      <a id="user-link" href="">{{userFirstName}}</a>
+      <a id="user-link" [routerLink]="['/channels/profile', userId]">{{userFullName}}</a>
       <span id="date">{{timeAgo}}</span>
       <p id="comment-text">{{comment.text}}</p>
     </div>
   </div>
-  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="true"
-    [comment]="comment"></bs-comment-action-buttons>
+  <bs-comment-action-buttons (deleteClicked)="onDelete()" [isReply]="true" [comment]="comment">
+  </bs-comment-action-buttons>
 </div>

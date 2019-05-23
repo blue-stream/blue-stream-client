@@ -6,7 +6,7 @@
       matInput>
 
       <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let channel of channels | async" [value]="channel.name" (click)="onType(searchBox.value)">
+          <mat-option *ngFor="let channel of channels | async" [value]="channel.name" (click)="onType(searchBox.value);onSubmit()">
             {{channel.name}}
           </mat-option>
       </mat-autocomplete>
