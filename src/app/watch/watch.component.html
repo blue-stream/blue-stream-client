@@ -1,15 +1,15 @@
 <div id="container" *ngIf="video" [ngClass]="{'wide-video-container':isVideoWide}">
   <bs-video-player id="video-player" (toggleWideScreen)="isVideoWide = !isVideoWide" [video]="video"></bs-video-player>
-  <div id="video-info">
+  <div id="video-info" class="slider-bug-fixer">
     <bs-watch-alert-message [status]="video.status" *ngIf="video.status !== videoReady"></bs-watch-alert-message>
     <bs-watch-primary-info [video]="video"></bs-watch-primary-info>
     <bs-watch-secondary-info [video]="video"></bs-watch-secondary-info>
   </div>
-  <div id="other-videos-container" *ngIf="!isLoadingRecommended; else loadingRecommended">
+  <div id="other-videos-container" class="slider-bug-fixer" *ngIf="!isLoadingRecommended; else loadingRecommended">
     <bs-video-list *ngIf="recommendedVideos.length > 0" mode="vertical" [videos]="recommendedVideos"></bs-video-list>
   </div>
   <ng-template #loadingRecommended>
-      <mat-spinner></mat-spinner>
+      <mat-spinner class="slider-bug-fixer"></mat-spinner>
    </ng-template>
-  <bs-comments [videoId]="video.id"></bs-comments>
+  <bs-comments class="slider-bug-fixer" [videoId]="video.id"></bs-comments>
 </div>
