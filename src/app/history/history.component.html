@@ -1,0 +1,22 @@
+<div id="container">
+    <div>
+        <bs-video-list 
+            *ngIf="videos && videos.length > 0; else noVideos" 
+            [videos]="videos" 
+            [mode]="'vertical'"
+            infiniteScroll 
+            [infiniteScrollDistance]="2" 
+            [infiniteScrollThrottle]="150" 
+            (scrolled)="onScroll()"
+            [fromRoot]="true" 
+            [infiniteScrollContainer]="'#side-nav-container'">
+        </bs-video-list>
+        <ng-template #noVideos>
+            <bs-no-videos-found *ngIf="videoFilter && videoFilter.channel"
+                [message]="'CHANNEL.VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
+            <bs-no-videos-found *ngIf="videoFilter && videoFilter.owner"
+                [message]="'CHANNEL.USER_VIDEOS.NO_VIDEOS' | translate"></bs-no-videos-found>
+        </ng-template>
+    </div>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>

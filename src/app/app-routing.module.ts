@@ -38,6 +38,10 @@ const routes: Routes = [
     canActivate: [ CanSysAdminActivateGuard ],
   },
   {
+    path: 'history',
+    loadChildren: './history/history.module#HistoryModule',
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
   },
