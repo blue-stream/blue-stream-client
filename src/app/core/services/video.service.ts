@@ -21,7 +21,7 @@ const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video/';
 const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail/';
 const previewApiUrl: string = streamerServiceUrl + 'api/streamer/preview/';
 
-const concatStreamerUrl = video => {
+export const concatStreamerUrl = video => {
   video.contentPath = contentApiUrl.concat(video.contentPath);
   video.thumbnailPath = thumbnailApiUrl.concat(video.thumbnailPath);
   video.previewPath = previewApiUrl.concat(video.previewPath);
