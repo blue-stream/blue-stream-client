@@ -22,6 +22,7 @@ export class VideoTileComponent implements OnInit {
 
   ngOnInit() {
     this.setImage(this.video.thumbnailPath);
+
     if (this.video && this.video.channel && (this.video.channel as Channel).name) {
       this.channelName = (this.video.channel as Channel).name;
     }
