@@ -13,19 +13,50 @@ export class HistoryComponent implements OnInit {
 
   constructor(private viewsService: ViewsService) { }
 
-  viewedVideos: { user: string, amount: number, updatedAt: string, video: Video }[];
   videos: Video[] = [];
+  videosToLoad: number = 20;
+  isLoading: boolean = false;
 
   ngOnInit() {
-    this.loadHistory();
+    this.loadNextVideos();
   }
 
-  loadHistory() {
-    this.viewsService.getUserViews(0, 20).subscribe(views => {
-      this.viewedVideos = views;
-      this.viewedVideos = this.viewedVideos.filter(viewedVideo => viewedVideo.video);
-      this.videos = this.viewedVideos.map(viewedVideo => concatStreamerUrl(viewedVideo.video));
-      console.log(this.viewedVideos);
+  loadHistory(startIndex: number, amountToLoad: number) {
+    const endIndex: number = startIndex + amountToLoad;
+
+    this.viewsService.getUserViews(startIndex, endIndex).subscribe(views => {
+      const viewedVideos: { user: string, amount: number, lastViewDate: string, video: Video }[] = views;
+      this.isLoading = false;
+
+      const newVideos = viewedVideos.map(viewedVideo => {
+        if (viewedVideo.video) {
+          return {
+            ...concatStreamerUrl(viewedVideo.video),
+            userWatchCount: viewedVideo.amount,
+            lastViewDate: viewedVideo.lastViewDate,
+          };
+        } else {
+          return {
+            userWatchCount: viewedVideo.amount,
+            lastViewDate: viewedVideo.lastViewDate,
+          };
+        }
+      });
+
+      this.videos = this.videos.concat(newVideos);
+
+    }, (error) => {
+      this.isLoading = false;
     });
+  }
+
+  loadNextVideos() {
+    this.loadHistory(
+      this.videos.length,
+      this.videosToLoad);
+  }
+
+  onScroll() {
+    this.loadNextVideos();
   }
 }
