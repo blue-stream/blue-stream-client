@@ -1,8 +1,6 @@
 import { Component, ViewChild, Output, EventEmitter, ElementRef, Input } from '@angular/core';
-import { FileUploaderService } from '../file-uploader.service';
 import { Observable } from 'rxjs/Observable';
 import { FileUpload } from '../file-upload';
-
 
 @Component({
   selector: 'bs-file-picker',
@@ -13,18 +11,18 @@ export class FilePickerComponent {
 
   @Input() isMultiFile: boolean = true;
   uploadQueue: Observable<FileUpload[]>;
-  @Output() private filesSelected: EventEmitter<FileList>;
+  @Output() private filesSelected: EventEmitter<File[]>;
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor() {
-    this.filesSelected = new EventEmitter<FileList>();
+    this.filesSelected = new EventEmitter<File[]>();
   }
 
   openFileBrowser() {
     this.fileInput.nativeElement.click();
   }
 
-  onFilesSelected(files: FileList) {
+  onFilesSelected(files: File[]) {
     this.filesSelected.emit(files);
   }
 }

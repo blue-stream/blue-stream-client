@@ -1,4 +1,4 @@
-<div id="file-picker" bsFileDrop (filesSelected)="onFilesSelected($event)" (click)="openFileBrowser()">
+<div id="file-picker" bsFileDrop [isMultiFile]="isMultiFile" (filesSelected)="onFilesSelected($event)" (click)="openFileBrowser()">
   <input #fileInput [multiple]="isMultiFile" type="file" accept="video/*" class="file-upload" (change)="onFilesSelected(fileInput.files)" />
   <div class="upload-container" >
     <div class="upload-icon-container mat-elevation-z4">

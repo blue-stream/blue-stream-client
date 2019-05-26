@@ -47,12 +47,12 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
     });
   }
 
-  filesSelected(files: FileList) {
+  filesSelected(files: File[]) {
     const videosToUpload = [];
     const fileTypeRegex: RegExp = new RegExp(/(.*)\.(\w+)$/);
     const fileExtensionRegexGroupIndex: number = 2;
 
-    Array.from(files).forEach(file => {
+    files.forEach(file => {
       const executedRegex = fileTypeRegex.exec(file.name);
 
       if (!executedRegex ||
