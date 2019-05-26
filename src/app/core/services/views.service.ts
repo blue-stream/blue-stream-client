@@ -30,4 +30,22 @@ export class ViewsService {
   getChannelViews(id: string): Observable<number> {
     return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/channel/${id}`, httpOptions);
   }
+
+  getUserViews(startIndex: number = 0, endIndex: number = 20): Observable<any> {
+    const options = {
+      httpHeaders,
+      params: {
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+      } as { [key: string]: any },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<any>(`${this.serviceUrl}${this.apiUrl}/`, options);
+  }
 }
