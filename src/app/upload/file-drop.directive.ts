@@ -1,11 +1,12 @@
-import { Directive, HostListener, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Directive, HostListener, HostBinding, Output, EventEmitter, Input } from '@angular/core';
 
 @Directive({
   selector: '[bsFileDrop]'
 })
 export class FileDropDirective {
 
-  @Output() private filesSelected = new EventEmitter<FileList>();
+  @Input() isMultiFile: boolean = true;
+  @Output() private filesSelected = new EventEmitter<File[]>();
   @HostBinding('class') elementClass = '';
 
   constructor() { }
@@ -37,6 +38,12 @@ export class FileDropDirective {
     event.stopPropagation();
 
     this.elementClass = '';
-    this.filesSelected.emit(event.dataTransfer.files);
+    const files: File[] = Array.from(event.dataTransfer.files);
+
+    if (this.isMultiFile) {
+      this.filesSelected.emit(files);
+    } else {      
+      this.filesSelected.emit([files[0]]);
+    }
   }
 }
