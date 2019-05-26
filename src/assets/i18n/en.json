@@ -25,6 +25,9 @@
             "NEWEST": "Added recently"
         }
     },
+    "HISTORY": {
+        "TITLE": "History"
+    },
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "(Select files to upload (up to 2GB",
@@ -223,7 +226,9 @@
             "UNSUBSCRIBE": "UNSUBSCRIBE"
         },
         "VIDEO_TILE": {
-            "VIEWS": "{{views}} views"
+            "VIEWS": "{{views}} views",
+            "USER_VIEWS": " views by you {{views}} times",
+            "LAST_WATCH": "Last watched"
         },
         "CHANNEL_TILE": {
             "VIEWS": "{{views}} views"
