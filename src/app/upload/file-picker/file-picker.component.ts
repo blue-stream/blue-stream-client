@@ -22,7 +22,7 @@ export class FilePickerComponent {
     this.fileInput.nativeElement.click();
   }
 
-  onFilesSelected(files: File[]) {
-    this.filesSelected.emit(files);
+  onFilesSelected(files: File[] | FileList) {
+    this.filesSelected.emit(Array.from(files));
   }
 }
