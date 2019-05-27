@@ -38,11 +38,15 @@ export class VideoTileComponent implements OnInit {
     }
 
     if (this.isHistoryVideo) {
-      this.lastWatchTime = moment(this.video.lastViewDate).locale(this.translateService.currentLang).fromNow();
+      this.lastWatchTime = this.getTimeAgo(this.video.lastViewDate);
       this.timesWatched = this.video.userWatchCount;
     } else {
-      this.videoPublishTime = moment(this.video.publishDate).locale(this.translateService.currentLang).fromNow();
+      this.videoPublishTime = this.getTimeAgo(this.video.publishDate);
     }
+  }
+
+  private getTimeAgo(date: Date): string {
+    return moment(date).locale(this.translateService.currentLang).fromNow();
   }
 
   mouseEnter() {
