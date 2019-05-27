@@ -23,6 +23,7 @@ export class HistoryComponent implements OnInit {
 
   loadHistory(startIndex: number, amountToLoad: number) {
     const endIndex: number = startIndex + amountToLoad;
+    this.isLoading = true;
 
     this.viewsService.getUserViews(startIndex, endIndex).subscribe(views => {
       const viewedVideos: { user: string, amount: number, lastViewDate: string, video: Video }[] = views;
