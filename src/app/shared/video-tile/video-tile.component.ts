@@ -26,7 +26,9 @@ export class VideoTileComponent implements OnInit {
 
   ngOnInit() {
     if (this.isHistoryVideo && !this.video.id) {
-      this.video.title = '[Video Removed]';
+      this.translateService.get('SHARED.VIDEO_TILE.VIDEO_REMOVED').subscribe(translation => {
+        this.video.title = `[${translation}]`;
+      });
     }
 
     this.setImage(this.video.thumbnailPath);

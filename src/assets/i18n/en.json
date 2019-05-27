@@ -228,7 +228,8 @@
         "VIDEO_TILE": {
             "VIEWS": "{{views}} views",
             "USER_VIEWS": " views by you {{views}} times",
-            "LAST_WATCH": "Last watched"
+            "LAST_WATCH": "Last watched",
+            "VIDEO_REMOVED": "Video Removed"
         },
         "CHANNEL_TILE": {
             "VIEWS": "{{views}} views"
