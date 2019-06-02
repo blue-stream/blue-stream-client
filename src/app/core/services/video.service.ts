@@ -49,6 +49,10 @@ export class VideoService {
     return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}/${video.id}`, video, httpOptions);
   }
 
+  reupload(id: string): Observable<{ token: string }> {
+    return this.httpClient.put<{ token: string }>(`${this.serviceUrl}${this.apiUrl}/reupload/${id}`, httpOptions);
+  }
+
   delete(id: string) {
     return this.httpClient.delete<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
@@ -77,21 +81,21 @@ export class VideoService {
 
   getTags(startIndex?: number,
     endIndex?: number): Observable<string[]> {
-      const options = {
-        headers: httpHeaders,
-        params: {
-          startIndex: Number.isInteger(startIndex) ? startIndex.toString() : 0,
-          endIndex: Number.isInteger(endIndex) ? endIndex.toString() : 20,
-        } as { [param: string]: string | string[] },
-      };
+    const options = {
+      headers: httpHeaders,
+      params: {
+        startIndex: Number.isInteger(startIndex) ? startIndex.toString() : 0,
+        endIndex: Number.isInteger(endIndex) ? endIndex.toString() : 20,
+      } as { [param: string]: string | string[] },
+    };
 
-      Object.keys(options.params).forEach(key => {
-        if (options.params[key] === undefined) {
-          delete options.params[key];
-        }
-      });
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
 
-      return this.httpClient.get<string[]>(`${this.serviceUrl}${this.apiUrl}/tags`, options);
+    return this.httpClient.get<string[]>(`${this.serviceUrl}${this.apiUrl}/tags`, options);
   }
 
   getVideos(

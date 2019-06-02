@@ -1,4 +1,4 @@
 <div class="video-upload" *ngFor="let videoUpload of videoUploadQueue | async">
-    <bs-video-upload-form [isPublishReady]="!!videoUpload.id && videoUpload.fileUpload.status === uploadSuccessStatus" [videoUpload]="videoUpload"></bs-video-upload-form>
+    <bs-video-upload-form [isReupload]="reuploadedVideoId" [isPublishReady]="!!videoUpload.id && videoUpload.fileUpload.status === uploadSuccessStatus" [videoUpload]="videoUpload"></bs-video-upload-form>
 </div>
-<bs-file-picker (filesSelected)="filesSelected($event)"></bs-file-picker>
+<bs-file-picker *ngIf="!isFilePickerDisabled" [isMultiFile]="!reuploadedVideoId" (filesSelected)="filesSelected($event)"></bs-file-picker>

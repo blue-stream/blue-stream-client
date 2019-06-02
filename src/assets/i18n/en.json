@@ -54,6 +54,7 @@
             "CLASSIFICATION_WARNING": "!Please pay attention to the video's classification",
             "CLASSIFICATION_SOURCE": "Source",
             "PP": "Audience",
+            "REUPLOAD": "Reupload Video",
             "VISIBILITY": {
                 "FIELD": "Visibility",
                 "PUBLIC": "Public",
