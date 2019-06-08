@@ -82,6 +82,12 @@
             <span matLine translate>DASHBOARD.HISTORY</span>
           </mat-list-item>
         </a>
+        <a [routerLink]="['/reactions']">
+          <mat-list-item>
+            <mat-icon matListIcon>thumbs_up_down</mat-icon>
+            <span matLine translate>DASHBOARD.USER_REACTIONS</span>
+          </mat-list-item>
+        </a>
         <a *ngIf="currentUser.isSysAdmin" routerLink="/admin">
           <mat-list-item>
             <mat-icon matListIcon>work</mat-icon>
