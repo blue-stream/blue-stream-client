@@ -92,6 +92,35 @@ export class ReactionService {
     return this.httpClient.get<TypeAmountOfResource[]>(`${this.serviceUrl}${this.apiUrl}/reaction/amount`, options);
   }
 
+  getReactedVideos(
+    reactionFilter: Partial<Reaction>,
+    startIndex?: number,
+    endIndex?: number,
+    sortOrder: '' | '-' = '-',
+    sortBy: 'updatedAt' = 'updatedAt'): Observable<Reaction[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        resource: reactionFilter.resource,
+        resourceType: reactionFilter.resourceType,
+        type: reactionFilter.type,
+        user: reactionFilter.user,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      } as { [key: string]: any },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<Reaction[]>(`${this.serviceUrl}${this.apiUrl}/user/liked/videos`, options);
+  }
+
   update(resource: string, type: ReactionType): Observable<Reaction> {
     const options = {
       httpHeaders,
