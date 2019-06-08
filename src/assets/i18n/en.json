@@ -17,7 +17,8 @@
         "USER_CHANNELS": "My Channels",
         "USER_UPLOADS": "My Uploads",
         "ADMIN_PANEL": "Admin Panel",
-        "HISTORY": "History"
+        "HISTORY": "History",
+        "USER_REACTIONS": "Liked Videos"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -28,6 +29,9 @@
     },
     "HISTORY": {
         "TITLE": "History"
+    },
+    "USER_REACTIONS": {
+        "TITLE": "Liked Videos"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
