@@ -22,7 +22,8 @@
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
-            "NEWEST": "Added recently"
+            "NEWEST": "Added recently",
+            "MOST_LIKED": "Most liked"
         }
     },
     "HISTORY": {

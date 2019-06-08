@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoConstants } from '../shared/constants';
 import { VideoSection } from '../../shared/models/video-section.model';
-import { VideoService } from '../../core/services/video.service';
+import { VideoService, concatStreamerUrl } from '../../core/services/video.service';
 import { Router } from '@angular/router';
+import { ReactionService } from 'src/app/core/services/reaction.service';
+import { ReactionType, ResourceType } from 'src/app/shared/models/reaction.model';
+import { Video } from 'src/app/shared/models/video.model';
 
 @Component({
   selector: 'bs-video-section-list',
@@ -16,7 +19,7 @@ export class VideoSectionListComponent implements OnInit {
   noVideosInSections: boolean = true;
   isLoading: boolean = true;
 
-  constructor(private router: Router, private videoService: VideoService) { }
+  constructor(private router: Router, private videoService: VideoService, private reactionService: ReactionService) { }
 
   ngOnInit() {
     this.initSections();
@@ -25,6 +28,7 @@ export class VideoSectionListComponent implements OnInit {
   initSections() {
     this.loadPopularVideos();
     this.loadNewVideos();
+    this.loadLikedVideos();
   }
 
   loadPopularVideos() {
@@ -36,7 +40,7 @@ export class VideoSectionListComponent implements OnInit {
 
     this.sections.push(section);
 
-    this.videoService.getVideos({}, 0, 10, 'views', -1 ).subscribe(videos => {
+    this.videoService.getVideos({}, 0, 10, 'views', -1).subscribe(videos => {
       section.videos = videos;
       section.isLoading = false;
       this.isLoading = false;
@@ -46,9 +50,9 @@ export class VideoSectionListComponent implements OnInit {
         this.isLoading = false;
       }
     },
-    (error) => {
-      section.isLoading = false;
-    });
+      (error) => {
+        section.isLoading = false;
+      });
   }
 
   loadNewVideos() {
@@ -60,7 +64,7 @@ export class VideoSectionListComponent implements OnInit {
 
     this.sections.push(section);
 
-    this.videoService.getVideos({}, 0, 10, 'publishDate', -1 ).subscribe(videos => {
+    this.videoService.getVideos({}, 0, 10, 'publishDate', -1).subscribe(videos => {
       section.videos = videos;
       section.isLoading = false;
       this.isLoading = false;
@@ -69,10 +73,34 @@ export class VideoSectionListComponent implements OnInit {
         this.noVideosInSections = false;
       }
     },
-    (error) => {
+      (error) => {
+        section.isLoading = false;
+        this.isLoading = false;
+      });
+  }
+
+  loadLikedVideos() {
+    const section: VideoSection = {
+      title: 'VIDEO.VIDEO_SECTION_ITEM.MOST_LIKED',
+      isDismissable: false,
+      isLoading: true,
+    };
+
+    this.sections.push(section);
+
+    this.reactionService.getAllTypesAmountsOfResource(ReactionType.Like, ResourceType.Video, 0, 10, '-').subscribe(TypeAmountOfResource => {
+      section.videos = (TypeAmountOfResource.map(typeAmount => concatStreamerUrl(typeAmount.resource)) as Video[]);
       section.isLoading = false;
       this.isLoading = false;
-    });
+
+      if (section.videos && section.videos.length > 0) {
+        this.noVideosInSections = false;
+      }
+    },
+      (error) => {
+        section.isLoading = false;
+        this.isLoading = false;
+      });
   }
 
   layoutChanged(maxVideosAllowed: number) {
