@@ -32,8 +32,6 @@ export class UserReactionsComponent implements OnInit {
       resourceType: ResourceType.Video,
     };
 
-    console.log(filter);
-
     this.reactionService.getReactedVideos(filter, startIndex, endIndex).subscribe(reactions => {
       this.isLoading = false;
       const newVideos = reactions.map(reaction => {
