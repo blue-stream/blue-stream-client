@@ -28,6 +28,8 @@ export class VideoSectionListComponent implements OnInit {
   initSections() {
     this.loadPopularVideos();
     this.loadNewVideos();
+    this.loadLikedVideos(24 * 7 , 'VIDEO.VIDEO_SECTION_ITEM.MOST_LIKED_LAST_WEEK');
+    this.loadLikedVideos(25 * 7 * 30, 'VIDEO.VIDEO_SECTION_ITEM.MOST_LIKED_LAST_MONTH');
     this.loadLikedVideos();
   }
 
@@ -79,28 +81,35 @@ export class VideoSectionListComponent implements OnInit {
       });
   }
 
-  loadLikedVideos() {
+  loadLikedVideos(timeFrameInHours?: number, title?: string) {
     const section: VideoSection = {
-      title: 'VIDEO.VIDEO_SECTION_ITEM.MOST_LIKED',
+      title: title || 'VIDEO.VIDEO_SECTION_ITEM.MOST_LIKED_ALL_TIME',
       isDismissable: false,
       isLoading: true,
     };
 
     this.sections.push(section);
 
-    this.reactionService.getAllTypesAmountsOfResource(ReactionType.Like, ResourceType.Video, 0, 10, '-').subscribe(TypeAmountOfResource => {
-      section.videos = (TypeAmountOfResource.map(typeAmount => concatStreamerUrl(typeAmount.resource)) as Video[]);
-      section.isLoading = false;
-      this.isLoading = false;
-
-      if (section.videos && section.videos.length > 0) {
-        this.noVideosInSections = false;
-      }
-    },
-      (error) => {
+    this.reactionService.getAllTypesAmountsOfResource(
+      ReactionType.Like,
+      ResourceType.Video,
+      0,
+      10,
+      '-',
+      'amount',
+      timeFrameInHours).subscribe(TypeAmountOfResource => {
+        section.videos = (TypeAmountOfResource.map(typeAmount => concatStreamerUrl(typeAmount.resource)) as Video[]);
         section.isLoading = false;
         this.isLoading = false;
-      });
+
+        if (section.videos && section.videos.length > 0) {
+          this.noVideosInSections = false;
+        }
+      },
+        (error) => {
+          section.isLoading = false;
+          this.isLoading = false;
+        });
   }
 
   layoutChanged(maxVideosAllowed: number) {

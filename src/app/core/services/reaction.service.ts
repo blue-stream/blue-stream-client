@@ -70,7 +70,8 @@ export class ReactionService {
     startIndex: number,
     endIndex: number,
     sortOrder: '' | '-' = '',
-    sortBy: 'amount' = 'amount'): Observable<TypeAmountOfResource[]> {
+    sortBy: 'amount' = 'amount',
+    timeLimitInHours?: number): Observable<TypeAmountOfResource[]> {
     const options = {
       httpHeaders,
       params: {
@@ -80,6 +81,7 @@ export class ReactionService {
         endIndex: endIndex.toString(),
         sortOrder,
         sortBy,
+        timeLimitInHours,
       } as { [key: string]: any },
     };
 

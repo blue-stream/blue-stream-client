@@ -23,7 +23,9 @@
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
             "NEWEST": "Added recently",
-            "MOST_LIKED": "Most liked"
+            "MOST_LIKED_ALL_TIME": "Most liked - All Time",
+            "MOST_LIKED_LAST_WEEK": "Most liked - Last Week",
+            "MOST_LIKED_LAST_MONTH": "Most liked - Last Month"
         }
     },
     "HISTORY": {
