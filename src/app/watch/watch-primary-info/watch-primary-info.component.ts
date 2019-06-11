@@ -46,7 +46,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
     this.loadUserPermissions();
   }
 
-  loadUserPermissions () {
+  loadUserPermissions() {
     const channelId: string = (this.video.channel as Channel).id || (this.video.channel as string);
 
     this.permissionsService.getOne(channelId).subscribe(channelPermissions => {
@@ -106,5 +106,14 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
           this.router.navigate(['/']);
         });
       });
+  }
+
+  onShareVideo() {
+    const subject: string = 'סרטון מעניין שמצאתי';
+    const body: string = `${window.location.href} צפה בסרטון הבא:`;
+    const openedWindow = window.open(`mailto:?subject=${subject}&body=${body}`, 'emailWindow');
+    if (openedWindow && openedWindow.open && !openedWindow.closed) {
+      openedWindow.close();
+    }
   }
 }
