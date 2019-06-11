@@ -25,6 +25,9 @@
             "NEWEST": "נוספו לאחרונה"
         }
     },
+    "HISTORY": {
+        "TITLE": "היסטוריית צפיות"
+    },
     "UPLOADER": {
         "FILE_UPLOADER": {
             "TITLE": "בחר קבצים להעלאה (עד 2GB)",
@@ -224,7 +227,10 @@
             "UNSUBSCRIBE": "בטל עקיבה"
         },
         "VIDEO_TILE": {
-            "VIEWS": "{{views}} צפיות"
+            "VIEWS": "{{views}} צפיות",
+            "USER_VIEWS": "נצפה {{views}} פעמים על ידך",
+            "LAST_WATCH": "נצפה לאחרונה",
+            "VIDEO_REMOVED": "הסרטון נמחק"
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {

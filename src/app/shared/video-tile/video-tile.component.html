@@ -13,11 +13,17 @@
         <div [fxLayout]="description ? 'row wrap' : 'column'">
           <span id="video-channel" *ngIf="channelName">{{channelName}}</span>
           <div id="seperator" *ngIf="description"><span></span></div>
-          <div id="video-statistics">
+          <div *ngIf="!isHistoryVideo; else userViewDetails" id="video-statistics">
             <span translate [translateParams]="{views: video.views}">SHARED.VIDEO_TILE.VIEWS</span>
             <span *ngIf="video.publishDate">{{videoPublishTime}}</span>
           </div>
-          <div fxLayout="row" fxLayoutGap="4px">
+          <ng-template #userViewDetails>
+            <div id="video-statistics">
+              <span translate [translateParams]="{views: timesWatched}">SHARED.VIDEO_TILE.USER_VIEWS</span>
+              <span *ngIf="lastWatchTime">{{ 'SHARED.VIDEO_TILE.LAST_WATCH' | translate}} {{lastWatchTime}}</span>
+            </div>
+          </ng-template>
+          <div fxLayout="row" fxLayoutGap="4px" *ngIf="!isHistoryVideo">
             <mat-icon class="status" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.PRIVATE_VIDEO' | translate"
               *ngIf="!video.published">lock
             </mat-icon>

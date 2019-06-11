@@ -14,6 +14,7 @@ export class VideoListComponent implements OnInit, DoCheck {
   showNextButton = true;
   startIndex = 0;
   endIndex = 0;
+  @Input() isHistoryList: boolean = false;
   @Input() videos: Video[];
   @Input() description = false;
   @Input() mode: 'grid' | 'horizontal' | 'vertical';
