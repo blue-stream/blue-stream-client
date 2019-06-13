@@ -14,7 +14,6 @@
       </g>
     </svg>
     <bs-search></bs-search>
-    <bs-language-switcher></bs-language-switcher>
     <a mat-icon-button routerLink="/channels/create" [matTooltip]="'TOP_BAR.CREATE_CHANNEL' | translate">
       <mat-icon>add_to_queue</mat-icon>
     </a>
@@ -86,6 +85,12 @@
           <mat-list-item>
             <mat-icon matListIcon>thumbs_up_down</mat-icon>
             <span matLine translate>DASHBOARD.USER_REACTIONS</span>
+          </mat-list-item>
+        </a>
+        <a [routerLink]="['/settings']">
+          <mat-list-item>
+            <mat-icon matListIcon>settings</mat-icon>
+            <span matLine translate>DASHBOARD.SETTINGS</span>
           </mat-list-item>
         </a>
         <a *ngIf="currentUser.isSysAdmin" routerLink="/admin">
