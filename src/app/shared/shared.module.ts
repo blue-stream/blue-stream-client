@@ -37,7 +37,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
-import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ChannelListComponent } from './channel-list/channel-list.component';
@@ -110,7 +109,6 @@ import { PopularTagsComponent } from './popular-tags/popular-tags.component';
     SearchComponent,
     SafeUrlPipe,
     SubscribeButtonComponent,
-    LanguageSwitcherComponent,
     ReactiveFormsModule,
     MatExpansionModule,
     ChannelListComponent,
@@ -134,7 +132,6 @@ import { PopularTagsComponent } from './popular-tags/popular-tags.component';
     ReactionComponent,
     SearchComponent,
     SubscribeButtonComponent,
-    LanguageSwitcherComponent,
     ChannelListComponent,
     ChannelTileComponent,
     VideoFormComponent,

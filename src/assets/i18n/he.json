@@ -18,7 +18,8 @@
         "USER_UPLOADS": "העלאות שלי",
         "ADMIN_PANEL": "מנהלים",
         "HISTORY": "היסטוריה",
-        "USER_REACTIONS": "סרטונים שאהבתי"
+        "USER_REACTIONS": "סרטונים שאהבתי",
+        "SETTINGS": "הגדרות"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -34,6 +35,9 @@
     },
     "USER_REACTIONS": {
         "TITLE": "סרטונים אהובים"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "שפה"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

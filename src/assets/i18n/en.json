@@ -18,7 +18,8 @@
         "USER_UPLOADS": "My Uploads",
         "ADMIN_PANEL": "Admin Panel",
         "HISTORY": "History",
-        "USER_REACTIONS": "Liked Videos"
+        "USER_REACTIONS": "Liked Videos",
+        "SETTINGS": "Settings"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -34,6 +35,9 @@
     },
     "USER_REACTIONS": {
         "TITLE": "Liked Videos"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "Language"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
