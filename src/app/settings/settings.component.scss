@@ -1,0 +1,11 @@
+#settings-inputs-container {
+    margin: 20px;
+
+    .settings-option {
+        display: flex;
+
+        bs-language-switcher {
+            margin: 0px 10px;
+        }
+    }
+}

@@ -17,7 +17,9 @@
         "USER_CHANNELS": "הערוצים שלי",
         "USER_UPLOADS": "העלאות שלי",
         "ADMIN_PANEL": "מנהלים",
-        "HISTORY": "היסטוריה"
+        "HISTORY": "היסטוריה",
+        "USER_REACTIONS": "סרטונים שאהבתי",
+        "SETTINGS": "הגדרות"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
@@ -30,6 +32,12 @@
     },
     "HISTORY": {
         "TITLE": "היסטוריית צפיות"
+    },
+    "USER_REACTIONS": {
+        "TITLE": "סרטונים אהובים"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "שפה"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

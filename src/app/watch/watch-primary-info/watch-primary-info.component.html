@@ -11,12 +11,12 @@
   <div id="actions-container">
     <bs-reactions [resource]="video.id" [resourceType]="resourceType" [showAmounts]="true" [showBar]=true>
     </bs-reactions>
-    <!-- <div class="action-button-container">
-      <button [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.SHARE' | translate" mat-icon-button>
+    <div class="action-button-container">
+      <button (click)="onShareVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.SHARE' | translate" mat-icon-button>
         <mat-icon>share</mat-icon>
       </button>
-      <span translate>WATCH.WATCH_PRIMARY_INFO.SHARE</span>
     </div>
+    <!--
     <div class="action-button-container">
       <button [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.ADD_PLAYLIST' | translate" mat-icon-button>
         <mat-icon>playlist_add</mat-icon>
