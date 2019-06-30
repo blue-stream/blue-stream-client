@@ -22,6 +22,8 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   routeIdSubscription: any;
   channelId: string;
   uploadSuccessStatus: FileUploadStatus = FileUploadStatus.Success;
+  reuploadedVideoId: string;
+  isFilePickerDisabled: boolean;
 
   constructor(
     private fileUploaderService: FileUploaderService,
@@ -34,20 +36,23 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
   }
 
   ngOnInit() {
+    this.fileUploaderService.clearQueue();
     this.videoUploadQueue = this.fileUploaderService.getQueue();
     this.routeIdSubscription = this.route.params.subscribe(params => {
       if (params.id) {
         this.channelId = params.id;
+      } else if (params.videoId) {
+        this.reuploadedVideoId = params.videoId;
       }
     });
   }
 
-  filesSelected(files: FileList) {
+  filesSelected(files: File[]) {
     const videosToUpload = [];
     const fileTypeRegex: RegExp = new RegExp(/(.*)\.(\w+)$/);
     const fileExtensionRegexGroupIndex: number = 2;
 
-    Array.from(files).forEach(file => {
+    files.forEach(file => {
       const executedRegex = fileTypeRegex.exec(file.name);
 
       if (!executedRegex ||
@@ -88,7 +93,37 @@ export class VideoUploaderComponent extends ComponentCanDeactivate implements On
         channel: this.channelId,
       };
 
-      videosToUpload.push(this.videoService.create(video));
+      if (this.reuploadedVideoId) {
+        this.videoService.reupload(this.reuploadedVideoId)
+        .catch((err, caught) => {
+          let message: string = 'SNACK_BARS.ERRORS.UNPREMITTED_USER';
+          let action: string = 'SNACK_BARS.BUTTONS.OK';
+
+          if (err.status === 404) {
+            message = 'SNACK_BARS.ERRORS.VIDEO_NOT_FOUND';
+            action = 'SNACK_BARS.BUTTONS.OK';
+          } else if (!err.error || err.error.type !== 'UnPremittedUserError') {
+            message = 'SNACK_BARS.ERRORS.UNKNOWN';
+            action = 'SNACK_BARS.BUTTONS.OK';
+          }
+
+          this.translateService.get([message, action]).subscribe(translations => {
+            this.snackBar.open(
+              translations[message],
+              translations[action],
+              { duration: 2000 });
+          });
+
+          return new Observable(null);
+        })
+        .subscribe(res => {
+          this.fileUploaderService.addToQueue(file, this.reuploadedVideoId, res.token, true);
+          this.fileUploaderService.uploadAll();
+          this.isFilePickerDisabled = true;
+        });
+      } else {
+        videosToUpload.push(this.videoService.create(video));
+      }
     });
 
     forkJoin(videosToUpload).subscribe(videos => {

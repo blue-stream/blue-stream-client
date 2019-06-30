@@ -53,9 +53,9 @@ export class FileUploaderService {
     return this.queue.asObservable();
   }
 
-  public addToQueue(file: File, videoId: string, videoToken: string) {
+  public addToQueue(file: File, videoId: string, videoToken: string, isReupload: boolean = false) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: isReupload };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }

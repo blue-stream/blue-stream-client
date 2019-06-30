@@ -4,4 +4,5 @@
     <img [src]="video.thumbnailPath" width="180" height="100">
   </a>
   <h3 id="video-title">{{video.title}}</h3>
+  <a mat-button *ngIf="isEdit && hasReUploadPermissions" [routerLink]="['/upload/reupload/', video.id ]">{{'UPLOADER.UPLOAD_FORM.REUPLOAD' | translate}}</a>
 </div>
