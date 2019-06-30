@@ -110,7 +110,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
 
   onShareVideo() {
     const subject: string = 'סרטון מעניין שמצאתי באמנטיוב';
-    const body: string = `צפה ב- ${this.video.title}%0D%0Aבלינק הבא: ${window.location.href}`;
+    const body: string = `צפה ב- ${encodeURIComponent(this.video.title + '\n')}בלינק הבא: ${encodeURIComponent(window.location.href)}`;
     const openedWindow = window.open(`mailto:?subject=${subject}&body=${body}`, 'emailWindow');
     if (openedWindow && openedWindow.open && !openedWindow.closed) {
       openedWindow.close();
