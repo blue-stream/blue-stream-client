@@ -12,6 +12,7 @@ import { ChannelPermissionsService } from 'src/app/channels/channel-permissions.
 import { PermissionTypes } from 'src/app/channels/user-permissions.model';
 import { Channel } from 'src/app/shared/models/channel.model';
 import 'rxjs/add/operator/catch';
+import { VideoStatus } from '../../shared/models/video.model';
 
 @Component({
   selector: 'bs-watch-primary-info',
@@ -27,6 +28,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
   canEdit: boolean = false;
   canRemove: boolean = false;
   isSysAdmin: boolean;
+  videoReady = VideoStatus.READY;
 
   constructor(
     private videoService: VideoService,
