@@ -21,7 +21,6 @@ export class Video {
   userWatchCount?: number;
   pp?: string | Classification;
   classificationSource?: string | Classification;
-  
 }
 
 export enum VideoStatus {
