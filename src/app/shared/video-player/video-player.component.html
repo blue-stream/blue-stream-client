@@ -2,7 +2,7 @@
   <span id="video-title" *ngIf="fullscreen && !hideActions">{{video.title}}</span>
   <video #videoPlayer crossorigin="anonymous" autoplay [volume]="volume" (click)="toggleVideo()"
     (dblclick)="toggleFullscreen()" (timeupdate)="updateProgress()">
-    <source [src]="video.contentPath | safeUrl">
+    <source *ngIf="video.status === videoReady" [src]="video.contentPath | safeUrl">
   </video>
   <div id="gradient-bottom">
     <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions && !isMenuOpened">
