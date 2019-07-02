@@ -61,8 +61,10 @@ export class WatchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
-    this.viewSubscription.unsubscribe();
     this.recommendedVideosSubscription.unsubscribe();
+    if (this.viewSubscription) {
+      this.viewSubscription.unsubscribe();
+    }
   }
 
 }
