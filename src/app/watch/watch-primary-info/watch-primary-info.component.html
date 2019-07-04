@@ -4,32 +4,17 @@
   </mat-icon>
 </h3>
 <div id="info-container">
-  <p *ngIf="video.status === videoReady && video.published" id="views" translate
-    [translateParams]="{views: video.views}">
+  <p id="views" translate [translateParams]="{views: video.views}">
     WATCH.WATCH_PRIMARY_INFO.VIEWS
   </p>
-  <div id="actions-container" *ngIf="!(video.status === videoReady && video.published)">
-    <div class="action-button-container">
-      <a *ngIf="canEdit || isSysAdmin" [routerLink]="['/edit',video.id]">
-        <button mat-button>
-          <mat-icon>edit</mat-icon>
-          <span translate>WATCH.WATCH_PRIMARY_INFO.EDIT</span>
-        </button>
-      </a>
-    </div>
-    <div class="action-button-container">
-      <button mat-button *ngIf="canRemove || isSysAdmin" (click)="onDeleteVideo()">
-        <mat-icon>delete</mat-icon>
-        <span translate>WATCH.WATCH_PRIMARY_INFO.DELETE.ACTION</span>
-      </button>
-    </div>
-  </div>
   <span fxFlex></span>
-  <div id="actions-container" *ngIf="video.status === videoReady && video.published">
-    <bs-reactions [resource]="video.id" [resourceType]="resourceType" [showAmounts]="true" [showBar]=true>
+  <div id="actions-container">
+    <bs-reactions [disabled]="video.status !== videoReady || !video.published" [resource]="video.id"
+      [resourceType]="resourceType" [showAmounts]="true" [showBar]=true>
     </bs-reactions>
     <div class="action-button-container">
-      <button (click)="onShareVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.SHARE' | translate" mat-icon-button>
+      <button (click)="onShareVideo()" [matTooltip]="'WATCH.WATCH_PRIMARY_INFO.SHARE' | translate"
+        [disabled]="video.status !== videoReady || !video.published" mat-icon-button>
         <mat-icon>share</mat-icon>
       </button>
     </div>

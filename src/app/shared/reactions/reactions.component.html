@@ -1,22 +1,12 @@
 <div id="actions-container">
   <div id='ratings-container'>
-    <bs-reaction class="rating"
-      [iconName]="'thumb_up'"
-      [smallIcon]="smallIcons"
-      [amount]="likesAmount"
-      [showAmount]='showAmounts'
-      [isActive]="isLike()"
-      [toolTip]="'SHARED.REACTIONS.LIKE'"
+    <bs-reaction class="rating" [disabled]="disabled" [iconName]="'thumb_up'" [smallIcon]="smallIcons"
+      [amount]="likesAmount" [showAmount]='showAmounts' [isActive]="isLike()" [toolTip]="'SHARED.REACTIONS.LIKE'"
       (reactionSubmitted)="like()">
     </bs-reaction>
-    <bs-reaction class="rating"
-      [iconName]="'thumb_down'"
-      [smallIcon]="smallIcons"
-      [amount]="dislikesAmount"
-      [showAmount]='showAmounts'
-      [isActive]="isDislike()"
-      [toolTip]="'SHARED.REACTIONS.DISLIKE'"
-      (reactionSubmitted)="dislike()">
+    <bs-reaction class="rating" [disabled]="disabled" [iconName]="'thumb_down'" [smallIcon]="smallIcons"
+      [amount]="dislikesAmount" [showAmount]='showAmounts' [isActive]="isDislike()"
+      [toolTip]="'SHARED.REACTIONS.DISLIKE'" (reactionSubmitted)="dislike()">
     </bs-reaction>
     <mat-progress-bar *ngIf="showBar" mode="determinate" value={{getLikesToDislikesRatio()}}></mat-progress-bar>
   </div>

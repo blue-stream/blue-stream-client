@@ -16,6 +16,7 @@ import 'rxjs/add/operator/catch';
 })
 export class ReactionsComponent implements OnChanges {
 
+  @Input() disabled: boolean;
   @Input() resource: string;
   @Input() resourceType: ResourceType = ResourceType.Video;
   @Input() showAmounts: boolean = true;
