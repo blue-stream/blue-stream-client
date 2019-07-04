@@ -12,4 +12,8 @@
         vertical-align: bottom;
         padding: 0 5px;
     }
+
+    &.failed {
+        background-color: #f44336;
+    }
 }

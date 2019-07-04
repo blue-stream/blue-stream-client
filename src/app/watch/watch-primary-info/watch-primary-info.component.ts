@@ -12,6 +12,7 @@ import { ChannelPermissionsService } from 'src/app/channels/channel-permissions.
 import { PermissionTypes } from 'src/app/channels/user-permissions.model';
 import { Channel } from 'src/app/shared/models/channel.model';
 import 'rxjs/add/operator/catch';
+import { VideoStatus } from '../../shared/models/video.model';
 
 @Component({
   selector: 'bs-watch-primary-info',
@@ -27,6 +28,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
   canEdit: boolean = false;
   canRemove: boolean = false;
   isSysAdmin: boolean;
+  videoReady = VideoStatus.READY;
 
   constructor(
     private videoService: VideoService,
@@ -46,7 +48,7 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
     this.loadUserPermissions();
   }
 
-  loadUserPermissions () {
+  loadUserPermissions() {
     const channelId: string = (this.video.channel as Channel).id || (this.video.channel as string);
 
     this.permissionsService.getOne(channelId).subscribe(channelPermissions => {
@@ -106,5 +108,14 @@ export class WatchPrimaryInfoComponent implements OnInit, OnChanges {
           this.router.navigate(['/']);
         });
       });
+  }
+
+  onShareVideo() {
+    const subject: string = 'סרטון מעניין שמצאתי באמנטיוב';
+    const body: string = `צפה ב- ${encodeURIComponent(this.video.title + '\n')}בלינק הבא: ${encodeURIComponent(window.location.href)}`;
+    const openedWindow = window.open(`mailto:?subject=${subject}&body=${body}`, 'emailWindow');
+    if (openedWindow && openedWindow.open && !openedWindow.closed) {
+      openedWindow.close();
+    }
   }
 }

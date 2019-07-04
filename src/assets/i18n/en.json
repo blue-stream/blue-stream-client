@@ -17,16 +17,27 @@
         "USER_CHANNELS": "My Channels",
         "USER_UPLOADS": "My Uploads",
         "ADMIN_PANEL": "Admin Panel",
-        "HISTORY": "History"
+        "HISTORY": "History",
+        "USER_REACTIONS": "Liked Videos",
+        "SETTINGS": "Settings"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
-            "NEWEST": "Added recently"
+            "NEWEST": "Added recently",
+            "MOST_LIKED_ALL_TIME": "Most liked - All Time",
+            "MOST_LIKED_LAST_WEEK": "Most liked - Last Week",
+            "MOST_LIKED_LAST_MONTH": "Most liked - Last Month"
         }
     },
     "HISTORY": {
         "TITLE": "History"
+    },
+    "USER_REACTIONS": {
+        "TITLE": "Liked Videos"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "Language"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {

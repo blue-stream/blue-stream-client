@@ -42,6 +42,14 @@ const routes: Routes = [
     loadChildren: './history/history.module#HistoryModule',
   },
   {
+    path: 'reactions',
+    loadChildren: './user-reactions/user-reactions.module#UserReactionsModule',
+  },
+  {
+    path: 'settings',
+    loadChildren: './settings/settings.module#SettingsModule',
+  },
+  {
     path: '',
     loadChildren: './video/video.module#VideoModule'
   },
