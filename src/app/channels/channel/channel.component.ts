@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, OnChanges } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { ChannelService } from "../../core/services/channel.service";
 import { Channel } from "../../shared/models/channel.model";
 import { PatternGeneratorService } from "../../shared/pattern-generator.service";
 import { UserService } from "../../shared/user.service";
-import { Location } from "@angular/common";
+import { User } from "src/app/shared/models/user.model";
+import { Subscription } from "rxjs";
+import { ChannelPermissionsService } from "../channel-permissions.service";
 
 @Component({
   selector: "bs-channel",
@@ -13,20 +15,35 @@ import { Location } from "@angular/common";
   styleUrls: ["./channel.component.scss"]
 })
 export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
-  routeIdSubscription: any;
+  routeIdSubscription: Subscription;
+  routeQuerySubscription: Subscription;
+
   channel: Partial<Channel>;
   headerImage: any;
   isUserOwner: boolean = false;
+  isUserAdmin: boolean = false;
+  selectedTabIndex: number = 0;
+  isSysAdmin: boolean;
+  user?: User;
 
   constructor(
     private userService: UserService,
+    private channelPermissionsService: ChannelPermissionsService,
     private patternGenerator: PatternGeneratorService,
     private route: ActivatedRoute,
-    private channelService: ChannelService
+    private channelService: ChannelService,
+    private router: Router,
   ) {
+    this.isSysAdmin = this.userService.currentUser.isSysAdmin;
     this.channelService.channelUpdated.subscribe(channel => {
       this.channel = channel;
       this.loadHeaderImage();
+    });
+  }
+
+  getIsUserAdmin() {
+    this.channelPermissionsService.getIsAdmin(this.channel.id).subscribe(isAdmin => {
+      this.isUserAdmin = isAdmin;
     });
   }
 
@@ -38,15 +55,25 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
         this.loadChannel(params.id);
       }
     });
+
+    this.routeQuerySubscription = this.route.queryParams.subscribe(query => {
+      this.selectedTabIndex = Number(query.tabIndex) || 0;
+    });
+  }
+
+  onTabIndexChange(event) {
+    const index: number = event.index;
+    this.router.navigate([], { queryParams: { tabIndex: index } });
   }
 
   ngOnChanges() {
     this.isUserOwner = this.channel.user === this.userService.currentUser.id;
+    this.getIsUserAdmin();
   }
 
   loadHeaderImage() {
     const source = this.channel.isProfile ? this.channel.user : this.channel.name;
-    this.headerImage = this.patternGenerator.getPatternAsUrl(source);
+    this.headerImage = this.patternGenerator.getPatternAsSafeStyle(source);
   }
 
   loadChannel(id: string) {
@@ -54,10 +81,24 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
       this.channel = channel;
       this.loadHeaderImage();
       this.isUserOwner = this.channel.user === this.userService.currentUser.id;
+
+      if (this.channel.isProfile) {
+        this.loadUser(channel.user);
+      } else {
+        this.getIsUserAdmin();
+      }
+    });
+  }
+
+  loadUser(user: string) {
+    this.userService.get(user).subscribe(returnedUser => {
+      this.user = returnedUser;
     });
   }
 
   loadUserProfile(user: string) {
+    this.loadUser(user);
+
     this.channelService
       .getMany({ user, isProfile: true }, 0, 1)
       .subscribe(userProfile => {
@@ -70,5 +111,6 @@ export class ChannelComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
+    this.routeQuerySubscription.unsubscribe();
   }
 }

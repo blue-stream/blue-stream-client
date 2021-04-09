@@ -18,8 +18,11 @@ export class CommentActionButtonsComponent implements OnInit {
   isOwner: boolean;
 
   resourceType = ResourceType.Comment;
+  isSysAdmin: boolean;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+    this.isSysAdmin = this.userService.currentUser.isSysAdmin;
+  }
 
   ngOnInit() {
     const commentsOwner = (this.comment.user as User).id ? (this.comment.user as User).id : this.comment.user;

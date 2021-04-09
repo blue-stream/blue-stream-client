@@ -1,4 +1,4 @@
-<div id="alert-message">
+<div id="alert-message" [ngClass]="{'failed': status === failed}">
     <mat-icon>warning</mat-icon>
     <span *ngIf="status === failed" translate>WATCH.WATCH_ALERT_MESSAGE.FAILED</span>
     <span *ngIf="!(status === failed)" translate>WATCH.WATCH_ALERT_MESSAGE.PROCESSING</span>

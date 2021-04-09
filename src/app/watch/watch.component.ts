@@ -20,8 +20,9 @@ export class WatchComponent implements OnInit, OnDestroy {
   ) { }
 
   video: Video & { token: string };
-  videoSubscription: any;
+  viewSubscription: any;
   routeIdSubscription: any;
+  recommendedVideosSubscription: any;
   recommendedVideos: Video[];
   isVideoWide: boolean = false;
   videoReady = VideoStatus.READY;
@@ -31,34 +32,39 @@ export class WatchComponent implements OnInit, OnDestroy {
     this.routeIdSubscription = this.route.params.pipe(
       flatMap(params => {
         const id = params.id;
-        return this.viewService.increaseView(id).map(() => id);
+        return this.videoService.getVideo(id).map(video => this.video = video);
       })
-    ).subscribe((videoId: string) => {
-      this.loadRecommendedVideos(videoId);
-      this.loadVideoInfo(videoId);
+    ).subscribe(() => {
+      this.loadRecommendedVideos(this.video.id);
+      if (this.video.published && this.video.status === this.videoReady) {
+        this.increaseView();
+      }
     });
   }
 
   loadRecommendedVideos(id: string) {
     this.isLoadingRecommended = true;
 
-    this.videoService.getVideos({})
-    .subscribe(videos => {
-      this.recommendedVideos = videos.filter( video => video.id !== id );
-      this.isLoadingRecommended = false;
-    },
-    (error) => {
-      this.isLoadingRecommended = false;
-    });
+    this.recommendedVideosSubscription = this.videoService.getVideos({})
+      .subscribe(videos => {
+        this.recommendedVideos = videos.filter(video => video.id !== id);
+        this.isLoadingRecommended = false;
+      },
+        (error) => {
+          this.isLoadingRecommended = false;
+        });
   }
 
-  loadVideoInfo(id: string) {
-    this.videoSubscription = this.videoService.getVideo(id).subscribe(video => this.video = video);
+  increaseView() {
+    this.viewSubscription = this.viewService.increaseView(this.video.id).subscribe();
   }
 
   ngOnDestroy() {
     this.routeIdSubscription.unsubscribe();
-    this.videoSubscription.unsubscribe();
+    this.recommendedVideosSubscription.unsubscribe();
+    if (this.viewSubscription) {
+      this.viewSubscription.unsubscribe();
+    }
   }
 
 }

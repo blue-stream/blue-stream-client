@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators, ValidationErrors, } from '@angular/forms';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
-import { ENTER } from '@angular/cdk/keycodes';
+import { ENTER, SINGLE_QUOTE } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Video } from 'src/app/shared/models/video.model';
 import { environment } from '../../../environments/environment';
@@ -15,6 +15,7 @@ import {
 } from 'rxjs/operators';
 import { CrossFieldErrorMatcher } from './CrossFieldErrorMatcher';
 import { VideoService } from 'src/app/core/services/video.service';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-video-form',
@@ -34,10 +35,12 @@ export class VideoFormComponent implements OnInit {
   @Input() video: Partial<Video>;
   @Input() disabled: boolean = false;
   @Output() videoSavedEvent: EventEmitter<string> = new EventEmitter();
+  @Output() formChangedEvent: EventEmitter<void> = new EventEmitter();
+
 
   videoSaved = false;
   videoForm: FormGroup;
-  separatorKeysCodes = [ENTER];
+  separatorKeysCodes = [ENTER, SINGLE_QUOTE];
   errorMatcher = new CrossFieldErrorMatcher();
   sourceTyped: Subject<string> = new Subject<string>();
   ppTyped: Subject<string> = new Subject<string>();
@@ -56,6 +59,7 @@ export class VideoFormComponent implements OnInit {
       switchMap((term: string) => this.loadPps(term)),
     );
     this.createForm();
+    this.videoForm.valueChanges.subscribe(data => this.formChangedEvent.emit());
   }
 
   loadSources(term: string): Observable<Classification[]> {
@@ -93,7 +97,7 @@ export class VideoFormComponent implements OnInit {
       ]),
       description: this.fb.control(this.video.description || '',
         Validators.maxLength(environment.descriptionMaxLength)),
-      tags: this.fb.array(this.video.tags || []),
+      tags: this.fb.array(this.video.tags || [], this.tagsValidator),
       published: this.fb.control(this.video.published || true, [
         Validators.required
       ]),
@@ -106,6 +110,16 @@ export class VideoFormComponent implements OnInit {
         this.ppValidator]
       ),
     }, { validator: this.classificationValidator });
+  }
+
+  tagsValidator = (control: AbstractControl): ValidationErrors | null => {
+    const tagsCountLimit = 20;
+    const tagLimit = 45;
+    const tags: Array<string> = control.value;
+    if (tags.length > tagsCountLimit) { return { 'tooManyTags': true }; }
+    if ((new Set(tags)).size !== tags.length) { return { 'duplicateTags': true }; }
+    if (tags.length > 0 && tags.filter(t => t.length > tagLimit).length !== 0) { return { 'tagTooLong': true }; }
+    return null;
   }
 
   sourceValidator = (control: AbstractControl): ValidationErrors | null => {
@@ -138,11 +152,22 @@ export class VideoFormComponent implements OnInit {
 
     if ((value || '').trim()) {
       const tags = this.videoForm.get('tags') as FormArray;
-      tags.push(this.fb.control(value.trim()));
+      if (tags.value.indexOf(value.trim()) === -1) {
+        tags.push(this.fb.control(value.trim()));
+      }
     }
 
     if (input) {
       input.value = '';
+    }
+  }
+
+  addPopularTag(tag: string): void {
+    if ((tag || '').trim()) {
+      const tags = this.videoForm.get('tags') as FormArray;
+      if (tags.value.indexOf(tag.trim()) === -1) {
+        tags.push(this.fb.control(tag.trim()));
+      }
     }
   }
 
@@ -170,7 +195,10 @@ export class VideoFormComponent implements OnInit {
         let message: string = 'SNACK_BARS.ERRORS.UNPREMITTED_USER';
         let action: string = 'SNACK_BARS.BUTTONS.OK';
 
-        if (err.error.type !== 'UnPremittedUserError') {
+        if (err.status === 404) {
+          message = 'SNACK_BARS.ERRORS.VIDEO_NOT_FOUND';
+          action = 'SNACK_BARS.BUTTONS.OK';
+        } else if (!err.error || err.error.type !== 'UnPremittedUserError') {
           message = 'SNACK_BARS.ERRORS.UNKNOWN';
           action = 'SNACK_BARS.BUTTONS.OK';
         }

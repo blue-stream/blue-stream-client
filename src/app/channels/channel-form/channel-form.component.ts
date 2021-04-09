@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/shared/user.service';
 import { PatternGeneratorService } from 'src/app/shared/pattern-generator.service';
 import { TranslateService } from '@ngx-translate/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'bs-channel-form',
@@ -19,7 +20,7 @@ export class ChannelFormComponent implements OnChanges, OnInit {
 
   isEditForm: boolean = false;
   channelForm: FormGroup;
-  channelImage: string;
+  channelImage: any;
 
   constructor(
     private patternGenerator: PatternGeneratorService,
@@ -27,6 +28,7 @@ export class ChannelFormComponent implements OnChanges, OnInit {
     private fb: FormBuilder,
     private channelService: ChannelService,
     private translateService: TranslateService,
+    private sanitizer: DomSanitizer,
     public snackBar: MatSnackBar) {}
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class ChannelFormComponent implements OnChanges, OnInit {
 
   changeImage() {
     const channelName: string = this.channelForm.get('name').value.trim();
-    this.channelImage = this.patternGenerator.getPatternAsUrl(channelName);
+    this.channelImage = this.sanitizer.bypassSecurityTrustStyle(this.patternGenerator.getPatternAsUrl(channelName));
   }
 
   createForm() {
@@ -98,6 +100,11 @@ export class ChannelFormComponent implements OnChanges, OnInit {
         });
 
       this.closeForm.emit();
+    },
+    (error) => {
+      if (error.error.type === 'DuplicateNameError') {
+        this.displayDuplicateChannelMessage();
+      }
     });
   }
 
@@ -112,7 +119,24 @@ export class ChannelFormComponent implements OnChanges, OnInit {
             { duration: 2000 });
         });
       this.closeForm.emit(retChannel.id);
-    });
+    },
+      (error) => {
+        if (error.error.type === 'DuplicateNameError') {
+          this.displayDuplicateChannelMessage();
+        }
+      }
+    );
+  }
+
+  displayDuplicateChannelMessage() {
+    this.translateService.get([
+      'SNACK_BARS.ERRORS.DUPLICATE_CHANNEL',
+      'SNACK_BARS.CONFIRM.OK']).subscribe(translations => {
+        this.snackBar.open(
+          translations['SNACK_BARS.ERRORS.DUPLICATE_CHANNEL'],
+          translations['SNACK_BARS.CONFIRM.OK'],
+          { duration: 2000 });
+      });
   }
 
   cancel() {

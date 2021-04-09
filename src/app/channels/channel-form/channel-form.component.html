@@ -1,4 +1,4 @@
-<div id="channel-image-display" [ngStyle]="{'background-image': channelImage}"></div>
+<div id="channel-image-display" [style.background-image]="channelImage"></div>
 <form [formGroup]="channelForm" (ngSubmit)="onSubmit()">
   <div id="input-container">
     <mat-form-field appearance="outline" id="name-input">
@@ -7,7 +7,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline" id="description-input">
       <mat-label>{{'CHANNEL.FORM.DESCRIPTION_INPUT' | translate}}</mat-label>
-      <input autocomplete="off" matInput formControlName="description" placeholder="{{'CHANNEL.FORM.DESCRIPTION_INPUT' | translate}}">
+      <textarea autocomplete="off" matInput formControlName="description" placeholder="{{'CHANNEL.FORM.DESCRIPTION_INPUT' | translate}}"></textarea>
     </mat-form-field>
   </div>
 
@@ -20,6 +20,6 @@
         {{'CHANNEL.FORM.CREATE'| translate}}
       </ng-template>
     </button>
-    <button id="cancel-button" (click)="cancel()" mat-button>{{'CHANNEL.FORM.CANCEL' | translate}}</button>
+    <button type="button" id="cancel-button" (click)="cancel()" mat-button>{{'CHANNEL.FORM.CANCEL' | translate}}</button>
   </div>
 </form>

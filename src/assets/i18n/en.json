@@ -1,24 +1,49 @@
 {
     "APP": {
-        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 57 or higher"
+        "BROWSER_NOT_SUPPORTED": "Your browser is not supported, please download chrome 62 or higher"
+    },
+    "TOP_BAR": {
+        "CREATE_VIDEO": "Upload a video",
+        "CREATE_CHANNEL": "Create a channel",
+        "PROFILE": "Profile"
     },
     "DASHBOARD": {
         "HOME": "Home",
         "POPULAR": "Popular",
         "SEARCH_RESULTS": "Search Results",
         "SUBSCRIPTIONS": "Subscriptions",
-        "ALL_CHANNELS": "All Channels",
-        "USER_CHANNELS": "My Channels"
+        "ALL_CHANNELS": "Channels",
+        "ALL_PROFILES": "Profiles",
+        "USER_CHANNELS": "My Channels",
+        "USER_UPLOADS": "My Uploads",
+        "ADMIN_PANEL": "Admin Panel",
+        "HISTORY": "History",
+        "USER_REACTIONS": "Liked Videos",
+        "SETTINGS": "Settings"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "Most viewed",
-            "NEWEST": "Added recently"        }
+            "NEWEST": "Added recently",
+            "MOST_LIKED_ALL_TIME": "Most liked - All Time",
+            "MOST_LIKED_LAST_WEEK": "Most liked - Last Week",
+            "MOST_LIKED_LAST_MONTH": "Most liked - Last Month"
+        }
+    },
+    "HISTORY": {
+        "TITLE": "History"
+    },
+    "USER_REACTIONS": {
+        "TITLE": "Liked Videos"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "Language"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
-            "TITLE": "Select files to upload",
-            "DESCRIPTION": "Or drag and drop video files"
+            "TITLE": "(Select files to upload (up to 2GB",
+            "DESCRIPTION": "Or drag and drop video files",
+            "FORMAT_DESCRIPTION": "in any format"
         },
         "UPLOAD_PROGRESS_BAR": {
             "DONE": "Done",
@@ -40,8 +65,10 @@
             "TAGS": "Tags",
             "PUBLISH": "Publish",
             "SAVE": "Save",
+            "CLASSIFICATION_WARNING": "!Please pay attention to the video's classification",
             "CLASSIFICATION_SOURCE": "Source",
             "PP": "Audience",
+            "REUPLOAD": "Reupload Video",
             "VISIBILITY": {
                 "FIELD": "Visibility",
                 "PUBLIC": "Public",
@@ -105,14 +132,24 @@
             "PROCESSING": "This video is still being processed."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "Published at {{date}} by {{user}}"
+            "PUBLISH_DATE": "Published at {{date}} {{time}} by "
+        },
+        "WATCH_DESCRIPTION": {
+            "SHOW_MORE": "Show more",
+            "SHOW_LESS": "Show less"
         },
         "WATCH_PRIMARY_INFO": {
             "PRIVATE_VIDEO": "Private video",
             "VIEWS": "{{views}} views",
             "SHARE": "Share",
             "ADD_PLAYLIST": "Add to playlist",
-            "EDIT": "Edit"
+            "EDIT": "Edit",
+            "DELETE": {
+                "CONFIRM_MESSAGE": "Are you sure you want to delete the video?",
+                "ACTION": "Delete",
+                "DELETE_SUCCESS": "Video deleted successfully",
+                "DELETE_SUCCESS_APPROVAL": "OK"
+            }
         }
     },
     "CHANNEL": {
@@ -124,10 +161,11 @@
         },
         "VIDEOS": {
             "TAB_LABEL": "VIDEOS",
+            "TAB_LABEL_PROFILE": "CHANNEL VIDEOS",
             "NO_VIDEOS": "This channel has no videos."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "MY UPLOADED VIDEOS",
+            "TAB_LABEL": "USER UPLOADS",
             "NO_VIDEOS": "This user haven't upload any videos yet."
         },
         "CHANNELS": {
@@ -187,21 +225,38 @@
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "Owner"
+        },
+        "CHANNEL_HEADER": {
+            "PROFILE_CHIP": "User Profile"
         }
     },
     "SHARED": {
+        "USEFUL_TAGS": "Popular tags",
+        "RECOMMENDED_TAGS": "Recommended tags",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "SUBSCRIBE",
             "UNSUBSCRIBE": "UNSUBSCRIBE"
         },
         "VIDEO_TILE": {
-            "VIEWS": "{{views}} views"
+            "VIEWS": "{{views}} views",
+            "USER_VIEWS": " views by you {{views}} times",
+            "LAST_WATCH": "Last watched",
+            "VIDEO_REMOVED": "Video Removed"
         },
         "CHANNEL_TILE": {
             "VIEWS": "{{views}} views"
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "Play",
+                "PAUSE": "Pause",
+                "MUTE": "Mute",
+                "CANCEL_MUTE": "Cancel mute",
+                "SETTINGS": "Settings",
+                "CINEMA_MODE": "Cinema mode",
+                "DEFAULT_MODE": "Default mode",
+                "FULL_SCREEN": "Full screen",
+                "EXIT_FULL_SCREEN": "Exit full screen",
                 "CAPTURE": "Capture image",
                 "DOWNLOAD": "Download video",
                 "SPEED": "Speed",
@@ -221,6 +276,14 @@
             "TRY_DIFFERENT_KEYWORDS": "Try different keywords or remove search filters"
         }
     },
+    "ADMIN_PANEL": {
+        "CHANNELS_AMOUNT": "Channels amount",
+        "PROFILES_AMOUNT": "Profiles amount",
+        "VIDEOS_AMOUNT": "Videos amount",
+        "COMMENTS_AMOUNT": "Comments amount",
+        "SYSADMINS_AMOUNT": "Sysadmins amount",
+        "USERS_AMOUNT": "Users amount"
+    },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "You have unsaved changes, are you sure you want to leave this page?"
@@ -229,7 +292,11 @@
     "SNACK_BARS": {
         "ERRORS": {
             "UNPREMITTED_USER": "You do not have permissions to perform this action",
-            "UNKNOWN": "Unknown Error"
+            "UNKNOWN": "Unknown Error",
+            "UNKNOWN_FILE_TYPE": "Unknown file type",
+            "VIDEO_NOT_FOUND": "Video was not found",
+            "DUPLICATE_CHANNEL": "A channel with this name already exist",
+            "FILE_SIZE_TOO_BIG": "File's size is bigger than the permitted size"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "Video was deleted succesfully"

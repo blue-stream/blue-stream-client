@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Comment } from '../models/comment.model';
 
@@ -7,14 +7,11 @@ import { Comment } from '../models/comment.model';
   templateUrl: './comment-list.component.html',
   styleUrls: ['./comment-list.component.scss']
 })
-export class CommentListComponent implements OnInit {
+export class CommentListComponent {
   @Input() comments: Comment[] = [];
-  @Input() isReplyList: boolean = false;
   @Output() deleteComment: EventEmitter<string> = new EventEmitter();
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() { }
 
   onDelete(commentId: string) {
     this.deleteComment.emit(commentId);

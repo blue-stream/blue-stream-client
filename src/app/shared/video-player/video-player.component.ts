@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { Video } from '../models/video.model';
+import { VideoStatus } from '../../shared/models/video.model';
+
 
 @Component({
   selector: 'bs-video-player',
@@ -28,6 +30,7 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
   hideActions: boolean = false;
   isMenuOpened: boolean = false;
   fullscreen: boolean = false;
+  videoReady = VideoStatus.READY;
   volume: number;
   progress;
   buffer;
@@ -150,7 +153,7 @@ export class VideoPlayerComponent implements OnInit, OnChanges {
       asArray[i] = data.charCodeAt(i);
     }
 
-    const blob = new Blob([asArray.buffer], { type: 'image/jpeg' });
+    const blob = new Blob([asArray.buffer as any], { type: 'image/jpeg' });
     const imageUrl = window.URL.createObjectURL(blob);
     saveAs(blob, `${this.video.title}-${this.videoPlayer.nativeElement.currentTime}.jpeg`);
 

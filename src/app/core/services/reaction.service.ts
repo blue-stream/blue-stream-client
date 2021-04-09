@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reaction, ReactionType } from '../../shared/models/reaction.model';
+import { Reaction, ReactionType, ResourceType } from '../../shared/models/reaction.model';
 
 import { environment } from '../../../environments/environment';
+import { Video } from 'src/app/shared/models/video.model';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -18,6 +19,12 @@ interface TypeAmount {
   types: {
     [id: string]: number
   };
+}
+
+interface TypeAmountOfResource {
+  resource: string | Video | Comment;
+  type: ReactionType;
+  amount: number;
 }
 
 @Injectable({
@@ -55,6 +62,65 @@ export class ReactionService {
 
   getAmountOfTypes(resource: string): Observable<TypeAmount> {
     return this.httpClient.get<TypeAmount>(`${this.serviceUrl}${this.apiUrl}/${resource}/amounts`, httpOptions);
+  }
+
+  getAllTypesAmountsOfResource(
+    type: ReactionType,
+    resourceType: ResourceType,
+    startIndex: number,
+    endIndex: number,
+    sortOrder: '' | '-' = '',
+    sortBy: 'amount' = 'amount',
+    timeLimitInHours?: number): Observable<TypeAmountOfResource[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        type,
+        resourceType,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+        timeLimitInHours,
+      } as { [key: string]: any },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<TypeAmountOfResource[]>(`${this.serviceUrl}${this.apiUrl}/reaction/amount`, options);
+  }
+
+  getReactedVideos(
+    reactionFilter: Partial<Reaction>,
+    startIndex?: number,
+    endIndex?: number,
+    sortOrder: '' | '-' = '-',
+    sortBy: 'updatedAt' = 'updatedAt'): Observable<Reaction[]> {
+    const options = {
+      httpHeaders,
+      params: {
+        resource: reactionFilter.resource,
+        resourceType: reactionFilter.resourceType,
+        type: reactionFilter.type,
+        user: reactionFilter.user,
+        startIndex: startIndex.toString(),
+        endIndex: endIndex.toString(),
+        sortOrder,
+        sortBy,
+      } as { [key: string]: any },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<Reaction[]>(`${this.serviceUrl}${this.apiUrl}/user/liked/videos`, options);
   }
 
   update(resource: string, type: ReactionType): Observable<Reaction> {

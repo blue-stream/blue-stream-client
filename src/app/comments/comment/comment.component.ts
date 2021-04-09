@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../models/comment.model';
-import { CommentService } from '../comment.service';
+import { CommentService } from '../../core/services/comment.service';
 import * as moment from 'moment';
 import { User } from 'src/app/shared/models/user.model';
 
@@ -12,7 +12,6 @@ import { User } from 'src/app/shared/models/user.model';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
-  @Input() isReply: boolean = false;
   @Output() deleteComment: EventEmitter<string> = new EventEmitter();
 
   replies: Comment[] = [];
@@ -21,7 +20,7 @@ export class CommentComponent implements OnInit {
   timeAgo: string;
   isLoadingReplies: boolean = false;
   userId: string;
-  userFirstName: string;
+  userFullName: string;
 
   constructor(private commentService: CommentService) { }
 
@@ -30,10 +29,20 @@ export class CommentComponent implements OnInit {
 
     if ((this.comment.user as User).id) {
       this.userId = (this.comment.user as User).id;
-      this.userFirstName = (this.comment.user as User).firstName ?
-        (this.comment.user as User).firstName : this.userId;
+      this.setUserFullName();
     } else {
       this.userId = this.comment.user as string;
+    }
+  }
+
+  setUserFullName() {
+    const firstName = (this.comment.user as User).firstName;
+    const lastName = (this.comment.user as User).lastName;
+
+    if (firstName && lastName) {
+      this.userFullName = `${firstName} ${lastName}`;
+    } else {
+      this.userFullName = (this.comment.user as User).id;
     }
   }
 
@@ -57,11 +66,7 @@ export class CommentComponent implements OnInit {
   }
 
   onDelete() {
-    if (this.isReply) {
-      this.commentService.commentRemoved.next(this.comment.id);
-    } else {
-      this.deleteComment.emit(this.comment.id);
-    }
+    this.deleteComment.emit(this.comment.id);
   }
 
   loadReplies() {
@@ -70,8 +75,8 @@ export class CommentComponent implements OnInit {
       this.replies = replies;
       this.isLoadingReplies = false;
     },
-    (error) => {
-      this.isLoadingReplies = false;
-    });
+      (error) => {
+        this.isLoadingReplies = false;
+      });
   }
 }

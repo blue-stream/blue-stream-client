@@ -1,5 +1,14 @@
 <div id="description">
   <div>{{ text }}</div>
+  <div id="tags-container">
+    <mat-chip-list>
+      <mat-chip id="tag-chip" [routerLink]="['/results']" [queryParams]="{ search_query: tag }"
+        *ngFor="let tag of tags | slice: 0:(expandDescription ? tags.length : amountOfTagsToShowInWatchPage)">{{ tag }}
+      </mat-chip>
+    </mat-chip-list>
+    <button *ngIf="tags.length > amountOfTagsToShowInWatchPage" id="show-more" mat-button
+      (click)="expandDescription = !expandDescription">{{'WATCH.WATCH_DESCRIPTION.' + (expandDescription ? 'SHOW_LESS' : 'SHOW_MORE') | translate}}</button>
+  </div>
   <div id="classification" *ngIf="source || pp">
     <div class="classification" fxLayout="row" *ngIf="source">
       <span class="name" translate>UPLOADER.UPLOAD_FORM.CLASSIFICATION_SOURCE</span>

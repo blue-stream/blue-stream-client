@@ -1,17 +1,20 @@
-<div id="video-container" (mousemove)="mouseMove.next(undefined)" dir="ltr">
+<div id="video-container" (mousemove)="mouseMove.next(undefined)" dir="ltr" [style.cursor]="hideActions ? 'none' : ''">
   <span id="video-title" *ngIf="fullscreen && !hideActions">{{video.title}}</span>
-  <video #videoPlayer crossorigin="anonymous" autoplay [volume]="volume" (click)="toggleVideo()" (dblclick)="toggleFullscreen()"
-    (timeupdate)="updateProgress()">
-    <source [src]="video.contentPath | safeUrl">
+  <video #videoPlayer crossorigin="anonymous" autoplay [volume]="volume" (click)="toggleVideo()"
+    (dblclick)="toggleFullscreen()" (timeupdate)="updateProgress()">
+    <source *ngIf="video.status === videoReady" [src]="video.contentPath | safeUrl">
   </video>
   <div id="gradient-bottom">
     <div id="video-actions" fxLayout="column" [class.hidden]="!videoPlayer.paused && hideActions && !isMenuOpened">
-      <bs-video-progress [value]="progress" [buffer]="buffer" [duration]="videoPlayer.duration" (progressChanged)="onProgressChanged($event)"
-        (progressChangeStart)="onProgressChangeStart()" (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
-      <bs-video-actions [playing]="!videoPlayer.paused" [fullscreen]="fullscreen" [currentTime]="videoPlayer.currentTime" [duration]="videoPlayer.duration"
-        [volume]="videoPlayer.volume" [playbackRate]="videoPlayer.playbackRate" (volumeChange)="volumeChange($event)" (speedChange)="speedChange($event)"
-        (toggleWideScreen)="toggleWideScreen.next($event)" (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()"
-        (toggleMenu)="onToggleMenu($event)" (captureImage)="onCaptureImage()" (downloadVideo)="onDownloadVideo()"></bs-video-actions>
+      <bs-video-progress [value]="progress" [buffer]="buffer" [duration]="videoPlayer.duration"
+        (progressChanged)="onProgressChanged($event)" (progressChangeStart)="onProgressChangeStart()"
+        (progressChangeEnd)="onProgressChangeEnd()"></bs-video-progress>
+      <bs-video-actions [playing]="!videoPlayer.paused" [fullscreen]="fullscreen"
+        [currentTime]="videoPlayer.currentTime" [duration]="videoPlayer.duration" [volume]="videoPlayer.volume"
+        [playbackRate]="videoPlayer.playbackRate" (volumeChange)="volumeChange($event)"
+        (speedChange)="speedChange($event)" (toggleWideScreen)="toggleWideScreen.next($event)"
+        (toggleFullscreen)="toggleFullscreen()" (toggleVideo)="toggleVideo()" (toggleMenu)="onToggleMenu($event)"
+        (captureImage)="onCaptureImage()" (downloadVideo)="onDownloadVideo()"></bs-video-actions>
     </div>
   </div>
 </div>

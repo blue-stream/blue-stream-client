@@ -7,6 +7,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { UserService } from '../user.service';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'bs-reactions',
@@ -15,6 +16,7 @@ import { UserService } from '../user.service';
 })
 export class ReactionsComponent implements OnChanges {
 
+  @Input() disabled: boolean;
   @Input() resource: string;
   @Input() resourceType: ResourceType = ResourceType.Video;
   @Input() showAmounts: boolean = true;

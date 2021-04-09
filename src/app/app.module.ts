@@ -17,6 +17,7 @@ import { CanDeactivateGuard } from './core/can-deactivate/can-deactivate.guard';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from './shared/user.service';
+import { CanSysAdminActivateGuard } from './core/guards/can-sysadmin-activate.guard';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -27,6 +28,12 @@ export function authenticateUser(userService: UserService) {
   return () => {
     if (userService.isAuthenticated) {
       return Promise.resolve(true);
+    }
+
+    const currPath = document.location.pathname + document.location.search;
+
+    if (currPath && currPath !== '/' && typeof (Storage) !== 'undefined') {
+      localStorage.setItem('callbackPath', currPath);
     }
 
     document.location.href = `${environment.authenticationServiceUrl}auth/login`;
@@ -57,6 +64,7 @@ export function authenticateUser(userService: UserService) {
     MediaMatcher,
     CookieService,
     CanDeactivateGuard,
+    CanSysAdminActivateGuard,
     { provide: OverlayContainer, useClass: FullscreenOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: APP_INITIALIZER, useFactory: authenticateUser, multi: true, deps: [UserService] }

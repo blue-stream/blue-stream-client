@@ -17,6 +17,8 @@ export class Video {
   tags?: string[];
   published?: boolean;
   publishDate: Date;
+  lastViewDate?: Date;
+  userWatchCount?: number;
   pp?: string | Classification;
   classificationSource?: string | Classification;
 }

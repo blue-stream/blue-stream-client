@@ -24,6 +24,7 @@ export class ChannelsComponent implements OnInit {
   searchFilter: string = '';
   isLoading: boolean = false;
   urlSubscription: any;
+  isSysAdmin: boolean;
 
   constructor(
     private channelService: ChannelService,
@@ -32,6 +33,8 @@ export class ChannelsComponent implements OnInit {
     private channelPermissions: ChannelPermissionsService) { }
 
   ngOnInit() {
+    this.isSysAdmin = this.userService.currentUser.isSysAdmin;
+
     this.urlSubscription = this.route.url.subscribe(url => {
       const urlString = url.pop();
       if (urlString) {
@@ -50,25 +53,41 @@ export class ChannelsComponent implements OnInit {
     } else if (url === 'upload') {
       this.channelFilter = {};
       this.isSelectForUpload = true;
+    } else if (url === 'profiles') {
+      this.channelFilter = { isProfile: true };
     } else if (url === '') {
-      this.channelFilter = {};
+      this.channelFilter = { isProfile: false };
     }
+  }
+
+  loadAllChannels(startIndex: number, endIndex: number) {
+    this.channelService.getMany({}, startIndex, endIndex).subscribe((channels: Channel[]) => {
+      if (startIndex === 0) {
+        this.channels = channels;
+      } else {
+        this.channels = this.channels.concat(channels);
+      }
+    });
   }
 
   loadPremittedChannels(startIndex: number, channelsToLoad: number) {
     const endIndex: number = startIndex + channelsToLoad;
 
-    this.channelPermissions
-      .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
-      .subscribe((channelPermissions: any) => {
-        const channels = channelPermissions.map(channelPermission => channelPermission.channel);
+    if (this.isSysAdmin) {
+      this.loadAllChannels(startIndex, endIndex);
+    } else {
+      this.channelPermissions
+        .getUserPermittedChannels([PermissionTypes.Admin, PermissionTypes.Upload], this.searchFilter, startIndex, endIndex)
+        .subscribe((channelPermissions: any) => {
+          const channels = channelPermissions.map(channelPermission => channelPermission.channel);
 
-        if (startIndex === 0) {
-          this.channels = channels;
-        } else {
-          this.channels = this.channels.concat(channels);
-        }
-      });
+          if (startIndex === 0) {
+            this.channels = channels;
+          } else {
+            this.channels = this.channels.concat(channels);
+          }
+        });
+    }
   }
 
   onScroll() {
@@ -97,8 +116,8 @@ export class ChannelsComponent implements OnInit {
       this.channels = this.channels.concat(channels);
       this.isLoading = false;
     },
-    (error) => {
-      this.isLoading = false;
-    });
+      (error) => {
+        this.isLoading = false;
+      });
   }
 }

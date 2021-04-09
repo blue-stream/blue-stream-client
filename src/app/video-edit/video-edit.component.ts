@@ -18,7 +18,8 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
   }
 
   video: Video;
-  videoSaved = false;
+  videoSaved: boolean = true;
+  formChanged: boolean = false;
   routeIdSubscription: any;
   videoSubscription: any;
 
@@ -45,5 +46,10 @@ export class VideoEditComponent extends ComponentCanDeactivate implements OnInit
 
   onVideoPublish() {
     this.videoSaved = true;
+  }
+
+  onVideoFormChange() {
+    this.formChanged = true;
+    this.videoSaved = false;
   }
 }

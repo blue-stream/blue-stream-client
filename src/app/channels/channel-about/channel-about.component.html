@@ -1,13 +1,32 @@
 <div id="container">
     <div id="basic-info">
         <div id="description">
-            <p id="title" translate>
+            <p class="title" translate>
                 CHANNEL.ABOUT.DESCRIPTION_TITLE
             </p>
-            <p>
+            <p id="description-info">
                 {{channel.description}}
             </p>
         </div>
+        <div *ngIf="!channel.isProfile"
+            infiniteScroll
+            [infiniteScrollDistance]="2"
+            [infiniteScrollThrottle]="150"
+            (scrolled)="onScroll()"
+            [fromRoot]="true"
+            [infiniteScrollContainer]="'#side-nav-container'">
+            <p class="title">
+                מנהלים
+            </p>
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let admin of admins" [routerLink]="['/channels/profile', admin.user.id ]">
+                    <bs-avatar matListAvatar size="small" [userId]="admin.user.id" [source]="admin.user.id"></bs-avatar>
+                    <h4 mat-line>{{admin.user.name}}</h4>
+                    <p mat-line>{{admin.user.id}}</p>
+                </a>
+            </mat-nav-list>
+        </div>
     </div>
-    <bs-channel-stats [creationDate]="channel.createdAt" [totalViews]="views" [videosAmount]="videosAmount" id="stats"></bs-channel-stats>
+    <bs-channel-stats [creationDate]="channel.createdAt" [totalViews]="views" [videosAmount]="videosAmount" id="stats">
+    </bs-channel-stats>
 </div>

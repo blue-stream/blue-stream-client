@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-list>
+    <mat-list-item *ngFor="let entityAmount of entitiesAmounts">
+      <mat-icon matListIcon>{{entityAmount.icon}}</mat-icon>
+      <h3 matLine translate>{{entityAmount.title}}</h3>
+      <p>
+        <span> {{entityAmount.amount}} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

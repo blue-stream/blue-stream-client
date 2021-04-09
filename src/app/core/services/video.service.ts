@@ -21,7 +21,7 @@ const contentApiUrl: string = streamerServiceUrl + 'api/streamer/video/';
 const thumbnailApiUrl: string = streamerServiceUrl + 'api/streamer/thumbnail/';
 const previewApiUrl: string = streamerServiceUrl + 'api/streamer/preview/';
 
-const concatStreamerUrl = video => {
+export const concatStreamerUrl = video => {
   video.contentPath = contentApiUrl.concat(video.contentPath);
   video.thumbnailPath = thumbnailApiUrl.concat(video.thumbnailPath);
   video.previewPath = previewApiUrl.concat(video.previewPath);
@@ -49,6 +49,10 @@ export class VideoService {
     return this.httpClient.put<Video>(`${this.serviceUrl}${this.apiUrl}/${video.id}`, video, httpOptions);
   }
 
+  reupload(id: string): Observable<{ token: string }> {
+    return this.httpClient.put<{ token: string }>(`${this.serviceUrl}${this.apiUrl}/reupload/${id}`, httpOptions);
+  }
+
   delete(id: string) {
     return this.httpClient.delete<Video>(`${this.serviceUrl}${this.apiUrl}/${id}`, httpOptions);
   }
@@ -73,6 +77,25 @@ export class VideoService {
     });
 
     return this.httpClient.get<number>(`${this.serviceUrl}${this.apiUrl}/amount`, options);
+  }
+
+  getTags(startIndex?: number,
+    endIndex?: number): Observable<string[]> {
+    const options = {
+      headers: httpHeaders,
+      params: {
+        startIndex: Number.isInteger(startIndex) ? startIndex.toString() : 0,
+        endIndex: Number.isInteger(endIndex) ? endIndex.toString() : 20,
+      } as { [param: string]: string | string[] },
+    };
+
+    Object.keys(options.params).forEach(key => {
+      if (options.params[key] === undefined) {
+        delete options.params[key];
+      }
+    });
+
+    return this.httpClient.get<string[]>(`${this.serviceUrl}${this.apiUrl}/tags`, options);
   }
 
   getVideos(

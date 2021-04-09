@@ -23,6 +23,9 @@ export const environment = {
   channelDescriptionMaxLength: 128,
   descriptionMaxLength: 5000,
   classificationMaxLength: 256,
+  amountOfTagsToShowInWatchPage: 5,
+  supportedFileFormats: ['mkv', 'flv', 'ogg', 'avi', 'mov', 'wmv', 'mp4', 'm4v', 'mpg', 'mpeg'],
+  maxFileSize: 2147483648, // 2gb
 };
 
 /*

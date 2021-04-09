@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
 import { FileUpload } from './file-upload';
 import { FileUploadStatus } from './file-upload-status.enum';
 import { VideoUpload } from './video-upload.interface';
+import { VideoService } from '../core/services/video.service';
 
 @Injectable()
 export class FileUploaderService {
@@ -24,7 +25,9 @@ export class FileUploaderService {
   private files: VideoUpload[];
   private queue: BehaviorSubject<VideoUpload[]>;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+      private httpClient: HttpClient,
+      private videoService: VideoService) {
     this.files = [];
     this.queue = <BehaviorSubject<VideoUpload[]>>new BehaviorSubject(this.files);
   }
@@ -50,9 +53,9 @@ export class FileUploaderService {
     return this.queue.asObservable();
   }
 
-  public addToQueue(file: File, videoId: string, videoToken: string) {
+  public addToQueue(file: File, videoId: string, videoToken: string, isReupload: boolean = false) {
     const fileUpload = new FileUpload(file);
-    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: false };
+    const videoUpload: VideoUpload = { fileUpload: fileUpload, id: videoId, token: videoToken, published: isReupload };
     this.files.push(videoUpload);
     this.queue.next(this.files);
   }
@@ -65,7 +68,7 @@ export class FileUploaderService {
   public uploadAll() {
     this.files.forEach((video: VideoUpload) => {
       if (video.fileUpload.isUploadable()) {
-        this.upload(video.fileUpload, video.token);
+        this.upload(video);
       }
     });
   }
@@ -78,7 +81,10 @@ export class FileUploaderService {
     this.queue.next(this.files);
   }
 
-  private upload(fileUpload: FileUpload, videoToken: string) {
+  private upload(videoUpload: VideoUpload) {
+    const videoToken: string = videoUpload.token;
+    const fileUpload: FileUpload = videoUpload.fileUpload;
+
     const formData: FormData = new FormData();
     formData.append('videoFile', fileUpload.file, fileUpload.file.name);
     const req = new HttpRequest('POST', `${this.serviceUrl}${this.apiUrl}`, formData, {
@@ -97,6 +103,7 @@ export class FileUploaderService {
         }
       },
       (err: HttpErrorResponse) => {
+        this.videoService.delete(videoUpload.id).subscribe(res => {});
         if (err.error instanceof Error) {
           // TODO : Client-side or network error occured.
         } else {

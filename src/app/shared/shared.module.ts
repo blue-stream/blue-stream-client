@@ -37,13 +37,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SubscribeButtonComponent } from './subscribe-button/subscribe-button.component';
-import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ChannelListComponent } from './channel-list/channel-list.component';
 import { ChannelTileComponent } from './channel-tile/channel-tile.component';
 import { VideoFormComponent } from './video-form/video-form.component';
 import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.component';
+import { PopularTagsComponent } from './popular-tags/popular-tags.component';
 
 @NgModule({
   imports: [
@@ -109,7 +109,6 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     SearchComponent,
     SafeUrlPipe,
     SubscribeButtonComponent,
-    LanguageSwitcherComponent,
     ReactiveFormsModule,
     MatExpansionModule,
     ChannelListComponent,
@@ -117,7 +116,8 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     VideoFormComponent,
     NoVideosFoundComponent,
     NoVideosFoundComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PopularTagsComponent
   ],
   declarations: [
     ConfirmDialogComponent,
@@ -132,11 +132,11 @@ import { NoVideosFoundComponent } from './no-videos-found/no-videos-found.compon
     ReactionComponent,
     SearchComponent,
     SubscribeButtonComponent,
-    LanguageSwitcherComponent,
     ChannelListComponent,
     ChannelTileComponent,
     VideoFormComponent,
-    NoVideosFoundComponent
+    NoVideosFoundComponent,
+    PopularTagsComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

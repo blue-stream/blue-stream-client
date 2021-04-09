@@ -1,24 +1,49 @@
 {
     "APP": {
-        "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 57 ומעלה"
+        "BROWSER_NOT_SUPPORTED": "הדפדפן שלך אינו נתמך, אנא הורד את דפדפן כרום בגרסה 62 ומעלה"
+    },
+    "TOP_BAR": {
+        "CREATE_VIDEO": "העלה סרטון",
+        "CREATE_CHANNEL": "צור ערוץ",
+        "PROFILE": "פרופיל"
     },
     "DASHBOARD": {
         "HOME": "דף הבית",
-        "POPULAR": "סרטונים פופולארים",
+        "POPULAR": "סרטונים פופולרים",
         "SEARCH_RESULTS": "תוצאות חיפוש",
         "SUBSCRIPTIONS": "מינויים",
-        "ALL_CHANNELS": "כל הערוצים",
-        "USER_CHANNELS": "הערוצים שלי"
+        "ALL_CHANNELS": "ערוצים",
+        "ALL_PROFILES": "פרופילים",
+        "USER_CHANNELS": "הערוצים שלי",
+        "USER_UPLOADS": "העלאות שלי",
+        "ADMIN_PANEL": "מנהלים",
+        "HISTORY": "היסטוריה",
+        "USER_REACTIONS": "סרטונים שאהבתי",
+        "SETTINGS": "הגדרות"
     },
     "VIDEO": {
         "VIDEO_SECTION_ITEM": {
             "MOST_VIEWED": "הנצפים ביותר",
-            "NEWEST": "נוספו לאחרונה"        }
+            "NEWEST": "נוספו לאחרונה",
+            "MOST_LIKED_ALL_TIME": "האהובים ביותר - בכל הזמנים",
+            "MOST_LIKED_LAST_WEEK": "האהובים ביותר - השבוע",
+            "MOST_LIKED_LAST_MONTH": "האהובים ביותר - החודש"
+        }
+    },
+    "HISTORY": {
+        "TITLE": "היסטוריית צפיות"
+    },
+    "USER_REACTIONS": {
+        "TITLE": "סרטונים אהובים"
+    },
+    "SETTINGS": {
+        "LANGUAGE": "שפה"
     },
     "UPLOADER": {
         "FILE_UPLOADER": {
-            "TITLE": "בחר קבצים להעלאה",
-            "DESCRIPTION": "או גרור ושחרר קבצי וידאו"
+            "TITLE": "בחר קבצים להעלאה (עד 2GB)",
+            "DESCRIPTION": "או גרור ושחרר קבצי וידאו",
+            "FORMAT_DESCRIPTION": "בכל פורמט רצוי"
         },
         "UPLOAD_PROGRESS_BAR": {
             "DONE": "בוצע",
@@ -40,8 +65,10 @@
             "TAGS": "תיוגים",
             "PUBLISH": "פרסם",
             "SAVE": "שמור",
+            "CLASSIFICATION_WARNING": "נא מדר את הסרטון כראוי!",
             "CLASSIFICATION_SOURCE": "מקור",
             "PP": "הפצה",
+            "REUPLOAD": "העלאה מחדש",
             "VISIBILITY": {
                 "FIELD": "נראות",
                 "PUBLIC": "ציבורי",
@@ -60,7 +87,7 @@
         "UPLOAD_PROGRESS": {
             "ERROR": "אירעה שגיאה",
             "SUCCESS": "לחץ על \"פרסם\" כדי להפוך את הסרטון שלך לפעיל.",
-            "PROGRESS": "הסרטון עדיין נטען. אשאר את הדף פתוח עד לסיום הטעינה.",
+            "PROGRESS": "הסרטון עדיין נטען. השאר את הדף פתוח עד לסיום הטעינה.",
             "PENDING": "העלאה ממתינה",
             "UNKNOWN": "לא ידוע",
             "PUBLISHED": "הסרטון פורסם בהצלחה",
@@ -105,7 +132,11 @@
             "PROCESSING": "הסרטון עדיין בתהליך העיבוד."
         },
         "WATCH_OWNER": {
-            "PUBLISH_DATE": "פורסם ב{{date}} על יד {{user}}"
+            "PUBLISH_DATE": "פורסם ב{{date}} בשעה {{time}} על ידי "
+        },
+        "WATCH_DESCRIPTION": {
+            "SHOW_MORE": "הצג יותר",
+            "SHOW_LESS": "הצג פחות"
         },
         "WATCH_PRIMARY_INFO": {
             "PRIVATE_VIDEO": "סרטון פרטי",
@@ -130,15 +161,16 @@
         },
         "VIDEOS": {
             "TAB_LABEL": "סרטונים",
+            "TAB_LABEL_PROFILE": "הועלו לפרופיל",
             "NO_VIDEOS": "אין סרטונים בערוץ זה."
         },
         "USER_VIDEOS": {
-            "TAB_LABEL": "הסרטונים שהעלתי",
+            "TAB_LABEL": "העלאות משתמש",
             "NO_VIDEOS": "משתמש זה טרם העלה סרטונים."
         },
         "CHANNELS": {
             "TAB_LABEL": "הערוצים שלי",
-            "UPLOAD_TITLE": "לאיזה ערוץ תרצה לעלות?"
+            "UPLOAD_TITLE": "לאיזה ערוץ תרצה להעלות?"
         },
         "STATS": {
             "TITLE": "סטטיסטיקות",
@@ -193,18 +225,35 @@
         },
         "CHANNEL_PERMISSION": {
             "OWNER": "בעלים"
+        },
+        "CHANNEL_HEADER": {
+            "PROFILE_CHIP": "פרופיל משתמש"
         }
     },
     "SHARED": {
+        "USEFUL_TAGS": "תגיות פופולריות",
+        "RECOMMENDED_TAGS": "תגיות מומלצות",
         "SUBSCRIBE-BUTTON": {
             "SUBSCRIBE": "עקוב",
             "UNSUBSCRIBE": "בטל עקיבה"
         },
         "VIDEO_TILE": {
-            "VIEWS": "{{views}} צפיות"
+            "VIEWS": "{{views}} צפיות",
+            "USER_VIEWS": "נצפה {{views}} פעמים על ידך",
+            "LAST_WATCH": "נצפה לאחרונה",
+            "VIDEO_REMOVED": "הסרטון נמחק"
         },
         "VIDEO_PLAYER": {
             "VIDEO_ACTIONS": {
+                "PLAY": "הפעל",
+                "PAUSE": "השהה",
+                "MUTE": "השתק",
+                "CANCEL_MUTE": "בטל השתקה",
+                "SETTINGS": "הגדרות",
+                "CINEMA_MODE": "מצב קולנוע",
+                "DEFAULT_MODE": "תצוגת ברירת מחדל",
+                "FULL_SCREEN": "מסך מלא",
+                "EXIT_FULL_SCREEN": "צא ממסך מלא",
                 "CAPTURE": "צלם תמונה",
                 "DOWNLOAD": "הורד סירטון",
                 "SPEED": "מהירות",
@@ -224,6 +273,14 @@
             "TRY_DIFFERENT_KEYWORDS": "כדאי לנסות מילות מפתח אחרות או להסיר מסנני חיפוש"
         }
     },
+    "ADMIN_PANEL": {
+        "CHANNELS_AMOUNT": "כמות ערוצים",
+        "PROFILES_AMOUNT": "כמות פרופילים",
+        "VIDEOS_AMOUNT": "כמות סרטונים",
+        "COMMENTS_AMOUNT": "כמות תגובות",
+        "SYSADMINS_AMOUNT": "כמות מנהלי מערכת",
+        "USERS_AMOUNT": "כמות משתמשים"
+    },
     "CORE": {
         "CAN_DEACTIVATE_GUARD": {
             "CONFIRM_MESSAGE": "ישנם שינויים שלא שמרת בעמוד, אתה בטוח שברצונך לצאת?"
@@ -232,7 +289,11 @@
     "SNACK_BARS": {
         "ERRORS": {
             "UNPREMITTED_USER": "אין לך הרשאות לבצע פעולה זו",
-            "UNKNOWN": "תקלה לא ידועה"
+            "UNKNOWN": "תקלה לא ידועה",
+            "UNKNOWN_FILE_TYPE": "סוג הקובץ אינו תקין",
+            "VIDEO_NOT_FOUND": "הסרטון לא נמצא",
+            "DUPLICATE_CHANNEL": "ערוץ עם שם זה כבר קיים",
+            "FILE_SIZE_TOO_BIG": "גודל הקובץ חורג מהגודל המותר"
         },
         "SUCCESSFUL": {
             "VIDEO_DELETE": "סרטון נמחק בהצלחה"

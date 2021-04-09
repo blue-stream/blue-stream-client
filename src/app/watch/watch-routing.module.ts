@@ -4,6 +4,11 @@ import { WatchComponent } from './watch.component';
 
 const routes: Routes = [
   {
+    path: 'undefined',
+    redirectTo: '/',
+    pathMatch: 'full',
+  },
+  {
     path: ':id',
     component: WatchComponent
   },

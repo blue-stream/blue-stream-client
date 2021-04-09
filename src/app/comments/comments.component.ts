@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input } from '@angular/core';
 import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { Comment } from './models/comment.model';
-import { CommentService } from './comment.service';
+import { CommentService } from '../core/services/comment.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
 import { CommentDeleteDialogComponent } from './comment-delete-dialog/comment-delete-dialog.component';

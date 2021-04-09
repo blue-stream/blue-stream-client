@@ -1,18 +1,19 @@
 <div id="video-tile" [ngClass]="{'horizontal':horizontal}">
-  <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
-    <a [routerLink]="['/channels',channel.id]">
-      <div [ngClass]="{'img':true, 'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
-          <div id="image" [ngStyle]="{'background-image': image}" ></div>
-      </div> 
-    </a>
-    <div id="video-details" [ngClass]="{'horizontal':horizontal}">
-      <a id="video-title" [routerLink]="['/channels', channel.id]" ellipsis>{{channel.name}}</a>
-      <div [fxLayout]="description ? 'row wrap' : 'column'">
+  <a [routerLink]="['/channels',channel.id]">
+    <div [fxLayout]="horizontal ? 'row' : 'column'" fxLayoutGap="10px">
+      <div
+        [ngClass]="{'img':true, 'img-horizontal':horizontal, 'img-horizontal-with-description':horizontal && description}">
+        <div id="image" [style.background-image]="image"></div>
+      </div>
+      <div id="video-details" [ngClass]="{'horizontal':horizontal}">
+        <a id="video-title" [routerLink]="['/channels', channel.id]" ellipsis>{{channel.name}}</a>
+        <div [fxLayout]="description ? 'row wrap' : 'column'">
           <div id="video-statistics">
             <span>{{'CHANNEL.GRID_ITEM.VIEWS' | translate}}: {{channel.views || 0}}</span>
           </div>
+        </div>
+        <div id="video-description" *ngIf="description" ellipsis>{{channel.description}}</div>
       </div>
-      <div id="video-description" *ngIf="description" ellipsis>{{channel.description}}</div>
     </div>
-  </div>
+  </a>
 </div>

@@ -11,6 +11,7 @@ import { FileUploaderService } from '../file-uploader.service';
 export class VideoUploadFormComponent implements OnInit {
 
   @Input() isPublishReady: boolean;
+  @Input() isReupload: boolean = false;
   @Input() videoUpload: VideoUpload;
   @Output() videoPublished: EventEmitter<string> = new EventEmitter();
   videoSaved = false;
